@@ -1,0 +1,50 @@
+/* Global Resets & Standards ---------------------- */
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+html { font-size: 62.5%; }
+
+body { background: white; font-family: 'Open Sans',  Arial, sans-serif; font-weight: 300; font-size: 14px; line-height: 1; color: #333; position: relative; -webkit-font-smoothing: antialiased; }
+
+/* Links ---------------------- */
+a { color: #d6cd21; text-decoration: none; line-height: inherit; }
+a:hover {color: #d6cd21; text-decoration: underline; }
+a:focus { color: #a19a19; outline: none; }
+
+/* Hover */
+a img:hover{background-color: #d6cd21;}
+a img:focus{background-color: #d6cd21;}
+li.hover:hover, li.focus:focus{ background-color: #CDF4F3 !important; text-decoration:none; }
+li.active:hover {background-color:#FFFFD8; }
+.noh:hover, .nof:focus{background:none !important}
+.nhf:hover, .nhf:focus{background:none !important}
+
+/* General ---------------------- */
+.clear { clear: both; }
+
+.disabled, .disable { pointer-events: none; opacity: 0.5; }
+.disabled.link, .disable.link{ opacity: 1; color: inherit; }
+
+.clearfix:before, .clearfix:after { content: " "; display: table; } /* Prevents div with just floated elements from collapsing on itself */
+.clearfix:after { clear:both; }
+.clearfix { *zoom:1; } /* IE6/7 support */
+
+.break { -ms-word-break:break-all; word-break: break-all; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; } /* Breaks long strings of text or urls to prevent overflow */
+
+.ellipsis { width: 100%; white-space: nowrap; overflow: hidden; -ms-text-overflow: ellipsis; /* Required for IE8 */ -o-text-overflow: ellipsis; /* Required for Opera */ text-overflow: ellipsis; } /* Hides text after certain width and adds ...  Change width to suit needs */
+
+pre { white-space: pre-wrap; /* Chrome & Safari */ white-space: -moz-pre-wrap; /* Mozilla since 1999 */ white-space: -pre-wrap; /* Opera 4-6 */ white-space: -o-pre-wrap; /* Opera 7 */ word-wrap: break-word; /* Internet Explorer 5.5+ */ } /* Breaks long strings in pre code */
+
+.highlight { background: #FFFFD8 ; }
+
+.fillerImg { background: #99BFA3 url(../../../uploads/2012/11/photoLight-100x100.png) center no-repeat; position:absolute; width:150px; height:168px; z-index:-1; opacity:.5}
+
+.ofh {overflow: hidden !important; }
+.scroll { overflow-y:scroll; }
+.hScroll {overflow-x: scroll; }
+
+/* Visibility ---------------------- */
+.hide { display: none; }
+.show { display: block; }
+
+.visuallyhidden { position: absolute; width: 1px;  height: 1px; padding: 0; margin: -1px; border: 0; clip: rect(0 0 0 0); overflow: hidden; } /* Setting width or height to 0 make it invisible for VoiceOver */
+
+.ir { text-indent: 100%; white-space: nowrap; overflow: hidden; } /* Image replacement, hide text */
