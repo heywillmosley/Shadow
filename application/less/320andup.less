@@ -1,0 +1,203 @@
+// ==========================================================
+
+// 320 and Up by Andy Clarke
+// Version: 3.0
+// URL: http://stuffandnonsense.co.uk/projects/320andup/
+// Apache License: v2.0. http://www.apache.org/licenses/LICENSE-2.0
+
+// ==========================================================
+
+/* 320 =================================================== */
+
+// 1. ROOT     				==============================
+
+
+// 2. TYPOGRAPHY 			==============================
+h1, h2, h3, h4, h5, h6 { 
+    font-family: @sansFontFamily;
+	font-weight: 200;
+} // end h1, h2, h3, h4, h5, h6
+
+p { 
+	.font-size(16);
+	line-height: 1.8;
+}
+
+.product_category {
+	font-family: @sansFontFamily;
+	.font-size(70);
+	font-weight: 100;
+	padding: 30px 0;
+}
+
+.product_category {
+	color: @childrensColor;
+}
+
+.headline {
+	.font-size(35);
+	font-weight: 700;
+	text-transform: uppercase;
+	max-width: 800px;
+	margin-bottom: 20px;
+}
+
+.price {
+	.font-size(50);
+	font-weight: 100;
+	line-height: 2;
+}
+
+.euro {
+	color: @gray;
+	.font-size(28);
+}
+
+a { 
+    &:hover {
+        text-decoration: none; 
+    }
+}
+// 3. COLOUR 				==============================
+// 4. TEXTURE 				==============================
+// 5. ELEMENTS 				==============================
+
+.brand_sites {
+	// border-bottom: @gray 1px solid;
+	.sub-nav {
+		margin: 10px 2.5px;
+		padding: 0;
+		overflow-y: hidden;
+		dd, dt {
+			margin: 0 10px;
+		}
+	}
+}
+
+.kb-nav {
+	border-bottom: #77bc43 4px solid;
+	padding: 10px;
+}
+
+.top-bar-section li {
+	.allergy .box {
+		background-color: @allergyColor;
+		height: 20px;
+		width: 20px;
+		padding:2px;
+	}
+	a.childrens {
+		background-color: @childrensColor;
+	}
+	a.circulation {
+		background-color: @circulationColor;
+	}
+	a.constitution {
+		background-color: @constitutionColor;
+	}
+	a.cleansingDetox {
+		background-color: @cleansingDetoxColor;
+	}
+	a.digestion {
+		background-color: @digestionColor;
+	}
+	a.eyes {
+		background-color: @eyesColor;
+	}
+	a.immune {
+		background-color: @immuneColor;
+	}
+	a.mindBody {
+		background-color: @mindBodyColor;
+	}
+	a.pain {
+		background-color: @painColor;
+	}
+	a.skin {
+		background-color: @skinColor;
+	}
+	a.sports {
+		background-color: @sportsColor;
+	}
+	a.urinary {
+		background-color: @urinaryColor;
+	}
+	.weight {
+		background-color: @weightColor;
+	}
+	a.maleFemale {
+		background-color: @maleFemaleColor;
+	}
+	a.oralHealth {
+		background-color: @oralHealthColor;
+	}
+	.sleep {
+		background-color: @sleepColor;
+	}
+}
+
+.nav-search {
+	min-width: 650px;
+}
+
+.newsletter {
+	width: 600px;
+	float: right;
+}
+
+input {
+	font-weight: 200;
+}
+
+.logo {
+	max-height: 70px;
+	padding-bottom: 10px;
+}
+
+.tp-logo {
+	max-height: 40px;
+}
+
+.footer {
+	height: 100px;
+}
+
+
+// 6. LAYOUT 				==============================
+
+.wrapper {
+    max-width: 1000px;
+	margin: 0 auto;
+ } // end wrapper 
+ 
+// 7. VENDOR-SPECIFIC 		==============================
+// Foundation
+
+.row {
+	max-width: none !important;
+}
+.sub-nav dt a, .sub-nav dd a { 
+	color: @linkColor;
+	&:hover { 
+		color: @linkColorHover;
+	
+	}
+}
+
+
+.button.childrens, .top-bar-section ul li > a.button.childrens  {
+    background-color: @buttonChildrensBackground;
+    color: @buttonChildrensColor;
+    border-color: @buttonChildrensBorderColor;
+    &:hover {
+        background-color: @buttonChildrensHoverBackground;
+        color: @buttonChildrensHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonChildrensFocusBackground;
+        color: @buttonChildrensFocusColor;
+    } // end focus
+}
+
+// 8. MODERNIZR 			==============================
+// 9. TEMPLATE SPECIFICS 	==============================

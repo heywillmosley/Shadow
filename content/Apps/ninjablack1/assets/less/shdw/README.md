@@ -1,1 +1,0 @@
-All the information you need to know about Shadow Framework

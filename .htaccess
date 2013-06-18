@@ -1,0 +1,10 @@
+# Sets the enviroment up to follow symbolic links using 'Options directive'
+Options +FollowSymLinks
+
+# Use the Rewrite Engine
+RewriteEngine On
+  
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f  
+  
+RewriteRule ^.*$ ./index.php  
