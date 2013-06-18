@@ -3,24 +3,17 @@
 @import url("mixins.less");
 
 // Elements
-@import url("elements/standards.less");
-@import url("elements/css_elements.less");
-@import url("elements/admin.less");
+// @import url("elements/admin.less");
 // @import url("elements/freefall.less");
-@import url("elements/graph.less");
+// @import url("element;/graph.less");
 @import url("elements/grid.less");
-@import url("elements/hangout.less");
-@import url("elements/media.less");
-@import url("elements/navigation.less");
-@import url("elements/notify.less");
-@import url("elements/panel.less");
-// Syntax error on line 3 @import url("elements/retina.less");
-@import url("elements/reveal.less");
+// @import url("elements/hangout.less");
+// @import url("elements/navigation.less");
+// @import url("elements/notify.less");
+// @import url("elements/panel.less");
 @import url("elements/sidebar.less");
-@import url("elements/stickyfooter.less");
 @import url("elements/story.less");
 @import url("elements/wireframe.less");
-@import url("mn/elements/gallery.less");
 
 // 320andup
 //  10. MEDIA QUERIES         ==============================
@@ -56,8 +49,12 @@
 }
 
 // 2x
-@media
-only screen and (-webkit-min-device-pixel-ratio: 1.5), 
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
+/* Retina Displays ---------------------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (   -moz-min-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
 @import "2x.less"; }

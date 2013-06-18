@@ -14,120 +14,83 @@
  *
  * System Config
  *
- * Define systemwide settings so they may be changed easily
- * Define useful constants that may be used by multiple scripts
- * Start the session, Establish how errors will be handled
+ * Configuration file does the following things:
+ * - Has site settings in one location
+ * - Stores URLs and URIs as constants.
+ * - Sets how errors will be handled
  *
- * @since          Version 1.1.5
- * @filesource     /html/system/inc/config.inc.php
+ * @since          Version 1.1.7
  */
  
 // --------------------------------------------------------------------------------
  
-
-
+# ******************** #
+# ***** SETTINGS ***** # 
+ 
 /**
  * Shadow Version
- *
- * @var string
- *
  */
-	define('SYS_VER', '1.1.6');
+	define('SYS_VER', '1.1.7');
 	
+	# Numeric - strip dots
+	define('NUM_SYS_VER', str_replace( '.', '', SYS_VER ) );
+	
+/**
+ *  Resolve the front path for increased reliability
+ */
+	define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'FRONT_PATH', FRONT_URI );
+	
+/**
+ *  Define Core Path for accessing scripts not stored in PUBLIC_HTML
+ */
+	define( 'CORE_URI', dirname( FRONT_URI ) . '/' );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'CORE_PATH', CORE_URI );
+	  
+/**
+ * Define Database
+ */
+	define( 'DB', FRONT_URI . 'db.inc.php' );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'MYSQL', DB );
+		
+	
+/**
+ * Load Shadow Config Settings
+ */
+ 	# Include Pilot
+ 	require_once( FRONT_URI . 'pilot.php' );
+	
+	# Include App Settings
+ 	require_once( FRONT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	
+	# Set database configuration;
+	require_once( FRONT_URI . 'db.inc.php' );
+
 /**
  * Define Framework Name
  */
- 
- define('FW_NAME', 'Shadow Framework');
-
-
-/*
- *---------------------------------------------------------------
- * SYSTEM FOLDER NAME
- *---------------------------------------------------------------
- *
- * This variable must contain the name of your "system" folder.
- * Include the path if the folder is not in the same  directory
- * as this file.
- *
+ 	define('FW_NAME', 'Shadow');
+	
+/**
+ * Table Prefix
  */
- 
-$system_PATH = 'system';
-$system_url = $system_PATH;
-
-
-/*
- *---------------------------------------------------------------
- * APPLICATION FOLDER NAME
- *---------------------------------------------------------------
- *
- * If you want this front controller to use a different "application"
- * folder then the default one you can set its name here. The folder
- * can also be renamed or relocated anywhere on your server.  If
- * you do, use a full server path. For more info please see the user guide:
- * http://codeigniter.com/user_guide/general/managing_apps.html
- *
- * NO TRAILING SLASH!
- *
- */
-	$application_folder = 'applications';
-	$application_url = $application_folder;
+ 	define('SYS_PREFIX', 'shdw-');
 	
-// --------------------------------------------------------------------
-// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
-// --------------------------------------------------------------------
-
-/*
- * ---------------------------------------------------------------
- *  Define Core Path for accessing scripts not stored in PUBLIC_HTML
- * ---------------------------------------------------------------
- */
-
-
-define( 'CORE_PATH', dirname(dirname(dirname(dirname(__FILE__)))) . '/' );
-
-/*
- * ---------------------------------------------------------------
- *  Resolve the front path for increased reliability
- * ---------------------------------------------------------------
- */
-
-define( 'FRONT_PATH', dirname(dirname(dirname(__FILE__))) . '/' );
-
-/*
- *---------------------------------------------------------------
- * Load Shadow Config Settings
- *---------------------------------------------------------------
- */
- 	# Include TEMP BOS file
- 	require_once( FRONT_PATH . 'TEMP-bos.php' );
 	
-	// require_once( CORE_PATH . 'sh-config.inc.php' );
-	require_once( FRONT_PATH . 'sh-config.inc.php' );
-
-
-
-/*
- *---------------------------------------------------------------
- * Define Environment Folders
- *---------------------------------------------------------------
- */
- 	define( 'PRODUCTION_FOLDER', 'production' );
-	
-	define( 'STAGE_FOLDER', 'stage' );
-	
-	define( 'QA_FOLDER', 'qa' );
-	
-	define( 'DEVELOPMENT_NOTICE', 'Development environment of ' . SITE_NAME . ' - Used for developing site components and functionality.<br/>Please email ' . ADMIN_NAME . ' at <a href="mailto:' . ADMIN_EMAIL . '?subject=' . str_replace( ' ', '%20', SITE_NAME ) . '%20-%20' . ENVIRONMENT . '%20feedback">' . ADMIN_EMAIL . '</a> with feedback and questions.' );
-	
-	define( 'STAGE_NOTICE', 'Stage environment of ' . SITE_NAME . ' - Used for testing site functionality & usability.<br/>Please email ' . ADMIN_NAME . ' at <a href="mailto:' . ADMIN_EMAIL . '?subject=' . str_replace( ' ', '%20', SITE_NAME ) . '%20-%20' . ENVIRONMENT . '%20feedback">' . ADMIN_EMAIL . '</a> with feedback and questions.' );
-	
-	define( 'QA_NOTICE', 'Quality Assurance environment of ' . SITE_NAME . ' - Used for testing processes such as logging in and shopping experience, as well as proofing copy and surveying broken links.<br/>Please email ' . ADMIN_NAME . ' at <a href="mailto:' . ADMIN_EMAIL . '?subject=' . str_replace( ' ', '%20', SITE_NAME ) . '%20-%20' . ENVIRONMENT . '%20feedback">' . ADMIN_EMAIL . '</a> with feedback and questions.' );
-
-/*
- * --------------------------------------------------------------------
+/**
  * IF USING WORDPRESS or WP directory exists, load Wordpress
- * --------------------------------------------------------------------
  */
  	if( is_dir( 'wordpress' ) )
 	{	
@@ -149,14 +112,13 @@ define( 'FRONT_PATH', dirname(dirname(dirname(__FILE__))) . '/' );
 		require( ABSPATH . 'wp-blog-header.php' );
 	
 	} // end elseif( is_dir( 'wp' ) )
+
 	
-/*
- *---------------------------------------------------------------
+/**
  * ROOT FOLDER NAME
- *---------------------------------------------------------------
  */
  	# Check if alias is being used
-	if( SYS_ALIAS == "" ) 
+	if( SYS_ALIAS != '' ) 
 	{
 		define( 'ROOT_NAME', SYS_ALIAS );
 		
@@ -164,346 +126,356 @@ define( 'FRONT_PATH', dirname(dirname(dirname(__FILE__))) . '/' );
 	
 	else
 	{
-		define( 'ROOT_NAME', basename( FRONT_PATH ) );
+		define( 'ROOT_NAME', basename( FRONT_URI ) );
 	
 	} // end else
 
 
-/*
- * ---------------------------------------------------------------
+/**
  *  Resolve the front url for increased reliability
- * ---------------------------------------------------------------
  */
- 	# Check if there is an addon domain
- 	if( ADDON_DOMAIN != '' && ENVIRONMENT != 'development' )
+ 	if( ENVIRONMENT != 'development' )
 	{
-		# Set Front URL to Add on domain
-		$front_url = 'http://' . ADDON_DOMAIN . '/';
-		$front_url = rtrim( $front_url, '/\\' );
-		$front_url = $front_url . '/';
-		
-	} // end if( ADDON_DOMAIN != '' )
+		# Check if there is an addon domain
+		if( ADDON_DOMAIN != '' )
+		{
+			# Set Front URL to Add on domain
+			$rooturl = 'http://' . ADDON_DOMAIN . '/';
+			$rooturl = rtrim( $rooturl, '/\\' );
+			$rooturl = $rooturl . '/';
+			
+			// URL to the system folder
+			define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
+			
+			/**
+			 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+			 */
+			  define( 'ROOTURL', ROOT_URL );
+			
+		} // end if( ADDON_DOMAIN != '' )
+	
+	} // end if( ENVIRONMENT != 'development' )
 	
 	# Set Front URL based on Server url
 	else
 	{
-		$front_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ROOT_NAME;
-		$front_url = rtrim( $front_url, '/\\' );
-		$front_url = $front_url . '/';
+		$rooturl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ROOT_NAME;
+		$rooturl = rtrim( $rooturl, '/\\' );
+		$rooturl = $rooturl . '/';
+		
+		// URL to the system folder
+		define('ROOT_URL', str_replace("\\", "/", $rooturl));
+		
+		/**
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+		 */
+		  define( 'ROOTURL', ROOT_URL );
+		}
+	
+
+	// The name of THIS file
+	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+
+	// The PHP file extension
+	// this global constant is deprecated.
+	define('EXT', '.php');
+
+	// Path to the system folder
+	define('BASE_URI', str_replace("\\", "/", FRONT_URI . 'system' ) . '/' );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'BASEPATH', BASE_URI );
+	
+	// URL to the system folder
+	define('BASE_URL', ROOT_URL . 'system/');
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'BASEURL', BASE_URL );
+	
+	// Path to the application folder
+	define( 'CONTENT_URI', FRONT_URI . 'content/');
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'CONTENT_PATH', CONTENT_URI );
+	
+	// URL to the system folder
+	define( 'CONTENT_URL', ROOT_URL . 'content/' );
+	
+	// Path to the application folder
+	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'APPLICATIONS_PATH', APPLICATIONS_URI );
+	
+	// URL to the system folder
+	define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
+	
+	// Path to the application folder
+	define('APP_URI',  APPLICATIONS_URI . CURRENT_APP . '/' );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'APPPATH', APP_URI );
+	
+	// URL to the system folder
+	define('APP_URL', APPLICATIONS_URL . CURRENT_APP . '/' );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'APPURL', APP_URL );
+	
+	// Path to the application folder
+	define('BRIDGE_URI', CONTENT_URI . 'bridge/' );
+	
+	// URL to the system folder
+	define('BRIDGE_URL', CONTENT_URL . 'bridge/' );
+	
+	// Name of the "system folder"
+	define('BASE_NAME', trim(strrchr(trim(ROOTURL, '/'), '/'), '/'));
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'BASENAME', BASE_NAME );
+
+	// Name of the "system folder"
+	define('CONTENT_NAME', trim(strrchr(trim(CONTENT_URI, '/'), '/'), '/'));
+	
+	// Name of the "system folder"
+	define('SYS_NAME', trim(strrchr(trim(BASE_URI, '/'), '/'), '/'));
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'SYSNAME', SYS_NAME );
+	
+	define( 'SITE_URL', ROOT_URL );
+	
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'SITEURL', SITE_URL );
+		
+
+/*
+ * -------------------------------------------------------------------
+ *  Define Include and Page constants
+ * -------------------------------------------------------------------
+ */	
+	// Path to system include folder
+	define('BASE_INCLUDE_URI', BASE_URI.'inc/');
+	
+	// URL to application include folder
+	define('APP_INCLUDE_URI', APP_URI.'inc/');
+	
+	// Path to system page folder
+	define('BASE_PAGE_URI', BASE_URI.'pages/');
+	
+	// URL to application page folder
+	define('APP_PAGE_URI', APP_URI.'pages/');	
+	
+/*
+ * -------------------------------------------------------------------
+ *  Constants for our styles and javascripts
+ * -------------------------------------------------------------------
+ */	
+	// Path to system css/styles Folder
+	define('BASE_STYLE_URI', BASE_URI.'assets/css/');
+	
+	// URL to system css/styles
+	define('BASE_STYLE_URL', BASE_URL.'assets/css/');
+	
+	// Path to application css/styles Folder
+	define('APP_STYLE_URI', APP_URI.'assets/css/');
+	
+	// URL to system css/styles
+	define('APP_STYLE_URL', APP_URL.'assets/css/');
+	
+	// Path to system less Folder
+	define('BASE_LESS_URI', BASE_URI.'assets/less/');
+	
+	// URL to system less
+	define('BASE_LESS_URL', BASE_URL.'assets/less/');
+	
+	// Path to application less/styles Folder
+	define('APP_LESS_URI', APPPATH.'assets/less/');
+	
+	// URL to system less/styles
+	define('APP_LESS_URL', APPURL.'assets/less/');
+	
+	// Path to system javascript Folder
+	define('BASE_JS_URI', BASE_URI.'assets/js/');
+	
+	// URL to system javascript
+	define('BASE_JS_URL', BASE_URL.'assets/js/');
+	
+	// Path to application javascript Folder
+	define('APP_JS_URI', APP_URI.'assets/js/');
+	
+	// URL to system javascript
+	define('APP_JS_URL', APP_URL.'assets/js/');
+	
+	// Path to system javascript Folder
+	define('BASE_IMG_URI', BASE_URI.'assets/img/');
+	
+	// URL to system javascript
+	define('BASE_IMG_URL', BASE_URL.'assets/img/');
+	
+	// Path to application javascript Folder
+	define('APP_IMG_URI', APP_URI.'assets/img/');
+	
+	// URL to system javascript
+	define('APP_IMG_URL', APP_URL.'assets/img/');
+	
+
+/**
+ * Define Environment Constants
+ */
+define( 'PRODUCTION_FOLDER', 'production' );
+	
+define( 'STAGE_FOLDER', 'stage' );
+
+define( 'QA_FOLDER', 'qa' );
+
+define( 'DEVELOPMENT_NOTICE', 'Development environment of ' . SITE_NAME . ' - Used for developing site components and functionality.<br/>Please email ' . ADMIN_NAME . ' at <a href="mailto:' . ADMIN_EMAIL . '?subject=' . str_replace( ' ', '%20', SITE_NAME ) . '%20-%20' . ENVIRONMENT . '%20feedback">' . ADMIN_EMAIL . '</a> with feedback and questions.' );
+
+define( 'STAGE_NOTICE', 'Stage environment of ' . SITE_NAME . ' - Used for testing site functionality & usability.<br/>Please email ' . ADMIN_NAME . ' at <a href="mailto:' . ADMIN_EMAIL . '?subject=' . str_replace( ' ', '%20', SITE_NAME ) . '%20-%20' . ENVIRONMENT . '%20feedback">' . ADMIN_EMAIL . '</a> with feedback and questions.' );
+
+define( 'QA_NOTICE', 'Quality Assurance environment of ' . SITE_NAME . ' - Used for testing processes such as logging in and shopping experience, as well as proofing copy and surveying broken links.<br/>Please email ' . ADMIN_NAME . ' at <a href="mailto:' . ADMIN_EMAIL . '?subject=' . str_replace( ' ', '%20', SITE_NAME ) . '%20-%20' . ENVIRONMENT . '%20feedback">' . ADMIN_EMAIL . '</a> with feedback and questions.' );	
+		
+	
+/**
+ * File and Directory Modes
+ */
+	define('FILE_READ_MODE', 0644);
+	define('FILE_WRITE_MODE', 0666);
+	define('DIR_READ_MODE', 0755);
+	define('DIR_WRITE_MODE', 0777);
+
+
+/**
+ * File Stream Modes
+ *
+ * These modes are used when working with fopen()/popen()
+ */
+	define('FOPEN_READ',							'rb');
+	define('FOPEN_READ_WRITE',						'r+b');
+	define('FOPEN_WRITE_CREATE_DESTRUCTIVE',		'wb'); // truncates existing file data, use with care
+	define('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE',	'w+b'); // truncates existing file data, use with care
+	define('FOPEN_WRITE_CREATE',					'ab');
+	define('FOPEN_READ_WRITE_CREATE',				'a+b');
+	define('FOPEN_WRITE_CREATE_STRICT',				'xb');
+	define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
+
+
+/*
+ * Server HTTP port (can omit if the default 80 is used)
+ */	
+ 	define( 'HTTP_SERVER_PORT', '80' );
+
+
+# Most Important setting!
+
+/**
+ * The $debug variable is used to set error management
+ * To debug a specific page, add this to the index.php page:
+ 
+ if( $p == 'thismodule' ) $debug = TRUE;
+ require(' ./system/inc/config.inc.php' );
+ 
+ * To debug the entire site, do
+ 
+ $debug = TRUE;
+ 
+ * before this next conditional
+ */
+ 
+ # Assume debugging is off
+if( !isset( $debug ) )
+{
+	$debug = FALSE;
+	 
+} // end if( !isset( $debug ) )
+
+
+# ***** SETTINGS ***** #
+# ******************** #
+
+
+
+# *************************** #
+# ***** ERROR MANAGEMENT **** #
+
+
+# Create the error handler:	
+function my_error_handler( $e_number, $e_message, $e_file, $e_line, $e_vars )
+{
+	if( ENVIRONMENT != 'production' )
+	$debug = TRUE;
+	else
+		$debug = FALSE;
+	
+	#Build the error message:
+	$message = "<div>$e_message\n
+			file: '$e_file'\n
+			line: $e_line \n
+	\n";
+	
+	global $debug;
+	
+	
+	/**
+	 * Add Backtrace information
+	 *
+	 * A backtrace is essentally everyhing that happened up until the point of the error.
+	 * This will include files that were executed, functions that were called,
+	 * arguments passed to the functions, and variables that existed
+	 */
+	$message .= "<pre class='fs11'>" .print_r( debug_backtrace(), 1 ) . "</pre></div>\n";
+	
+	# If site isn't live, show errors
+	if( !$debug )
+	{
+		echo '<div data-alert class="alert-box alert-warning mas">' . nl2br($message). '</div>';
 	}
 	
-
-
-/*
- * ---------------------------------------------------------------
- *  Resolve the system path for increased reliability
- * ---------------------------------------------------------------
- */
-
-	$system_PATH = dirname(dirname(dirname(__FILE__))) . '/' . $system_PATH;
-	$system_PATH = rtrim( $system_PATH, '/\\');
-	$system_PATH = $system_PATH . '/';
-	
-/*
- * ---------------------------------------------------------------
- *  Resolve the system url for increased reliability
- * ---------------------------------------------------------------
- */
- 
- 	$system_url = $front_url . $system_url;
-	$system_url = rtrim( $system_url, '/\\');
-	$system_url = $system_url . '/';
-	
-/*
- * ---------------------------------------------------------------
- *  Resolve the application path for increased reliability
- * ---------------------------------------------------------------
- */
-
-	$application_folder = dirname(dirname(dirname(__FILE__))) . '/' . $application_folder;
-	$application_folder = rtrim( $application_folder, '/\\');
-	$application_folder = $application_folder . '/';
-	
-/*
- * ---------------------------------------------------------------
- *  Resolve the application url for increased reliability
- * ---------------------------------------------------------------
- */
- 
- 	$application_url = $front_url . $application_url;
-	$application_url = rtrim( $application_url, '/\\');
-	$application_url = $application_url . '/';
-
-# Require system wide constants
-require_once( FRONT_PATH.'system/inc/constants.inc.php');	
-
-/*
- *---------------------------------------------------------------
- * Start Session
- *---------------------------------------------------------------
- */
- 	
-	session_start();
-
-
-require_once( BASE_INCLUDE_PATH . 'header.php' );
-
-/*
- *---------------------------------------------------------------
- * ERROR REPORTING
- *---------------------------------------------------------------
- *
- * Different environments will require different levels of error reporting.
- * By default development will show errors but testing and live will hide them.
- */
- 
- function my_error_handler( $e_number, $e_message, $e_file, $e_line, $e_vars )
- {
-	 $message = "<div><strong>An error occured your script</strong>\n
-	 			file: '$e_file'\n
-				line: $e_line \n
-	 \n$e_message\n";
-	 
-	 
-	 /* Add Backtrace information
-	  * A backtrace is essentally everyhing that happened up until the point of the error.
-	  * This will include files that were executed, functions that were called,
-	  * arguments passed to the functions, and variables that existed */
-	 $message .= "<pre>" .print_r( debug_backtrace(), 1 ) . "</pre></div>\n";
-	 
-	 # If site isn't live, show errors
-	 if( ENVIRONMENT != 'production' )
-	 {
-	 	echo '<div data-alert class="alert-box alert-warning mas">' . nl2br($message). '</div>';
-	 }
 	else
 	{
-			error_log( $message, 1, ADMIN_EMAIL, 'From:admin@livesuperamazing.com' );
-			
+		error_log( $message, 1, ADMIN_EMAIL, 'From:' . ADMIN_EMAIL );
+		
+		echo '<div data-alert class="alert-box secondary">A system error occured, We apologize for the inconvenience.</div>';
+		
+		if( $e_number != E_NOTICE )
+		{
 			echo '<div data-alert class="alert-box secondary">A system error occured, We apologize for the inconvenience.</div>';
 			
-			if( $e_number != E_NOTICE )
-			{
-				echo '<div data-alert class="alert-box secondary">A system error occured, We apologize for the inconvenience.</div>';
-				
-			} // end if( $e_number != E_NOTICE )
-			
+		} // end if( $e_number != E_NOTICE )
+		
 	} // end else
 	
 	# If the site is live, show a generic message, if the error isn't a notice:
 	
 	return true;
-	 
- } // end function my_error_handler( $e_number, $e_message, $e_file, $e_line, $e_vars )
+ 
+} // end function my_error_handler( $e_number, $e_message, $e_file, $e_line, $e_vars )
 
 
 # Apply the error handler
-// set_error_handler( 'my_error_handler' );
-
-# ==============================================================
-# Table prefix
-# Change this if you have multiple installs in the same database
-# ==============================================================
-$table_prefix  = 'sh-';
-
-/*
- * -------------------------------------------------------------------
- *  Create htaccess file for pretty urls if one doesn't exist
- * -------------------------------------------------------------------
- */	
- 	# Check if .htaccess file exists
-	if( !file_exists( ROOTPATH. '.htaccess' ) )
-	{
-		$file = ROOTPATH.".htaccess";
-		$handle = fopen($file, FOPEN_WRITE_CREATE_DESTRUCTIVE );
-		
-		$data = '# Sets the enviroment up to follow symbolic links using "Options directive"
-Options +FollowSymLinks
-
-# Use the Rewrite Engine
-RewriteEngine On
-  
-RewriteCond %{SCRIPT_FILENAME} !-d  
-RewriteCond %{SCRIPT_FILENAME} !-f  
-  
-RewriteRule ^.*$ ./index.php  ';
-	
-		# Write Data to File
-		fwrite( $handle, $data );
-		
-		# Close File
-		fclose($handle);
-		
-	} // end 
-
-/*
- * ------------------------------------------------------
- *  Form Names
- * ------------------------------------------------------
- */
- 	# First Name
-	define( 'FORM_FIRST_NAME', 'first_name' );
-	
-	# Middle Name
-	define( 'FORM_MIDDLE_NAME', 'middle_name' );
-	
-	# Last Name
-	define( 'FORM_LAST_NAME', 'last_name' );
-	
-	# New Username
-	define( 'FORM_NEW_USERNAME', 'new_username' );
-	
-	# New Email
-	define( 'FORM_NEW_EMAIL', 'new_email' );
-	
-	# New Password
-	define( 'FORM_NEW_PASS', 'new_pass' );
-	
-	# Confirm New Password
-	define( 'FORM_CONFIRM_NEW_PASS', 'confirm_new_pass' );
-	
-	
- 
-/*
- * ------------------------------------------------------
- *  Generic Form Error messages
- * ------------------------------------------------------
- */
- 	# Empty Inputs
-	
-		# Empty First Name
-		define( 'ERR_EMPTY_FIRST_NAME', 'Enter your first name.' );
-		
-		# Empty Middle Name
-		define( 'ERR_EMPTY_MIDDLE_NAME', 'Enter your middle name.' );
-		
-		# Empty Last Name
-		define( 'ERR_EMPTY_LAST_NAME', 'Enter your last name.' );
-		
-		# Empty New Email
-		define( 'ERR_EMPTY_NEW_EMAIL', 'Please enter your email address.' );
-	
-		# Empty New Username
-		define( 'ERR_EMPTY_NEW_USERNAME', 'Please enter a username' );
-		
-		# Empty New Password
-		define( 'ERR_EMPTY_NEW_PASS', 'Enter a password.' );
-		
-		# Empty New Confirm Password
-		define( 'ERR_EMPTY_NEW_CONFIRM_PASS', 'Please reenter your password.' );
-		
-	
-	# Invalid Inputs
-	
-		# Invalid First Name
-		define( 'ERR_INVALID_FIRST_NAME', 'Please enter a valid first name.' );
-		
-		# Invalid Middle Name
-		define( 'ERR_INVALID_MIDDLE_NAME', 'Please enter a valid middle name.' );
-		
-		# Invalid Last Name
-		define( 'ERR_INVALID_LAST_NAME', 'Please enter a valid last name.' );
-		
-		# Invalid New Email
-		define( 'ERR_INVALID_NEW_EMAIL', 'Please enter a valid email address.' );
-		
-		# Invalid New Username
-		define( 'ERR_INVALID_NEW_USERNAME', 'Please enter a valid username. Usernames must be at least 2 - 30 characters long and may only contain <code>a-z</code>, <code>A-Z</code>, <code>0-9</code> and <code>_</code>.' );
-		
-		# Invalid Password
-		define( 'ERR_INVALID_PASS', 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase and 1 number.' );
-		
-	# Match Inputs
-		
-		# Mismatched Password & Confirm
-		define( 'ERR_MM_PASS', 'Your passwords aren&rsquo;t the same. Please try again.' );
-		
-	# Taken Inputs
-		
-		# Email Taken
-		define( 'ERR_EMAIL_TAKEN', 'This email address has already been registered. If you have forgotten your password, use the link to have your password sent to you. <a href="' . SITEURL . 'forgot_password">Forgot Password</a>.'  );
-		
-		# Username Taken
-		define( 'ERR_USERNAME_TAKEN', 'This username has already been registered. Please try another one.'  );
-	
-/*
- * ------------------------------------------------------
- *  Load Application Includes
- * ------------------------------------------------------
- */
-	require_once(APP_INCLUDE_PATH.'constants.php');
-	require_once(APP_INCLUDE_PATH.'functions.php');
+set_error_handler( 'my_error_handler' );
 
 
+# ***** ERROR MANAGEMENT ***** #
+# **************************** #
 
-		
- /*
- * ------------------------------------------------------
- *  Load System Includes
- * ------------------------------------------------------
- */
- 	require_once( BASE_INCLUDE_PATH.'file_functions.inc.php');	
-	require_once( BASE_INCLUDE_PATH.'functions.php');	
-	require_once( BASE_INCLUDE_PATH.'conditions.php' );
-	require_once( BASE_INCLUDE_PATH.'form_functions.inc.php' );
-	require_once( APPPATH.'app-config.inc.php' );
-	require_once( BASE_INCLUDE_PATH.'header.php' );
-	require_once( BASE_INCLUDE_PATH.'page_handler.php' );
-			
-/*
- * -------------------------------------------------------------------
- *  Implement Error Handling Class for most PHP errors
- * -------------------------------------------------------------------
- */	/*
-	# These should be true while developing the web site
-	define( 'IS_WARNING_FATAL', true );
-	define( 'DEBUGGING', true);
-	
-	# The error types to be reported
-	define( 'ERROR_TYPES', E_ALL );
-	
-	# Settings about mailing the error messages to admin
-	define( 'SEND_ERROR_MAIL', false );
-	define( 'ADMIN_ERROR_MAIL', 'wmosley@kingbio.com' );
-	define( 'SENDMAIL_FROM', 'errors@kingbio.com' );
-	ini_set( 'sendmail_from', SENDMAIL_FROM );
-	
-	# By default we don't log errors to a file
-	define( 'LOG_ERRORS', true );
-	define( 'LOG_ERRORS_FILE', APPPATH.'errors/log.txt' );
-	
-	# Generic error message to be displayed instead of debug info
-	# (when DEBUGGING is false
-	define( 'SITE_GENERIC_ERROR_MESSAGE', '<h1>' . SITE_NAME . ' Error!</h1>' ); */
-	
-
-/* } // end if
-else {
-?>
-<script>
-
-	// Set desired url name
-	var url = '<?php echo 'install'; ?>';
-	
-	// Change browser url without refreshing
-	window.history.replaceState('Object', 'Title', url);
-	
-
-</script>
-<?php
-
-# Include installation
- include( BASEPATH.'install.php');
- exit;
-
-} // end else	*/	
-
-/*
- * -------------------------------------------------------------------
- *  Footer
- * -------------------------------------------------------------------
- */
- 	require_once( BASE_INCLUDE_PATH.'footer.php' );
-		
-/* End of file header.php */
-/* Location: ./header.php */
+# Prevents direct script access
+if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}

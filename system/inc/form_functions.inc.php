@@ -1,4 +1,5 @@
-<?php
+<?php # Prevents direct script access
+if(!defined('FRONT_URI')){require'config.inc.php';header('Location:'.SITE_URL);exit;}
 /**
  * Shadow
  *
@@ -10,14 +11,10 @@
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * --------------------------------------------------------------------------------
- *
- * Form Functions Inc
- *
- * Streamlines Form input and functionality
- *
  * @since          Version 1.1.5
- * @filesource     /html/system/inc/form_functions.inc.php
+ * -----------------------------------------------------------------
+ *
+ * Form Functions
  */
  
 // --------------------------------------------------------------------------------
