@@ -1,0 +1,42 @@
+#
+# Shadow
+#
+# An open source application development framework that streamlines
+# responsive e-ecommerce development for php 5.0.0 or newer
+#
+# @package        Shadow
+# @author         Super Amazing
+# @copyright      Copyright (c) 2010 - 2013, Super Amazing
+# @license        
+# @link           http://shadow.livesuperamazing.com
+# @since          Version 1.1.5
+# @filesource     /html/.htaccess
+
+# --------------------------------------------------------------------------------
+
+# Sets the enviroment up to follow symbolic links using "Options directive"
+# Options +FollowSymLinks
+
+# Use the Rewrite Engine
+# RewriteEngine On
+
+# Important, do not comment, controls file type functions  
+# RewriteCond %{SCRIPT_FILENAME} !-d  
+# RewriteCond %{SCRIPT_FILENAME} !-f  
+
+# Fix "Bad value X-UA-Compatible for attribute http-equiv on element meta." Validation Error
+Header set X-UA-Compatible "IE=edge,chrome=1" 
+
+#RewriteRule ^.*$ ./index.php 
+
+#MAINTENANCE-PAGE REDIRECT
+
+#<IfModule mod_rewrite.c>
+ #RewriteEngine on
+ ## Allowed Users
+ # William Mosley - Web Master: wmosley@kingbio.com
+ #RewriteCond %{REMOTE_ADDR} !^70\.43\.210\.202$
+ #RewriteCond %{REQUEST_URI} !/maint/schd-maint.php$ [NC]
+ #RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif|less|css|js) [NC]
+ #RewriteRule .* /maint/schd-maint.php [R=302,L]
+#</IfModule>

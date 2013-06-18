@@ -1,0 +1,265 @@
+/* RESET STYLES */
+
+*, html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+	display: block;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+ins {
+	background-color: #ff9;
+	color: #000;
+	text-decoration: none;
+}
+
+input, select {
+	vertical-align: middle;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;   
+	border-top: 1px solid #cccccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+
+
+/* MAIN STYLES */
+
+body {
+	background: #eaeaea;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 18px;
+	font-weight: normal;
+	color: #555555;
+}
+
+h1, h2, h3 {
+	font-family: 'Bitter', Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+	font-size: 50px;
+	line-height: 50px;
+	margin: 0 0 10px 0;
+}
+
+h2 {
+	font-size: 42px;
+	line-height: 50px;
+	margin: 0 0 24px 0;
+	text-align: center;
+}
+
+h3 {
+	font-size: 24px;
+	line-height: 28px;
+	margin: 0 0 15px 0;
+}
+
+h4 {
+	margin: 0 0 12px 0;
+	font-size: 12px;
+	line-height: 12px;
+	color: #555555;
+}
+
+a, a:visited {
+	color: #219831;
+	text-decoration: underline;
+	transition: color 0.25s;
+	-moz-transition: color 0.25s; /* Firefox */
+	-webkit-transition: color 0.25s; /*Safari and Chrome*/
+	-o-transition: color 0.25s; /*Opera*/
+}
+
+a:hover, a:active {
+	color: #28b63b;
+	text-decoration: none;
+}
+
+p {
+	margin: 0 0 20px 0;
+}
+
+p.disclaimer {
+	font-size: 12px;
+	line-height: 14px;
+}
+
+ul {
+	margin: 0 0 20px 0;
+}
+
+ul li {
+	margin: 0 0 5px 15px;
+	padding: 0 0 0 5px;
+}
+
+table {
+	margin: 0 0 20px 0;
+}
+
+table tr td {
+	padding: 20px;
+}
+
+table tr.grey td { 
+	background: #eaeaea;
+}
+
+table.comparison tr td {
+	width: 50%;
+}
+
+table.benefit-one {
+	width: 100%
+}
+
+table.benefit-one td.large-cell {
+	width: 33.33333%;
+}
+
+table.benefit-one td.small-cell {
+	width: 22.22222%;
+}
+
+table.benefit-two tr td {
+	width: 25%;
+}
+
+table.benefit-one tr.grey td, table.benefit-two tr.grey td { 
+	background: #eaeaea;
+}
+
+table.benefit-one tr td.yellow { 
+	background: #fcf195;
+}
+
+table.benefit-one tr.grey td.yellow { 
+	background: #f0e691;
+}
+
+
+
+
+/* STRUCTURE */
+
+.wrapper {
+	width: 980px;
+	margin: 0 auto;
+}
+
+.container {
+	width: 980px;
+	margin: 0 0 4px 0;
+	padding: 20px 0 20px 0;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; /* future proofing */
+	-khtml-border-radius: 10px; /* for old Konqueror browsers */
+	background: #ffffff;
+	-moz-box-shadow: 0px 2px 10px 0px #999;
+	-webkit-box-shadow: 0px 2px 10px 0px #999;
+	box-shadow: 0px 2px 10px 0px #999;
+}
+
+.container-top {
+	background: #ffffff url(../images/asthma/top-bg.jpg) top left no-repeat;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
+	border-radius: 0 0 10px 10px; /* future proofing */
+	-khtml-border-radius: 0 0 10px 10px; /* for old Konqueror browsers */
+}
+
+.container-grey {
+	background: #fafafa;
+}
+
+.container-inset {
+	width: 980px;
+	margin: 0 0 4px 0;
+	padding: 20px 0 20px 0;
+	background: transparent;
+}
+
+.row {
+	width: 980px;
+}
+
+.three-col-small {
+	width: 300px;
+	margin: 0 0 0 20px;
+	float: left;
+}
+
+.three-col-large {
+	width: 620px;
+	margin: 0 0 0 20px;
+	float: left;
+}
+
+.two-col {
+	width: 460px;
+	margin: 0 0 0 20px;
+	float: left;
+}
+
+.one-col {
+	width: 940px;
+	margin: 0 0 0 20px;
+	float: left;
+}
+
+.clear {
+	height: 0px;
+	background: transparent;
+	clear: both;
+}
+
+.fixed {
+        position:fixed;
+}
+
+.center {
+	text-align: center;
+}
+

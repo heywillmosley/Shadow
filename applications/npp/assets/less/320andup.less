@@ -1,0 +1,425 @@
+// ==========================================================
+
+// 320 and Up by Andy Clarke
+// Version: 3.0
+// URL: http://stuffandnonsense.co.uk/projects/320andup/
+// Apache License: v2.0. http://www.apache.org/licenses/LICENSE-2.0
+
+// ==========================================================
+
+/* 320 =================================================== */
+
+// 1. ROOT     				==============================
+.wrapper{
+	max-width: 1200px;	
+	width:100%;
+	zoom:1;
+	margin:0 auto;
+	background-color:transparent !important;
+}
+
+
+// 2. TYPOGRAPHY 			==============================
+h1, h2, h3, h4, h5, h6 { 
+    font-family: @headingsFontFamily !important;
+	font-weight: 900;
+} // end h1, h2, h3, h4, h5, h6
+
+h1 {
+	line-height: 1.2;	
+}
+
+
+// 3. COLOUR 				==============================
+// 4. TEXTURE 				==============================
+// 5. ELEMENTS 				==============================
+
+.logo {
+	position: relative;
+	z-index: 4;	
+}
+
+.tagline{
+	color: @white;
+	max-width: 150px;
+	padding: 0px 20px 10px;
+	z-index: 4;
+	margin-left: 18px;	
+	margin-top: 5px;
+	position:relative;
+	line-height: 1.4;
+	text-align: center;
+	//background-color: #021725;
+	.font-size(11);
+	
+}
+
+.bg-container{
+	max-width: 1200px;
+	overflow: hidden;
+	height: 600px;	
+	position: fixed;
+	z-index: 1;
+	-ms-overflow-x: hidden;
+	top: 0;
+}
+
+	
+.lt-ie9 .hero{
+	background:none !important;
+}
+.hero .bg-container{
+	display: none;	
+}
+
+.lt-ie9 .hero .bg-container{
+	display: block;
+}
+
+.ie-bg{
+	min-width: (800px * 1.5);
+	min-height: (535px * 1.5);
+	max-width: (800px * 1.5);
+	max-height: (535px * 1.5);
+	overflow: hidden;
+	margin-left:-350px;
+	position: relative;
+}
+
+.hero { 
+	width: 100%;
+	height: 600px;
+	position: relative;
+	.logo{
+		width: 150px;	
+	}
+	.bg-gradient{
+		width:400px;
+		height: 100%;	
+		position:absolute;
+		z-index: 1;
+		background: -moz-linear-gradient(left, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+	}
+	.content{
+		position: relative;
+		z-index: 2;
+		padding-top: 109px;
+		.headline {
+			color: @white;
+			padding: 0 23px 20px;
+			.font-size(60);
+			z-index: 4;
+			max-width: 512px;
+			margin:0 !important;
+			font-weight: 600;
+			letter-spacing: -5;
+			.large{
+				.font-size(150);	
+			}
+		}
+		.subheadline {
+			color: @white;
+			.font-size(15);
+			text-align: center;
+			font-weight: 400;
+			z-index: 4;
+			padding: 0 30px;
+		}
+		.button-group{
+			margin: 0 18px;
+			width:300px;
+			max-width:250px;
+			.button{
+				width: 250px;
+				margin: 5px 10px;
+				padding: 10px;
+				.font-size(20);
+			}
+			
+		}
+		
+		
+	}
+	.dog-box{
+		margin-left: -27px;	
+		position: absolute;
+		z-index: 2;
+		bottom: -75px;
+	}
+	.cat-box{
+		margin-left: 120px;	
+		position: absolute;
+		z-index: 1;
+		bottom: -50px;
+	}
+	
+}
+
+.main {
+	position: relative;
+	z-index:2;
+	background-color: @white;
+	padding: 20px;
+	.heading{
+		padding: 30px;
+		.font-size(70);
+		font-weight: 700;
+		color: @white;
+		text-align: center;
+		text-transform:uppercase;
+	}
+	.dog.heading{
+		background-color:#F05715;
+		margin-bottom: 20px;	
+	}
+	.cat.heading{
+		background-color:#439B41;
+		margin-bottom: 20px;	
+	}
+	.subheadline{
+		text-transform:uppercase;
+		.font-size(30);
+		text-align: center;
+		padding: 40px 20px;	
+	}
+	.product{
+		display: block;
+		padding:20px 0 20px;
+		margin: 20px 10px;
+		border-top: 1px dashed #CCC;
+		.img{
+			margin: 0 auto;	
+			display: block;
+		}
+		.content{
+			padding-left: 10px;
+			.title{
+				.font-size(20);	
+				font-weight: bold;
+				padding-bottom: 10px;
+			}
+			.symptoms{
+					
+				ul{
+					li{
+						font-weight: 600;	
+					}
+				}
+			}
+			.uses{
+				padding-bottom: 10px;	
+			}
+			.ingredients{
+				padding-bottom: 10px;	
+			}
+			
+		}
+	}
+	
+}
+
+.footer{
+	background-color: #021725;
+	padding: 10px;
+	color: @white;
+	text-align: center;
+	z-index: 100;
+	position: relative;
+	.left, .right{
+		width: 100%;
+		padding-bottom: 5px;	
+	}
+}
+
+// 6. LAYOUT 				==============================
+
+.wrapper {
+    // max-width: 1000px;
+	// margin: 0 auto;
+ } // end wrapper 
+ 
+// 7. VENDOR-SPECIFIC 		==============================
+// Foundation
+
+.row {
+	max-width: none !important;
+}
+
+.column, .columns {
+	padding: 0 !important;
+	margin: 0 !important;	
+}
+
+.sub-nav dt a, .sub-nav dd a { 
+	color: @linkColor;
+	&:hover { 
+		color: @linkColorHover;
+	
+	}
+}
+
+.tiny.button {
+	padding: 0 6px;
+	.font-size(10.5);
+}
+
+.button.children, .top-bar-section ul li > a.button.children  {
+    background-color: @buttonChildrenBackground;
+    color: @buttonChildrenColor;
+    border-color: @buttonChildrenBorderColor;
+    &:hover {
+        background-color: @buttonChildrenHoverBackground;
+        color: @buttonChildrenHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonChildrenFocusBackground;
+        color: @buttonChildrenFocusColor;
+    } // end focus
+}
+
+.button.allergy, .top-bar-section ul li > a.button.allergy  {
+    background-color: @buttonAllergyBackground;
+    color: @buttonAllergyColor;
+    border-color: @buttonAllergyBorderColor;
+    &:hover {
+        background-color: @buttonAllergyHoverBackground;
+        color: @buttonAllergyHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonAllergyFocusBackground;
+        color: @buttonAllergyFocusColor;
+    } // end focus
+}
+
+.button.dog, .top-bar-section ul li > a.button.dog  {
+    background-color: @buttonDogBackground;
+    color: @buttonDogColor;
+    border-color: @buttonDogBorderColor;
+    &:hover {
+        background-color: @buttonDogHoverBackground;
+        color: @buttonDogHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonDogFocusBackground;
+        color: @buttonDogFocusColor;
+    } // end focus
+}
+
+.button.cat, .top-bar-section ul li > a.button.cat  {
+    background-color: @buttonCatBackground;
+    color: @buttonCatColor;
+    border-color: @buttonCatBorderColor;
+    &:hover {
+        background-color: @buttonCatHoverBackground;
+        color: @buttonCatHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonCatFocusBackground;
+        color: @buttonCatFocusColor;
+    } // end focus
+}
+
+// 8. MODERNIZR 			==============================
+// 9. TEMPLATE SPECIFICS 	==============================
+// Shadow
+.icn25 { max-height: 25px; }
+.icn30 { max-height: 30px; }
+.icn40 { max-height: 40px; }
+
+.op8 { opacity: .8 !important }
+
+
+// Foundation
+.top-bar .toggle-topbar.menu-icon a span {
+	font-size: 11px !important;
+}
+
+input[type="text"] { .box-shadow(0 0 0 rgba(0,0,0,.1)) !important; }
+.button.small { padding-bottom: 0.225em; }
+.button { .box-shadow(0 0 0 rgba(0,0,0,.1)) !important; .rounded; }
+.search input.button, .search button.button { padding-top: 1px; }
+input[type="text"] { 
+	height: 33px !important;
+	.font-size(14);
+}
+.alert-box { 
+	border: none;
+	margin-bottom: 0;
+}
+[role="main"], [role="complementary"] { padding: 0 !important; }
+
+.orbit-bullets {
+	padding-left: 10px;
+	li {
+		height: 10px;
+		width: 10px;
+	}
+}
+
+/* Off canvas layout CSS/JS provided by or adapted from work by Jason Weaver and Luke Wroblewski Requires globals.css grid.css */
+body.off-canvas { padding: 0; margin: 0; }
+
+.container { width: 100%; }
+
+.row { overflow: hidden; margin: 0 !important; }
+
+.row .row { overflow: visible; }
+
+.paneled .container { overflow: hidden; }
+
+.paneled .row { width: 100%; }
+
+[role="main"]:before { content: " "; position: absolute; z-index: -1; top: 0; left: -100%; width: 100%; height: 100%; }
+
+[role="complementary"], [role="main"] { width: 100%; padding: 0 15px; display: block; position: relative; z-index: 1; -webkit-transition: 0.25s all ease-in; -moz-transition: 0.25s all ease-in; -o-transition: 0.25s all ease-in; transition: 0.25s all ease-in; }
+
+.paneled [role="main"] { padding: 0; }
+
+.page-panel { width: 100%; padding: 0 15px; -webkit-transition: 0.3s margin ease-in-out; -moz-transition: 0.3s margin ease-in-out; -o-transition: 0.3s margin ease-in-out; transition: 0.3s margin ease-in-out; background: #fff; }
+
+#switchPanels { margin: 0 -15px; }
+
+.hide-extras [role="complementary"] { display: block; }
+
+[role="navigation"]#topMenu { -webkit-transition: 0.25s all ease-in; -moz-transition: 0.25s all ease-in; -o-transition: 0.25s all ease-in; transition: 0.25s all ease-in; }
+
+[role="navigation"]#topMenu ul { margin-top: 0; }
+
+[role="complementary"] { margin-left: -100%; width: 80%; float: left; z-index: 2; }
+
+[role="main"] { margin-left: 0; float: right; z-index: 1; position: relative; }
+
+.paneled [role="main"] { background: #fff; width: 500%; overflow: hidden; float: none; position: relative; left: 0; -webkit-transition: 0.15s all ease-in; -moz-transition: 0.15s all ease-in; -o-transition: 0.15s all ease-in; transition: 0.15s all ease-in; }
+
+.page-panel { min-height: 400px; float: left; margin: 0; width: 20%; }
+
+.active [role="complementary"] { margin-left: 0; }
+
+.active [role="main"] { margin-right: -80%; }
+
+.active-menu [role="navigation"]#topMenu { margin-top: 0 !important; }
+
+@media all and (min-width: 768px) { menu-button, .sidebar-button { display: none; }
+  [role="complementary"] { width: 20%; margin-left: 0; float: left; padding: 0 15px; }
+  [role="main"] { width: 80%; padding: 0 15px; }
+  .paneled [role="main"] { width: 100%; padding: 0; background: #f4f4f4; left: 0 !important; }
+  .page-panel { display: block; min-height: 800px; float: none; margin: 0; width: 100%; background: #f4f4f4; }
+  .hide-extras [role="main"] { width: 100%; }
+  .hide-extras [role="complementary"] { display: none; }
+  [role="navigation"]#topMenu { display: none; } }
+ 
+.alert-box {
+	font-weight: normal;	
+}
+.alert-box.alert-warning {
+	background-color: lighten(@buttonWarningBackground, 20%) !important;
+	color: @black;	
+}
+
+
