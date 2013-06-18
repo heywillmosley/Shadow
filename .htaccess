@@ -14,18 +14,44 @@
 
 # --------------------------------------------------------------------------------
 
+
+# Disable directory browsing
+Options All -Indexes
+
+# Prevent folder listing:
+IndexIgnore *
+
+# Prevent access to any file:
+#<FilesMatch "^.*$">
+#Order Allow,Deny
+#Deny from all
+#</FilesMatch>
+
+<IfModule mod_rewrite.c>
+
+
 # Sets the enviroment up to follow symbolic links using "Options directive"
-# Options +FollowSymLinks
+Options +FollowSymLinks 
 
-# Use the Rewrite Engine
-# RewriteEngine On
+# Turn Rewrite Engine On
+RewriteEngine On
 
-# Important, do not comment, controls file type functions  
-# RewriteCond %{SCRIPT_FILENAME} !-d  
-# RewriteCond %{SCRIPT_FILENAME} !-f  
+# Important, do not comment, controls file type functions
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f 
+
+# Redirect certain paths to index.php:
+RewriteRule ^(.*)/?$ index.php?p=$1
+RewriteRule ^connections/(\d+)*$ ./profile.php?id=$1  
+RewriteRule ^threads/(\d+)*$ ./thread.php?id=$1   
+RewriteRule ^search/(.*)$ ./search.php?query=$1
+
+
+</IfModule>
+ 
 
 # Fix "Bad value X-UA-Compatible for attribute http-equiv on element meta." Validation Error
-Header set X-UA-Compatible "IE=edge,chrome=1" 
+#Header set X-UA-Compatible "IE=edge,chrome=1" 
 
 #RewriteRule ^.*$ ./index.php 
 

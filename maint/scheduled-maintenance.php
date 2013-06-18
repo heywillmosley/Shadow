@@ -55,8 +55,8 @@ define( 'GOOGLE_FONTS', '' );
  *
  */
  
-$system_PATH = 'system';
-$system_url = $system_PATH;
+$system_URI = 'system';
+$system_url = $system_URI;
 
 
 /*
@@ -87,7 +87,7 @@ $system_url = $system_PATH;
  */
 
 
-define( 'CORE_PATH', dirname( dirname( dirname(__FILE__) ) ) . '/' );
+define( 'CORE_URI', dirname( dirname( dirname(__FILE__) ) ) . '/' );
 
 /*
  * ---------------------------------------------------------------
@@ -95,7 +95,7 @@ define( 'CORE_PATH', dirname( dirname( dirname(__FILE__) ) ) . '/' );
  * ---------------------------------------------------------------
  */
 
-define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
+define( 'FRONT_URI', dirname( dirname(__FILE__) ) . '/' );
 
 
  	# Establish production database settings
@@ -138,7 +138,7 @@ define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
 	
 	else
 	{
-		define( 'ROOT_NAME', basename( FRONT_PATH ) );
+		define( 'ROOT_NAME', basename( FRONT_URI ) );
 	
 	} // end else
 
@@ -162,9 +162,9 @@ define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
  * ---------------------------------------------------------------
  */
 
-	$system_PATH = dirname(dirname(dirname(__FILE__))) . '/' . $system_PATH;
-	$system_PATH = rtrim( $system_PATH, '/\\');
-	$system_PATH = $system_PATH . '/';
+	$system_URI = dirname(dirname(dirname(__FILE__))) . '/' . $system_URI;
+	$system_URI = rtrim( $system_URI, '/\\');
+	$system_URI = $system_URI . '/';
 	
 /*
  * ---------------------------------------------------------------
@@ -209,13 +209,13 @@ define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
 	define('EXT', '.php');
 
 	// Path to the system folder
-	define('BASEPATH', str_replace("\\", "/", $system_PATH));
+	define('BASEPATH', str_replace("\\", "/", $system_URI));
 	
 	// URL to the system folder
 	define('BASEURL', str_replace("\\", "/", $system_url));
 	
 	// Path to the application folder
-	define('APPLICATIONS_PATH', str_replace("\\", "/", $application_folder));
+	define('APPLICATIONS_URI', str_replace("\\", "/", $application_folder));
 	
 	// URL to the system folder
 	define('APPLICATIONS_URL', str_replace("\\", "/", $application_url));
@@ -227,7 +227,7 @@ define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
 	define('APPURL', str_replace("\\", "/", $application_url) . CURRENT_APP . '/' );
 
 	// Path to the front controller (this file)
-	define('ROOTPATH', str_replace("\\", "/", FRONT_PATH));
+	define('ROOTPATH', str_replace("\\", "/", FRONT_URI));
 	
 	// URL to the system folder
 	define('ROOTURL', str_replace("\\", "/", $front_url));
@@ -244,7 +244,7 @@ define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
 	define( 'SITEURL', ROOTURL );
 	
 	# MYSQL INC FILE
-	define( 'MYSQL', CORE_PATH . 'mysql.inc.php' );
+	define( 'MYSQL', CORE_URI . 'mysql.inc.php' );
 	
 	echo APPURL;
 	
@@ -256,16 +256,16 @@ define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
  * -------------------------------------------------------------------
  */	
 	// Path to system include folder
-	define('BASE_INCLUDE_PATH', BASEPATH.'include/');
+	define('BASE_INCLUDE_URI', BASEPATH.'include/');
 	
 	// URL to application include folder
-	define('APP_INCLUDE_PATH', APPPATH.'include/');
+	define('APP_INCLUDE_URI', APPPATH.'include/');
 	
 	// Path to system page folder
-	define('BASE_PAGE_PATH', BASEPATH.'pages/');
+	define('BASE_PAGE_URI', BASEPATH.'pages/');
 	
 	// URL to application page folder
-	define('APP_PAGE_PATH', APPPATH.'pages/');	
+	define('APP_PAGE_URI', APPPATH.'pages/');	
 	
 /*
  * -------------------------------------------------------------------
@@ -273,49 +273,49 @@ define( 'FRONT_PATH', dirname( dirname(__FILE__) ) . '/' );
  * -------------------------------------------------------------------
  */	
 	// Path to system css/styles Folder
-	define('BASE_STYLE_PATH', BASEPATH.'assets/css/');
+	define('BASE_STYLE_URI', BASEPATH.'assets/css/');
 	
 	// URL to system css/styles
 	define('BASE_STYLE_URL', BASEURL.'assets/css/');
 	
 	// Path to application css/styles Folder
-	define('APP_STYLE_PATH', APPPATH.'assets/css/');
+	define('APP_STYLE_URI', APPPATH.'assets/css/');
 	
 	// URL to system css/styles
 	define('APP_STYLE_URL', APPURL.'assets/css/');
 	
 	// Path to system less Folder
-	define('BASE_LESS_PATH', BASEPATH.'assets/less/');
+	define('BASE_LESS_URI', BASEPATH.'assets/less/');
 	
 	// URL to system less
 	define('BASE_LESS_URL', BASEURL.'assets/less/');
 	
 	// Path to application less/styles Folder
-	define('APP_LESS_PATH', APPPATH.'assets/less/');
+	define('APP_LESS_URI', APPPATH.'assets/less/');
 	
 	// URL to system less/styles
 	define('APP_LESS_URL', APPURL.'assets/less/');
 	
 	// Path to system javascript Folder
-	define('BASE_JS_PATH', BASEPATH.'assets/js/');
+	define('BASE_JS_URI', BASEPATH.'assets/js/');
 	
 	// URL to system javascript
 	define('BASE_JS_URL', BASEURL.'assets/js/');
 	
 	// Path to application javascript Folder
-	define('APP_JS_PATH', APPPATH.'assets/js/');
+	define('APP_JS_URI', APPPATH.'assets/js/');
 	
 	// URL to system javascript
 	define('APP_JS_URL', APPURL.'assets/js/');
 	
 	// Path to system javascript Folder
-	define('BASE_IMG_PATH', BASEPATH.'assets/img/');
+	define('BASE_IMG_URI', BASEPATH.'assets/img/');
 	
 	// URL to system javascript
 	define('BASE_IMG_URL', BASEURL.'assets/img/');
 	
 	// Path to application javascript Folder
-	define('APP_IMG_PATH', APPPATH.'assets/img/');
+	define('APP_IMG_URI', APPPATH.'assets/img/');
 	
 	// URL to system javascript
 	define('APP_IMG_URL', APPURL.'assets/img/');
