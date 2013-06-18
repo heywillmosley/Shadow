@@ -1,0 +1,21 @@
+# This is a combination of 2 commits.
+# The first commit's message is:
+
+Adding first part of new feature
+
+# This is the 2nd commit message:
+
+Adding second part of new feature
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# Not currently on any branch.
+# You are currently editing a commit during a rebase.
+#
+# Changes to be committed:
+#   (use "git reset HEAD^1 <file>..." to unstage)
+#
+#	new file:   feature1.txt
+#	new file:   feature2.txt
+#
+
