@@ -25,6 +25,7 @@ define('INDEX',TRUE);
  * Require the configuration file before any PHP code:.
  */
  	require_once 'system/inc/config.inc.php';
+
 	
 /**
  * Validate what page to show:
@@ -122,18 +123,15 @@ case 'connections/profile':
  *  Load Application Includes
  * ------------------------------------------------------
  */
-	require_once(APP_INCLUDE_URI.'constants.inc.php');
-	require_once(APP_INCLUDE_URI.'functions.inc.php');
+	include_once(APP_INCLUDE_URI.'constants.inc.php');
+	include_once(APP_INCLUDE_URI.'functions.inc.php');
 	
  /*
  * ------------------------------------------------------
  *  Load System Includes
  * ------------------------------------------------------
  */
- 	require_once( BASE_INCLUDE_URI.'file_functions.inc.php');	
 	require_once( BASE_INCLUDE_URI.'functions.inc.php');	
-	require_once( BASE_INCLUDE_URI.'conditions.inc.php' );
-	require_once( BASE_INCLUDE_URI.'form_functions.inc.php' );
  
  
 /**

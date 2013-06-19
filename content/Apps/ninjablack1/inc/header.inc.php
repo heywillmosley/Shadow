@@ -28,8 +28,8 @@ if(!defined('FRONT_URI')){require'../../../system/inc/config.inc.php';header('Lo
     ]}'>
 
 <div class="wrapper">
-	<?php environment_notice(); ?>
-    
+<?php $e = new Environment; $e->environment_notice(); unset( $e ); ?>
+
     <section>
         <h2><?php echo SITE_NAME; ?></h2>
         <p><?php echo TAGLINE; ?></p>

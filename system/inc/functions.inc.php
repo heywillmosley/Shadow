@@ -26,63 +26,6 @@ function deleteFirstChar( $string )
 
 }
 
-# Load Function @since 1.1.5
-function load($page = 'login') {
-	$url = ROOTURL;
-	$url = rtrim( $url, '/\\');
-	$url .= '/' . $page;	
-	
-	header("Location: $url");
-	exit();
-}
-
-# Load Path Function @since 1.1.5
-function load_URI($page = 'login') {
-	$path = ROOTPATH;
-	$path = rtrim( $url, '/\\');
-	$path .= '/' . $page;	
-	
-	header("Location: $path");
-	exit();
-}
-
-
-# Page 404 @since 1.1.5
-function page404 ()
-{
-	# Check if there's a 404.php file in application directory
-	if ( !file_exists( APP_PAGE_URI. '404.php' ) )
-	{
-
-		# Check if there's a 404.html file in application directory
-		if ( !file_exists( APP_PAGE_URI. '404.html' ) )
-		{
-			# Include System 404
-			include ( BASE_PAGE_URI.'404.php' );
-			exit;
-			
-		} // end if
-		
-		else
-		{
-			# Load Application 404.php
-			include ( APP_PAGE_URI.'404.html' );
-			exit;
-		
-		} // end else
-		
-	} // end if
-	else {
-		
-		# Load Application 404.php
-		include ( APP_PAGE_URI.'404.php' );
-		exit;
-		
-		
-	} // end else
-	
-} // end page404
-
 
 # Framework Head @since 1.1.5
 function sys_header() 
@@ -109,7 +52,10 @@ function sys_footer()
     <?php return true;
 }
 
-
+/**
+ * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/19/2014
+ * * Use Maintenance Class Maintenance->maintenance_mode() instead
+ */
 function maintenance_mode()
 {
 	if( MAINTENANCE == 1 ) : ?>
@@ -132,6 +78,11 @@ function maintenance_mode()
 	
 } // end maintenance_mode()
 
+
+/**
+ * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/19/2014
+ * Use Maintenance Class Environment->environment_notice() instead
+ */
 function environment_notice()
 {
 	if( ENVIRONMENT != 'production' )

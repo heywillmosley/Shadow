@@ -29,11 +29,21 @@
  
 /**
  * Shadow Version
+ *
+ * What's New:
+ * - Responsive Images & breakpoints
+ * - Maintenance Operations
+ * - System and application styles and scripts seperated and cleaned up
+ * - Support for IE8 Browsers
+ * - Environments ( Production, Stage, QA, Development )
+ * - Complete system remodel using Object Oriented Programming
+ * - System version control and handling of legacy versions
  */
-	define('SYS_VER', '1.1.7');
+	define('SYS_VER', '1.1.1 b7');
 	
 	# Numeric - strip dots
-	define('NUM_SYS_VER', str_replace( '.', '', SYS_VER ) );
+	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( '.', '', SYS_VER ) ) ) );
+	
 	
 /**
  *  Resolve the front path for increased reliability
@@ -41,7 +51,7 @@
 	define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'FRONT_PATH', FRONT_URI );
 	
@@ -51,7 +61,7 @@
 	define( 'CORE_URI', dirname( FRONT_URI ) . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 	  
@@ -61,7 +71,7 @@
 	define( 'DB', FRONT_URI . 'db.inc.php' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'MYSQL', DB );
 	
@@ -147,7 +157,7 @@
 			define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
 			
 			/**
-			 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+			 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 			 */
 			  define( 'ROOTURL', ROOT_URL );
 			
@@ -166,7 +176,7 @@
 		define('ROOT_URL', str_replace("\\", "/", $rooturl));
 		
 		/**
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
 		  define( 'ROOTURL', ROOT_URL );
 		}
@@ -183,7 +193,7 @@
 	define('BASE_URI', str_replace("\\", "/", FRONT_URI . 'system' ) . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'BASEPATH', BASE_URI );
 	
@@ -191,7 +201,7 @@
 	define('BASE_URL', ROOT_URL . 'system/');
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'BASEURL', BASE_URL );
 	
@@ -199,7 +209,7 @@
 	define( 'CONTENT_URI', FRONT_URI . 'content/');
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CONTENT_PATH', CONTENT_URI );
 	
@@ -210,7 +220,7 @@
 	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPLICATIONS_PATH', APPLICATIONS_URI );
 	
@@ -221,7 +231,7 @@
 	define('APP_URI',  APPLICATIONS_URI . CURRENT_APP . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPPATH', APP_URI );
 	
@@ -229,7 +239,7 @@
 	define('APP_URL', APPLICATIONS_URL . CURRENT_APP . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPURL', APP_URL );
 	
@@ -243,7 +253,7 @@
 	define('BASE_NAME', trim(strrchr(trim(ROOTURL, '/'), '/'), '/'));
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'BASENAME', BASE_NAME );
 
@@ -254,14 +264,14 @@
 	define('SYS_NAME', trim(strrchr(trim(BASE_URI, '/'), '/'), '/'));
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'SYSNAME', SYS_NAME );
 	
 	define( 'SITE_URL', ROOT_URL );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'SITEURL', SITE_URL );
 		
@@ -271,11 +281,27 @@
  *  Define Include and Page constants
  * -------------------------------------------------------------------
  */	
-	// Path to system include folder
-	define('BASE_INCLUDE_URI', BASE_URI.'inc/');
+ 	/**
+	 * Path to system include folder
+	 */
+		define('BASE_INC_URI', BASE_URI.'inc/');
+		
+		/**
+		 * Path to system include folder
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+			define('BASE_INCLUDE_URI', BASE_INC_URI );
 	
-	// URL to application include folder
-	define('APP_INCLUDE_URI', APP_URI.'inc/');
+	/**
+	 * Path to application include folder
+	 */
+		define('APP_INC_URI', APP_URI.'inc/');
+		
+		/**
+		 * Path to application include folder
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+			define('APP_INCLUDE_URI', APP_INC_URI );
 	
 	// Path to system page folder
 	define('BASE_PAGE_URI', BASE_URI.'pages/');
@@ -410,6 +436,20 @@ if( !isset( $debug ) )
 # ***** SETTINGS ***** #
 # ******************** #
 
+
+# ************************ #
+# ***** LOAD CLASSES ***** #
+
+/**
+ * Loads all system classes in system inc folder
+ */
+	function __autoload($class_name)  
+	{  
+		include_once BASE_INC_URI .'/class.' . $class_name . '.inc.php';  
+	} 
+
+# ***** LOAD CLASSES ***** #
+# ************************ #
 
 
 # *************************** #
