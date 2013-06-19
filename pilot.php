@@ -38,7 +38,7 @@
 	define( 'SHADOW_URI_LEVEL', 0 );
 	
 	# Define current App
-	define( 'CURRENT_APP', 'laurahandwilliam' );
+	define( 'CURRENT_APP', 'dfk' );
 	
 	/* Define app type\
 	 * Types:
@@ -71,7 +71,7 @@ if( in_array( $host, array( 'local', '127.0', '192.1' ) ))
 	 * E.g. Alias = 'google/photos'
 	 * www/google/photos    Original Path "C:\Users\Tsmith\Google Photos"
 	 */
-	define( 'SYS_ALIAS', 'shadows' );
+	define( 'SYS_ALIAS', 'shadow' );
 	
 }
 
