@@ -11,154 +11,30 @@
 
 // 1. ROOT     				==============================
 
-/* Global Resets & Standards ---------------------- */
 * {
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box; 
     box-sizing: border-box;
 }
-html, body, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent; }
-
-article, aside, figure, footer, header, hgroup, nav, section {
-  display: block; }
-
-@-webkit-viewport {
-  width: device-width; }
-
-@-moz-viewport {
-  width: device-width; }
-
-@-ms-viewport {
-  width: device-width; }
-
-@-o-viewport {
-  width: device-width; }
-
-@viewport {
-  width: device-width; }
-
 html {
-  background: white;
-  font-size: 62.5%;
-  -webkit-overflow-scrolling: touch;
-  -webkit-tap-highlight-color: #f6f5f5;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%; }
+    font-size: @baseRem;
+    height: 100%;
+}
 
 body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  background-color: transparent;
-  font-family: Palatino, "Times New Roman", Times, serif;
-  font-size: 16px;
-  font-size: 1.6rem;
-  line-height: 1.5em;
-  color: #473f3f; }
-
-body:after {
-  content: '320';
-  display: none; }
-  @media (min-width: 30em) {
-    body:after {
-      content: 'bp2'; } }
-  @media (min-width: 37.5em) {
-    body:after {
-      content: 'bp3'; } }
-  @media (min-width: 48em) {
-    body:after {
-      content: 'bp4'; } }
-  @media (min-width: 62em) {
-    body:after {
-      content: 'bp5'; } }
-  @media (min-width: 86.375em) {
-    body:after {
-      content: 'bp6'; } }
-
-
-/* Debug ---------------------- */
-/* Highlights depreciating elements in html, etc for debugging. Just put class="debug" in html tag */
-/* Empty Elements */
-.debug div:empty, .debug span:empty,.debug li:empty,.debug p:empty,.debug td:empty,.debug th:empty { 
-    padding: 20px; 
-    border: 5px dotted yellow !important;
+    background: @white;
+    font-family: @sansFontFamily;
+    font-size: @baseFontSize;
+    line-height: 1; 
+    color: #333; 
+    position: relative; 
+    -webkit-font-smoothing: antialiased; 
+    height: 100%;
 }
- 
-/* Empty Attributes */
-.debug *[alt=""], .debug *[title=""], .debug *[class=""], .debug *[id=""], .debug a[href=""] { 
-    border: 5px solid yellow !important;
-}
- 
-/* Deprecated Elements */
-.debug applet, .debug basefont, .debug center, .debug dir, .debug font, .debug isindex, .debug menu, .debug s, .debug strike, .debug u {
-    border: 5px dotted red !important;
-}
- 
-/* Deprecated Attributes */
-.debug *[background], .debug *[bgcolor], .debug *[clear], .debug *[color], .debug *[compact], .debug *[noshade], .debug *[nowrap], .debug *[size], .debug *[start],.debug *[bottommargin], .debug *[leftmargin], .debug *[rightmargin], .debug *[topmargin], .debug *[marginheight], .debug *[marginwidth], .debug *[alink], .debug *[link], .debug *[text], .debug *[vlink],.debug *[align], .debug *[valign],.debug *[hspace], .debug *[vspace],.debug *[height], .debug *[width],.debug ul[type], .debug ol[type], .debug li[type] {
-    border: 5px solid red !important;
-}
- 
-/* Proposed Deprecated Elements */
-.debug input[type="button"], .debug big, .debug tt {
-    border: 5px dotted #33FF00 !important;
-}
- 
-/* Proposed Deprecated Attributes */
-.debug *[border], .debug table[cellpadding], .debug table[cellspacing] { 
-    border: 5px solid #33FF00 !important;
-}
-
-#pilot{
-	position: relative;
-	width: 100%;
-	top: 0;
-	//background-color: #F8F8F8;
-	height: 100%;
-	.plt-wrapper{
-		padding-top:.5px; // Fix pilot background
-		.side-complementary{
-			.box-shadow(0 0px 40px rgba(0,0,0,.20));
-			border-right: #000 1px solid;	
-			height: 700px;
-			background-color: @white;
-			z-index: 0;
-			position: absolute;
-			width: 180px !important;
-			.logo{
-				padding: 5px;	
-			}
-		}
-		#main{
-			width: 100% !important;
-			padding-left: 180px !important
-			
-		}	
-	}
-}
-
- 
- .disabled, .disable { // Disables selection and dims by 50%
-    pointer-events: none; 
-    opacity: 0.5;
-    .selection { // Only Disables Selection
-        pointer-events: none;  
-        opacity: 1
-    }
-    .link { // Disables link
-        opacity: 1; 
-        color: inherit;
-    }
- 
 
 // 2. TYPOGRAPHY 			==============================
+
+/* Links ---------------------- */
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -173,42 +49,36 @@ h1, h2, h3, h4, h5, h6 {
 
 h1,
 .h1 {
-  font-size: 32px;
-  font-size: 3.2rem;
+  .font-size(32);
   line-height: 1.2;
   margin-bottom: 0.75em; }
 
 h2,
 .h2 {
-  font-size: 24px;
-  font-size: 2.4rem;
+  .font-size(24);
   line-height: 1.2;
   margin-bottom: 0.75em; }
 
 h3,
 .h3 {
-  font-size: 20.8px;
-  font-size: 2.08rem;
+  .font-size(20.8);
   line-height: 1.3;
   margin-bottom: 1em; }
 
 h4,
 .h4 {
-  font-size: 20px;
-  font-size: 2rem;
+  .font-size(20);
   line-height: 1.25;
   margin-bottom: 1.5em; }
 
 h5,
 .h5 {
-  font-size: 18.4px;
-  font-size: 1.84rem;
+  .font-size(18.4);
   margin-bottom: 1.5em; }
 
 h6,
 .h6 {
-  font-size: 16px;
-  font-size: 1.6rem;
+  .font-size(16);
   margin-bottom: 1.5em;
   font-weight: normal;
   letter-spacing: 1px;
@@ -220,13 +90,11 @@ ul,
 dl,
 address {
   margin-bottom: 1.5em;
-  font-size: 16px;
-  font-size: 1.6rem;
+  .font-size(16);
   line-height: 1.5em; }
 
 small {
-  font-size: 12.8px;
-  font-size: 1.28rem; }
+  .font-size(12.8); }
 
 ul,
 ol {
@@ -237,8 +105,7 @@ li ul,
 li ol {
   list-style-type: none;
   margin: 1.5em 0;
-  font-size: 16px;
-  font-size: 1.6rem; }
+  .font-size(16); }
 
 ul.inline,
 ol.inline {
@@ -353,16 +220,13 @@ sub {
   bottom: -.25em; }
 
 .lead {
-  font-size: 18.4px;
-  font-size: 1.84rem; }
+  .font-size(18.4) !important; }
 
 .secondary {
-  font-size: 13.91304px;
-  font-size: 1.3913rem; }
+	.font-size(13.91304); }
 
 .tertiary {
-  font-size: 12.8px;
-  font-size: 1.28rem; }
+  .font-size(12.8); }
 
 .amp {
   font-family: local("Georgia"), local("Garamond"), local("Palatino"), local("Book Antiqua"); }
@@ -370,8 +234,7 @@ sub {
 .footnotes li {
   margin-bottom: 0.75em;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12.30769px;
-  font-size: 1.23077rem;
+  .font-size(12.30769);
   line-height: 1.4; }
 
 /*footnotes*/
@@ -391,25 +254,6 @@ a {
     color: #010100; }
   a:hover, a:active {
     outline: 0; }
-
-::-moz-selection {
-  background-color: #feffe6;
-  color: #929a00;
-  text-shadow: none; }
-
-::selection {
-  background-color: #feffe6;
-  color: #929a00;
-  text-shadow: none; }
-
-h1, h2, h3, h4, h5, h6 { 
-    font-family: @headingsFontFamily !important;
-	font-weight: 800;
-} // end h1, h2, h3, h4, h5, h6
-
-h1 {
-	line-height: 1.2;	
-}
 
 a { 
     color: @linkColor; 
@@ -433,43 +277,32 @@ a {
     }
 }
 
-// Hover
-li {
-    .hover { // Defines hover background color
-         &:hover { background-color: #CDF4F3 !important; 
-        text-decoration:none;
-        }
-    }
-    .focus { // Defines focus background color
-         &:focus { background-color: #CDF4F3 !important; 
-        text-decoration:none;
-        }
-    }
-    .active { // Defines active background color
-        &:hover {
-            background-color:#FFFFD8;
-        }
-    }
+.break { // Breaks long strings of text or urls to prevent overflow
+    -ms-word-break:break-all; 
+    word-break: break-all; 
+    word-break: break-word; 
+    -webkit-hyphens: auto; 
+    -moz-hyphens: auto; 
+    hyphens: auto;
+} 
+
+.ellipsis { // Hides text after certain width and adds ...  Change width to suit needs
+    width: 100%; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    -ms-text-overflow: ellipsis; // Required for IE8
+    -o-text-overflow: ellipsis; // Required for Opera
+    text-overflow: ellipsis; 
 }
 
-.noh, .nof { // Disables background color change on hover or focus
-    &:hover { 
-        background:none !important;   
-    }
-    &:focus { 
-        background:none !important;   
-    }
-}
+pre { // Breaks long strings in pre code
+    white-space: pre-wrap; // Chrome & Safari
+    white-space: -moz-pre-wrap; // Mozilla since 1999
+    white-space: -pre-wrap; // Opera 4-6
+    white-space: -o-pre-wrap; // Opera 7
+    word-wrap: break-word; // Internet Explorer 5.5+
+} 
 
-
-#pilot {
-	font-family: 'Source Code Pro', sans-serif;
-	h1, h2, h3, h4, h5, h6 { 
-		font-family: 'Source Code Pro', sans-serif !important;
-		font-weight: 500;
-		letter-spacing:-1px;
-	} // end h1, h2, h3, h4, h5, h6
-}
 
 /* -- Family ---- */
 /* Web Safe Fonts */
@@ -500,7 +333,7 @@ li {
 .fw900, .thicker { font-weight: 900 !important; }
 .fw_inherit { font-weight: inherit !important;  }
 
-/* -- Text ------------- */
+
 /* Transform */
 .tt_uppercase { text-transform: uppercase; }
 .tt_lowercase { text-transform: lowercase; }
@@ -520,6 +353,7 @@ li {
 .txt_blk, a.txt_blk, /* DP */ .blk, a.blk { color: black !important; } /* Color black gray */
 .txt_pink, a.txt_pink, /* DP */ .pink{color:#C6C !important;}
 .txt_gold, a.txt_gold, /* DP */ .gold{color:#E5BD15 !important;}
+
 
 /* Font Size */
 .fs6 { .font-size(6) !important; }
@@ -565,34 +399,21 @@ strong, .strong { font-weight: 700; }
 strong.s400, .strong.s400 { font-weight: 400; }
 
 
+
+
+/* General ---------------------- */
+.disabled, .disable { // Disables selection and dims by 50%
+    pointer-events: none; 
+    opacity: 0.5;
+    .selection { // Only Disables Selection
+        pointer-events: none;  
+        opacity: 1
+    }
+    .link { // Disables link
+        opacity: 1; 
+        color: inherit;
+    }
 }
-
-.break { // Breaks long strings of text or urls to prevent overflow
-    -ms-word-break:break-all; 
-    word-break: break-all; 
-    word-break: break-word; 
-    -webkit-hyphens: auto; 
-    -moz-hyphens: auto; 
-    hyphens: auto;
-}
-
-.ellipsis { // Hides text after certain width and adds ...  Change width to suit needs
-    width: 100%; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    -ms-text-overflow: ellipsis; // Required for IE8
-    -o-text-overflow: ellipsis; // Required for Opera
-    text-overflow: ellipsis; 
-}
-
-pre { // Breaks long strings in pre code
-    white-space: pre-wrap; // Chrome & Safari
-    white-space: -moz-pre-wrap; // Mozilla since 1999
-    white-space: -pre-wrap; // Opera 4-6
-    white-space: -o-pre-wrap; // Opera 7
-    word-wrap: break-word; // Internet Explorer 5.5+
-} 
-
 
 /* Line Height ---------------------- */
 .lh0d0{line-height:0 !important;}
@@ -616,6 +437,16 @@ pre { // Breaks long strings in pre code
 .lh1d8{line-height:1.8 !important;}
 
 
+
+#pilot {
+	font-family: 'Source Code Pro', sans-serif;
+	h1, h2, h3, h4, h5, h6 { 
+		font-family: 'Source Code Pro', sans-serif !important;
+		font-weight: 500;
+		letter-spacing:-1px;
+	} // end h1, h2, h3, h4, h5, h6
+}
+
 // 3. COLOUR 				==============================
 
 /* Background Color */
@@ -633,7 +464,6 @@ pre { // Breaks long strings in pre code
 .bg_dddddg { background-color: #1a1a1a !important; }
 .bg_blk { background-color: black !important; }
 .bg_maroon { background-color: #ED0C42 !important; }
-
 
 // 4. TEXTURE 				==============================
 
@@ -764,27 +594,40 @@ pre { // Breaks long strings in pre code
 .bg_overlay6 { background: rgba(0, 0, 0, 0.6); width: 100%; height: 100%; z-index: 2; position: absolute; top: 0; left: 0; }
 .bg_overlay7 { background: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; z-index: 2; position: absolute; top: 0; left: 0; }
 .bg_overlay8 { background: rgba(0, 0, 0, 0.8); width: 100%; height: 100%; z-index: 2; position: absolute; top: 0; left: 0; }
-.bg_overlay9 { background: rgba(0, 0, 0, 0.9); width: 100%; height: 100%; z-index: 2;
- position: absolute; top: 0; left: 0; }
+.bg_overlay9 { background: rgba(0, 0, 0, 0.9); width: 100%; height: 100%; z-index: 2; position: absolute; top: 0; left: 0; }
 
 // 5. ELEMENTS 				==============================
 
-.panel {
-	background-color: @white;
-	border: @gray 1px solid;
-	//.box-shadow(10px 0px 60px rgba(0,0,0,.20));
-	z-index: 5;
-	position:relative;
+.media,
+.media-body {
+  overflow: hidden;
+  *overflow: visible;
+  zoom: 1;
+}
+.media,
+.media .media {
+  margin-top: 15px;
+}
+.media:first-child {
+  margin-top: 0;
+}
+.media-object {
+  display: block;
+}
+.media-heading {
+  margin: 0 0 5px;
+}
+.media > .pull-left {
+  margin-right: 10px;
+}
+.media > .pull-right {
+  margin-left: 10px;
+}
+.media-list {
+  margin-left: 0;
+  list-style: none;
 }
 
-#pilot .actionbar{
-	.box-shadow(0 0px 40px rgba(0,0,0,.20));
-	height: 25px;
-	border-bottom: solid 1px #000;	
-	background-color: @white;
-	position: relative;
-	z-index: 1;
-}
 
 .shadow-nav{
 	height: 25px;
@@ -849,91 +692,79 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', e
 	}
 }
 
-.fillerImg { // Alpha - Defines background filler image before images load
-    background: #99BFA3 url(../../../uploads/2012/11/photoLight-100x100.png) center no-repeat;
-    position:absolute;
-    width:150px;
-    height:168px;
-    z-index:-1;
-    opacity:.5
+#pilot{
+	position: relative;
+	width: 100%;
+	top: 0;
+	//background-color: #F8F8F8;
+	height: 100%;
+	.actionbar{
+		.box-shadow(0 0px 40px rgba(0,0,0,.20));
+		height: 25px;
+		border-bottom: solid 1px #000;	
+		background-color: @white;
+		position: relative;
+		z-index: 1;
+	}
+	
+	.plt-wrapper{
+		padding-top:.5px; // Fix pilot background
+		.side-complementary{
+			.box-shadow(0 0px 40px rgba(0,0,0,.20));
+			border-right: #000 1px solid;	
+			height: 700px;
+			background-color: @white;
+			z-index: 0;
+			position: absolute;
+			width: 180px !important;
+			.logo{
+				padding: 5px;	
+			}
+		}
+		#main{
+			width: 100% !important;
+			padding-left: 180px !important
+			
+		}	
+	}
 }
 
 
-.circle { border-radius: 50%; width: 10px; height: 10px; background-color: #CCC; }
-
-
-/* Sticky Footer ---------------------- */
-
-/* .wrap { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -60px; }
-/* .push, footer { height: 60px; } */
-
-
-/* Media ---------------------- */
-// Vendor
-// Bootstrap
-.media,
-.media-body {
-  overflow: hidden;
-  *overflow: visible;
-  zoom: 1;
-}
-.media,
-.media .media {
-  margin-top: 15px;
-}
-.media:first-child {
-  margin-top: 0;
-}
-.media-object {
-  display: block;
-}
-.media-heading {
-  margin: 0 0 5px;
-}
-.media > .pull-left {
-  margin-right: 10px;
-}
-.media > .pull-right {
-  margin-left: 10px;
-}
-.media-list {
-  margin-left: 0;
-  list-style: none;
+.panel {
+	background-color: @white;
+	border: @gray 1px solid;
+	//.box-shadow(10px 0px 60px rgba(0,0,0,.20));
+	z-index: 5;
+	position:relative;
 }
 
+// 6. LAYOUT                ==============================
 
-img {
-  max-width: 100%;
-  border-width: 0;
-  vertical-align: middle;
-  -ms-interpolation-mode: bicubic; }
+.visuallyhidden { // Setting width or height to 0 make it invisible for VoiceOver
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    border: 0; clip: rect(0 0 0 0);
+    overflow: hidden;
+} 
 
-.img-rounded {
-  border-radius: 4px; }
+.ir { // Image replacement, hide text
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
-.img-polaroid {
-  padding: 12px;
-  background-color: white;
-  border: 1px solid #c6bfbf;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+/* Overflow */
+.ofh {overflow: hidden !important; }
+.ofv { overflow-y: hidden !important; }
+.scroll { overflow-y:scroll; }
+.hScroll {overflow-x: scroll; }
 
-.img-circle {
-  border-radius: 500px; }
+/* Clear */
+.clear { clear: both; }
 
-figure {
-  margin-bottom: 1.5em; }
-  figure img {
-    margin-bottom: 0.375em; }
-  figure figcaption {
-    display: block;
-    font-weight: normal;
-    font-size: 14px;
-    font-size: 1.4rem;
-    font-style: italic;
-    color: #030303; }
-
-
-// 6. LAYOUT 				==============================
 
 /* Display  ---------------------- */
 .inline { display: inline; }
@@ -1340,17 +1171,6 @@ figure {
 
 img.center {   display: block;   margin-left: auto;   margin-right: auto; }
 
-
-/* Overflow */
-.ofh {overflow: hidden !important; }
-.ofv { overflow-y: hidden !important; }
-.scroll { overflow-y:scroll; }
-.hScroll {overflow-x: scroll; }
-
-/* Clear */
-.clear { clear: both; }
-
-
 .relative {position: relative !important; }
 .absolute {position: absolute !important; }
 .fixed {position: fixed !important; }
@@ -1724,53 +1544,42 @@ img.center {   display: block;   margin-left: auto;   margin-right: auto; }
 .mcenter { margin-left: auto !important; margin-right: auto !important; }
 
 
-.m-hide {
-  display: none !important;
-  visibility: hidden; }
 
-.visuallyhidden { // Setting width or height to 0 make it invisible for VoiceOver
-    position: absolute; 
-    width: 1px; 
-    height: 1px; 
-    padding: 0; 
-    margin: -1px; 
-    border: 0; clip: rect(0 0 0 0);
-    overflow: hidden;
-} 
-
-.ir { // Image replacement, hide text
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+/* Debug ---------------------- */
+/* Highlights depreciating elements in html, etc for debugging. Just put class="debug" in html tag */
+/* Empty Elements */
+.debug div:empty, .debug span:empty,.debug li:empty,.debug p:empty,.debug td:empty,.debug th:empty { 
+    padding: 20px; 
+    border: 5px dotted yellow !important;
+}
+ 
+/* Empty Attributes */
+.debug *[alt=""], .debug *[title=""], .debug *[class=""], .debug *[id=""], .debug a[href=""] { 
+    border: 5px solid yellow !important;
+}
+ 
+/* Deprecated Elements */
+.debug applet, .debug basefont, .debug center, .debug dir, .debug font, .debug isindex, .debug menu, .debug s, .debug strike, .debug u {
+    border: 5px dotted red !important;
+}
+ 
+/* Deprecated Attributes */
+.debug *[background], .debug *[bgcolor], .debug *[clear], .debug *[color], .debug *[compact], .debug *[noshade], .debug *[nowrap], .debug *[size], .debug *[start],.debug *[bottommargin], .debug *[leftmargin], .debug *[rightmargin], .debug *[topmargin], .debug *[marginheight], .debug *[marginwidth], .debug *[alink], .debug *[link], .debug *[text], .debug *[vlink],.debug *[align], .debug *[valign],.debug *[hspace], .debug *[vspace],.debug *[height], .debug *[width],.debug ul[type], .debug ol[type], .debug li[type] {
+    border: 5px solid red !important;
+}
+ 
+/* Proposed Deprecated Elements */
+.debug input[type="button"], .debug big, .debug tt {
+    border: 5px dotted #33FF00 !important;
+}
+ 
+/* Proposed Deprecated Attributes */
+.debug *[border], .debug table[cellpadding], .debug table[cellspacing] { 
+    border: 5px solid #33FF00 !important;
 }
 
-
-[role="contentinfo"] {
-  padding: 1.5em 12px;
-  text-align: center; }
-
-[role="banner"] {
-  *zoom: 1; }
-  [role="banner"]:before, [role="banner"]:after {
-    content: " ";
-    display: table; }
-  [role="banner"]:after {
-    clear: both; }
-
-hr {
-  clear: both;
-  display: block;
-  margin: 3em 0;
-  padding: 0;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #c6bfbf; }
-
-
-
-// 7. VENDOR-SPECIFIC 		==============================
+// 7. VENDORS               ==============================
 // Foundation
-
 .row {
 	max-width: none !important;
 }
@@ -1793,23 +1602,6 @@ hr {
 	.font-size(10.5);
 }
 
-
-/* Reveal ---------------------- */
-/* Background */
-.reveal-modal-bg.rw { background:rgba(255,255,255,0.45) !important; }
-
-.reveal-modal-bg.rw0d1 { background:rgba(255,255,255,0.10) !important; }
-.reveal-modal-bg.rw0d2 { background:rgba(255,255,255,0.20) !important; }
-.reveal-modal-bg.rw0d3 { background:rgba(255,255,255,0.30) !important; }
-.reveal-modal-bg.rw0d4 { background:rgba(255,255,255,0.40) !important; }
-.reveal-modal-bg.rw0d5 { background:rgba(255,255,255,0.50) !important; }
-.reveal-modal-bg.rw0d6 { background:rgba(255,255,255,0.60) !important; }
-.reveal-modal-bg.rw0d7 { background:rgba(255,255,255,0.70) !important; }
-.reveal-modal-bg.rw0d8 { background:rgba(255,255,255,0.80) !important; }
-.reveal-modal-bg.rw0d9 { background:rgba(255,255,255,0.90) !important; }
-.reveal-modal-bg.rw1 { background:rgba(255,255,255,1.00) !important; }
-
-// Foundation
 .alert-box.alert-warning{
 	background-color:#fcf8e3 !important;
 	color: #c09853 !important;
@@ -1897,8 +1689,302 @@ body.off-canvas { padding: 0; margin: 0; }
 	font-weight: normal;	
 }
 
+.label {
+    bottom: inherit;
+}
+
+.top-bar { // Global Navigation
+     background-color: @topbarBackground;  
+	 overflow:visible; 
+	 #top-bar-section {
+		display: none; 
+	 }
+} // end top-bar
+
+@media only screen and (min-width: 58.75em) {
+    .top-bar-section li a:not(.button) {
+         background-color: @topbarBackground !important;
+    }
+    .top-bar-section .has-form {
+        background: @topbarBackground !important;
+    }
+}
+
+.top-bar.expanded {
+    background: @topbarBackground;
+    .title-area {
+        background-color: @topbarBackground !important;
+    }
+} // end top-bar expanded
+
+.top-bar.expanded .toggle-topbar a {
+    color: @topbarMenuExpandedColor;
+}
+
+.top-bar.expanded .toggle-topbar a span {
+    -webkit-box-shadow: 0 10px 0 1px @topbarMenuExpandedColor,0 16px 0 1px @topbarMenuExpandedColor,0 22px 0 1px @topbarMenuExpandedColor;
+    box-shadow: 0 10px 0 1px @topbarMenuExpandedColor,0 16px 0 1px @topbarMenuExpandedColor,0 22px 0 1px @topbarMenuExpandedColor;
+}
+
+.top-bar-section ul li > a {
+     background: lighten(@topbarBackground, 10%);
+     &:hover {
+         background: lighten(@topbarBackground, 5%);
+     }
+}
+
+.top-bar-section .has-form {
+    background: lighten(@topbarBackground, 10%);
+}
+
+
+
+.button, .top-bar-section ul li > a.button {
+    border-width: @buttonBorderWidth;
+    font-family: @buttonFontFamily;
+    font-weight: @buttonFontWeight;
+    line-height: @buttonLineHeight;
+    margin: @buttonMargins;
+    padding: @buttonPadding;
+    font-size: @buttonFontSize;
+    background-color: @buttonBackground;
+    border-color: @buttonBorderColor;
+    color: @buttonColor;
+    &:hover {
+        background-color: @buttonBackgroundHover;
+        color: @buttonHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonBackgroundFocus;
+        color: @buttonFocusColor;
+    } // end focus
+} // end button
+
+.button.primary, .top-bar-section ul li > a.button.primary  {
+    background-color: @buttonPrimaryBackground;
+    color: @buttonPrimaryColor;
+    border-color: @buttonPrimaryBorderColor;
+    &:hover {
+        background-color: @buttonPrimaryHoverBackground;
+        color: @buttonPrimaryHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonPrimaryFocusBackground;
+        color: @buttonPrimaryFocusColor;
+    } // end focus
+}
+      
+.button.info, .top-bar-section ul li > a.button.info  {
+    background-color: @buttonInfoBackground;
+    color: @buttonInfoColor;
+    border-color: @buttonInfoBorderColor;
+    &:hover {
+        background-color: @buttonInfoHoverBackground;
+        color: @buttonInfoHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonInfoFocusBackground;
+        color: @buttonInfoFocusColor;
+    } // end focus
+}
+      
+.button.success, .top-bar-section ul li > a.button.success  {
+    background-color: @buttonSuccessBackground;
+    color: @buttonSuccessColor;
+    border-color: @buttonSuccessBorderColor;
+    &:hover {
+        background-color: @buttonSuccessHoverBackground;
+        color: @buttonSuccessHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonSuccessFocusBackground;
+        color: @buttonSuccessFocusColor;
+    } // end focus
+}
+      
+.button.join, .top-bar-section ul li > a.button.join  {
+    background-color: @buttonJoinBackground;
+    color: @buttonJoinColor;
+    border-color: @buttonJoinBorderColor;
+    &:hover {
+        background-color: @buttonJoinHoverBackground;
+        color: @buttonJoinHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonJoinFocusBackground;
+        color: @buttonJoinFocusColor;
+    } // end focus
+}
+      
+.button.warning, .top-bar-section ul li > a.button.warning  {
+    background-color: @buttonWarningBackground;
+    color: @buttonWarningColor;
+    border-color: @buttonWarningBorderColor;
+    &:hover {
+        background-color: @buttonWarningHoverBackground;
+        color: @buttonWarningHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonWarningFocusBackground;
+        color: @buttonWarningFocusColor;
+    } // end focus
+}
+      
+.button.danger, .top-bar-section ul li > a.button.danger  {
+    background-color: @buttonDangerBackground;
+    color: @buttonDangerColor;
+    border-color: @buttonDangerBorderColor;
+    &:hover {
+        background-color: @buttonDangerHoverBackground;
+        color: @buttonDangerHoverColor;
+    } // end hover
+    &:focus {
+        background-color: @buttonDangerFocusBackground;
+        color: @buttonDangerFocusColor;
+    } // end focus
+}
+  
+  .button.large {
+    padding-top: 1em;
+    padding-right: 2em;
+    padding-bottom: 1.0625em;
+    padding-left: 2em;
+    font-size: 1.25em; }
+  .button.small {
+    padding-top: 0.5625em;
+    padding-right: 1.125em;
+    padding-bottom: 0.625em;
+    padding-left: 1.125em;
+    font-size: 0.8125em; }
+  .button.tiny {
+    padding-top: 0.4375em;
+    padding-right: 0.875em;
+    padding-bottom: 0.5em;
+    padding-left: 0.875em;
+    font-size: 0.6875em; }
+  .button.expand {
+    padding-top: false;
+    padding-right: 0px;
+    padding-bottom: false0.0625em;
+    padding-left: 0px;
+    width: 100%; }
+  .button.left-align {
+    text-align: left;
+    text-indent: 0.75em; }
+  .button.right-align {
+    text-align: right;
+    padding-right: 0.75em; }
+  .button.disabled, .button[disabled] {
+    background-color: #2ba6cb;
+    border-color: #2284a1;
+    color: white;
+    cursor: default;
+    opacity: 0.6;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+    .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
+      background-color: #2284a1; }
+    .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
+      color: white; }
+    .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
+      background-color: #2ba6cb; }
+    .button.disabled.secondary, .button[disabled].secondary {
+      background-color: #e9e9e9;
+      border-color: #d0d0d0;
+      color: #333333;
+      cursor: default;
+      opacity: 0.6;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      .button.disabled.secondary:hover, .button.disabled.secondary:focus, .button[disabled].secondary:hover, .button[disabled].secondary:focus {
+        background-color: #d0d0d0; }
+      .button.disabled.secondary:hover, .button.disabled.secondary:focus, .button[disabled].secondary:hover, .button[disabled].secondary:focus {
+        color: #333333; }
+      .button.disabled.secondary:hover, .button.disabled.secondary:focus, .button[disabled].secondary:hover, .button[disabled].secondary:focus {
+        background-color: #e9e9e9; }
+    .button.disabled.success, .button[disabled].success {
+      background-color: #5da423;
+      border-color: #457a1a;
+      color: white;
+      cursor: default;
+      opacity: 0.6;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      .button.disabled.success:hover, .button.disabled.success:focus, .button[disabled].success:hover, .button[disabled].success:focus {
+        background-color: #457a1a; }
+      .button.disabled.success:hover, .button.disabled.success:focus, .button[disabled].success:hover, .button[disabled].success:focus {
+        color: white; }
+      .button.disabled.success:hover, .button.disabled.success:focus, .button[disabled].success:hover, .button[disabled].success:focus {
+        background-color: #5da423; }
+    .button.disabled.alert, .button[disabled].alert {
+      background-color: #c60f13;
+      border-color: #970b0e;
+      color: white;
+      cursor: default;
+      opacity: 0.6;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      .button.disabled.alert:hover, .button.disabled.alert:focus, .button[disabled].alert:hover, .button[disabled].alert:focus {
+        background-color: #970b0e; }
+      .button.disabled.alert:hover, .button.disabled.alert:focus, .button[disabled].alert:hover, .button[disabled].alert:focus {
+        color: white; }
+      .button.disabled.alert:hover, .button.disabled.alert:focus, .button[disabled].alert:hover, .button[disabled].alert:focus {
+        background-color: #c60f13; }
+
+input.button,
+button.button {
+  padding-top: 0.8125em;
+  padding-bottom: 0.75em; }
+  input.button.tiny,
+  button.button.tiny {
+    padding-top: 0.5em;
+    padding-bottom: 0.4375em; }
+  input.button.small,
+  button.button.small {
+    padding-top: 0.625em;
+    padding-bottom: 0.5625em; }
+  input.button.large,
+  button.button.large {
+    padding-top: 1.03125em;
+    padding-bottom: 1.03125em; }
+    
+
+@media only screen {
+  .button {
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -webkit-transition: background-color 300ms ease-out;
+    -moz-transition: background-color 300ms ease-out;
+    transition: background-color 300ms ease-out; }
+    .button:active {
+      -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset; }
+    .button.radius {
+      -webkit-border-radius: 3px;
+      border-radius: 3px; }
+    .button.round {
+      -webkit-border-radius: 1000px;
+      border-radius: 1000px; } }
+@media only screen and (min-width: 48em) {
+  .button {}
+}
+
+
+/* Reveal ---------------------- */
+/* Background */
+.reveal-modal-bg.rw { background:rgba(255,255,255,0.45) !important; }
+
+.reveal-modal-bg.rw0d1 { background:rgba(255,255,255,0.10) !important; }
+.reveal-modal-bg.rw0d2 { background:rgba(255,255,255,0.20) !important; }
+.reveal-modal-bg.rw0d3 { background:rgba(255,255,255,0.30) !important; }
+.reveal-modal-bg.rw0d4 { background:rgba(255,255,255,0.40) !important; }
+.reveal-modal-bg.rw0d5 { background:rgba(255,255,255,0.50) !important; }
+.reveal-modal-bg.rw0d6 { background:rgba(255,255,255,0.60) !important; }
+.reveal-modal-bg.rw0d7 { background:rgba(255,255,255,0.70) !important; }
+.reveal-modal-bg.rw0d8 { background:rgba(255,255,255,0.80) !important; }
+.reveal-modal-bg.rw0d9 { background:rgba(255,255,255,0.90) !important; }
+.reveal-modal-bg.rw1 { background:rgba(255,255,255,1.00) !important; }
+
 
 // 8. MODERNIZR 			==============================
 // 9. TEMPLATE SPECIFICS 	==============================
-
-

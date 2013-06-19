@@ -1,5 +1,5 @@
 <?php # Prevents direct script access
-if(!defined('FRONT_URI')){require'../inc/config.inc.php';header('Location:'.SITE_URL);exit;}
+if(!defined('FRONT_URI')){require'../../../../system/inc/config.inc.php';header('Location:'.SITE_URL);exit;}
 /**
  * Shadow
  *
@@ -14,12 +14,9 @@ if(!defined('FRONT_URI')){require'../inc/config.inc.php';header('Location:'.SITE
  * @since          Version 1.1.5
  * -----------------------------------------------------------------
  *
- * Install
+ * This script sets application 404 page
  */
  
 // --------------------------------------------------------------------------------?>
 
-<?php app_header(); ?>
-<h1>404 Error page</h1>
-<p>We're sorry. We couldn't find that page.</p>
-<?php app_footer(); ?>
+<h1>Application 404 Page</h1>

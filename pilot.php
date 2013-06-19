@@ -38,7 +38,7 @@
 	define( 'SHADOW_URI_LEVEL', 0 );
 	
 	# Define current App
-	define( 'CURRENT_APP', 'dfk' );
+	define( 'CURRENT_APP', 'ninjablack1' );
 	
 	/* Define app type\
 	 * Types:

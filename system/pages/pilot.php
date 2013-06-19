@@ -17,9 +17,7 @@ if(!defined('FRONT_URI')){require'../inc/config.inc.php';header('Location:'.SITE
  * Pilot Footer
  */
  
-// --------------------------------------------------------------------------------
-
-require BASE_INCLUDE_URI . 'pilot/header.inc.php'; ?>
+// --------------------------------------------------------------------------------?>
 
 <section class="plt-main">
 	<div class="row">
@@ -36,4 +34,4 @@ require BASE_INCLUDE_URI . 'pilot/header.inc.php'; ?>
     </div><!-- end row -->
 </section><!-- end main -->
 
-<?php require BASE_INCLUDE_URI . 'pilot/footer.inc.php'; ?>
+<?php require BASE_INCLUDE_URI . 'pilot/footer.php'; ?>

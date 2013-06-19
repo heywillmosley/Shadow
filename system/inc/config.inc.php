@@ -34,10 +34,6 @@
 	
 	# Numeric - strip dots
 	define('NUM_SYS_VER', str_replace( '.', '', SYS_VER ) );
-
-/**
- * Check if Content is outside of Shadow directory
- */
 	
 /**
  *  Resolve the front path for increased reliability
@@ -59,31 +55,15 @@
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 	  
-	  
 /**
  * Define Database
  */
- 	if( file_exists( CORE_URI . 'db.inc.php' ) )
-	{
-		define( 'DB', CORE_URI . 'db.inc.php' );
-		
-		/**
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
-		 */
-		  define( 'MYSQL', DB );
-		  
-	}
+	define( 'DB', FRONT_URI . 'db.inc.php' );
 	
-	else
-	{
-		define( 'DB', FRONT_URI . 'db.inc.php' );
-		
-		/**
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
-		 */
-		  define( 'MYSQL', DB );
-			
-	}
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'MYSQL', DB );
 	
 /**
  * Load Shadow Config Settings
@@ -136,21 +116,15 @@
 /**
  * ROOT FOLDER NAME
  */
- 	# Check if on development environment
-	if( ENVIRONMENT == 'development' )
+ 	# Check if alias is being used
+	if( SYS_ALIAS != '' ) 
 	{
-		# Check if alias is being used
-		if( SYS_ALIAS != '' ) 
-		{
-			define( 'ROOT_NAME', SYS_ALIAS );
-			
-		} // end if( !SYS_ALIAS == "" ) 
+		define( 'ROOT_NAME', SYS_ALIAS );
 		
-	} // end if( ENVIRONMENT == 'development' )
+	} // end if( !SYS_ALIAS == "" ) 
 	
 	else
 	{
-		# Set name of root folder
 		define( 'ROOT_NAME', basename( FRONT_URI ) );
 	
 	} // end else
@@ -361,9 +335,8 @@
 	
 	// URL to system javascript
 	define('APP_IMG_URL', APP_URL.'assets/img/');
-
-echo SITE_URL;	
-
+	
+	
 /**
  * Define Environment Constants
  */
@@ -504,4 +477,4 @@ set_error_handler( 'my_error_handler' );
 # **************************** #
 
 # Prevents direct script access
-if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}
+//if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}

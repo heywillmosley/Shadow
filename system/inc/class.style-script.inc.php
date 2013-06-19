@@ -26,7 +26,7 @@ if(!defined('FRONT_URI')){require'config.inc.php';header('Location:'.SITE_URL);e
  * 0 Arguments
  * 0 Methods
  */
-class StyleAndScript
+class ClassName
 {
  
 } // end ClassName
