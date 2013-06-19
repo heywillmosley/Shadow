@@ -34,16 +34,40 @@
 	
 	# Numeric - strip dots
 	define('NUM_SYS_VER', str_replace( '.', '', SYS_VER ) );
+
+/**
+ * Check if Content is outside of Shadow directory
+ */
+
+# Include Pilot
+ 	require_once( dirname(dirname(dirname(__FILE__))) . '/pilot.php' );
 	
 /**
  *  Resolve the front path for increased reliability
  */
-	define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
+ 	# Check if in development environment
+	if( ENVIRONMENT == 'development' )
+	{
+		define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
 	
-	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
-	 */
-	  define( 'FRONT_PATH', FRONT_URI );
+		/**
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+		 */
+		  define( 'FRONT_PATH', FRONT_URI );
+		
+	} // end if( ENVIRONMENT == 'development' )
+	
+	else
+	{
+		define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
+	
+		/**
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+		 */
+		  define( 'FRONT_PATH', FRONT_URI );
+		
+	} // end else
+
 	
 /**
  *  Define Core Path for accessing scripts not stored in PUBLIC_HTML
@@ -55,23 +79,24 @@
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 	  
+	  
 /**
  * Define Database
  */
-	define( 'DB', FRONT_URI . 'db.inc.php' );
-	
-	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
-	 */
-	  define( 'MYSQL', DB );
+ 	if( file_exists( CORE_URI . 'db.inc.php' ) )
+	{
+		define( 'DB', FRONT_URI . 'db.inc.php' );
 		
+		/**
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+		 */
+		  define( 'MYSQL', DB );
+		  
+	}
 	
 /**
  * Load Shadow Config Settings
  */
- 	# Include Pilot
- 	require_once( FRONT_URI . 'pilot.php' );
-	
 	# Include App Settings
  	require_once( FRONT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
 	
@@ -117,15 +142,21 @@
 /**
  * ROOT FOLDER NAME
  */
- 	# Check if alias is being used
-	if( SYS_ALIAS != '' ) 
+ 	# Check if on development environment
+	if( ENVIRONMENT == 'development' )
 	{
-		define( 'ROOT_NAME', SYS_ALIAS );
+		# Check if alias is being used
+		if( SYS_ALIAS != '' ) 
+		{
+			define( 'ROOT_NAME', SYS_ALIAS );
+			
+		} // end if( !SYS_ALIAS == "" ) 
 		
-	} // end if( !SYS_ALIAS == "" ) 
+	} // end if( ENVIRONMENT == 'development' )
 	
 	else
 	{
+		# Set name of root folder
 		define( 'ROOT_NAME', basename( FRONT_URI ) );
 	
 	} // end else
@@ -336,7 +367,8 @@
 	
 	// URL to system javascript
 	define('APP_IMG_URL', APP_URL.'assets/img/');
-	
+
+echo SITE_URL;	
 
 /**
  * Define Environment Constants

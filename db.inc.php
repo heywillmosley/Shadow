@@ -32,117 +32,76 @@
  * Production: is your live site, where your end users will use your site
  * -------------------------------------- 
  */
-# Establish production database settings
-
-# Define Host
-$host = substr( $_SERVER['HTTP_HOST'], 0, 5 );
-
-if( $_SERVER['HTTP_HOST'] == 'natural-pet.com' || $_SERVER['HTTP_HOST'] == 'www.natural-pet.com' )
-{	
-	# Your production database name
-	define( 'DB_NAME', 'kingbio_naturalpet' );
-	
-	# Your production database username
-	define( 'DB_USER', 'root' );
-	
-	# Your production database user password
-	define( 'DB_PASSWORD', 'agdadg3cMvmf5a6y4b' );
-	
-	# Your production databases's connection type
-	define( 'DB_HOST', 'localhost' ); // Most likely localhost
-	
-	# The production environment
-	define( 'ENVIRONMENT', 'production' );
-	
-	
-} // end if( $_SERVER['HTTP_HOST'] === 'kingbio.com' )
-
 # Establish development database settings
-elseif( $_SERVER['HTTP_HOST'] == 'stg.natural-pet.com' || $_SERVER['HTTP_HOST'] == 'www.stg.natural-pet.com' )
-{
-	# Your staging database name
-	define( 'DB_NAME', 'naturalpet_stage' );
-	
-	# Your staging database username
-	define( 'DB_USER', 'kingbioc_KingBi0' );
-	
-	# Your staging database user password
-	define( 'DB_PASSWORD', 'T)VKB-f$u(Tx' );
-	
-	# Your staging databases's connection type
-	define( 'DB_HOST', 'localhost' ); // Most likely localhost
-	
-	# Set staging Environment
-	define( 'ENVIRONMENT', 'stage' );
-	
-	# Set staging Alias folder name if using alias from htdocs to original
-	define( 'SYS_ALIAS', '' );
-	
-	# Set Root Domain for use for add on domains
-	define( 'ROOT_SERVER', 'kingbio.com' );
-	
-	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ADDON_DOMAIN', 'stg.natural-pet.com' );
-	
-	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ROOT_FOLDER', 'naturalpet' );
-	
-}
-
-# Establish development database settings
-elseif( $_SERVER['HTTP_HOST'] == 'qa.natural-pet.com' || $_SERVER['HTTP_HOST'] == 'www.qa.natural-pet.com' )
-{
-	# Your staging database name
-	define( 'DB_NAME', 'naturalpet_stage' );
-	
-	# Your staging database username
-	define( 'DB_USER', 'kingbioc_KingBi0' );
-	
-	# Your staging database user password
-	define( 'DB_PASSWORD', 'T)VKB-f$u(Tx' );
-	
-	# Your staging databases's connection type
-	define( 'DB_HOST', 'localhost' ); // Most likely localhost
-	
-	# Set staging Environment
-	define( 'ENVIRONMENT', 'qa' );
-	
-	# Set staging Alias folder name if using alias from htdocs to original
-	define( 'SYS_ALIAS', '' );
-	
-	# Set Root Domain for use for add on domains
-	define( 'ROOT_SERVER', 'kingbio.com' );
-	
-	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ROOT_FOLDER', 'naturalpet/qa' );
-	
-	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ADDON_DOMAIN', 'qa.natural-pet.com' );
-	
-}
-
-# Establish development database settings
-elseif( in_array( $host, array( 'local', '127.0', '192.1' )  ))
+if(  ENVIRONMENT == 'development' )
 {
 	# Your development database name
-	define( 'DB_NAME', 'naturalpet' );
+	define( 'DB_NAME', 'development-database-name-here' );
 	
 	# Your development database username
-	define( 'DB_USER', 'K!ngB!0Inc' );
+	define( 'DB_USER', 'development-database-username-here' );
 	
 	# Your development database user password
-	define( 'DB_PASSWORD', 'ZbayKVGpSKVMzAxh' );
+	define( 'DB_PASSWORD', 'development-database-password-here' );
 	
 	# Your development databases's connection type
 	define( 'DB_HOST', 'localhost' ); // Most likely localhost
 	
-	# Set development Environment
-	define( 'ENVIRONMENT', 'development' );
-	
-	# Set development Alias folder name if using alias from htdocs to original
-	define( 'SYS_ALIAS', '' );
-	
 }
+
+# OPTIONAL - Establish development database settings
+elseif( ENVIRONMENT == 'stage' )
+{
+	# Your staging database name
+	define( 'DB_NAME', 'stage-database-name-here' );
+	
+	# Your staging database username
+	define( 'DB_USER', 'stage-database-username-here' );
+	
+	# Your staging database user password
+	define( 'DB_PASSWORD', 'stage-database-password-here' );
+	
+	# Your staging databases's connection type
+	define( 'DB_HOST', 'localhost' ); // Most likely localhost
+	
+} // end stage database settings
+
+# OPTIONAL - Establish development database settings
+elseif( ENVIRONMENT == 'qa' )
+{
+	# Your staging database name
+	define( 'DB_NAME', 'qa-database-name-here' );
+	
+	# Your staging database username
+	define( 'DB_USER', 'qa-database-username-here' );
+	
+	# Your staging database user password
+	define( 'DB_PASSWORD', 'qa-database-password-here' );
+	
+	# Your staging databases's connection type
+	define( 'DB_HOST', 'localhost' ); // Most likely localhost
+	
+} // end quality assurance database settings
+
+elseif( ENVIRONMENT == 'production' )
+{	
+	# Your production database name
+	define( 'DB_NAME', 'production-database-name-here' );
+	
+	# Your production database username
+	define( 'DB_USER', 'production-database-username-here' );
+	
+	# Your production database user password
+	define( 'DB_PASSWORD', 'production-database-password-here' );
+	
+	# Your production databases's connection type
+	define( 'DB_HOST', 'localhost' ); // Most likely localhost
+	
+	
+} // end production database settings
+
+
+
 
 # Prevents direct script access
 if(!defined('FRONT_URI')){require'system/inc/config.inc.php';header('Location:'.SITE_URL);exit;}

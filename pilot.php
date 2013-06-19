@@ -50,6 +50,74 @@
 	define( 'SHDW_MIGRATION', FALSE );
 
 
+/**
+ * Paths & Environments
+ */
+# Define Host
+$host = substr( $_SERVER['HTTP_HOST'], 0, 5 );
+ 
+# Establish development settings
+if( in_array( $host, array( 'local', '127.0', '192.1' ) ))
+{	
+	# Set development Environment
+	define( 'ENVIRONMENT', 'development' );
+	
+	/** 
+	 * OPTIONAL - Leave blank if you're unsure
+	 * Set development Alias Path/folder name if using alias from htdocs/www to original
+	 * E.g. Alias = 'fruits'
+	 * htdocs/fruits    Original Path "C:\Users\Tsmith\fruits website"
+	 * -
+	 * E.g. Alias = 'google/photos'
+	 * www/google/photos    Original Path "C:\Users\Tsmith\Google Photos"
+	 */
+	define( 'SYS_ALIAS', 'shadows' );
+	
+}
+
+# Establish stage/testing settings
+elseif( $_SERVER['HTTP_HOST'] == 'stgshadow.superamazing.com' || $_SERVER['HTTP_HOST'] == 'www.stgshadow.superamazing.com' )
+{
+	# Set staging Environment
+	define( 'ENVIRONMENT', 'stage' );
+	
+	# Set Root Domain for use for add on domains
+	define( 'ROOT_SERVER', 'superamazing.com' );
+	
+	# Set Add On Domain for seperate domains hosted on same server
+	define( 'ADDON_DOMAIN', 'stgshadow.superamazing.com' );
+	
+	# Set Add On Domain for seperate domains hosted on same server
+	define( 'ROOT_FOLDER', 'shadow' );
+	
+}
+
+# OPTIONAL - Establish Quality Assurance settings
+elseif( $_SERVER['HTTP_HOST'] == 'domain-name-here' || $_SERVER['HTTP_HOST'] == 'domain-name-here' )
+{
+	# Set staging Environment
+	define( 'ENVIRONMENT', 'stage' );
+	
+	# Set Root Domain for use for add on domains
+	define( 'ROOT_SERVER', 'superamazing.com' );
+	
+	# Set Add On Domain for seperate domains hosted on same server
+	define( 'ADDON_DOMAIN', 'stgshadow.superamazing.com' );
+	
+	# Set Add On Domain for seperate domains hosted on same server
+	define( 'ROOT_FOLDER', 'shadow' );
+	
+}
+
+# Define Production Settings
+elseif( $_SERVER['HTTP_HOST'] == 'shadow.superamazing.com' || $_SERVER['HTTP_HOST'] == 'www.shadow.superamazing.com' )
+{	
+	# The production environment
+	define( 'ENVIRONMENT', 'production' );
+	
+	
+} // end production settings
+
 	
 # Prevents direct script access
-if(!defined('FRONT_URI')){require'system/inc/config.inc.php';header('Location:'.SITE_URL);exit;}
+if(!defined('INDEX')){require'system/inc/config.inc.php';header('Location:'.SITE_URL);exit;}
