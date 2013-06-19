@@ -38,36 +38,16 @@
 /**
  * Check if Content is outside of Shadow directory
  */
-
-# Include Pilot
- 	require_once( dirname(dirname(dirname(__FILE__))) . '/pilot.php' );
 	
 /**
  *  Resolve the front path for increased reliability
  */
- 	# Check if in development environment
-	if( ENVIRONMENT == 'development' )
-	{
-		define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
+	define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
 	
-		/**
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
-		 */
-		  define( 'FRONT_PATH', FRONT_URI );
-		
-	} // end if( ENVIRONMENT == 'development' )
-	
-	else
-	{
-		define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
-	
-		/**
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
-		 */
-		  define( 'FRONT_PATH', FRONT_URI );
-		
-	} // end else
-
+	/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+	 */
+	  define( 'FRONT_PATH', FRONT_URI );
 	
 /**
  *  Define Core Path for accessing scripts not stored in PUBLIC_HTML
@@ -85,7 +65,7 @@
  */
  	if( file_exists( CORE_URI . 'db.inc.php' ) )
 	{
-		define( 'DB', FRONT_URI . 'db.inc.php' );
+		define( 'DB', CORE_URI . 'db.inc.php' );
 		
 		/**
 		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
@@ -94,9 +74,23 @@
 		  
 	}
 	
+	else
+	{
+		define( 'DB', FRONT_URI . 'db.inc.php' );
+		
+		/**
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended.
+		 */
+		  define( 'MYSQL', DB );
+			
+	}
+	
 /**
  * Load Shadow Config Settings
  */
+ 	# Include Pilot
+ 	require_once( FRONT_URI . 'pilot.php' );
+	
 	# Include App Settings
  	require_once( FRONT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
 	
