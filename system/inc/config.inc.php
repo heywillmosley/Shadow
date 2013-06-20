@@ -47,8 +47,8 @@
 /**
  *  Check if Content is above Shadow Root
  */
- 
- 	if( is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/Content' ) ) echo 'TRUE'; else echo 'FALSE';
+ 	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/Content' ) );
+
 	
 /**
  *  Resolve the front path for increased reliability
@@ -69,12 +69,44 @@
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CORE_PATH', CORE_URI );
+
+$db_level2 = dirname( CORE_URI  ) . '/db.inc.php';
+$db_level1 = CORE_URI . 'db.inc.php';
+$db_root = FRONT_URI . 'db.inc.php';
+/**
+ * Check if database is above root
+ */
+	# Check for db.inc.php outside of Shadow Directory
+	if( !IS_ROOT )
+	{
+		# Check if db.inc.php is level 2 up from Shadow Root
+		if( file_exists( $db_level2 ) && !file_exists( $db_level1 ) ) 
+		{	
+			define( 'DB', $db_level2 );
+			echo 'level 2';
+		}
+		# Check if db.inc.php is level 2 up from Shadow Root
+		elseif( file_exists( $db_level1 ) ) 
+		{	
+			define( 'DB', $db_level1 );
+		}
+		else
+		{
+			echo '<h1>Database not set.</h1><p>Please place <code>db.inc.php</code> inside of your root folder.</p> <p>Alternatively, you can copy this from the root of your Shadow directory.';
+			exit;
+		}
+		
+	}
+	
+	# Check for db.inc.php inside of Shadow Directory
+ 	else
+	{	
+		define( 'DB', $db_root );	
+	}
 	  
 /**
  * Define Database
  */
-	define( 'DB', FRONT_URI . 'db.inc.php' );
-	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
@@ -84,7 +116,9 @@
  * Load Shadow Config Settings
  */
  	# Include Pilot
- 	require_once( FRONT_URI . 'pilot.php' );
+	if( !IS_ROOT ) require_once( CORE_URI . 'pilot.php' );
+	
+	else require_once( FRONT_URI . 'pilot.php' );
 	
 	# Include App Settings
  	require_once( FRONT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
@@ -211,7 +245,10 @@
 	  define( 'BASEURL', BASE_URL );
 	
 	// Path to the application folder
-	define( 'CONTENT_URI', FRONT_URI . 'content/');
+	# Check if Content directory is in Shadow's root
+	if( !IS_ROOT ) define( 'CONTENT_URI', CORE_URI . 'content/');
+	
+	else define( 'CONTENT_URI', FRONT_URI . 'content/');
 	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
