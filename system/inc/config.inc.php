@@ -49,30 +49,34 @@
  */
  	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/Content' ) );
 
-	
+
 /**
- *  Resolve the front path for increased reliability
+ *  Resolve the root path of website for increased reliability
  */
-	define( 'FRONT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
+ 	# If shadow isn't root
+ 	if( !IS_ROOT ) define( 'ROOT_URI', dirname(dirname(dirname(dirname(__FILE__)))) . '/' );
+	
+	else define( 'ROOT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
 	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
-	  define( 'FRONT_PATH', FRONT_URI );
+	  define( 'FRONT_PATH', ROOT_URI );
+
 	
 /**
  *  Define Core Path for accessing scripts not stored in PUBLIC_HTML
  */
-	define( 'CORE_URI', dirname( FRONT_URI ) . '/' );
+	define( 'CORE_URI', dirname( ROOT_URI ) . '/' );
 	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 
-$db_level2 = dirname( CORE_URI  ) . '/db.inc.php';
-$db_level1 = CORE_URI . 'db.inc.php';
-$db_root = FRONT_URI . 'db.inc.php';
+$db_level2 = dirname( ROOT_URI  ) . '/db.inc.php';
+$db_level1 = ROOT_URI . 'db.inc.php';
+$db_root = ROOT_URI . 'db.inc.php';
 /**
  * Check if database is above root
  */
@@ -116,15 +120,12 @@ $db_root = FRONT_URI . 'db.inc.php';
  * Load Shadow Config Settings
  */
  	# Include Pilot
-	if( !IS_ROOT ) require_once( CORE_URI . 'pilot.php' );
+	if( !IS_ROOT ) require_once( ROOT_URI . 'pilot.php' );
 	
-	else require_once( FRONT_URI . 'pilot.php' );
+	else require_once( ROOT_URI . 'pilot.php' );
 	
 	# Include App Settings
- 	require_once( FRONT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
-	
-	# Set database configuration;
-	require_once( FRONT_URI . 'db.inc.php' );
+ 	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
 
 /**
  * Define Framework Name
@@ -174,7 +175,7 @@ $db_root = FRONT_URI . 'db.inc.php';
 	
 	else
 	{
-		define( 'ROOT_NAME', basename( FRONT_URI ) );
+		define( 'ROOT_NAME', basename( ROOT_URI ) );
 	
 	} // end else
 
@@ -195,10 +196,12 @@ $db_root = FRONT_URI . 'db.inc.php';
 			// URL to the system folder
 			define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
 			
+			
 			/**
 			 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 			 */
 			  define( 'ROOTURL', ROOT_URL );
+			  
 			
 		} // end if( ADDON_DOMAIN != '' )
 	
@@ -223,32 +226,36 @@ $db_root = FRONT_URI . 'db.inc.php';
 
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+	
 
 	// The PHP file extension
 	// this global constant is deprecated.
 	define('EXT', '.php');
 
-	// Path to the system folder
-	define('BASE_URI', str_replace("\\", "/", FRONT_URI . 'system' ) . '/' );
-	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 *  Resolve the system root path
 	 */
-	  define( 'BASEPATH', BASE_URI );
+		# If shadow isn't root
+		define( 'SYS_URI', dirname(dirname(__FILE__)) . '/' );
+		
+		/**
+		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+		  define( 'BASEPATH', SYS_URI );
 	
 	// URL to the system folder
-	define('BASE_URL', ROOT_URL . 'system/');
+	define('SYS_URL', ROOT_URL . 'system/');
 	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
-	  define( 'BASEURL', BASE_URL );
+	  define( 'BASEURL', SYS_URL );
 	
 	// Path to the application folder
 	# Check if Content directory is in Shadow's root
-	if( !IS_ROOT ) define( 'CONTENT_URI', CORE_URI . 'content/');
+	if( !IS_ROOT ) define( 'CONTENT_URI', ROOT_URI . 'content/');
 	
-	else define( 'CONTENT_URI', FRONT_URI . 'content/');
+	else define( 'CONTENT_URI', ROOT_URI . 'content/');
 	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
@@ -290,20 +297,17 @@ $db_root = FRONT_URI . 'db.inc.php';
 	
 	// URL to the system folder
 	define('BRIDGE_URL', CONTENT_URL . 'bridge/' );
-	
-	// Name of the "system folder"
-	define('BASE_NAME', trim(strrchr(trim(ROOTURL, '/'), '/'), '/'));
-	
-	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
-	 */
-	  define( 'BASENAME', BASE_NAME );
 
 	// Name of the "system folder"
 	define('CONTENT_NAME', trim(strrchr(trim(CONTENT_URI, '/'), '/'), '/'));
 	
 	// Name of the "system folder"
-	define('SYS_NAME', trim(strrchr(trim(BASE_URI, '/'), '/'), '/'));
+	define('SYS_NAME', trim(strrchr(trim(SYS_URI, '/'), '/'), '/'));
+		
+		/**
+	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 */
+	  define( 'BASENAME', SYS_NAME );
 	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
@@ -311,6 +315,8 @@ $db_root = FRONT_URI . 'db.inc.php';
 	  define( 'SYSNAME', SYS_NAME );
 	
 	define( 'SITE_URL', ROOT_URL );
+	
+	echo SYS_NAME;
 	
 	/**
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
@@ -326,7 +332,7 @@ $db_root = FRONT_URI . 'db.inc.php';
  	/**
 	 * Path to system include folder
 	 */
-		define('BASE_INC_URI', BASE_URI.'inc/');
+		define('BASE_INC_URI', SYS_URI.'inc/');
 		
 		/**
 		 * Path to system include folder
@@ -346,7 +352,7 @@ $db_root = FRONT_URI . 'db.inc.php';
 			define('APP_INCLUDE_URI', APP_INC_URI );
 	
 	// Path to system page folder
-	define('BASE_PAGE_URI', BASE_URI.'pages/');
+	define('BASE_PAGE_URI', SYS_URI.'pages/');
 	
 	// URL to application page folder
 	define('APP_PAGE_URI', APP_URI.'pages/');	
@@ -357,10 +363,10 @@ $db_root = FRONT_URI . 'db.inc.php';
  * -------------------------------------------------------------------
  */	
 	// Path to system css/styles Folder
-	define('BASE_STYLE_URI', BASE_URI.'assets/css/');
+	define('BASE_STYLE_URI', SYS_URI.'assets/css/');
 	
 	// URL to system css/styles
-	define('BASE_STYLE_URL', BASE_URL.'assets/css/');
+	define('BASE_STYLE_URL', SYS_URL.'assets/css/');
 	
 	// Path to application css/styles Folder
 	define('APP_STYLE_URI', APP_URI.'assets/css/');
@@ -369,10 +375,10 @@ $db_root = FRONT_URI . 'db.inc.php';
 	define('APP_STYLE_URL', APP_URL.'assets/css/');
 	
 	// Path to system less Folder
-	define('BASE_LESS_URI', BASE_URI.'assets/less/');
+	define('BASE_LESS_URI', SYS_URI.'assets/less/');
 	
 	// URL to system less
-	define('BASE_LESS_URL', BASE_URL.'assets/less/');
+	define('BASE_LESS_URL', SYS_URL.'assets/less/');
 	
 	// Path to application less/styles Folder
 	define('APP_LESS_URI', APPPATH.'assets/less/');
@@ -381,10 +387,10 @@ $db_root = FRONT_URI . 'db.inc.php';
 	define('APP_LESS_URL', APPURL.'assets/less/');
 	
 	// Path to system javascript Folder
-	define('BASE_JS_URI', BASE_URI.'assets/js/');
+	define('BASE_JS_URI', SYS_URI.'assets/js/');
 	
 	// URL to system javascript
-	define('BASE_JS_URL', BASE_URL.'assets/js/');
+	define('BASE_JS_URL', SYS_URL.'assets/js/');
 	
 	// Path to application javascript Folder
 	define('APP_JS_URI', APP_URI.'assets/js/');
@@ -393,10 +399,10 @@ $db_root = FRONT_URI . 'db.inc.php';
 	define('APP_JS_URL', APP_URL.'assets/js/');
 	
 	// Path to system javascript Folder
-	define('BASE_IMG_URI', BASE_URI.'assets/img/');
+	define('BASE_IMG_URI', SYS_URI.'assets/img/');
 	
 	// URL to system javascript
-	define('BASE_IMG_URL', BASE_URL.'assets/img/');
+	define('BASE_IMG_URL', SYS_URL.'assets/img/');
 	
 	// Path to application javascript Folder
 	define('APP_IMG_URI', APP_URI.'assets/img/');

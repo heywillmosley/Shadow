@@ -1,5 +1,5 @@
 <?php # Prevents direct script access and redirects with valid search result
-if(!defined('FRONT_URI')){require'../../../../system/inc/config.inc.php';$url=SITE_URL.'index.php?p=search';
+if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';$url=SITE_URL.'index.php?p=search';
 if(isset($_GET['terms'])){$url.='&terms='.urlencode($_GET['terms']);}header('Location:'.$url);exit;}
 /**
  * Shadow

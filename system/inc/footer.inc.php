@@ -1,5 +1,5 @@
 <?php # Prevents direct script access
-if(!defined('FRONT_URI')){require'config.inc.php';header('Location:'.SITE_URL);exit;}
+if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);exit;}
 /**
  * Shadow
  *
