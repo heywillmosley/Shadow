@@ -28,6 +28,11 @@ if(!defined('FRONT_URI')){require'config.inc.php';header('Location:'.SITE_URL);e
  */
 class Page
 {
+	private $p = NULL;
+	private $page = NULL;
+	private $page_title = NULL;
+	
+	
 	function setPage()
 	{
 		/**
@@ -35,72 +40,72 @@ class Page
 		 */
 		 if( isset( $_GET['p'] ) )
 		 
-			$p = $_GET['p']; 
+		 	$this->p = $_GET['p']; 
 		 
 		 # Forms
 		 elseif( isset( $_POST['p'] ) )
 		 
-			$p = $_POST['p']; 
+			$this->p = $_POST['p']; 
 		 
 		 else
 			
-			$p = NULL;
+			$this->p = NULL;
 			
 		/**
 		 * Determine what page to display:
 		 */
-		switch( $p )
+		switch( $this->p )
 		{
 		/**
 		 * System
 		 */
 		  case '':
-			$page = APP_PAGE_URI . 'index.php';
-			$page_title = SITE_NAME;
+			$this->page = APP_PAGE_URI . 'index.php';
+			$this->page_title = SITE_NAME;
 			break;
 			
 		 case 'home':
-			$page = APP_PAGE_URI . 'index.php';
-			$page_title = SITE_NAME;
+			$this->page = APP_PAGE_URI . 'index.php';
+			$this->page_title = SITE_NAME;
 			break;
 		 
 		 case 'admin/pilot':
-			$page = BASE_PAGE_URI . 'pilot.php';
-			$page_title = FW_NAME . ' Pilot';
+			$this->page = BASE_PAGE_URI . 'pilot.php';
+			$this->page_title = FW_NAME . ' Pilot';
 			break;
 			
 		 case 'login':
-			$page = BASE_PAGE_URI . 'login.php';
-			$page_title = 'Login';
+			$this->page = BASE_PAGE_URI . 'login.php';
+			$this->page_title = 'Login';
 			break;
 			
 		case 'connections/profile':
-			$page = BASE_PAGE_URI . 'profile.php';
-			$page_title = 'Profile';
+			$this->page = BASE_PAGE_URI . 'profile.php';
+			$this->page_title = 'Profile';
 			break;
 		 
 		 /**
 		 * Application
 		 */
 		 case 'profile':
-			$page = APP_PAGE_URI . 'profile.php';
-			$page_title = 'Profile';
+			$this->page = APP_PAGE_URI . 'profile.php';
+			$this->page_title = 'Profile';
 			break;
 			
 		 case 'search':
-			$page = BASE_PAGE_URI . 'search.php';
-			$page_title = 'Search';
+			$this->page = BASE_PAGE_URI . 'search.php';
+			$this->page_title = 'Search';
 			break;
 			
 		 case 'search-results':
-			$page = APP_PAGE_URI . 'search-results.php';
-			$page_title = 'Search Results';
+			$this->page = APP_PAGE_URI . 'search-results.php';
+			$this->page_title = 'Search Results';
 			break;
 		 
 		 # Default is to include the main page.
 		 default:
-			$page = BASE_PAGE_URI . '404.php';
-			$page_title = 404;
+			$this->page = BASE_PAGE_URI . '404.php';
+			$this->page_title = 404;
 			break;
 		 
 		} // end switch( $p )
@@ -113,9 +118,9 @@ class Page
 		/**
 		 * Make sure the file exists:
 		 */
-		 if( !file_exists( $page ) )
+		 if( !file_exists( $this->page ) )
 		 {
-			$page = BASE_PAGE_URI . '404.php';
+			$this->page = BASE_PAGE_URI . '404.php';
 			
 		 } // end if( !file_exists( $page ) )
 		
@@ -129,7 +134,7 @@ class Page
 		 
 		 */
 		 
-		 return include( $page );
+		 return include( $this->page );
 		
 	}
 	

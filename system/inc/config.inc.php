@@ -44,6 +44,11 @@
 	# Numeric - strip dots
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( '.', '', SYS_VER ) ) ) );
 	
+/**
+ *  Check if Content is above Shadow Root
+ */
+ 
+ 	if( is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/Content' ) ) echo 'TRUE'; else echo 'FALSE';
 	
 /**
  *  Resolve the front path for increased reliability
