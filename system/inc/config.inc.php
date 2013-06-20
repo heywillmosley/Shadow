@@ -19,7 +19,7 @@
  * - Stores URLs and URIs as constants.
  * - Sets how errors will be handled
  *
- * @since          Version 1.1.7
+ * @since          Version 0.1.7
  */
  
 // --------------------------------------------------------------------------------
@@ -31,15 +31,15 @@
  * Shadow Version
  *
  * What's New:
- * - Responsive Images & breakpoints
- * - Maintenance Operations
  * - System and application styles and scripts seperated and cleaned up
  * - Support for IE8 Browsers
  * - Environments ( Production, Stage, QA, Development )
  * - Complete system remodel using Object Oriented Programming
  * - System version control and handling of legacy versions
+ * - Implemented full git version control
+ * - Content folder and db.inc.php executable outside of Shadow root
  */
-	define('SYS_VER', '1.1.1 b7');
+	define('SYS_VER', '0.1 b7');
 	
 	# Numeric - strip dots
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( '.', '', SYS_VER ) ) ) );

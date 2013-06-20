@@ -27,12 +27,12 @@ RewriteEngine On
 
 RewriteRule ^(.*)/?$ index.php?p=$1 
 
-# Fix "Bad value X-UA-Compatible for attribute http-equiv on element meta." Validation Error
-#Header set X-UA-Compatible "IE=edge,chrome=1" 
+#MAINTENANCE-PAGE REDIRECT
+
+#Fix "Bad value X-UA-Compatible for attribute http-equiv on element meta." Validation Error
+Header set X-UA-Compatible "IE=edge,chrome=1" 
 
 #RewriteRule ^.*$ ./index.php 
-
-#MAINTENANCE-PAGE REDIRECT
 
 #<IfModule mod_rewrite.c>
  #RewriteEngine on
