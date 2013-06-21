@@ -23,15 +23,20 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * Class description
  * @since 1.1.7
  * @author William Mosley, III <will@livesuperamazing.com>
- * 0 Arguments
- * 0 Methods
+ * 3 Arguments
+ * 5 Methods
  */
 class Page
 {
-	private $p = NULL;
+	private $p;
 	private $page = NULL;
 	private $page_title = NULL;
 	
+	function __construct()
+	{
+		$this->setPage();
+		
+	}
 	
 	function setPage()
 	{

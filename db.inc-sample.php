@@ -36,13 +36,13 @@
 if(  ENVIRONMENT == 'development' )
 {
 	# Your development database name
-	define( 'DB_NAME', 'shadow' );
+	define( 'DB_NAME', 'development-database-name-here' );
 	
 	# Your development database username
-	define( 'DB_USER', 'masterAgile' );
+	define( 'DB_USER', 'development-database-username-here' );
 	
 	# Your development database user password
-	define( 'DB_PASSWORD', 'QVpYN6abWHrpd9nU' );
+	define( 'DB_PASSWORD', 'development-database-password-here' );
 	
 	# Your development databases's connection type
 	define( 'DB_HOST', 'localhost' ); // Most likely localhost

@@ -39,7 +39,7 @@
  * - Implemented full git version control
  * - Content folder and db.inc.php executable outside of Shadow root
  */
-	define('SYS_VER', '0.1 b7');
+	define('SYS_VER', '0.1 s8');
 	
 	# Numeric - strip dots
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( '.', '', SYS_VER ) ) ) );
@@ -115,7 +115,8 @@ $db_root = ROOT_URI . 'db.inc.php';
 	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'MYSQL', DB );
-	
+	  
+
 /**
  * Load Shadow Config Settings
  */
@@ -495,9 +496,20 @@ if( !isset( $debug ) )
 	{  
 		include_once BASE_INC_URI .'/class.' . $class_name . '.inc.php';  
 	} 
+	
 
 # ***** LOAD CLASSES ***** #
 # ************************ #
+
+# Call Database variables
+require(DB);
+
+/**
+ * Check to see if DB_NAME is set if not, redirect to database install
+ */
+ if( DB_NAME == '' || 'set-database-name-here' )
+ 	
+	$p = 'shdw/install';
 
 
 # *************************** #
@@ -563,6 +575,8 @@ set_error_handler( 'my_error_handler' );
 
 # ***** ERROR MANAGEMENT ***** #
 # **************************** #
+
+
 
 # Prevents direct script access
 //if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}

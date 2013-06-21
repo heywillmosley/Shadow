@@ -27,10 +27,14 @@ define('INDEX',TRUE);
  	require_once 'system/inc/config.inc.php';
 
 /**
+ * Load System presetation layer functions
+ */
+	require_once( BASE_INCLUDE_URI.'functions.inc.php');
+
+/**
  * Create new page object and set page
  */
-	$p = new Page();
-	$p->setPage();
+	set_page( $p );
  
 /*
  * ------------------------------------------------------
@@ -38,14 +42,7 @@ define('INDEX',TRUE);
  * ------------------------------------------------------
  */
 	include_once(APP_INCLUDE_URI.'constants.inc.php');
-	include_once(APP_INCLUDE_URI.'functions.inc.php');
-	
- /*
- * ------------------------------------------------------
- *  Load System Includes
- * ------------------------------------------------------
- */
-	require_once( BASE_INCLUDE_URI.'functions.inc.php');	
+	include_once(APP_INCLUDE_URI.'functions.inc.php');	
  
  
 /**
@@ -57,8 +54,7 @@ define('INDEX',TRUE);
 /**
  * Include the content-specific page and unset page
  */
-	$p->getPage();
-	unset( $p );
+	get_page();
 
 /**
  * Include the footer file:

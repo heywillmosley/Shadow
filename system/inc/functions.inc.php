@@ -19,6 +19,60 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  
 // --------------------------------------------------------------------------------
 
+
+/* Presentational level of Page Class
+ *******************************************************/
+
+	/**
+	 * Sets page from class Page:setPage()
+	 *
+	 * @since 1.1.1 b8
+	 * @return void
+	 */
+	function set_page()
+	{
+		# Set new Page object
+		$p = new Page();
+		
+		# Call setPage() method
+		$p->setPage();
+		 
+		# Unset Object
+		unset( $p );
+	}
+	
+	
+	/**
+	 * Gets page from class Page:getPage()
+	 *
+	 * @since 1.1.1 b8
+	 * @return void
+	 */
+	function get_page()
+	{
+		# Set new Page object
+		$p = new Page();
+		
+		# Call setPage() method
+		$p->getPage();
+		 
+		# Unset Object
+		unset( $p );
+	}
+	
+	
+	
+/* Presentational level of Form Class
+ *******************************************************/
+
+
+
+
+
+
+
+
+
 # Delete First Character in String
 function deleteFirstChar( $string )
 {
