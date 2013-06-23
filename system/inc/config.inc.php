@@ -59,7 +59,7 @@
 	else define( 'ROOT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'FRONT_PATH', ROOT_URI );
 
@@ -70,7 +70,7 @@
 	define( 'CORE_URI', dirname( ROOT_URI ) . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 
@@ -112,7 +112,7 @@ $db_root = ROOT_URI . 'db.inc.php';
  * Define Database
  */
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'MYSQL', DB );
 	  
@@ -199,7 +199,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 			
 			
 			/**
-			 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 			 */
 			  define( 'ROOTURL', ROOT_URL );
 			  
@@ -219,7 +219,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 		define('ROOT_URL', str_replace("\\", "/", $rooturl));
 		
 		/**
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
 		  define( 'ROOTURL', ROOT_URL );
 		}
@@ -240,7 +240,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 		define( 'SYS_URI', dirname(dirname(__FILE__)) . '/' );
 		
 		/**
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
 		  define( 'BASEPATH', SYS_URI );
 	
@@ -248,7 +248,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	define('SYS_URL', ROOT_URL . 'system/');
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'BASEURL', SYS_URL );
 	
@@ -259,7 +259,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	else define( 'CONTENT_URI', ROOT_URI . 'content/');
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CONTENT_PATH', CONTENT_URI );
 	
@@ -270,7 +270,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPLICATIONS_PATH', APPLICATIONS_URI );
 	
@@ -281,7 +281,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	define('APP_URI',  APPLICATIONS_URI . CURRENT_APP . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPPATH', APP_URI );
 	
@@ -289,7 +289,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	define('APP_URL', APPLICATIONS_URL . CURRENT_APP . '/' );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPURL', APP_URL );
 	
@@ -306,12 +306,12 @@ $db_root = ROOT_URI . 'db.inc.php';
 	define('SYS_NAME', trim(strrchr(trim(SYS_URI, '/'), '/'), '/'));
 		
 		/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'BASENAME', SYS_NAME );
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'SYSNAME', SYS_NAME );
 	
@@ -320,26 +320,46 @@ $db_root = ROOT_URI . 'db.inc.php';
 	echo SYS_NAME;
 	
 	/**
-	 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'SITEURL', SITE_URL );
 		
 
 /*
  * -------------------------------------------------------------------
- *  Define Include and Page constants
+ *  Define Classes, Includes, Views and Page constants
  * -------------------------------------------------------------------
  */	
  	/**
-	 * Path to system include folder
+	 * Path to system classes folder
+	 * @since 0.1.1 s8
 	 */
-		define('BASE_INC_URI', SYS_URI.'inc/');
+		define( 'SYS_CLASS_URI', SYS_URI.'classes/' );
+		
+	/**
+	 * Path to app classes folder
+	 * @since 0.1.1 s8
+	 */
+		define( 'APP_CLASS_URI', APP_URI.'classes/' );
+ 
+ 
+ 	/**
+	 * Path to system include folder
+	 * @since 0.1.1 s8
+	 */
+		define( 'SYS_INC_URI', SYS_URI.'inc/' );
 		
 		/**
 		 * Path to system include folder
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 * @depreciated 0.1.1 s8 No longer used by internal code and not recommended. Support till 6/23/2014
 		 */
-			define('BASE_INCLUDE_URI', BASE_INC_URI );
+			define( 'BASE_INC_URI', SYS_INC_URI );
+			
+			/**
+			 * Path to system include folder
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 */
+				define('BASE_INCLUDE_URI', BASE_INC_URI );
 	
 	/**
 	 * Path to application include folder
@@ -348,7 +368,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 		
 		/**
 		 * Path to application include folder
-		 * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
 			define('APP_INCLUDE_URI', APP_INC_URI );
 	
@@ -356,7 +376,19 @@ $db_root = ROOT_URI . 'db.inc.php';
 	define('BASE_PAGE_URI', SYS_URI.'pages/');
 	
 	// URL to application page folder
-	define('APP_PAGE_URI', APP_URI.'pages/');	
+	define('APP_PAGE_URI', APP_URI.'pages/');
+	
+	/**
+	 * Path to system classes folder
+	 * @since 0.1.1 s8
+	 */
+		define('SYS_VIEWS_URI', SYS_URI.'views/');
+		
+	/**
+	 * Path to app classes folder
+	 * @since 0.1.1 s8
+	 */
+		define('APP_VIEWS_URI', APP_URI.'views/');	
 	
 /*
  * -------------------------------------------------------------------
@@ -492,9 +524,9 @@ if( !isset( $debug ) )
 /**
  * Loads all system classes in system inc folder
  */
-	function __autoload($class_name)  
+	function __autoload( $class_name )  
 	{  
-		include_once BASE_INC_URI .'/class.' . $class_name . '.inc.php';  
+		include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';  
 	} 
 	
 

@@ -107,7 +107,7 @@ function sys_footer()
 }
 
 /**
- * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/19/2014
+ * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/19/2014
  * * Use Maintenance Class Maintenance->maintenance_mode() instead
  */
 function maintenance_mode()
@@ -134,7 +134,7 @@ function maintenance_mode()
 
 
 /**
- * @depreciated 1.1.7 No longer used by internal code and not recommended. Support till 6/19/2014
+ * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/19/2014
  * Use Maintenance Class Environment->environment_notice() instead
  */
 function environment_notice()
