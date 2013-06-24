@@ -11,7 +11,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 1.1.5
+ * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
  * Class
@@ -28,7 +28,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  */
 class Users
 {
-	/* Is Logged In @since 1.1.5
+	/* Is Logged In @since 0.1.1 s5
  *
  * Check logged in status.
  * We do this by checking the the "user_id" and the "login_string"

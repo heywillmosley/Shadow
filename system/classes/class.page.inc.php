@@ -11,7 +11,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 1.1.5
+ * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
  * Class
@@ -65,12 +65,28 @@ class Page
 		 * System
 		 */
 		  case '':
-			$this->page = APP_PAGE_URI . 'index.php';
+		  	if( file_exists( APP_INC_URI . 'index.php' ) && is_file ( APP_INC_URI . 'index.php' ) )
+			{
+				$this->page = APP_VIEWS_URI . 'index.php';
+				echo 'hello';
+				
+			}
+			elseif( APP_URI . 'index.php' ) 
+			{
+				$this->page = APP_URI . 'index.php';
+				echo $this->page . '<br/>';
+				
+			}
+				
 			$this->page_title = SITE_NAME;
 			break;
 			
 		 case 'home':
-			$this->page = APP_PAGE_URI . 'index.php';
+			if( file_exists( APP_INC_URI . 'index.php' ) )
+				$this->page = APP_VIEWS_URI . 'index.php';
+			else
+				$this->page = APP_URI . 'index.php';
+				
 			$this->page_title = SITE_NAME;
 			break;
 		 
@@ -143,7 +159,7 @@ class Page
 		
 	}
 	
-	# Load Function @since 1.1.5
+	# Load Function @since 0.1.1 s5
 	function load($page = 'login') {
 		$url = ROOTURL;
 		$url = rtrim( $url, '/\\');
@@ -153,7 +169,7 @@ class Page
 		exit();
 	}
 	
-	# Load Path Function @since 1.1.5
+	# Load Path Function @since 0.1.1 s5
 	function load_URI($page = 'login') {
 		$path = ROOTPATH;
 		$path = rtrim( $url, '/\\');
@@ -164,7 +180,7 @@ class Page
 	}
 	
 	
-	# Page 404 @since 1.1.5
+	# Page 404 @since 0.1.1 s5
 	function page404 ()
 	{
 		# Check if there's a 404.php file in application directory

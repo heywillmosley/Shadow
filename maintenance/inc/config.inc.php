@@ -18,7 +18,7 @@
  * Define useful constants that may be used by multiple scripts
  * Start the session, Establish how errors will be handled
  *
- * @since          Version 1.1.5
+ * @since          Version 0.1.1 s5
  * @filesource     /html/system/inc/config.inc.php
  */
  
@@ -53,7 +53,7 @@ define( 'GOOGLE_FONTS', '' );
  * @var string
  *
  */
-	define('SH_VERSION', '1.1.5');
+	define('SH_VERSION', '0.1.1 s5');
 	
 /**
  * Define Framework Name

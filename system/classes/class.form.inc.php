@@ -11,7 +11,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 1.1.5
+ * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
  * Class
@@ -36,7 +36,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  the name of form input
 	 * @param          string  the type of input
@@ -123,7 +123,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  user email
 	 * @return         boolean
@@ -143,7 +143,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  user email
 	 * @return         boolean
@@ -166,7 +166,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  name
 	 * @return         boolean
@@ -188,7 +188,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  name
 	 * @return         boolean
@@ -211,7 +211,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  name
 	 * @return         boolean
@@ -231,7 +231,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  number
 	 * @return         boolean
@@ -252,7 +252,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string  number
 	 * @return         boolean
@@ -273,7 +273,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string
 	 * @return         boolean
@@ -293,7 +293,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string
 	 * @return         boolean
@@ -313,7 +313,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string url
 	 * @return         boolean
@@ -331,7 +331,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string url
 	 * @return         boolean
@@ -351,7 +351,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string url
 	 * @return         boolean
@@ -371,7 +371,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string image
 	 * @return         boolean
@@ -391,7 +391,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @param          string ip
 	 * @return         boolean
@@ -411,7 +411,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @dependencies   
 	 * @return         continue or exit
 	 */
@@ -442,7 +442,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  username
 	 * @dependencies   
 	 * @return         boolean
@@ -463,7 +463,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  password
 	 * @dependencies   
 	 * @return         boolean
@@ -484,7 +484,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  password
 	 * @dependencies   
 	 * @return         array errors
@@ -518,7 +518,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  phone number
 	 * @dependencies   
 	 * @return         boolean
@@ -538,7 +538,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  ssn
 	 * @dependencies   
 	 * @return         boolean
@@ -559,7 +559,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  cc
 	 * @dependencies   
 	 * @return         boolean
@@ -581,7 +581,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  date
 	 * @dependencies   
 	 * @return         boolean
@@ -601,7 +601,7 @@ class Forms
 	 * @package        Shadow   
 	 * @author         Super Amazing
 	 * @link
-	 * @since          Version 1.1.5
+	 * @since          Version 0.1.1 s5
 	 * @params         string  color
 	 * @dependencies   
 	 * @return         boolean
@@ -616,13 +616,13 @@ class Forms
 		} // end function vColor( $color )
 	
 	
-	# Make Query Safe @since 1.1.5
+	# Make Query Safe @since 0.1.1 s5
 	function _cleanQuery($str)
 	{
 	return is_array($str) ? array_map('_cleanQuery', $str) : str_replace('\\', '\\\\', htmlspecialchars((get_magic_quotes_gpc() ? stripslashes($str) : $str), ENT_QUOTES));
 	}
 	
-	# Make Data Safe @since 1.1.5
+	# Make Data Safe @since 0.1.1 s5
 	function _cleanData( $str, $dbc = '' )
 	{
 		if( !empty( $dbc ) ) 
@@ -635,14 +635,14 @@ class Forms
 			return is_array($str) ? array_map('_cleanData', $str) : str_replace('\\', '\\\\', strip_tags(trim(htmlspecialchars((get_magic_quotes_gpc() ? stripslashes($str) : $str), ENT_QUOTES))));
 	}
 	
-	# Validate MySQL Database Name @since 1.1.5
+	# Validate MySQL Database Name @since 0.1.1 s5
 	function vDBName ($db) 
 	{
 		
 		return !preg_match('/[^a-z_\-0-9]/i', $db);
 	}
 	
-	# Validate Sex @since 1.1.5
+	# Validate Sex @since 0.1.1 s5
 	function vSex ($sex) 
 	{
 		$sex = strtolower(substr($sex, 0, 1));
@@ -653,14 +653,14 @@ class Forms
 		return $sex;
 	}
 	
-	# Sanitize Sex @since 1.1.5
+	# Sanitize Sex @since 0.1.1 s5
 	function sSex ($sex) 
 	{
 		$sex = strtolower(substr($sex, 0, 1));
 		return $sex;
 	}
 	
-	# Isset Form Field Name @since 1.1.5
+	# Isset Form Field Name @since 0.1.1 s5
 	function kv($name) {
 		
 		if ( isset( $name ) ) {echo $name;}

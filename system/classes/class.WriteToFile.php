@@ -11,7 +11,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 1.1.5
+ * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
  * Class
@@ -32,9 +32,9 @@ class WriteToFile
 	private $_fp = NULL;
 	
 	# Constructor opens the file for writing:
-	__construct( $file )
+	function __construct( $file )
 	{
-	
+		
 		
 		
 	} // end __construct( $file )

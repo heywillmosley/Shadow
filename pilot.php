@@ -10,7 +10,7 @@
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 1.1.5
+ * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
  * System Functions
@@ -38,7 +38,7 @@
 	define( 'SHADOW_URI_LEVEL', 0 );
 	
 	# Define current App
-	define( 'CURRENT_APP', 'ninjablack1' );
+	define( 'CURRENT_APP', 'ninjablack' );
 	
 	/* Define app type\
 	 * Types:

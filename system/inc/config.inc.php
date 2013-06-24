@@ -317,7 +317,6 @@ $db_root = ROOT_URI . 'db.inc.php';
 	
 	define( 'SITE_URL', ROOT_URL );
 	
-	echo SYS_NAME;
 	
 	/**
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
@@ -340,7 +339,17 @@ $db_root = ROOT_URI . 'db.inc.php';
 	 * Path to app classes folder
 	 * @since 0.1.1 s8
 	 */
-		define( 'APP_CLASS_URI', APP_URI.'classes/' );
+	 	# Check if classes directory exists and define
+		if( is_dir( APP_URI.'classes/' ) )
+			define( 'APP_CLASS_URI', APP_URI.'classes/' );
+		
+		# Check if class directory exists and define
+		elseif( is_dir( APP_URI.'class/' ) )
+			define( 'APP_CLASS_URI', APP_URI.'class/' );
+		
+		# Set as root application directory
+		else
+			define( 'APP_CLASS_URI', APP_URI );
  
  
  	/**
@@ -364,31 +373,90 @@ $db_root = ROOT_URI . 'db.inc.php';
 	/**
 	 * Path to application include folder
 	 */
-		define('APP_INC_URI', APP_URI.'inc/');
+	 	# Check if inc directory exists and define
+		if( is_dir( APP_URI.'inc/' ) )
+			define( 'APP_INC_URI', APP_URI.'inc/' );
+		
+		# Check if includes directory exists and define
+		elseif( is_dir( APP_URI.'includes/' ) )
+			define( 'APP_INC_URI', APP_URI.'includes/' );
+			
+		# Check if include directory exists and define
+		elseif( is_dir( APP_URI.'include/' ) )
+			define( 'APP_INC_URI', APP_URI.'include/' );
+		
+		# Set as root application directory
+		else
+			define( 'APP_INC_URI', APP_URI );
+			
 		
 		/**
 		 * Path to application include folder
 		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
 			define('APP_INCLUDE_URI', APP_INC_URI );
+			
 	
-	// Path to system page folder
-	define('BASE_PAGE_URI', SYS_URI.'pages/');
+	/**
+	 * Path to system page folder
+	 * @since 1.1.1 s8
+	 */
+	 	define('SYS_VIEWS_URI', SYS_URI.'views/');
+		
+		
+	 	/**
+		 * Path to system page folder
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+			define('SYS_PAGE_URI', SYS_VIEWS_URI );
+		
+			/**
+			 * Path to system page folder
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 */
+				define('BASE_PAGE_URI', SYS_VIEWS_URI );
+		
+		
 	
-	// URL to application page folder
-	define('APP_PAGE_URI', APP_URI.'pages/');
+	/**
+	 * URL to application page folder
+	 */
+		# Check if views directory exists and define
+		if( is_dir( APP_URI.'views/' ) )
+			define( 'APP_PAGE_URI', APP_URI.'views/' );
+		
+		# Check if view directory exists and define
+		elseif( is_dir( APP_URI.'view/' ) )
+			define( 'APP_PAGE_URI', APP_URI.'view/' );
+			
+		# Check if pgs directory exists and define
+		elseif( is_dir( APP_URI.'pgs/' ) )
+			define( 'APP_PAGE_URI', APP_URI.'pgs/' );
+			
+		# Check if pages directory exists and define
+		elseif( is_dir( APP_URI.'pages/' ) )
+			define( 'APP_PAGE_URI', APP_URI.'pages/' );
+			
+		# Check if page directory exists and define
+		elseif( is_dir( APP_URI.'page/' ) )
+			define( 'APP_PAGE_URI', APP_URI.'page/' );
+		
+		# Set as root application directory
+		else
+			define( 'APP_PAGE_URI', APP_URI );
 	
 	/**
 	 * Path to system classes folder
 	 * @since 0.1.1 s8
 	 */
-		define('SYS_VIEWS_URI', SYS_URI.'views/');
+		define('SYS_VIEWS_URI', SYS_URI.'views/' );
 		
 	/**
 	 * Path to app classes folder
 	 * @since 0.1.1 s8
 	 */
-		define('APP_VIEWS_URI', APP_URI.'views/');	
+		define( 'APP_VIEWS_URI', APP_PAGE_URI );
+		
 	
 /*
  * -------------------------------------------------------------------
@@ -401,11 +469,96 @@ $db_root = ROOT_URI . 'db.inc.php';
 	// URL to system css/styles
 	define('BASE_STYLE_URL', SYS_URL.'assets/css/');
 	
-	// Path to application css/styles Folder
-	define('APP_STYLE_URI', APP_URI.'assets/css/');
 	
-	// URL to system css/styles
-	define('APP_STYLE_URL', APP_URL.'assets/css/');
+	# Check if assets/css directory exists and define
+	if( is_dir( APP_URI.'assets/css/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL.'assets/css/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/styles/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI.'assets/styles/' );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL.'assets/styles/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/style/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI.'assets/style/' );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL.'assets/style/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'css/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI.'css/' );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL.'css/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'styles/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI.'styles/' );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL.'styles/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'style/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI.'style/' );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL.'style/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI.'assets/' );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL.'assets/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	else
+	{
+		# Path to application css/styles Folder
+		define( 'APP_STYLE_URI', APP_URI );
+		
+		# URL to system css/styles
+		define( 'APP_STYLE_URL', APP_URL );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	
 	
 	// Path to system less Folder
 	define('BASE_LESS_URI', SYS_URI.'assets/less/');
@@ -413,23 +566,136 @@ $db_root = ROOT_URI . 'db.inc.php';
 	// URL to system less
 	define('BASE_LESS_URL', SYS_URL.'assets/less/');
 	
-	// Path to application less/styles Folder
-	define('APP_LESS_URI', APPPATH.'assets/less/');
 	
-	// URL to system less/styles
-	define('APP_LESS_URL', APPURL.'assets/less/');
+	# Check if assets/less directory exists and define
+	if( is_dir( APP_URI.'assets/less/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_LESS_URI', APP_URI.'assets/less/' );
+		
+		# URL to system css/styles
+		define( 'APP_LESS_URL', APP_URL.'assets/less/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'less/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_LESS_URI', APP_URI.'less/' );
+		
+		# URL to system css/styles
+		define( 'APP_LESS_URL', APP_URL.'less/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	else
+	{
+		# Path to application css/styles Folder
+		define( 'APP_LESS_URI', APP_URI );
+		
+		# URL to system css/styles
+		define( 'APP_LESS_URL', APP_URL );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+
 	// Path to system javascript Folder
 	define('BASE_JS_URI', SYS_URI.'assets/js/');
 	
 	// URL to system javascript
 	define('BASE_JS_URL', SYS_URL.'assets/js/');
 	
-	// Path to application javascript Folder
-	define('APP_JS_URI', APP_URI.'assets/js/');
 	
-	// URL to system javascript
-	define('APP_JS_URL', APP_URL.'assets/js/');
+	# Check if javascript directory exists and define
+	if( is_dir( APP_URI.'assets/js/' ) )
+	{
+		# Path to application js Folder
+		define( 'APP_JS_URI', APP_URI.'assets/js/' );
+		
+		# URL to app js folder
+		define( 'APP_JS_URL', APP_URL.'assets/js/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/javascript/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_JS_URI', APP_URI.'assets/javascript/' );
+		
+		# URL to system css/styles
+		define( 'APP_JS_URL', APP_URL.'assets/javascript/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/javascripts/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_JS_URI', APP_URI.'assets/javascripts/' );
+		
+		# URL to system css/styles
+		define( 'APP_JS_URL', APP_URL.'assets/javascripts/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'js/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_JS_URI', APP_URI.'js/' );
+		
+		# URL to system css/styles
+		define( 'APP_JS_URL', APP_URL.'js/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'javascript/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_JS_URI', APP_URI.'javascript/' );
+		
+		# URL to system css/styles
+		define( 'APP_JS_URL', APP_URL.'javascript/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'javascripts/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_JS_URI', APP_URI.'javascripts/' );
+		
+		# URL to system css/styles
+		define( 'APP_JS_URL', APP_URL.'javascripts/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_JS_URI', APP_URI.'assets/' );
+		
+		# URL to system css/styles
+		define( 'APP_JS_URL', APP_URL.'assets/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	else
+	{
+		# Path to application css/styles Folder
+		define( 'APP_JS_URI', APP_URI );
+		
+		# URL to system css/styles
+		define( 'APP_JS_URL', APP_URL );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
 	
 	// Path to system javascript Folder
 	define('BASE_IMG_URI', SYS_URI.'assets/img/');
@@ -437,11 +703,138 @@ $db_root = ROOT_URI . 'db.inc.php';
 	// URL to system javascript
 	define('BASE_IMG_URL', SYS_URL.'assets/img/');
 	
-	// Path to application javascript Folder
-	define('APP_IMG_URI', APP_URI.'assets/img/');
 	
-	// URL to system javascript
-	define('APP_IMG_URL', APP_URL.'assets/img/');
+	# Check if img directory exists and define
+	if( is_dir( APP_URI.'assets/img/' ) )
+	{
+		# Path to application img Folder
+		define( 'APP_IMG_URI', APP_URI.'assets/img/' );
+		
+		# URL to app js folder
+		define( 'APP_IMG_URL', APP_URL.'assets/img/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if img directory exists and define
+	if( is_dir( APP_URI.'asset/img/' ) )
+	{
+		# Path to application img Folder
+		define( 'APP_IMG_URI', APP_URI.'asset/img/' );
+		
+		# URL to app js folder
+		define( 'APP_IMG_URL', APP_URL.'asset/img/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/images/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_IMG_URI', APP_URI.'assets/images/' );
+		
+		# URL to system css/styles
+		define( 'APP_IMG_URL', APP_URL.'assets/images/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if img directory exists and define
+	if( is_dir( APP_URI.'asset/images/' ) )
+	{
+		# Path to application img Folder
+		define( 'APP_IMG_URI', APP_URI.'asset/images/' );
+		
+		# URL to app js folder
+		define( 'APP_IMG_URL', APP_URL.'asset/images/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/image/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_IMG_URI', APP_URI.'assets/image/' );
+		
+		# URL to system css/styles
+		define( 'APP_IMG_URL', APP_URL.'assets/image/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if img directory exists and define
+	if( is_dir( APP_URI.'asset/image/' ) )
+	{
+		# Path to application img Folder
+		define( 'APP_IMG_URI', APP_URI.'asset/image/' );
+		
+		# URL to app js folder
+		define( 'APP_IMG_URL', APP_URL.'asset/image/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'img/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_IMG_URI', APP_URI.'img/' );
+		
+		# URL to system css/styles
+		define( 'APP_IMG_URL', APP_URL.'img/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'images/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_IMG_URI', APP_URI.'images/' );
+		
+		# URL to system css/styles
+		define( 'APP_IMG_URL', APP_URL.'images/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'image/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_IMG_URI', APP_URI.'image/' );
+		
+		# URL to system css/styles
+		define( 'APP_IMG_URL', APP_URL.'image/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	elseif( is_dir( APP_URI.'assets/' ) )
+	{
+		# Path to application css/styles Folder
+		define( 'APP_IMG_URI', APP_URI.'assets/' );
+		
+		# URL to system css/styles
+		define( 'APP_IMG_URL', APP_URL.'assets/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if img directory exists and define
+	if( is_dir( APP_URI.'asset/' ) )
+	{
+		# Path to application img Folder
+		define( 'APP_IMG_URI', APP_URI.'asset/' );
+		
+		# URL to app js folder
+		define( 'APP_IMG_URL', APP_URL.'assets/' );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+	
+	# Check if assets/styles directory exists and define
+	else
+	{
+		# Path to application css/styles Folder
+		define( 'APP_IMG_URI', APP_URI );
+		
+		# URL to system css/styles
+		define( 'APP_IMG_URL', APP_URL );
+		
+	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
 	
 /**

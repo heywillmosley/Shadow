@@ -11,7 +11,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 1.1.5
+ * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
  * System Functions
@@ -81,7 +81,7 @@ function deleteFirstChar( $string )
 }
 
 
-# Framework Head @since 1.1.5
+# Framework Head @since 0.1.1 s5
 function sys_header() 
 {
 	?>
@@ -97,7 +97,7 @@ function sys_header()
     <?php return true;
 }
 
-# Framework Foot @since 1.1.5
+# Framework Foot @since 0.1.1 s5
 function sys_footer() 
 {
 	?>
