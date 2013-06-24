@@ -68,14 +68,11 @@ class Page
 		  	if( file_exists( APP_INC_URI . 'index.php' ) && is_file ( APP_INC_URI . 'index.php' ) )
 			{
 				$this->page = APP_VIEWS_URI . 'index.php';
-				echo 'hello';
 				
 			}
 			elseif( APP_URI . 'index.php' ) 
 			{
 				$this->page = APP_URI . 'index.php';
-				echo $this->page . '<br/>';
-				
 			}
 				
 			$this->page_title = SITE_NAME;

@@ -26,41 +26,70 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * 0 Arguments
  * 0 Methods
  */
-class Database
+class Database extends PDO
 {
+	protected $pdo = NULL;
+	
+	function __construct()
+	{
+		$this->setDB();
+	}
+	
 	/**
 	 * Sets database connection
 	 *
 	 * @since 1.1.1 s8
-	 * @param
 	 */
-	 function setDB( $host, $user, $password, $dbName = '' )
+	 function setDB()
 	 {
-		 # Set Database connection with database
-		if( $dbName != '' )
-		{
-			 # Turn off PHP Errors
-			 ini_set('display_errors', 0);
-			 
-			 # Set database connection or call error message
-			 $dbc = mysqli_connect( $host, $user, $password, $dbName ) or die( '<h1>Could not connect to the database.</h1>' .  mysqli_connect_error() ); 
-			 
-			 # Turn back on PHP Errors
-			 ini_set('error_reporting', E_ALL);
-			 
-			 
-		} // end if( $dbName != FALSE )
+		 require( DB );
 		
-		# Set Database connection with database without database
-		else 
-		{
-			$dbc = mysqli_connect( $host, $user, $password );
+		# Try to connect to the database:
+		try
+		{	
+			# Creae the object:
+			$pdo = new PDO( 'mysql:dbname='.DB_NAME.';host='.DB_HOST.'',DB_USER,DB_PASSWORD );
 			
-		} // end else
+		} // end try
 		
-		mysqli_close( $dbc );
+		# Report the eorror!
+		catch( PDOException $e )
+		{
+			echo '<h2 class="error">An error occured: ' . $e->getMessage() . '</h2>';
+			exit;
+			
+		} // end catch( PDOException $e )S
 		 
-	 }
+	 } // end function setDB()
+	 
+	 
+	 /**
+	  * Gets number of rows effected by query
+	  */
+	  	function getRowsAffected( $query )
+		{
+			$this->exec( $query );
+			
+		} // end function getRowsAffected( $query )
+	 
+	 /**
+	  * Close database connection
+	  * @since 0.1.1 s8
+	  */
+		 function closeDB()
+		 {
+			 unset( $this->pdo ); 
+			 
+		 } // end function closeDB()
+		 
+	/**
+	 * Destroy database connection
+	 */
+		function __destruct()
+		{
+			$this->closeDB();
+			
+		} // end __destruct()
 	
  
 } // end ClassName

@@ -74,6 +74,19 @@
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 
+
+/**
+ * Load Shadow Config Settings
+ */
+ 	# Include Pilot
+	if( !IS_ROOT ) require_once( ROOT_URI . 'pilot.php' );
+	
+	else require_once( ROOT_URI . 'pilot.php' );
+	
+	# Include App Settings
+ 	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+
+
 $db_level2 = dirname( ROOT_URI  ) . '/db.inc.php';
 $db_level1 = ROOT_URI . 'db.inc.php';
 $db_root = ROOT_URI . 'db.inc.php';
@@ -115,18 +128,9 @@ $db_root = ROOT_URI . 'db.inc.php';
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'MYSQL', DB );
-	  
 
-/**
- * Load Shadow Config Settings
- */
- 	# Include Pilot
-	if( !IS_ROOT ) require_once( ROOT_URI . 'pilot.php' );
-	
-	else require_once( ROOT_URI . 'pilot.php' );
-	
-	# Include App Settings
- 	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+
+
 
 /**
  * Define Framework Name
@@ -445,11 +449,6 @@ $db_root = ROOT_URI . 'db.inc.php';
 		else
 			define( 'APP_PAGE_URI', APP_URI );
 	
-	/**
-	 * Path to system classes folder
-	 * @since 0.1.1 s8
-	 */
-		define('SYS_VIEWS_URI', SYS_URI.'views/' );
 		
 	/**
 	 * Path to app classes folder
@@ -716,7 +715,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
 	# Check if img directory exists and define
-	if( is_dir( APP_URI.'asset/img/' ) )
+	elseif( is_dir( APP_URI.'asset/img/' ) )
 	{
 		# Path to application img Folder
 		define( 'APP_IMG_URI', APP_URI.'asset/img/' );
@@ -738,7 +737,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
 	# Check if img directory exists and define
-	if( is_dir( APP_URI.'asset/images/' ) )
+	elseif( is_dir( APP_URI.'asset/images/' ) )
 	{
 		# Path to application img Folder
 		define( 'APP_IMG_URI', APP_URI.'asset/images/' );
@@ -760,7 +759,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
 	# Check if img directory exists and define
-	if( is_dir( APP_URI.'asset/image/' ) )
+	elseif( is_dir( APP_URI.'asset/image/' ) )
 	{
 		# Path to application img Folder
 		define( 'APP_IMG_URI', APP_URI.'asset/image/' );
@@ -815,7 +814,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
 	# Check if img directory exists and define
-	if( is_dir( APP_URI.'asset/' ) )
+	elseif( is_dir( APP_URI.'asset/' ) )
 	{
 		# Path to application img Folder
 		define( 'APP_IMG_URI', APP_URI.'asset/' );
@@ -926,8 +925,10 @@ if( !isset( $debug ) )
 # ***** LOAD CLASSES ***** #
 # ************************ #
 
-# Call Database variables
-require(DB);
+$db = new Database;
+
+// $db->getRowsAffected( '1' );
+
 
 /**
  * Check to see if DB_NAME is set if not, redirect to database install
@@ -1000,7 +1001,6 @@ set_error_handler( 'my_error_handler' );
 
 # ***** ERROR MANAGEMENT ***** #
 # **************************** #
-
 
 
 # Prevents direct script access

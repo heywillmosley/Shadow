@@ -42,7 +42,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
         <!-- Load Stylesheets -->
         <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>all.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
-         
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" media="screen" />
          <?php if( USE_GOOGLE_FONTS ) : ?>
             <!-- Load Google Fonts -->
             <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=<?php echo GOOGLE_FONTS; ?>" type="text/css" media="screen" />
@@ -52,9 +52,6 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 		<script src="<?php echo BASE_JS_URL; ?>vendor/custom.modernizr.js"></script>
         <script src="<?php echo BASE_JS_URL; ?>vendor/response.js"></script>
     </head>	
-
-
-
 
 
 <?php if( ENVIRONMENT == 'false' ) : ?>
@@ -75,3 +72,4 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
     </nav>
     <div class="shadow-nav-push"></div>
 <?php endif; ?>
+
