@@ -130,8 +130,6 @@ $db_root = ROOT_URI . 'db.inc.php';
 	  define( 'MYSQL', DB );
 
 
-
-
 /**
  * Define Framework Name
  */
@@ -696,11 +694,27 @@ $db_root = ROOT_URI . 'db.inc.php';
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
 	
-	// Path to system javascript Folder
-	define('BASE_IMG_URI', SYS_URI.'assets/img/');
+	/**
+	 * URL to system image folder
+	 */
+		define('SYS_IMG_URI', SYS_URI.'assets/img/');
+		
+		/**
+		 * URL to system image folder
+		 * @depreciated 0.1.1 s8 No longer used by internal code and not recommended. Support till 6/25/2014
+		 */
+			define( 'BASE_IMG_URI', SYS_IMG_URI );
 	
-	// URL to system javascript
-	define('BASE_IMG_URL', SYS_URL.'assets/img/');
+	/**
+	 * URL to system image folder
+	 */
+		define('SYS_IMG_URL', SYS_URL.'assets/img/');
+		
+		/**
+		 * URL to system image folder
+		 * @depreciated 0.1.1 s8 No longer used by internal code and not recommended. Support till 6/25/2014
+		 */
+			define( 'BASE_IMG_URL', SYS_IMG_URL );
 	
 	
 	# Check if img directory exists and define
@@ -933,9 +947,11 @@ $db = new Database;
 /**
  * Check to see if DB_NAME is set if not, redirect to database install
  */
+ 
  if( DB_NAME == '' || 'set-database-name-here' )
  	
 	$p = 'shdw/install';
+
 
 
 # *************************** #

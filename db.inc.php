@@ -39,10 +39,10 @@ if(  ENVIRONMENT == 'development' )
 	define( 'DB_NAME', 'shadow' );
 	
 	# Your development database username
-	define( 'DB_USER', 'masterAgile' );
+	define( 'DB_USER', 'wm0513y' );
 	
-	# Your development database user password
-	define( 'DB_PASSWORD', 'QVpYN6abWHrpd9nU' );
+	# Your development database user password - change again 7/24/13
+	define( 'DB_PASSWORD', 'mRAcjwtr8xjeAVCm' );
 	
 	# Your development databases's connection type
 	define( 'DB_HOST', 'localhost' ); // Most likely localhost

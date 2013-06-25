@@ -22,7 +22,7 @@ if(!defined('ROOT_URI')){require'../../../system/inc/config.inc.php';header('Loc
 # Current App Version
 define( 'APP_VER', '0.1' );
 
-define( 'SITE_NAME' , 'Ninja Black Master');
+define( 'APP_NAME' , 'Ninja Black Master');
 	
 define( 'TAGLINE' , 'An MVC/OOP starter theme for Shadow Framework.');
 

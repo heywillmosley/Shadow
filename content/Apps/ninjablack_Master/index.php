@@ -23,7 +23,16 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
 app_header();  
 ?>
 
+<?php
 
+// $db = new Database;
+
+// $q = "Add 'William' to fname WHERE id = 1";
+// $db->rowsAffected( $q );
+
+// $unset( $db );
+
+?>
 
 
 <h2>Handling Exceptions</h2>

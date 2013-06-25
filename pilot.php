@@ -21,6 +21,9 @@
 /**
  * General Settings
  */
+ 	# Define Site Name
+ 	define( 'SITE_NAME' , 'Dr. Frank King');
+	
 	# Define Admin Contact email for error reporting
 	define( 'ADMIN_NAME', 'William Mosley, III' );
 	
