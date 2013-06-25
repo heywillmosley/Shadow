@@ -922,52 +922,88 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', e
 	}
 }
 
+.shdw-actionbar{
+	background-color: #FFF;
+	//.box-shadow(10px 0px 60px rgba(0,0,0,.40));
+	height: 30px;
+	background-color: @white;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	.company-logo{
+		.font-size(18);
+		padding: 5px;
+		color: #333;
+		float: left;
+	}
+}
+
+#shdw.menu-trigger{
+		position: fixed;
+		background: @white;
+		top: 0;
+		right: 0;
+		z-index: 9999999;
+		width: 35px;
+		height: 35px;
+		padding: 5px;
+	}
+
 #shdw{
 	#pilot{
 		position: relative;
 		width: 100%;
 		top: 0;
 		height: 100%;
-		.actionbar{
-			background-color: #FFF;
-			//.box-shadow(10px 0px 60px rgba(0,0,0,.40));
-			height: 30px;
-			background-color: @white;
-			position: relative;
-			z-index: 1;
-            overflow: hidden;
-			.company-logo{
-				.font-size(18);
-				padding: 5px;
-				color: #333;
-                float: left;
-			}
-            .menu-trigger{
-                float: left;
-                width: 35px;
-                padding: 5px;
-            }
-		}
-		
-		.plt-wrapper{
-			padding-top:.5px; // Fix pilot background
-			.side-complementary{
-				height: 700px;
-				z-index: 1;
-				position: absolute;
-				border-right: 1px solid #CCC;
-				width: 180px !important;
-				.side-nav li h4{
-					margin-bottom: 0;
-				}
-			}
-			#main{
-				width: 100% !important;
-                z-index: 0;
-				
-			}	
-		}
 	}
+	#pilot-wrapper{
+		padding-top:.5px; // Fix pilot background	
+	}
+}
+
+#shdw.pilot-head{
+	.font-size(10);
+	padding:2px;
+	background-color: #CCC;
+	color: @white;	
+}
+
+#shdw .side-complementary{
+	z-index: 1;
+	position: fixed;
+	border-right: 1px solid #CCC;
+	width: 180px !important;
+	height: 100%;
+	.side-nav{
+		.logo{	
+			.font-size(30);
+		}
+		.gotosite{
+			.font-size(12);
+		}
+		 li{
+			 h4{
+				margin-bottom: 0;
+			 }
+			 ul{
+				margin-top: 0;
+				margin-bottom: 10px;
+				border-top: 1px solid #CCC;
+				//border-bottom: 1px solid #CCC;
+				padding: 0;
+				li, ol{
+					margin: 0 !important;
+					.font-size(12);	
+				}
+			 }
+		 }
+	}
+}
+
+#main{
+	width: 100% !important;
+	z-index: 0;
+	
 }
 
 

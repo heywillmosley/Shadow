@@ -29,6 +29,24 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 * @since 1.1.1 b8
 	 * @return void
 	 */
+		function get_page_title()
+		{
+			# Set new Page object
+			$p = new Page();
+			
+			# Call setPage() method
+			echo $p->getPageTitle();
+			 
+			# Unset Object
+			unset( $p );
+		}
+
+	/**
+	 * Sets page from class Page:setPage()
+	 *
+	 * @since 1.1.1 b8
+	 * @return void
+	 */
 	function set_page()
 	{
 		# Set new Page object
@@ -62,10 +80,26 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	
 	
 	
-/* Presentational level of Form Class
+/* Presentational level of Database Class
  *******************************************************/
 
-
+/**
+ * Gets page from class Page:getPage()
+ *
+ * @since 1.1.1 b8
+ * @return void
+ */
+function db_exec( $query, $rowsAffected = FALSE )
+{
+	# Set new Page object
+	$d = new Database();
+	
+	# Call setPage() method
+	$d->exec( $query );
+	
+	return $r;
+	
+}
 
 
 

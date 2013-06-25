@@ -1,4 +1,4 @@
-CREATE TABLE `users`(
+CREATE TABLE `shdw_users`(
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
 	`role` ENUM('member', 'admin', 'writer', 'designer', 'developer', 'affiliate' ),
 	`first_name` VARCHAR(40) NOT NULL,

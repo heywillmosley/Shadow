@@ -23,49 +23,6 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
 app_header();  
 ?>
 
-<?php
-
-// $db = new Database;
-
-// $q = "Add 'William' to fname WHERE id = 1";
-// $db->rowsAffected( $q );
-
-// $unset( $db );
-
-?>
-
-
-<h2>Handling Exceptions</h2>
-
-<?php
-try
-{
-	# Create the object:
-	$fp = new WriteToFile( APP_URI . 'docs/data.txt' );
-	
-	# Write the data
-	$fp->write( 'This is a line of date' );
-	
-	# Close the file
-	$fp->close();
-	
-	# Delete the object:
-	unset( $fp );
-	
-	# If we go this far, then everything worked.
-	echo '<p>The data has been written.</p>';
-	
-} // end try
-
-catch( Exception $e )
-{
-	echo '<p>The process could not be completed because the script: ' . $e->getMessage() . '</p>';
-	
-} // end catch( Exception $e )
-
-echo '<p>This is the end of the script</p>'
-
-?>
 
 
 <?php 

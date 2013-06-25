@@ -939,18 +939,11 @@ if( !isset( $debug ) )
 # ***** LOAD CLASSES ***** #
 # ************************ #
 
-$db = new Database;
-
-// $db->getRowsAffected( '1' );
-
 
 /**
  * Check to see if DB_NAME is set if not, redirect to database install
  */
  
- if( DB_NAME == '' || 'set-database-name-here' )
- 	
-	$p = 'shdw/install';
 
 
 

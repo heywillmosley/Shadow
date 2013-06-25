@@ -38,111 +38,123 @@ class Page
 		
 	}
 	
-	function setPage()
-	{
-		/**
-		 * Validate what page to show:
-		 */
-		 if( isset( $_GET['p'] ) )
-		 
-		 	$this->p = $_GET['p']; 
-		 
-		 # Forms
-		 elseif( isset( $_POST['p'] ) )
-		 
-			$this->p = $_POST['p']; 
-		 
-		 else
-			
-			$this->p = NULL;
-			
-		/**
-		 * Determine what page to display:
-		 */
-		switch( $this->p )
+	/**
+	 * This method gets the page title
+	 */
+	 	function getPageTitle()
 		{
-		/**
-		 * System
-		 */
-		  case '':
-		  	if( file_exists( APP_INC_URI . 'index.php' ) && is_file ( APP_INC_URI . 'index.php' ) )
+			return $this->page_title;
+			
+		} // end 
+	
+	/**
+	 * This methhod sets the page called from url slug
+	 */
+		function setPage()
+		{
+			/**
+			 * Validate what page to show:
+			 */
+			 if( isset( $_GET['p'] ) )
+			 
+				$this->p = $_GET['p']; 
+			 
+			 # Forms
+			 elseif( isset( $_POST['p'] ) )
+			 
+				$this->p = $_POST['p']; 
+			 
+			 else
+				
+				$this->p = NULL;
+				
+			/**
+			 * Determine what page to display:
+			 */
+			switch( $this->p )
 			{
-				$this->page = APP_VIEWS_URI . 'index.php';
+			/**
+			 * System
+			 */
+			  case '':
+				if( file_exists( APP_INC_URI . 'index.php' ) && is_file ( APP_INC_URI . 'index.php' ) )
+				{
+					$this->page = APP_VIEWS_URI . 'index.php';
+					
+				}
+				elseif( APP_URI . 'index.php' ) 
+				{
+					$this->page = APP_URI . 'index.php';
+				}
+					
+				$this->page_title = SITE_NAME;
+				break;
 				
-			}
-			elseif( APP_URI . 'index.php' ) 
-			{
-				$this->page = APP_URI . 'index.php';
-			}
+			 case 'home':
+				if( file_exists( APP_INC_URI . 'index.php' ) )
+					$this->page = APP_VIEWS_URI . 'index.php';
+				else
+					$this->page = APP_URI . 'index.php';
+					
+				$this->page_title = SITE_NAME;
+				break;
+			 
+			 case 'admin/pilot':
+				$this->page = BASE_PAGE_URI . 'pilot.php';
+				$this->page_title = FW_NAME . ' Pilot';
+				break;
 				
-			$this->page_title = SITE_NAME;
-			break;
-			
-		 case 'home':
-			if( file_exists( APP_INC_URI . 'index.php' ) )
-				$this->page = APP_VIEWS_URI . 'index.php';
-			else
-				$this->page = APP_URI . 'index.php';
+			 case 'login':
+				$this->page = BASE_PAGE_URI . 'login.php';
+				$this->page_title = 'Login';
+				break;
 				
-			$this->page_title = SITE_NAME;
-			break;
-		 
-		 case 'admin/pilot':
-			$this->page = BASE_PAGE_URI . 'pilot.php';
-			$this->page_title = FW_NAME . ' Pilot';
-			break;
+			case 'connections/profile':
+				$this->page = BASE_PAGE_URI . 'profile.php';
+				$this->page_title = 'Profile';
+				break;
+			 
+			 /**
+			 * Application
+			 */
+			 case 'profile':
+				$this->page = APP_PAGE_URI . 'profile.php';
+				$this->page_title = 'Profile';
+				break;
+				
+			 case 'search':
+				$this->page = BASE_PAGE_URI . 'search.php';
+				$this->page_title = 'Search';
+				break;
+				
+			 case 'search-results':
+				$this->page = APP_PAGE_URI . 'search-results.php';
+				$this->page_title = 'Search Results';
+				break;
+			 
+			 # Default is to include the main page.
+			 default:
+				$this->page = BASE_PAGE_URI . '404.php';
+				$this->page_title = 404;
+				break;
+			 
+			} // end switch( $p )
 			
-		 case 'login':
-			$this->page = BASE_PAGE_URI . 'login.php';
-			$this->page_title = 'Login';
-			break;
+			/**
+			 * Page 404 setup
+			 */
 			
-		case 'connections/profile':
-			$this->page = BASE_PAGE_URI . 'profile.php';
-			$this->page_title = 'Profile';
-			break;
-		 
-		 /**
-		 * Application
-		 */
-		 case 'profile':
-			$this->page = APP_PAGE_URI . 'profile.php';
-			$this->page_title = 'Profile';
-			break;
 			
-		 case 'search':
-			$this->page = BASE_PAGE_URI . 'search.php';
-			$this->page_title = 'Search';
-			break;
+			/**
+			 * Make sure the file exists:
+			 */
+			 if( !file_exists( $this->page ) )
+			 {
+				$this->page = BASE_PAGE_URI . '404.php';
+				
+			 } // end if( !file_exists( $page ) )
 			
-		 case 'search-results':
-			$this->page = APP_PAGE_URI . 'search-results.php';
-			$this->page_title = 'Search Results';
-			break;
-		 
-		 # Default is to include the main page.
-		 default:
-			$this->page = BASE_PAGE_URI . '404.php';
-			$this->page_title = 404;
-			break;
-		 
-		} // end switch( $p )
-		
-		/**
-		 * Page 404 setup
-		 */
-		
-		
-		/**
-		 * Make sure the file exists:
-		 */
-		 if( !file_exists( $this->page ) )
-		 {
-			$this->page = BASE_PAGE_URI . '404.php';
-			
-		 } // end if( !file_exists( $page ) )
-		
-	} // end 
+		} // end 
 	
 	function getPage()
 	{

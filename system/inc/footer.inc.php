@@ -20,3 +20,5 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 // --------------------------------------------------------------------------------?>
 
 </div><!-- end shdw -->
+
+<script src="<?php echo SYS_JS_URI; ?>shadow.js"></script>

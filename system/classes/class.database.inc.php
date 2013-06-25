@@ -28,27 +28,29 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  */
 class Database extends PDO
 {
-	protected $pdo = NULL;
+	protected $dsn = NULL;
+	protected $username = NULL;
+	protected $password = NULL;
+	protected $driver_options = NULL;
 	
 	function __construct()
 	{
-		$this->setDB();
-	}
-	
-	/**
-	 * Sets database connection
-	 *
-	 * @since 1.1.1 s8
-	 */
-	 function setDB()
-	 {
-		 require( DB );
+		# Require set database constants
+		require_once( DB );
+		
+		$this->dsn = 'mysql:dbname='.DB_NAME.';host='.DB_HOST.'';
+		$this->username = DB_USER;
+		$this->password = DB_PASSWORD;
+		$this->driver = NULL;
 		
 		# Try to connect to the database:
 		try
 		{	
-			# Creae the object:
-			$pdo = new PDO( 'mysql:dbname='.DB_NAME.';host='.DB_HOST.'',DB_USER,DB_PASSWORD );
+			# Define Settings to Parent Construct
+			parent::__construct($this->dsn, $this->username, $this->password, $this->driver);
+			
+			# Show PDO Database Errors
+			$this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			
 		} // end try
 		
@@ -59,8 +61,8 @@ class Database extends PDO
 			exit;
 			
 		} // end catch( PDOException $e )S
-		 
-	 } // end function setDB()
+		
+	}
 	 
 	 
 	 /**
@@ -68,7 +70,7 @@ class Database extends PDO
 	  */
 	  	function getRowsAffected( $query )
 		{
-			$this->exec( $query );
+			return $this->exec( $query );
 			
 		} // end function getRowsAffected( $query )
 	 

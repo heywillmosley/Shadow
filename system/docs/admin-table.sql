@@ -1,4 +1,4 @@
-CREATE TABLE `admin`(
+CREATE TABLE `shdw_admin`(
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
 	`admin_email` VARCHAR(80) NOT NULL,
 	`admin_phone` SMALLINT(15),

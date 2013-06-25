@@ -31,10 +31,6 @@ define('INDEX',TRUE);
  */
 	require_once( BASE_INCLUDE_URI.'functions.inc.php');
 
-/**
- * Create new page object and set page
- */
-	set_page( $p );
  
 /*
  * ------------------------------------------------------
@@ -51,7 +47,7 @@ define('INDEX',TRUE);
 /**
  * Include the header file:
  */
- include BASE_INCLUDE_URI . 'header.inc.php';
+ include SYS_INC_URI . 'header.inc.php';
 
 
 /**
@@ -62,6 +58,6 @@ define('INDEX',TRUE);
 /**
  * Include the footer file:
  */
- include BASE_INCLUDE_URI . 'footer.inc.php';
+ include SYS_INC_URI . 'footer.inc.php';
 
 ?>
