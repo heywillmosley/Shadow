@@ -71,12 +71,20 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
             	<div id="shdw">
                     <nav id="complementary" role="complementary" class="side-complementary">
                     	<div id="shdw" class="pilot-head">Shadow Pilot</div>
-                        <section class="pam">
+                        <section class="pas">
                             <ul class="side-nav">
-                            	<li class="logo"><?php echo SITE_NAME; ?></li>
+                            	<li class="relative">
+                                	<div class="rs30">
+                                    	<a id="shdw" class="logo mxw100" href="<?php echo SITE_URL.'admin/pilot'; ?>"><img src="<?php echo SYS_IMG_URL.'iconmonstr-briefcase-3-icon.png'; ?>" alt="<?php echo SITE_NAME; ?>" /></a>
+                                    </div><!-- end rs30 -->
+                                    <div class="right side w30">
+                                    	<a id="shdw" class="user ptl mts" href="<?php echo SITE_URL.'admin/pilot/users/me'; ?>"><img src="<?php echo SYS_IMG_URL.'iconmonstr-user-2-icon.png'; ?>" alt="User" /></a>
+                                    </div><!-- end right side w30 -->
+                                	
+                             	</li>
                             	<li class="gotosite"><a href="<?php echo SITE_URL; ?>">Go to website</a></li>
-                            	<li>
-                                	<div class="company-logo">
+                            	<li class="hide">
+                                	<div>
                                         <div class="relative">
                                             <div class="left side w15">
                                                 <img src="<?php echo SYS_IMG_URL.'iconmonstr-user-2-icon.png'; ?>" alt="User" />
@@ -87,9 +95,21 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
                                         </div><!-- end relative -->
                                     </div><!-- end company-logo -->
                                 </li>
-                              <li class="disable"><h4><a href="#">Products</a></h4></li>
-                              <li class="disable"><h4><a href="#">Inventory</a></h4></li>
-                              <li onclick="toggle_visibility('page-dropdown')"><h4><a href="#">Pages</a></h4></li>
+                                <li onclick="toggle_visibility('current-page-dropdown')" class="relative">
+                                	<div class="left side w20">
+                                    	<img src="<?php echo SYS_IMG_URL.'iconmonstr-note-10-icon.png'; ?>" alt="Current page" />
+                                    </div><!-- end left side w20 -->
+                                    <div class="ls20">
+                                    	<div class="heading"><?php echo get_page_title(); ?></div>
+                                            <ul id="current-page-dropdown">
+                                                <li><a href="#">Create new page</a></li>
+                                                <li><a href="#">View all pages</a></li>
+                                            </ul>
+                                    </div><!-- end ls20 -->
+                              	</li>
+                              <li class="disable"><a href="#">Products</a></li>
+                              <li class="disable"><a href="#">Inventory</a></li>
+                              <li onclick="toggle_visibility('page-dropdown')"><a href="#">Pages</a></li>
                               <li id="page-dropdown">
                                 <ul>
                                     <li><a href="#">Create new page</a></li>
@@ -103,7 +123,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
                                     <li><a href="#">View all posts</a></li>
                                 </ul>
                               </li>
-                              <li class="active"><h4><a href="#">Apps</a></h4></li>
+                              <li class="active"><a href="#">Apps</a></li>
                               <li class="divider"></li>
                               <li class="disable"><a href="#">Media</a></h4></li>
                               <li class="disable"><a href="#">Departments</a></li>
