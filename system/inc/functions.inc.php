@@ -29,6 +29,24 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 * @since 1.1.1 b8
 	 * @return void
 	 */
+		function page_title()
+		{
+			# Set new Page object
+			$p = new Page();
+			
+			# Call setPage() method
+			$p->getPageTitle();
+			 
+			# Unset Object
+			unset( $p );
+		}
+	
+	/**
+	 * Sets page from class Page:setPage()
+	 *
+	 * @since 1.1.1 b8
+	 * @return void
+	 */
 		function get_page_title()
 		{
 			# Set new Page object

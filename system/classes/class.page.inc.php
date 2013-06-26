@@ -37,6 +37,7 @@ class Page
 		$this->setPage();
 		
 	}
+
 	
 	/**
 	 * This method gets the page title

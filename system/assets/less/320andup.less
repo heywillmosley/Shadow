@@ -117,6 +117,11 @@ address {
 
 small {
   .font-size(12.8); }
+  
+.caption{
+	.font-size(9);
+	color: @gray;	
+}
 
 ul,
 ol {
@@ -968,22 +973,75 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', e
 	color: @white;	
 }
 
+.shdw-head-nav{	
+
+}
+
+.shdw-logo{
+	.ellipsis{
+		.font-size(12);
+		font-weight: bold;
+	}
+}
+
+.shdw-gotopilot{
+	border-bottom: #DDD dashed 1px;
+	.ellipsis{
+		.font-size(12);
+	}
+}
+
+.shdw-gotowebsite{
+	border-bottom: #DDD dashed 1px;
+	.ellipsis{
+		.font-size(12);
+	}
+}
+
+
+.shdw-current-user{
+	.ellipsis{
+		.font-size(12);
+	}
+}
+
 #shdw .side-complementary{
 	z-index: 1;
 	position: fixed;
 	border-right: 1px solid #CCC;
 	width: 180px !important;
 	height: 100%;
+	.shdw-current{
+		padding-bottom: 10px;
+		color: #00C;
+		a{
+			color: #00C !important;
+			&:hover{
+				color: #00C;	
+			}
+			&:visited{
+				color: #00C;	
+			}
+		}
+	}
 	.side-nav{
+		li{
+			margin: 0;	
+		}
         .heading{
             .font-size(20); 
             font-weight: bold;
+			margin-bottom: 5px;
         }
 		.logo{	
 			.font-size(30);
 		}
 		.gotosite{
 			.font-size(12);
+		}
+		.caption{
+			.font-size(10);
+			color: @gray;
 		}
 		 li{
 			 h4{
@@ -992,8 +1050,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', e
 			 ul{
 				margin-top: 0;
 				margin-bottom: 10px;
-				border-top: 1px solid #CCC;
-				//border-bottom: 1px solid #CCC;
 				padding: 0;
 				li, ol{
 					margin: 0 !important;

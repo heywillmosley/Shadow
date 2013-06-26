@@ -851,6 +851,20 @@ $db_root = ROOT_URI . 'db.inc.php';
 	
 	
 /**
+ * Path to system pilot folder
+ * @since 0.1.1 s8
+ */
+	define( 'SYS_PILOT_URI', ROOT_URI.'admin/pilot/' );
+	
+/**
+ * URL to system pilot folder
+ * @since 0.1.1 s8
+ */
+	define( 'SYS_PILOT_URL', ROOT_URL.'admin/pilot/' );
+		
+		
+	
+/**
  * Define Environment Constants
  */
 define( 'PRODUCTION_FOLDER', 'production' );
