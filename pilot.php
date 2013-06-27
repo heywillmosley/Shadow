@@ -22,7 +22,7 @@
  * General Settings
  */
  	# Define Site Name
- 	define( 'SITE_NAME' , 'Dr. Frank King');
+ 	define( 'SITE_NAME' , 'SafeCareRx');
 	
 	# Define Admin Contact email for error reporting
 	define( 'ADMIN_NAME', 'William Mosley, III' );
@@ -41,7 +41,7 @@
 	define( 'SHADOW_URI_LEVEL', 0 );
 	
 	# Define current App
-	define( 'CURRENT_APP', 'ninjablack_master' );
+	define( 'CURRENT_APP', 'SafeCareRx' );
 	
 	/* Define app type\
 	 * Types:

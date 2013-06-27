@@ -128,9 +128,34 @@ class Page
 				$this->page_title = 'Search';
 				break;
 				
-			 case 'search-results':
+			case 'search-results':
 				$this->page = APP_PAGE_URI . 'search-results.php';
 				$this->page_title = 'Search Results';
+				break;
+				
+			case 'about':
+				$this->page = APP_PAGE_URI . 'about.php';
+				$this->page_title = 'About';
+				break;
+				
+			case 'products':
+				$this->page = APP_PAGE_URI . 'products.php';
+				$this->page_title = 'Products';
+				break;
+				
+			case 'services':
+				$this->page = APP_PAGE_URI . 'services.php';
+				$this->page_title = 'Services';
+				break;
+				
+			case 'education':
+				$this->page = APP_PAGE_URI . 'education.php';
+				$this->page_title = 'Education';
+				break;
+				
+			case 'contact':
+				$this->page = APP_PAGE_URI . 'contact.php';
+				$this->page_title = 'Contact';
 				break;
 			 
 			 # Default is to include the main page.

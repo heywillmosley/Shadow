@@ -1,0 +1,46 @@
+<?php # Prevents direct script access
+if(!defined('ROOT_URI')){require'../../../system/inc/config.inc.php';header('Location:'.SITE_URL);exit;}
+/**
+ * Shadow
+ *
+ * An open source application development framework that streamlines
+ * responsive e-ecommerce development for php 5.0.0 or newer
+ *
+ * @package        Shadow
+ * @author         Super Amazing
+ * @copyright      Copyright (c) 2010 - 2013, Super Amazing
+ * @license        
+ * @link           http://shadow.livesuperamazing.com
+ * @since          Version 0.1.1 s5
+ * -----------------------------------------------------------------
+ *
+ * This is the main page
+ * This page includes the configuration file,
+ * the templates, and any content-specific modules.
+ */
+ 
+// --------------------------------------------------------------------------------?>
+
+<body data-responsejs='{
+    "create": [
+    { "breakpoints": [0,301,320,600,480,768,992,1382], "mode": "src", "prefix": "src" }, 
+    { "breakpoints": [0,301,320,600,480,768,992,1382], "mode": "markup", "prefix": "r" }
+    ]}'>
+
+<div class="wrapper">
+<?php $e = new Environment; $e->environment_notice(); unset( $e ); ?>
+
+    <section>
+        <h2><?php echo SITE_NAME; ?></h2>
+        <dl class="sub-nav">
+          <dd><a href="<?php echo SITE_URL; ?>">Home</a></dd>
+          <dd><a href="<?php echo SITE_URL.'about'; ?>">About</a></dd>
+          <dd><a href="<?php echo SITE_URL.'products'; ?>">Products</a></dd>
+          <dd><a href="<?php echo SITE_URL.'services'; ?>">Services</a></dd>
+          <dd><a href="<?php echo SITE_URL.'education'; ?>">Education</a></dd>
+          <dd><a href="<?php echo SITE_URL.'contact'; ?>">Contact</a></dd>
+        </dl>
+        ------------------------------------------------------------------------
+   	</section>
+    
+	
