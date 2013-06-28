@@ -19,12 +19,11 @@ if(!defined('ROOT_URI')){require'../../../system/inc/config.inc.php';header('Loc
  
 // --------------------------------------------------------------------------------?>
 
-<div class="footer row">
-	<div class="left">&copy; <?php auto_copyright(); echo ' ' . SITE_NAME; ?></div>
-    <div class="right">
-    	<a href="#" class="txt_wht">&uarr; Back to the Top</a>
-    </div>
-</div>
+
+
+</section><!-- end ls200 -->
+</div><!-- end relative -->
+
 </div><!-- end wrapper -->
 
 <script>

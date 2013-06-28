@@ -66,7 +66,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
     </script>
 
 
-	<div id="pilot-wrapper">
+	<div id="shdw pilot-wrapper">
           	<div class="off-canvas relative">
             	<div id="shdw">
                     <nav id="complementary" role="complementary" class="side-complementary">
@@ -384,6 +384,9 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
             </div><!-- end shdw -->
      	</div><!-- end pilot-wrapper -->
 		<div role="main" id="main">
+        	<div class="pilot-trigger hide">
+            	<a href="#" class="fs11">&larr; Close Pilot</a>
+            </div><!-- end pilot trigger -->
         	<a id="shdw" class="menu-trigger" onclick="toggle_visibility('complementary')">
                 <div class="relative">
                     <div class="left side w25">

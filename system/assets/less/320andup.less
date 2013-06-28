@@ -484,7 +484,7 @@ sub {
     
 	a {
 	  text-decoration: none;
-	  color: @linkColor !important; }
+	  color: @linkColor; }
 	  a:visited {
 		color: @linkColorHover; }
 	  a:hover {
@@ -963,8 +963,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', e
 	}
 	#pilot-wrapper{
 		padding-top:.5px; // Fix pilot background	
+		
 	}
 }
+
 
 #shdw.pilot-head{
 	.font-size(10);
@@ -1011,6 +1013,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', e
 	border-right: 1px solid #CCC;
 	width: 180px !important;
 	height: 100%;
+	filter:url(#blur-effect-1);
+		 background: -moz-linear-gradient(45deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 2%, rgba(255,255,255,0.6) 99%, rgba(255,255,255,0.6) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(255,255,255,0.6)), color-stop(2%,rgba(255,255,255,0.6)), color-stop(99%,rgba(255,255,255,0.6)), color-stop(100%,rgba(255,255,255,0.6))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(45deg, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 2%,rgba(255,255,255,0.6) 99%,rgba(255,255,255,0.6) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(45deg, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 2%,rgba(255,255,255,0.6) 99%,rgba(255,255,255,0.6) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(45deg, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 2%,rgba(255,255,255,0.6) 99%,rgba(255,255,255,0.6) 100%); /* IE10+ */
+background: linear-gradient(45deg, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 2%,rgba(255,255,255,0.6) 99%,rgba(255,255,255,0.6) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', endColorstr='#99ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	.shdw-current{
 		padding-bottom: 10px;
 		color: #00C;

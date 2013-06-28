@@ -72,13 +72,9 @@ class Page
 			/**
 			 * Determine what page to display:
 			 */
-			switch( $this->p )
-			{
-			/**
-			 * System
-			 */
-			  case '':
-				if( file_exists( APP_INC_URI . 'index.php' ) && is_file ( APP_INC_URI . 'index.php' ) )
+			 if( $this->p == '' )
+			 {
+				 if( file_exists( APP_INC_URI . 'index.php' ) && is_file ( APP_INC_URI . 'index.php' ) )
 				{
 					$this->page = APP_VIEWS_URI . 'index.php';
 					
@@ -86,85 +82,94 @@ class Page
 				elseif( APP_URI . 'index.php' ) 
 				{
 					$this->page = APP_URI . 'index.php';
-				}
-					
-				$this->page_title = SITE_NAME;
-				break;
-				
-			 case 'home':
-				if( file_exists( APP_INC_URI . 'index.php' ) )
+				} 
+			 }
+			 
+			 elseif( $this->p == 'home' )
+			 {
+				 if( file_exists( APP_INC_URI . 'index.php' ) )
 					$this->page = APP_VIEWS_URI . 'index.php';
 				else
 					$this->page = APP_URI . 'index.php';
 					
-				$this->page_title = SITE_NAME;
-				break;
+				$this->page_title = SITE_NAME; 
+			 }
 			 
-			 case 'admin/pilot':
-				$this->page = BASE_PAGE_URI . 'pilot.php';
+			 elseif( $this->p == 'admin/pilot' )
+			 {
+				 $this->page = BASE_PAGE_URI . 'pilot.php';
 				$this->page_title = FW_NAME . ' Pilot';
-				break;
-				
-			 case 'login':
+			 }
+			 
+			 elseif( $this->p == 'login' )
+			 {
 				$this->page = BASE_PAGE_URI . 'login.php';
 				$this->page_title = 'Login';
-				break;
-				
-			case 'connections/profile':
+			 }
+			 
+			 elseif( $this->p == 'connections/profile' )
+			 {
 				$this->page = BASE_PAGE_URI . 'profile.php';
 				$this->page_title = 'Profile';
-				break;
-			 
-			 /**
-			 * Application
+			 }
+
+			/**
+			 * Application Pages
 			 */
-			 case 'profile':
-				$this->page = APP_PAGE_URI . 'profile.php';
-				$this->page_title = 'Profile';
-				break;
-				
-			 case 'search':
-				$this->page = BASE_PAGE_URI . 'search.php';
-				$this->page_title = 'Search';
-				break;
-				
-			case 'search-results':
-				$this->page = APP_PAGE_URI . 'search-results.php';
-				$this->page_title = 'Search Results';
-				break;
-				
-			case 'about':
-				$this->page = APP_PAGE_URI . 'about.php';
-				$this->page_title = 'About';
-				break;
-				
-			case 'products':
+			
+			elseif( $this->p == 'start' )
+			 {
+				$this->page = APP_PAGE_URI . 'start.php';
+				$this->page_title = 'Become as a Practioner';
+			 }
+			 
+			 elseif( $this->p == 'homeopathy' )
+			 {
+				$this->page = APP_PAGE_URI . 'homeopathy.php';
+				$this->page_title = 'About Homeopathy';
+			 }
+			 
+			 elseif( $this->p == 'safecarerx-medicine' )
+			 {
+				$this->page = APP_PAGE_URI . 'about-medicine.php';
+				$this->page_title = SITE_NAME. ' + Medicine';
+			 }
+			 
+			 elseif( $this->p == 'products' )
+			 {
 				$this->page = APP_PAGE_URI . 'products.php';
-				$this->page_title = 'Products';
-				break;
-				
-			case 'services':
-				$this->page = APP_PAGE_URI . 'services.php';
-				$this->page_title = 'Services';
-				break;
-				
-			case 'education':
-				$this->page = APP_PAGE_URI . 'education.php';
-				$this->page_title = 'Education';
-				break;
-				
-			case 'contact':
+				$this->page_title = 'Our Products';
+			 }
+			 
+			 elseif( $this->p == 'manuals' )
+			 {
+				$this->page = APP_PAGE_URI . 'manuals.php';
+				$this->page_title = 'Manuals & Guides';
+			 }
+			 
+			 elseif( $this->p == 'other-services' )
+			 {
+				$this->page = APP_PAGE_URI . 'other-services.php';
+				$this->page_title = 'Other Services';
+			 }
+			 
+			 elseif( $this->p == 'contact' )
+			 {
 				$this->page = APP_PAGE_URI . 'contact.php';
 				$this->page_title = 'Contact';
-				break;
-			 
-			 # Default is to include the main page.
-			 default:
+			 }
+			
+			else
+			 {
 				$this->page = BASE_PAGE_URI . '404.php';
-				$this->page_title = 404;
-				break;
+				$this->page_title = 404; 
+			 }
 			 
-			} // end switch( $p )
+			 
+			 
+			 
+			 
+			 
 			
 			/**
 			 * Page 404 setup
@@ -181,6 +186,7 @@ class Page
 			 } // end if( !file_exists( $page ) )
 			
 		} // end 
+		
 	
 	function getPage()
 	{

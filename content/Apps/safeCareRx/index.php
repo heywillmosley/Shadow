@@ -22,20 +22,34 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
 # includes header.php
 app_header();  
 ?>
-<div class="row">
-	<div class="small-12 columns">
-    	<h1>Welcome</h1>
-        <p>King Bio manufactures SafeCareRx Natural Medicines. King Bio was established in 1989 as a registered pharmaceutical manufacturing company with the Food and Drug Administration (FDA) and operates in strict accordance with all current Good Manufacturing Practices. Each 
-SafeCareRx remedy is an FDA-listed homeopathic drug product with a National Drug Code number assigned to it. As a physician based company, King Bio blends its vast clinical experiences in natural health care with cutting edge pharmaceutical manufacturing skills to provide you with the best in natural health care.</p>
-		<h2>For Professional Use Only</h2>
-        <p>SafeCareRx offers a line of high potency professional products designed to equip the health care practitioner to discover and discern precise natural solutions for the common chronic, resistant, recurring and unresolved health conditions perplexing our society. With ongoing training to help keep the practitioner on pace with this fast growing science, SafeCareRX is leading the way for practitioners of all disciplines.</p>
-        <h3>Start enhancing your health today by taking the SafeCareRx Mind & Body Personal Health Appraisal!</h3>
-        <a href="#" class="button">Download Here</a>
-        <h2>Why Use SafeCareRx?</h2>
-        <h3>Patients</h3>
-        <p>If you are a patient and would like to learn more about. how <?php echo SITE_NAME; ?> and your doctor can help you. <a href="#">Click here</a></p>
-    </div><!-- end small-12 columns -->
-</div><!-- end row -->
+
+<section class="site-background" style="
+	background: url(<?php echo APP_IMG_URL . 'stock-photo-21983736-homeopathist-and-her-patient.jpg'; ?>) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;"></section>
+<div class="main-content">
+    <div class="row">
+    	<div class="small-6 columns">
+        	<img class="right" src="<?php echo APP_IMG_URL.'RX-Attention-Learning-Ehancement.png'; ?>" />
+        </div><!-- end small-6 columns -->
+        <div class="small-6 columns">
+            <div class="headline">Leader in Homeopathics</div>
+            <ul class="side-nav main-nav">
+        	<li><a href="<?php echo SITE_URL; ?>"><img class="pas w200" src="<?php echo APP_IMG_URL.'safecarerx-logo.png'; ?>" alt="Go Home" /></a></li>
+            <li><a href="<?php echo SITE_URL.'homeopathy'; ?>">About Homeopathy</a></li>
+            <li><a href="<?php echo SITE_URL.'safecarerx-medicine'; ?>">SafeCareRx + Medicine</a></li>
+            <li><a href="<?php echo SITE_URL.'products'; ?>">Our Products</a></li>
+            <li><a href="<?php echo SITE_URL.'products'; ?>">Clinical Studies</a></li>
+            <li><a href="<?php echo SITE_URL.'manuals'; ?>">Manuals & Guides</a></li>
+            <li><a href="<?php echo SITE_URL.'other-services'; ?>">Other Services</a></li>
+            <li><a href="<?php echo SITE_URL.'contact'; ?>">Contact</a></li>
+            <li><a href="<?php echo SITE_URL.'start'; ?>" class="primary button w200">Become a Provider</a></li>
+        </ul>
+        </div><!-- end small-12 columns -->
+    </div><!-- end row -->
+</div><!-- end main content 
 
 
 <?php 
