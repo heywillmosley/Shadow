@@ -953,6 +953,14 @@ if( !isset( $debug ) )
 # ***** LOAD CLASSES ***** #
 # ************************ #
 
+# ************************** #
+# ***** LOAD FUNCIONS ****** #
+
+require_once SYS_URI.'functions/function.admin.inc.php';
+
+# ***** LOAD FUNCTIONS ***** #
+# ************************** #
+
 
 /**
  * Check to see if DB_NAME is set if not, redirect to database install

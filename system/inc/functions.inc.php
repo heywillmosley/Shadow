@@ -35,10 +35,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 			$p = new Page();
 			
 			# Call setPage() method
-			$p->getPageTitle();
+			echo $p->getPageTitle();
 			 
-			# Unset Object
-			unset( $p );
 		}
 	
 	/**
@@ -54,9 +52,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 			
 			# Call setPage() method
 			echo $p->getPageTitle();
-			 
-			# Unset Object
-			unset( $p );
+			
+			
 		}
 
 	/**

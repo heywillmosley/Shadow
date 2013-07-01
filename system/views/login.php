@@ -19,14 +19,6 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
  
 // --------------------------------------------------------------------------------?>
 
-if(isset($_GET['error'])) { 
-   echo 'Error Logging In!';
-}
-
-# includes header.php
-app_header();
-
-?>
 
 <div class="row">
     <h3>Login to <?php echo SITE_NAME; ?></h3>

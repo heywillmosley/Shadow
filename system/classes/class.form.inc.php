@@ -26,7 +26,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * 0 Arguments
  * 0 Methods
  */
-class Forms
+class Form
 {
 	/**
 	 * Create Form Input Function
@@ -113,6 +113,22 @@ class Forms
 			} // end elseif( $type == 'textarea' )
 			
 		} // end function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
+		
+	/**
+	 * This method creates a hash for given password
+	 *
+	 * @since 1.1.1 s8
+	 * @param password
+	 * @return string
+	 */
+	 	function get_password_hash( $password )
+		{
+			$db = new Database;
+			
+			return hash_hmac( 'sha256', $password, 'c#haRl891', true );
+			
+		} // end function get_password_hash( $password )
+	 
 		
 		
 	/**
