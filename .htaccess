@@ -14,18 +14,21 @@
 
 # --------------------------------------------------------------------------------
 
+RewriteBase /shadow
+
 # Sets the enviroment up to follow symbolic links using "Options directive"
 Options +FollowSymLinks
-
-# Important, do not comment, controls file type functions  
-RewriteCond %{SCRIPT_FILENAME} !-d  
-RewriteCond %{SCRIPT_FILENAME} !-f  
-
 
 # Use the Rewrite Engine
 RewriteEngine On
 
-RewriteRule ^(.*)/?$ index.php?p=$1 
+# Important, do not comment, controls file type functions  
+RewriteCond %{SCRIPT_FILENAME} !-d  
+
+RewriteCond %{SCRIPT_FILENAME} !-f  
+
+RewriteRule ^(.*/?$) index.php?p=$1 
+
 
 #MAINTENANCE-PAGE REDIRECT
 

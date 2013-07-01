@@ -65,15 +65,15 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
     }
     </script>
 
-
+<?php if( is_logged_in() ) : ?>
 	<div id="shdw pilot-wrapper">
           	<div class="off-canvas relative">
             	<div id="shdw">
                     <nav id="complementary" role="complementary" class="side-complementary">
                     	<div id="shdw" class="pilot-head">Shadow Pilot</div>
-                            <ul class="side-nav phs man">
+                            <ul class="pilot-nav phs man">
                             	<li class="shdw-head-nav">
-                                	logout
+                                	<a href="<?php echo SITE_URL.'logout'; ?>">Logout</a>
                                 </li><!-- end shdw-head-nav -->
                                 <li class="caption">Current page</li>
                                 <li onclick="toggle_visibility('current-page-dropdown')" class="relative shdw-current">
@@ -136,7 +136,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
                                     </ul>
                                 </li>
                                 <li class="caption">System</li>
-                                <li onclick="toggle_visibility('product-dropdown')" class="relative disable">
+                                <li onclick="toggle_visibility('product-dropdown')" class="relative">
                                     <a href="<?php echo SYS_PILOT_URL.'products'; ?>">
                                         <div class="left side w20">
                                             <img src="<?php echo SYS_IMG_URL.'iconmonstr-shopping-bag-8-icon.png'; ?>" alt="Current page" />
@@ -383,14 +383,17 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
               	</div><!-- end shdw -->
             </div><!-- end shdw -->
      	</div><!-- end pilot-wrapper -->
+<?php endif; ?>
 		<div role="main" id="main">
-        	<div class="pilot-trigger hide">
-            	<a href="#" class="fs11">&larr; Close Pilot</a>
-            </div><!-- end pilot trigger -->
-        	<a id="shdw" class="menu-trigger" onclick="toggle_visibility('complementary')">
-                <div class="relative">
-                    <div class="left side w25">
-                        <img src="<?php echo SYS_IMG_URL.'iconmonstr-side-left-view-icon.png'; ?>" alt="User" />
-                    </div><!-- end left side w40 -->
-                </div><!-- end relative -->
-            </a><!-- end menu-trigger -->
+        	<?php if( is_logged_in() ) : ?>
+                <div class="pilot-trigger hide">
+                    <a href="#" class="fs11">&larr; Close Pilot</a>
+                </div><!-- end pilot trigger -->
+                <a id="shdw" class="menu-trigger" onclick="toggle_visibility('complementary')">
+                    <div class="relative">
+                        <div class="left side w25">
+                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-side-left-view-icon.png'; ?>" alt="User" />
+                        </div><!-- end left side w40 -->
+                    </div><!-- end relative -->
+                </a><!-- end menu-trigger -->
+      		<?php endif; ?>

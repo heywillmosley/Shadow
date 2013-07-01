@@ -1021,22 +1021,25 @@ background: -o-linear-gradient(45deg, rgba(255,255,255,0.6) 0%,rgba(255,255,255,
 background: -ms-linear-gradient(45deg, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 2%,rgba(255,255,255,0.6) 99%,rgba(255,255,255,0.6) 100%); /* IE10+ */
 background: linear-gradient(45deg, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 2%,rgba(255,255,255,0.6) 99%,rgba(255,255,255,0.6) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', endColorstr='#99ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-	.shdw-current{
-		padding-bottom: 10px;
-		color: #00C;
-		a{
-			color: #00C !important;
-			&:hover{
-				color: #00C;	
-			}
-			&:visited{
-				color: #00C;	
-			}
-		}
-	}
-	.side-nav{
+	.pilot-nav{
 		li{
-			margin: 0;	
+			margin: 0;
+			a{
+				color: @black !important;
+			}	
+		}
+		li.shdw-current{
+			padding-bottom: 10px;
+			color: #00C;
+			a{
+				color: #00C !important;
+				&:hover{
+					color: #00C;	
+				}
+				&:visited{
+					color: #00C;	
+				}
+			}
 		}
         .heading{
             .font-size(20); 

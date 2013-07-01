@@ -69,6 +69,14 @@ class Page
 				
 				$this->p = NULL;
 				
+				
+			/**
+			 * Remove trailing slash from page slug
+			 */
+			 	if( substr( $this->p, -1 ) == '/' ) 
+
+					$this->p = substr($this->p, 0, -1 );
+			 
 			/**
 			 * Determine what page to display:
 			 */
@@ -99,6 +107,12 @@ class Page
 			 {
 				 $this->page = BASE_PAGE_URI . 'pilot.php';
 				$this->page_title = FW_NAME . ' Pilot';
+			 }
+			 
+			 elseif( $this->p == 'admin/pilot/products' )
+			 {
+				 $this->page = BASE_PAGE_URI . 'pilot/products.php';
+				$this->page_title = FW_NAME . ' Products';
 			 }
 			 
 			 elseif( $this->p == 'login' )
@@ -166,10 +180,7 @@ class Page
 			 }
 			 
 			 
-			 
-			 
-			 
-			 
+
 			
 			/**
 			 * Page 404 setup
