@@ -22,34 +22,25 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
 # includes header.php
 app_header();  
 ?>
-
-<section class="site-background" style="
-	background: url(<?php echo APP_IMG_URL . 'stock-photo-21983736-homeopathist-and-her-patient.jpg'; ?>) no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;"></section>
-<div class="main-content">
-    <div class="row">
-    	<div class="small-6 columns">
-        	<img class="right" src="<?php echo APP_IMG_URL.'RX-Attention-Learning-Ehancement.png'; ?>" />
-        </div><!-- end small-6 columns -->
-        <div class="small-6 columns">
-            <div class="headline">Leader in Homeopathics</div>
-            <ul class="side-nav main-nav">
-        	<li><a href="<?php echo SITE_URL; ?>"><img class="pas w200" src="<?php echo APP_IMG_URL.'safecarerx-logo.png'; ?>" alt="Go Home" /></a></li>
-            <li><a href="<?php echo SITE_URL.'homeopathy'; ?>">About Homeopathy</a></li>
-            <li><a href="<?php echo SITE_URL.'safecarerx-medicine'; ?>">SafeCareRx + Medicine</a></li>
-            <li><a href="<?php echo SITE_URL.'products'; ?>">Our Products</a></li>
-            <li><a href="<?php echo SITE_URL.'products'; ?>">Clinical Studies</a></li>
-            <li><a href="<?php echo SITE_URL.'manuals'; ?>">Manuals & Guides</a></li>
-            <li><a href="<?php echo SITE_URL.'other-services'; ?>">Other Services</a></li>
-            <li><a href="<?php echo SITE_URL.'contact'; ?>">Contact</a></li>
-            <li><a href="<?php echo SITE_URL.'start'; ?>" class="primary button w200">Become a Provider</a></li>
-        </ul>
-        </div><!-- end small-12 columns -->
-    </div><!-- end row -->
-</div><!-- end main content 
+<section id="hero">
+	<div class="bottles">
+    	<img class="bottle1" src="<?php echo APP_IMG_URL.'RX-Attention-Learning-Ehancement.png'; ?>" />
+        <img class="bottle2" src="<?php echo APP_IMG_URL.'RX-Fatigue Reliever.png'; ?>" />
+        <img class="bottle3" src="<?php echo APP_IMG_URL.'RX-Anti-Aging-Wrinkles.png'; ?>" />
+    </div><!-- end bottles -->
+	<div class="content">
+    	<div class="headline">Precise Homeopathic Medicine For Your Patients.</div>
+        <p class="prs mbn">Discover how safe, cutting-edge medicines grow your practice. </p>
+        <a href="#" class="large info button mtm">Our Medicine</a>
+    </div><!-- end content -->
+</section><!-- hero -->
+<section id="medicine-bg">
+	<img src="<?php echo APP_IMG_URL.'stock-photo-21983736-homeopathist-and-her-patient.jpg'; ?>" />
+</section>
+<div id="sideeffects">Medicine without side effects</div>
+<section id="medicine">
+	<h1>View all of our products</h1>
+</section>
 
 
 <?php 

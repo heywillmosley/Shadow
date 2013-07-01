@@ -27,6 +27,44 @@
 	padding-left: 180px !important
 }
 
+.drop-nav{
+	background-color: inherit;
+	color: lighten( @linkColor, 20% );
+	width: 100%;
+	padding: 0;
+	border-bottom: none;
+	display:block !important;
+	li{
+		margin: 0;
+		padding: 0;
+		display: inline-block;
+		
+		a{
+			color: inherit;	
+			display: block;
+			padding: 10px 10px;
+			font-weight: bold;
+		}
+		&:hover{
+			background-color: inherit;
+		}
+		a.button{
+			padding: 10px;
+			margin: 0 20px;	
+		}
+		
+	}
+	li.has-button{
+		&:hover{
+			background-color: inherit;	
+		}
+	}
+}
+
+.drop-nav-trigger{
+	display: none;
+}
+
 
 // 6. LAYOUT 				==============================
 // 7. VENDOR-SPECIFIC 		==============================

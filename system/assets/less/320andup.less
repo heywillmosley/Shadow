@@ -1086,6 +1086,49 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 	position:relative;
 }
 
+.drop-nav{
+	background-color: lighten( @linkColor, 10% );
+	color: lighten( @linkColor, 20% );
+	width: 100%;
+	margin: 0 0 20px;
+	padding: 20px 0;
+	border-bottom: 10px solid @linkColor;
+	display:none;
+	list-style: none;
+	li{
+		margin: 0;
+		padding: 0;
+		
+		a{
+			color: @white;	
+			display: block;
+			padding: 10px 50px;
+		}
+		&:hover{
+			background-color: lighten( @linkColor, 25% );
+		}
+		a.button{
+			padding: 10px;
+			margin: 0 20px;	
+		}
+		
+	}
+	li.has-button{
+		&:hover{
+			background-color: inherit;	
+		}
+	}
+}
+
+.drop-nav-trigger{
+	.menu{
+		color: @linkColor;
+		text-transform:uppercase;	
+		.font-size(12);
+		margin-top: -10px;
+	}
+}
+
 // 6. LAYOUT                ==============================
 
 .visuallyhidden { // Setting width or height to 0 make it invisible for VoiceOver

@@ -40,6 +40,13 @@ a{
 	width: 100%;
 	position: fixed;
 	z-index: -1;
+	background: -moz-radial-gradient(center, ellipse cover, rgba(122,210,255,0.6) 0%, rgba(63,198,83,0.6) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(122,210,255,0.6)), color-stop(100%,rgba(63,198,83,0.6))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(122,210,255,0.6) 0%,rgba(63,198,83,0.6) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgba(122,210,255,0.6) 0%,rgba(63,198,83,0.6) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgba(122,210,255,0.6) 0%,rgba(63,198,83,0.6) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, rgba(122,210,255,0.6) 0%,rgba(63,198,83,0.6) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#997ad2ff', endColorstr='#993fc653',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .bg-gradient{
@@ -59,11 +66,95 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 
 // 6. LAYOUT 				==============================
 
+.wrapper{
+	max-width: 1200px;	
+	margin: 0 auto;
+}
 
 
-.main-content{
-	
-	
+#hero{
+	position: relative;
+	height: 350px;
+	//background-color: @white;
+	margin: 10px 10px 10px 0;
+	//.border-radius( 0px, 100px, 10px, 100px );
+	//.box-shadow(0 0 20px rgba(0,0,0,.20));
+	.bottles{
+		max-width: 100px;
+		position:absolute;
+		top: 0;
+		.bottle1{
+			position: absolute;
+			left: -40px;
+			top: 20px;	
+			max-width: 100px;
+			z-index: 2;
+		}
+		.bottle2{
+			position: absolute;
+			left: 0;	
+			max-width: 100px;
+			z-index: 2;
+		}
+		.bottle3{
+			position: absolute;
+			left: 70px;
+			max-width: 100px;
+			display: none;	
+			z-index: 2;
+		}
+	}
+	.content{
+		position: relative;
+		padding-left: 110px;
+		padding-top: 20px;
+		.headline{
+			.font-size(30);
+			font-weight:400;
+			line-height: 1.2;
+			margin-bottom: 10px;
+			color: #004A8D;
+		}
+	}
+}
+
+#medicine-bg{
+	position: relative;
+	top: -20px;
+	height:250px;
+	overflow: hidden;
+	margin: 10px 0 10px 0px;
+	.box-shadow(-50px 0 20px rgba(0,0,0,.20));
+	img{
+		width: 100%;
+		position: relative;
+	}
+}
+
+#sideeffects{
+	position: relative;
+	top: -30px;
+	padding: 20px;
+	margin: 10px;
+	.font-size(24);
+	background-color: darken( @linkColor, 20% );
+	color: @white;	
+	text-align: center;
+}
+
+#medicine{
+	position: relative;
+	top: -50px;
+	.background-alpha(darken( @linkColor, 20% ),  .8);
+	height: 400px;
+	.border-radius( 0, 100px, 0, 100px );
+	overflow: hidden;
+	margin: 10px 0 10px 10px;
+	.box-shadow(-50px 0 40px rgba(0,0,0,.40));
+	img{
+		width: 100%;
+		position: relative;
+	}
 }
 
 // 7. VENDOR-SPECIFIC 		==============================
@@ -75,20 +166,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 	
 }
 
-.side-nav.main-nav{
-	position: relative;
-	z-index: 2;
-	font-weight: bold;
-	li{
-		.font-size(18);	
-		a{
-			color:@linkColor;	
-		}
-		a.button{
-			color: @white;	
-		}
-	}
-}
+
 
 // 8. MODERNIZR 			==============================
 // 9. TEMPLATE SPECIFICS 	==============================

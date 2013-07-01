@@ -14,6 +14,55 @@
 // 3. COLOUR 				==============================
 // 4. TEXTURE 				==============================
 // 5. ELEMENTS 				==============================
+
+#hero{
+	position: relative;
+	margin-top: 20px;
+	height: 400px;
+	.bottles{
+		max-width: 100px;
+		position:absolute;
+		top: 0;
+		.bottle1{
+			position: absolute;
+			left: 30px;
+			top: 20px;	
+			max-width: 150px;
+		}
+		.bottle2{
+			position: absolute;
+			left: -20px;	
+			max-width: 150px;
+		}
+		.bottle3{
+			position: absolute;
+			left: -70px;
+			max-width: 150px;
+			display: none;	
+		}
+	}
+	.content{
+		position: relative;
+		padding-left: 200px;
+		padding-top: 50px;
+		.headline{
+			.font-size(45);
+			font-weight:400;
+			line-height: 1.2;
+			margin-bottom: 10px;
+			color: #004A8D;
+		}
+	}
+}
+
+#medicine-bg{
+	position: relative;
+	margin-top: 40px;
+	img{
+		position: relative;
+	}
+}
+
 // 6. LAYOUT 				==============================
 // 7. VENDOR-SPECIFIC 		==============================
 // 8. MODERNIZR 			==============================
