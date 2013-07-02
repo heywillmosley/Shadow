@@ -18,10 +18,12 @@ a{
 // 2. TYPOGRAPHY 			==============================
 
 .headline{
-	.font-size(50);
-	color: @white;
-	max-width: 600px;
-		
+	.font-size(40);
+	font-weight:600;
+	line-height: 1.2;
+	margin-bottom: 10px;
+	color: #004A8D;
+	max-width: 700px;
 }
 
 // 3. COLOUR 				==============================
@@ -154,6 +156,53 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 	img{
 		width: 100%;
 		position: relative;
+	}
+}
+
+#lecture-page{
+	#lecture-hero{
+		padding: 30px;
+		height: 400px;
+		overflow: hidden;
+		.bg-image{
+			width: 100%;
+			position: fixed;
+			top: 0;	
+			left: 0;
+			z-index: -1;
+		}
+	}
+	#event{
+		background-color: darken( @linkColor, 20% );
+		padding: 20px;
+		height: 500px;
+		color: @white;
+	}
+	#doctor{
+		background-color: darken( @secLinkColor, 20% );
+		padding: 20px;
+		height: 500px;
+		color: @white;
+	}
+	#rsvp{
+		background-color: @white;
+		padding: 20px;
+		input, textarea{
+			.font-size(20);
+			padding: 10px;
+			height:auto !important;
+		}
+		.checkbox{
+			.font-size(20);
+		}
+		.rsvp.button{
+			margin-top: 20px;
+			width: 100%;	
+		}
+	}
+	#kingbio{
+		padding: 20px;
+		height: 400px;
 	}
 }
 

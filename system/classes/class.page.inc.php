@@ -172,6 +172,12 @@ class Page
 				$this->page = APP_PAGE_URI . 'contact.php';
 				$this->page_title = 'Contact';
 			 }
+			 
+			 elseif( $this->p == 'lecture' )
+			 {
+				$this->page = APP_PAGE_URI . 'lecture.php';
+				$this->page_title = 'Lecture';
+			 }
 			
 			else
 			 {
