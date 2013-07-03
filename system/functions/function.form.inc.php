@@ -11,27 +11,19 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 0.1.1 s5
+ * @since          Version 0.1.1 s8
  * -----------------------------------------------------------------
  *
- * Class
+ * System Admin Functions
  */
  
 // --------------------------------------------------------------------------------
 
+
 /**
- * Class description
- * @since 0.1.1 s7
- * @author William Mosley, III <will@livesuperamazing.com>
- * 0 Arguments
- * 0 Methods
- */
-class Form
-{
-	/**
 	 * Create Form Input Method
 	 *
-	 * This method method streamlines form input and keeps from repeating code
+	 * This function function streamlines form input and keeps from repeating code
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -47,92 +39,31 @@ class Form
 	 */
 		function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
 		{
-			# Check for and process value
-			$value = false;
+			$c = new Form;
+			return $c->create_form_input( $name, $type, $errors, $placeholder, $classes, $ids, $postGet );
 			
-			# Set value of $name if it's set
-			if( isset( $postGet[$name] ) ) $value = $postGet[$name];
-			
-			# Strip magic slashes if enabled
-			if( $value && get_magic_quotes_gcp( ) ) $value = stripslashes( $value );
-			
-			# Check if the input type is text or password
-			if( ( $type == 'text' ) || ( $type == 'password' ) )
-			{
-				# Begin creating the input
-				echo '<input type="' . $type . '" name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
-				
-				# add the input's value, if applicable and strip html special characters
-				if( $value ) echo ' value"' . htmlspecialchars( $value ) . '" ';
-				
-				# Check for errors
-				if( array_key_exists( $name, $errors ) )
-				{
-					# Set Error class and display error underneath input
-					echo 'class="form-' . $name . ' ' . $classes . ' error" />'
-						. '<small class="error">' . $errors[$name] . '</small>';
-					
-				} // end if( array_key_exists( $name, $errors ) )
-				
-				else
-				{
-					echo 'class="form-' . $name . ' ' . $classes . '" />';
-					
-				} // end else
-				
-			} // end if( ( $type == 'text' ) || ( $type == 'password' ) )
-			
-			elseif( $type == 'textarea' )
-			{
-				# Begin creating the input
-				echo '<textarea name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
-				
-				# Check for errors
-				if( array_key_exists( $name, $errors ) )
-				{
-					# Set Error class and display error underneath input
-					echo 'class="form-' . $name . ' ' . $classes . ' error" >';
-					
-					# add the input's value, if applicable and strip html special characters
-					if( $value )  echo htmlspecialchars( $value );
-					
-					echo  '</textarea>'
-						. '<small class="error">' . $errors[$name] . '</small>';
-					
-				} // end if( array_key_exists( $name, $errors ) )
-				
-				else
-				{
-					echo 'class="form-' . $name . ' ' . $classes . '" >
-						</textarea>';
-					
-				} // end else
-			
-			} // end elseif( $type == 'textarea' )
-			
-		} // end method create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
+		} // end function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
 		
 	/**
-	 * This method method creates a hash for given password
+	 * This function function creates a hash for given password
 	 *
 	 * @since 1.1.1 s8
 	 * @param password
 	 * @return string
 	 */
 	 	function get_password_hash( $password )
-		{
-			$db = new Database;
+		{	
+			$c = new Form;
+			return $c->get_password_hash( $password );
 			
-			return hash_hmac( 'sha256', $password, 'c#haRl891', true );
-			
-		} // end method get_password_hash( $password )
+		} // end function get_password_hash( $password )
 	 
 		
 		
 	/**
 	 * Validate Email Method
 	 *
-	 * This method method checks that only valid characters for an email are entered
+	 * This function function checks that only valid characters for an email are entered
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -142,15 +73,17 @@ class Form
 	 */
 		function vEmail( $email )
 		{
-		  return filter_var( $email, FILTER_VALIDATE_EMAIL );
+			$c = new Form;
+		  $c->vEmail( $email );
+		  return ;
 		  
-		} // end method vEmail($email)
+		} // end function vEmail($email)
 	
 	
 	/**
 	 * Sanitize Email Method
 	 *
-	 * This method function strips all invalid characters from email
+	 * This function function strips all invalid characters from email
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -162,13 +95,13 @@ class Form
 		{
 		  return filter_var( $email, FILTER_SANITIZE_EMAIL );
 		  
-		} // end method sEmail($url)
+		} // end function sEmail($url)
 	
 	
 	/**
 	 * Validate Name Method
 	 *
-	 * This method function validates names
+	 * This function function validates names
 	 * Names must be between 1 - 20 characters long and only
 	 * contain a combination of letters (case-insensitive)
 	 * the space, a period, an apostrophe, and a hyphen
@@ -183,12 +116,12 @@ class Form
 		{	  
 				return preg_match ('/^[A-Z \'.-]{1,30}$/i', $name);
 						 
-		} // end method vName($name)
+		} // end function vName($name)
 	
 	/**
 	 * Validate Long Name Method
 	 *
-	 * This method function validates longer names (like combined last names)
+	 * This function function validates longer names (like combined last names)
 	 * Names must be between 1 - 40 characters long and only
 	 * contain a combination of letters (case-insensitive)
 	 * the space, a period, an apostrophe, and a hyphen
@@ -203,12 +136,12 @@ class Form
 		{
 			  return preg_match ('/^[A-Z \'.-]{1,50}$/i', $name);
 						 
-		} // end method vName($name)
+		} // end function vName($name)
 		
 	/**
 	 * Validate Full Name Method
 	 *
-	 * This method function validates full names
+	 * This function function validates full names
 	 * Names must be between 1 - 750 characters ( The longest
 	 * name in the world is a little under 750 characters! ) long and only
 	 * contain a combination of letters (case-insensitive)
@@ -224,13 +157,13 @@ class Form
 		{
 			  return preg_match ('/^[A-Z \'.-]{1,750}$/i', $name);
 						 
-		} // end method vName($name)
+		} // end function vName($name)
 		
 	
 	/**
 	 * Validate Numbers Method
 	 *
-	 * This method function validates numbers
+	 * This function function validates numbers
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -243,13 +176,13 @@ class Form
 			#return filter_var($value, FILTER_VALIDATE_FLOAT); // float
 			return filter_var( $value, FILTER_VALIDATE_INT ); # int
 			
-		} // end method vNumber($value)
+		} // end function vNumber($value)
 	
 	
 	/**
 	 * Sanitize Numbers Method
 	 *
-	 * This method function sanitizes numbers
+	 * This function function sanitizes numbers
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -262,13 +195,13 @@ class Form
 			#return filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT); // float
 			return filter_var( $value, FILTER_SANITIZE_NUMBER_INT ); # int
 			
-		} // end method sNumber( $value )
+		} // end function sNumber( $value )
 	
 	
 	/**
 	 * Validate Alphanumeric Method
 	 *
-	 * This method validate alphanumeric strings
+	 * This function validate alphanumeric strings
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -280,13 +213,13 @@ class Form
 		{
 			return ctype_alnum ( $string );
 				
-		} // end method vAlphanumeric( $string )
+		} // end function vAlphanumeric( $string )
 	
 	
 	/**
 	 * Sanitize Alphanumeric Method
 	 *
-	 * This method sanitize alphanumeric strings
+	 * This function sanitize alphanumeric strings
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -298,13 +231,13 @@ class Form
 		{
 				return preg_replace( '/[^a-zA-Z0-9]/', '', $string );
 				
-		} // end method sAlphanumeric( $string )
+		} // end function sAlphanumeric( $string )
 	
 	
 	/**
 	 * Validate URL Exists Method
 	 *
-	 * This method function checks if url exists and validates it
+	 * This function function checks if url exists and validates it
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -315,12 +248,12 @@ class Form
 		function url_exist($url)
 		{
 		
-		} // end method url_exist($url)
+		} // end function url_exist($url)
 	
 	/**
 	 * Validate URL Format Method
 	 *
-	 * This method function validates URLs
+	 * This function function validates URLs
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -332,13 +265,13 @@ class Form
 		{
 		  return filter_var( $url, FILTER_VALIDATE_URL );
 		  
-		} // end method vUrl( $url )
+		} // end function vUrl( $url )
 	
 	
 	/**
 	 * Sanitize URL Method
 	 *
-	 * This method function sanitizes URLs
+	 * This function function sanitizes URLs
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -350,13 +283,13 @@ class Form
 		{
 		  return filter_var( $url, FILTER_SANITIZE_URL );
 		  
-		} // end method sUrl( $url )
+		} // end function sUrl( $url )
 	
 	
 	/**
 	 * Image Exists Method
 	 *
-	 * This method function checks if an image exists
+	 * This function function checks if an image exists
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -368,13 +301,13 @@ class Form
 		{
 			if( @file_get_contents( $img,0,NULL,0,1) ){ return 1; } else{ return 0; }
 			
-		} // end method image_exist( $img )
+		} // end function image_exist( $img )
 	
 	
 	/**
 	 * Validate IP Address Method
 	 *
-	 * This method function balidates IP addresses
+	 * This function function balidates IP addresses
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -386,13 +319,13 @@ class Form
 		{
 		  return filter_var( $ip, FILTER_VALIDATE_IP );
 		  
-		} // end method vIP( $ip )
+		} // end function vIP( $ip )
 	
 	
 	/**
 	 * Validate Proxy Address Method
 	 *
-	 * This method function validates proxy addresses
+	 * This function function validates proxy addresses
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -418,7 +351,7 @@ class Form
 	/**
 	 * Validate username Method
 	 *
-	 * This method function validates usernames only a-z, A-Z, 0-9, and underscores
+	 * This function function validates usernames only a-z, A-Z, 0-9, and underscores
 	 * Minimum 2 character maximum 30 characters (email address may be more)
 	 * Size limit should match the restrictions on those same values
 	 * in the database columns
@@ -433,13 +366,13 @@ class Form
 		{
 				return preg_match( '/^[a-zA-Z\d_@.]{2,30}$/i', $username );
 				
-		} // end method vUsername( $username )
+		} // end function vUsername( $username )
 	
 	
 	/**
 	 * Validate Strong Password Method
 	 *
-	 * This method function validates passwords, require 8 char,
+	 * This function function validates passwords, require 8 char,
 	 * 1 uppercase, 1 lower, and 1 number
 	 *
 	 * @package        Shadow   
@@ -452,12 +385,12 @@ class Form
 		{
 				return preg_match( '/^(?=^.{8,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$/', $password );
 				
-		} // end method vPassword( $password )
+		} // end function vPassword( $password )
 		
 	/**
 	 * Validate Strong Password  w/ custom errors Method
 	 *
-	 * This method function validates passwords, require 8 char,
+	 * This function function validates passwords, require 8 char,
 	 * 1 uppercase, 1 lower, and 1 number and supplies 
 	 * error messages based on output
 	 *
@@ -485,13 +418,13 @@ class Form
 			
 			/* if( !preg_match("#\W+#", $p) ) $errors[] = "Password must include at least one symbol!"; */	
 			
-		} // end method vPassword2() 
+		} // end function vPassword2() 
 	
 	
 	/**
 	 * Validate US Phone Number Method
 	 *
-	 * This method function validates US Phone Number
+	 * This function function validates US Phone Number
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -503,13 +436,13 @@ class Form
 		{
 			return preg_match('/\(?\d{3}\)?[-\s.]?\d{3}[-\s.]\d{4}/x', $phoneNo);
 			
-		} // end method vUSPhone( $phoneNo )
+		} // end function vUSPhone( $phoneNo )
 		
 	
 	/**
 	 * Validate US Social Security Numbers Method
 	 *
-	 * This method function validates US Social Security Numbers
+	 * This function function validates US Social Security Numbers
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -522,13 +455,13 @@ class Form
 				#eg. 531-63-5334
 				return preg_match( '/^[\d]{3}-[\d]{2}-[\d]{4}$/',$ssn );
 				
-		} // end method vUS_SSC($ssn)
+		} // end function vUS_SSC($ssn)
 	
 	
 	/**
 	 * Validate Credit Card Numbers Method
 	 *
-	 * This method function validates Credit Card Numbers
+	 * This function function validates Credit Card Numbers
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -541,13 +474,13 @@ class Form
 			#eg. 718486746312031
 			return preg_match('/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47][0-9]{13})$/', $cc);
 			
-		} // end method vCC( $cc )
+		} // end function vCC( $cc )
 		
 	
 	/**
 	 * Validate Date Method
 	 *
-	 * This method function validates dates
+	 * This function function validates dates
 	 * Format: 2009/12/11, 2009-12-11, 2009.12.11, 09.12.11
 	 *
 	 * @package        Shadow   
@@ -560,13 +493,13 @@ class Form
 		{
 			return preg_match('#^([0-9]?[0-9]?[0-9]{2}[- /.](0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01]))*$#', $date);
 			
-		} // end method vDate( $date )
+		} // end function vDate( $date )
 	
 	
 	/**
 	 * Validate Hexicolor Codes Method
 	 *
-	 * This method function validates hexicolor codes
+	 * This function function validates hexicolor codes
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -581,7 +514,7 @@ class Form
 			#FFFFF
 			return preg_match( '/^#(?:(?:[a-f0-9]{3}){1,2})$/i', $color );
 			
-		} // end method vColor( $color )
+		} // end function vColor( $color )
 	
 	
 	/**
@@ -601,7 +534,7 @@ class Form
 	
 	
 	/**
-	 * This method makes data safe.
+	 * This function makes data safe.
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -625,7 +558,7 @@ class Form
 	
 	
 	/**
-	 * This method validates MySQL database name.
+	 * This function validates MySQL database name.
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -641,7 +574,7 @@ class Form
 	
 	
 	/**
-	 * This method validates a persons sex
+	 * This function validates a persons sex
 	 *
 	 * If input is 'f' or 'm' return TRUE.
 	 *
@@ -669,7 +602,7 @@ class Form
 	
 	
 	/**
-	 * This method sanitizes a persons sex
+	 * This function sanitizes a persons sex
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -685,7 +618,7 @@ class Form
 	
 	
 	/**
-	 * This method checks if form name is set
+	 * This function checks if form name is set
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
@@ -700,6 +633,5 @@ class Form
 			
 			return true;
 			
-		} // end function kv( $name ) 
- 
-} // end ClassName
+		} // end function kv( $name ) 	
+	
