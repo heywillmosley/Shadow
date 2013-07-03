@@ -57,7 +57,9 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
     	<h1> RSVP Now</h1>
         <form class="custom" action="#" method="POST">
         	<div class="row">
+            	<?php $f = new Form; $reg_errors = NULL; ?>
         		<input type="text" name="name" placeholder="Full Name" />
+                <?php $f->create_form_input( 'full_name', 'text', $reg_errors ); ?>
          	</div><!-- end row -->
             <div class="row">
             	<input type="text" name="email" placeholder="Email" />

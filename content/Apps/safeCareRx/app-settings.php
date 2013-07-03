@@ -20,7 +20,7 @@ if(!defined('ROOT_URI')){require'../../../system/inc/config.inc.php';header('Loc
 // --------------------------------------------------------------------------------
 
 # Current App Version
-define( 'APP_VER', '0.1' );
+define( 'APP_VER', '1.0.1' );
 
 define( 'APP_NAME' , 'SafeCareRx');
 	
