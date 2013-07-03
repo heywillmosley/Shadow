@@ -861,6 +861,32 @@ $db_root = ROOT_URI . 'db.inc.php';
  * @since 0.1.1 s8
  */
 	define( 'SYS_PILOT_URL', ROOT_URL.'admin/pilot/' );
+	
+
+/**
+ * Path to system functions folder
+ * @since 0.1.1 s8
+ */
+	define( 'SYS_FUNCTIONS_URI', SYS_URI.'functions/' );
+	
+/**
+ * URL to system functions folder
+ * @since 0.1.1 s8
+ */
+	define( 'SYS_FUNCTIONS_URL', SYS_URL.'functions/' );
+	
+	
+/**
+ * Path to application functions folder
+ * @since 0.1.1 s8
+ */
+	define( 'APP_FUNCTIONS_URI', SYS_URI.'functions/' );
+	
+/**
+ * URL to application functions folder
+ * @since 0.1.1 s8
+ */
+	define( 'APP_FUNCTIONS_URL', SYS_URL.'functions/' );
 		
 		
 	
@@ -956,7 +982,8 @@ if( !isset( $debug ) )
 # ************************** #
 # ***** LOAD FUNCIONS ****** #
 
-require_once SYS_URI.'functions/function.admin.inc.php';
+require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
+require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
 
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #

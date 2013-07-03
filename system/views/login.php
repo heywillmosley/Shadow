@@ -19,6 +19,10 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
  
 // --------------------------------------------------------------------------------?>
 
+<?php 
+$f = new Form;
+$f->vEmail( 'will' );
+if( $f->vEmail( 'will' ) ) echo 'yep'; else 'nope'; ?>
 
 <div class="row">
     <h3>Login to <?php echo SITE_NAME; ?></h3>
