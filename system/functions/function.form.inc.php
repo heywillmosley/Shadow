@@ -37,10 +37,10 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 * @param          string  OPTIONAL set $_POST or $_GET
 	 * @return         string
 	 */
-		function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
+		function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST', $checked = FALSE )
 		{
 			$c = new Form;
-			return $c->create_form_input( $name, $type, $errors, $placeholder, $classes, $ids, $postGet );
+			return $c->create_form_input( $name, $type, $errors, $placeholder, $classes, $ids, $postGet, $checked );
 			
 		} // end function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
 		
@@ -74,8 +74,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 		function vEmail( $email )
 		{
 			$c = new Form;
-		  $c->vEmail( $email );
-		  return ;
+			return $c->vEmail( $email );
 		  
 		} // end function vEmail($email)
 	
@@ -93,7 +92,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function sEmail( $email )
 		{
-		  return filter_var( $email, FILTER_SANITIZE_EMAIL );
+			$c = new Form;
+			return $c->sEmail( $email );
 		  
 		} // end function sEmail($url)
 	
@@ -114,7 +114,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vName( $name ) 
 		{	  
-				return preg_match ('/^[A-Z \'.-]{1,30}$/i', $name);
+			$c = new Form;
+			return $c->vName( $name );
 						 
 		} // end function vName($name)
 	
@@ -134,7 +135,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vLongName( $name ) 
 		{
-			  return preg_match ('/^[A-Z \'.-]{1,50}$/i', $name);
+			$c = new Form;
+			return $c->vLongName( $name );
 						 
 		} // end function vName($name)
 		
@@ -149,13 +151,14 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s5
+	 * @since          Version 0.1.1 s8
 	 * @param          string  name
 	 * @return         boolean
 	 */
 		function vFullName( $name ) 
 		{
-			  return preg_match ('/^[A-Z \'.-]{1,750}$/i', $name);
+			$c = new Form;
+			return $c->vFullName( $name );
 						 
 		} // end function vName($name)
 		
@@ -173,8 +176,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vNumber( $value )
 		{
-			#return filter_var($value, FILTER_VALIDATE_FLOAT); // float
-			return filter_var( $value, FILTER_VALIDATE_INT ); # int
+			$c = new Form;
+			return $c->vNumber( $value );
 			
 		} // end function vNumber($value)
 	
@@ -192,8 +195,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function sNumber( $value )
 		{
-			#return filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT); // float
-			return filter_var( $value, FILTER_SANITIZE_NUMBER_INT ); # int
+			$c = new Form;
+			return $c->sNumber( $value );
 			
 		} // end function sNumber( $value )
 	
@@ -211,7 +214,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vAlphanumeric( $string )
 		{
-			return ctype_alnum ( $string );
+			$c = new Form;
+			return $c->vAlphanumeric( $string );
 				
 		} // end function vAlphanumeric( $string )
 	
@@ -229,7 +233,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function sAlphanumeric( $string )
 		{
-				return preg_replace( '/[^a-zA-Z0-9]/', '', $string );
+				$c = new Form;
+			return $c->sAlphaanumeric( $string );
 				
 		} // end function sAlphanumeric( $string )
 	
@@ -247,6 +252,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function url_exist($url)
 		{
+			$c = new Form;
+			return $c->url_exists( $url );
 		
 		} // end function url_exist($url)
 	
@@ -263,7 +270,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vUrl( $url )
 		{
-		  return filter_var( $url, FILTER_VALIDATE_URL );
+			$c = new Form;
+			return $c->vUrl( $url );
 		  
 		} // end function vUrl( $url )
 	
@@ -281,27 +289,10 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function sUrl( $url )
 		{
-		  return filter_var( $url, FILTER_SANITIZE_URL );
+		  	$c = new Form;
+			return $c->sUrl( $url );
 		  
 		} // end function sUrl( $url )
-	
-	
-	/**
-	 * Image Exists Method
-	 *
-	 * This function function checks if an image exists
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s5
-	 * @param          string image
-	 * @return         boolean
-	 */
-		function image_exist( $img ) 
-		{
-			if( @file_get_contents( $img,0,NULL,0,1) ){ return 1; } else{ return 0; }
-			
-		} // end function image_exist( $img )
 	
 	
 	/**
@@ -317,7 +308,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vIP( $ip )
 		{
-		  return filter_var( $ip, FILTER_VALIDATE_IP );
+		  	$c = new Form;
+			return $c->vIP( $ip );
 		  
 		} // end function vIP( $ip )
 	
@@ -334,16 +326,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vProxy()
 		{
-			if( $_SERVER['HTTP_X_FORWARDED_FOR']
-			   || $_SERVER['HTTP_X_FORWARDED']
-			   || $_SERVER['HTTP_FORWARDED_FOR']
-			   || $_SERVER['HTTP_VIA']
-			   || in_array( $_SERVER['REMOTE_PORT'], array( 8080,80,6588,8000,3128,553,554) )
-			   || @fsockopen( $_SERVER['REMOTE_ADDR'], 80, $errno, $errstr, 30) )
-			{
-				exit('Proxy detected');
-				
-			} // end if( $_SERVER['HTTP_X_FORWARDED_FOR']
+			$c = new Form;
+			return $c->vProxy();
 			
 		} // function vProxy()
 	
@@ -364,7 +348,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vUsername( $username )
 		{
-				return preg_match( '/^[a-zA-Z\d_@.]{2,30}$/i', $username );
+			$c = new Form;
+			return $c->vUsername( $username );
 				
 		} // end function vUsername( $username )
 	
@@ -383,7 +368,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vPassword( $password )
 		{
-				return preg_match( '/^(?=^.{8,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$/', $password );
+			$c = new Form;
+			return $c->vPassword( $password );
 				
 		} // end function vPassword( $password )
 		
@@ -402,21 +388,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vPassword2() 
 		{
-			# Check password strength
-			$p = $p1;
-			
-			if( strlen($p) < 8 ) $reg_errors[] = "Password too short!";
-			
-			if( strlen($p) > 20 ) $reg_errors[] = "Password too long!";
-			
-			if( !preg_match("#[0-9]+#", $p) ) $reg_errors[] = "Password must include at least one number!";
-			
-			
-			if( !preg_match("#[a-z]+#", $p) ) $reg_errors[] = "Password must include at least one letter!";
-			
-			if( !preg_match("#[A-Z]+#", $p) ) $reg_errors[] = "Password must include at least one CAPS!";
-			
-			/* if( !preg_match("#\W+#", $p) ) $errors[] = "Password must include at least one symbol!"; */	
+			$c = new Form;
+			return $c->vPassword2();
 			
 		} // end function vPassword2() 
 	
@@ -434,7 +407,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vUSPhone( $phoneNo )
 		{
-			return preg_match('/\(?\d{3}\)?[-\s.]?\d{3}[-\s.]\d{4}/x', $phoneNo);
+			$c = new Form;
+			return $c->vUSPhone( $phoneNo );
 			
 		} // end function vUSPhone( $phoneNo )
 		
@@ -452,8 +426,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vUS_SSC( $ssn )
 		{
-				#eg. 531-63-5334
-				return preg_match( '/^[\d]{3}-[\d]{2}-[\d]{4}$/',$ssn );
+			$c = new Form;
+			return $c->vUS_SSC( $ssn );
 				
 		} // end function vUS_SSC($ssn)
 	
@@ -471,8 +445,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vCC( $cc )
 		{
-			#eg. 718486746312031
-			return preg_match('/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47][0-9]{13})$/', $cc);
+			$c = new Form;
+			return $c->vCC( $cc );
 			
 		} // end function vCC( $cc )
 		
@@ -491,7 +465,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vDate( $date )
 		{
-			return preg_match('#^([0-9]?[0-9]?[0-9]{2}[- /.](0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01]))*$#', $date);
+			$c = new Form;
+			return $c->vDate( $date );
 			
 		} // end function vDate( $date )
 	
@@ -509,10 +484,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vColor( $color )
 		{
-			#CCC
-			#CCCCC
-			#FFFFF
-			return preg_match( '/^#(?:(?:[a-f0-9]{3}){1,2})$/i', $color );
+			$c = new Form;
+			return $c->vColor( $color );
 			
 		} // end function vColor( $color )
 	
@@ -528,7 +501,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function _cleanQuery( $str )
 		{
-		return is_array($str) ? array_map('_cleanQuery', $str) : str_replace('\\', '\\\\', htmlspecialchars((get_magic_quotes_gpc() ? stripslashes($str) : $str), ENT_QUOTES));
+			$c = new Form;
+			return $c->_cleanQuery( $str );
 		
 		} // end function _cleanQuery( $str )
 	
@@ -545,14 +519,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function _cleanData( $str, $dbc = '' )
 		{
-			if( !empty( $dbc ) ) 
-			{
-				global $dbc;
-				return is_array($str) ? array_map('_cleanData', $str) : str_replace('\\', '\\\\', strip_tags(trim(htmlspecialchars((get_magic_quotes_gpc() ? stripslashes(mysqli_real_escape_string($str)) : $str), ENT_QUOTES))));
-			
-			}
-			else
-				return is_array($str) ? array_map('_cleanData', $str) : str_replace('\\', '\\\\', strip_tags(trim(htmlspecialchars((get_magic_quotes_gpc() ? stripslashes($str) : $str), ENT_QUOTES))));
+			$c = new Form;
+			return $c->_cleanData( $str, $dbc );
 				
 		} // end function _cleanData( $str, $dbc = '' )
 	
@@ -568,7 +536,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vDBName ($db) 
 		{
-			return !preg_match('/[^a-z_\-0-9]/i', $db);
+			$c = new Form;
+			return $c->vDBName( $db );
 			
 		} // end function vDBName ($db) 
 	
@@ -586,17 +555,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function vSex ( $sex ) 
 		{
-			# Strip string down to first character
-			$sex = strtolower( substr( $sex, 0, 1) );
-			
-			# Checks if result is 'f' or 'm'
-			if ( $sex != "f" OR $sex != "m"  )
-				$sex = true;
-				
-			else 
-				$sex = false;
-			
-			return $sex;
+			$c = new Form;
+			return $c->vSex( $sex );
 			
 		} // end function vSex ( $sex ) 
 	
@@ -612,7 +572,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function sSex ( $sex ) 
 		{
-			return strtolower(substr($sex, 0, 1));
+			$c = new Form;
+			return $c->sSex( $sex );
 			
 		} // end function sSex ( $sex ) 
 	
@@ -628,10 +589,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 	 */
 		function kv( $name ) 
 		{
-			# Check if name is set, then echo
-			if ( isset( $name ) ) echo $name;
-			
-			return true;
+			$c = new Form;
+			return $c->kv( $name );
 			
 		} // end function kv( $name ) 	
 	

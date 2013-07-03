@@ -161,15 +161,39 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 
 #lecture-page{
 	#lecture-hero{
-		padding: 30px;
-		height: 400px;
+		padding: 0 30px 30px;
 		overflow: hidden;
 		.bg-image{
 			width: 100%;
 			position: fixed;
+			max-width: 1000px;
+			margin: 0 auto;
 			top: 0;	
-			left: 0;
 			z-index: -1;
+		}
+		.headline{
+			.font-size(50);
+			text-align: center;
+			max-width:none;	
+		}
+		.event-time{
+			padding: 20px;	
+			background-color: #FFF;
+		}
+		.side-nav{
+			margin: 0;
+			padding: 10px;
+			li{
+				padding: 10px;
+				margin: 0;
+				.font-size(18);	
+			}
+			li:nth-child(even) {
+    			background-color: #F4F4F4;
+			}
+			li:nth-child(odd) {
+    			background-color: #DDD;
+			}
 		}
 	}
 	#event{
@@ -185,6 +209,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 		color: @white;
 	}
 	#rsvp{
+		.txt_success{
+			color: @green;	
+		}
 		background-color: @white;
 		padding: 20px;
 		input, textarea{
@@ -192,7 +219,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 			padding: 10px;
 			height:auto !important;
 		}
-		.checkbox{
+		.form-opt-in span{
 			.font-size(20);
 		}
 		.rsvp.button{

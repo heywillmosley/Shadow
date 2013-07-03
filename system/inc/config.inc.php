@@ -1061,5 +1061,136 @@ set_error_handler( 'my_error_handler' );
 # **************************** #
 
 
+# ***************************#
+# ***** FORM CONSTANTS ***** #
+
+/*
+ * ------------------------------------------------------
+ *  Form Names
+ * ------------------------------------------------------
+ */
+ 	# First Name
+	define( 'FORM_FIRST_NAME', 'first_name' );
+
+	# Middle Name
+	define( 'FORM_MIDDLE_NAME', 'middle_name' );
+
+	# Last Name
+	define( 'FORM_LAST_NAME', 'last_name' );
+	
+	# First Name
+	define( 'FORM_FULLNAME', 'full_name' );
+
+	# New Username
+	define( 'FORM_NEW_USERNAME', 'new_username' );
+
+	# New Email
+	define( 'FORM_NEW_EMAIL', 'new_email' );
+	
+	# Email
+	define( 'FORM_EMAIL', 'email' );
+	
+	# New Telephone
+	define( 'FORM_NEW_PHONE', 'new_phone' );
+	
+	# New Full Address
+	define( 'FORM_NEW_FULL_ADDRESS', 'new_full_address' );
+
+	# New Password
+	define( 'FORM_NEW_PASS', 'new_pass' );
+
+	# Confirm New Password
+	define( 'FORM_CONFIRM_NEW_PASS', 'confirm_new_pass' );
+	
+	# Opt in
+	define( 'FORM_OPT_IN', 'opt-in' );
+	
+	# Form Submit
+	define( 'FORM_SUBMIT', 'submit' );
+
+
+ 
+/*
+ * ------------------------------------------------------
+ *  Generic Form Error messages
+ * ------------------------------------------------------
+ */
+ 	# Empty Inputs
+
+		# Empty First Name
+		define( 'ERR_EMPTY_FIRST_NAME', 'Enter your first name.' );
+
+		# Empty Middle Name
+		define( 'ERR_EMPTY_MIDDLE_NAME', 'Enter your middle name.' );
+
+		# Empty Last Name
+		define( 'ERR_EMPTY_LAST_NAME', 'Enter your last name.' );
+		
+		# Empty First Name
+		define( 'ERR_EMPTY_FULLNAME', 'Enter your full name.' );
+
+		# Empty New Email
+		define( 'ERR_EMPTY_NEW_EMAIL', 'Please enter your email address.' );
+		
+		# Empty New Phone
+		define( 'ERR_EMPTY_NEW_PHONE', 'Please enter your telephone number.' );
+		
+		# Empty New Full Address
+		define( 'ERR_EMPTY_NEW_ADDRESS', 'Please enter your full address.' );
+
+		# Empty New Username
+		define( 'ERR_EMPTY_NEW_USERNAME', 'Please enter a username' );
+
+		# Empty New Password
+		define( 'ERR_EMPTY_NEW_PASS', 'Enter a password.' );
+
+		# Empty New Confirm Password
+		define( 'ERR_EMPTY_NEW_CONFIRM_PASS', 'Please reenter your password.' );
+
+
+	# Invalid Inputs
+
+		# Invalid First Name
+		define( 'ERR_INVALID_FIRST_NAME', 'Please enter a valid first name.' );
+
+		# Invalid Middle Name
+		define( 'ERR_INVALID_MIDDLE_NAME', 'Please enter a valid middle name.' );
+
+		# Invalid Last Name
+		define( 'ERR_INVALID_LAST_NAME', 'Please enter a valid last name.' );
+		
+		# Invalid First Name
+		define( 'ERR_INVALID_FULLNAME', 'Please enter a valid full name. <code class="txt_wht">a-z, A-Z, -, and .</code> are allowed.' );
+
+		# Invalid New Email
+		define( 'ERR_INVALID_NEW_EMAIL', 'Please enter a valid email address.' );
+		
+		# Invalid New Phone Number
+		define( 'ERR_INVALID_NEW_PHONE', 'Please enter a valid telephone number.' );
+
+		# Invalid New Username
+		define( 'ERR_INVALID_NEW_USERNAME', 'Please enter a valid username. Usernames must be at least 2 - 30 characters long and may only contain <code>a-z</code>, <code>A-Z</code>, <code>0-9</code> and <code>_</code>.' );
+
+		# Invalid Password
+		define( 'ERR_INVALID_PASS', 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase and 1 number.' );
+
+	# Match Inputs
+
+		# Mismatched Password & Confirm
+		define( 'ERR_MM_PASS', 'Your passwords aren&rsquo;t the same. Please try again.' );
+
+	# Taken Inputs
+
+		# Email Taken
+		define( 'ERR_EMAIL_TAKEN', 'This email address has already been registered. If you have forgotten your password, use the link to have your password sent to you. <a href="' . SITEURL . 'forgot_password">Forgot Password</a>.'  );
+
+		# Username Taken
+		define( 'ERR_USERNAME_TAKEN', 'This username has already been registered. Please try another one.'  );
+
+
+# ***** FORM CONSTANTS ***** #
+# ***************************#
+
+
 # Prevents direct script access
 //if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}

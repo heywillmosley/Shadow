@@ -45,16 +45,17 @@ class Form
 	 * @param          string  OPTIONAL set $_POST or $_GET
 	 * @return         string
 	 */
-		function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
+	 
+		function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST', $checked )
 		{
 			# Check for and process value
 			$value = false;
 			
 			# Set value of $name if it's set
-			if( isset( $postGet[$name] ) ) $value = $postGet[$name];
+			if( isset( $_POST[$name] ) ) $value = $_POST[$name];
 			
 			# Strip magic slashes if enabled
-			if( $value && get_magic_quotes_gcp( ) ) $value = stripslashes( $value );
+			//if( $value && get_magic_quotes_gcp( ) ) $value = stripslashes( $value );
 			
 			# Check if the input type is text or password
 			if( ( $type == 'text' ) || ( $type == 'password' ) )
@@ -63,7 +64,8 @@ class Form
 				echo '<input type="' . $type . '" name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
 				
 				# add the input's value, if applicable and strip html special characters
-				if( $value ) echo ' value"' . htmlspecialchars( $value ) . '" ';
+				if( isset( $value ) ) 
+					echo ' value="' .  $value . '" ';
 				
 				# Check for errors
 				if( array_key_exists( $name, $errors ) )
@@ -87,14 +89,15 @@ class Form
 				# Begin creating the input
 				echo '<textarea name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
 				
+				
 				# Check for errors
 				if( array_key_exists( $name, $errors ) )
 				{
 					# Set Error class and display error underneath input
 					echo 'class="form-' . $name . ' ' . $classes . ' error" >';
 					
-					# add the input's value, if applicable and strip html special characters
-					if( $value )  echo htmlspecialchars( $value );
+					if( isset( $_POST[FORM_NEW_FULL_ADDRESS] ) ) 
+						echo  htmlentities($_POST[FORM_NEW_FULL_ADDRESS]);
 					
 					echo  '</textarea>'
 						. '<small class="error">' . $errors[$name] . '</small>';
@@ -103,12 +106,38 @@ class Form
 				
 				else
 				{
-					echo 'class="form-' . $name . ' ' . $classes . '" >
-						</textarea>';
+					echo 'class="form-' . $name . ' ' . $classes . '" >';
+					
+					# add the input's value, if applicable and strip html special characters
+					if( isset( $_POST[FORM_NEW_FULL_ADDRESS] ) ) 
+						echo  htmlentities($_POST[FORM_NEW_FULL_ADDRESS]);
+					
+					echo '</textarea>';
+					
 					
 				} // end else
 			
 			} // end elseif( $type == 'textarea' )
+			
+			elseif( $type = 'checkbox' )
+			{
+				echo  "<label for='checkbox1' class='form-$name $classes' id='$ids'><input type='checkbox' name='$name' ";
+				
+				if(isset($_POST[FORM_OPT_IN]) && $_POST[FORM_OPT_IN] == 'on') 
+				{
+					echo " value='" . $_POST[FORM_OPT_IN] . "'";
+					
+					if( $checked == TRUE )
+
+						 echo  'value="on" CHECKED ';
+				}
+					
+					
+				
+				
+				echo "><span class='mls'>$placeholder</span></label>";
+				
+			} // end
 			
 		} // end method create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
 		
@@ -181,7 +210,7 @@ class Form
 	 */
 		function vName( $name ) 
 		{	  
-				return preg_match ('/^[A-Z \'.-]{1,30}$/i', $name);
+				return preg_match ('/^[A-Z \',.-]{1,30}$/i', $name);
 						 
 		} // end method vName($name)
 	
@@ -201,7 +230,7 @@ class Form
 	 */
 		function vLongName( $name ) 
 		{
-			  return preg_match ('/^[A-Z \'.-]{1,50}$/i', $name);
+			  return preg_match ('/^[A-Z \',.-]{1,50}$/i', $name);
 						 
 		} // end method vName($name)
 		
@@ -222,7 +251,7 @@ class Form
 	 */
 		function vFullName( $name ) 
 		{
-			  return preg_match ('/^[A-Z \'.-]{1,750}$/i', $name);
+			  return preg_match ('/^[A-Z \',.-]{1,750}$/i', $name);
 						 
 		} // end method vName($name)
 		
@@ -501,7 +530,17 @@ class Form
 	 */
 		function vUSPhone( $phoneNo )
 		{
-			return preg_match('/\(?\d{3}\)?[-\s.]?\d{3}[-\s.]\d{4}/x', $phoneNo);
+			# Checks if number has dashes
+			if( strpos( $phoneNo,'-' ) )
+				return preg_match('/\(?\d{3}\)?[-\s.]?\d{3}[-\s.]\d{4}/x', $phoneNo);
+				
+			# Checks if number has periods
+			elseif( strpos( $phoneNo,'.' ) )
+				return preg_match('/\(?\d{3}\)?[.]?\d{3}[.]\d{4}/x', $phoneNo);
+			
+			# Validate just numbers	
+			else
+				return preg_match('/\(?\d{3}\)?\d{3}\d{4}/x', $phoneNo);
 			
 		} // end method vUSPhone( $phoneNo )
 		
