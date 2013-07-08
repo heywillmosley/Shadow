@@ -6,10 +6,10 @@
  * responsive e-ecommerce development for php 5.0.0 or newer
  *
  * @package        Shadow
- * @author         Super Amazing
+ * @author         Super Amazing, William Mosley, III <will@livesuperamazing.com>
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
- * @license        
- * @link           http://shadow.livesuperamazing.com
+ * @license        MIT
+ * @link           http://shadow.superamazingstore.com
  * --------------------------------------------------------------------------------
  *
  * System Config
@@ -41,11 +41,16 @@
  */
 	define('SYS_VER', '0.1 s8');
 	
-	# Numeric - strip dots
+	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( '.', '', SYS_VER ) ) ) );
+
 	
 /**
- *  Check if Content is above Shadow Root
+ * Check if Content is above Shadow root folder
+ *
+ * This allows Shadow to be fully copied in to a website directory
+ * And useable. This looks for the content folder
+ * @todo Add another file/folder to look for E.g. db.inc.php to prevent breakage
  */
  	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/Content' ) );
 
@@ -65,7 +70,8 @@
 
 	
 /**
- *  Define Core Path for accessing scripts not stored in PUBLIC_HTML
+ * Define Core Path for accessing scripts not stored in PUBLIC_HTML
+ * One level above root
  */
 	define( 'CORE_URI', dirname( ROOT_URI ) . '/' );
 	
@@ -77,6 +83,7 @@
 
 /**
  * Load Shadow Config Settings
+ * @todo make all of this functionality doable through the database and pilot
  */
  	# Include Pilot
 	if( !IS_ROOT ) require_once( ROOT_URI . 'pilot.php' );
@@ -87,25 +94,32 @@
  	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
 
 
-$db_level2 = dirname( ROOT_URI  ) . '/db.inc.php';
-$db_level1 = ROOT_URI . 'db.inc.php';
-$db_root = ROOT_URI . 'db.inc.php';
 /**
  * Check if database is above root
  */
+ 	$db_level2 = dirname( ROOT_URI  ) . '/db.inc.php';
+	$db_level1 = ROOT_URI . 'db.inc.php';
+	$db_root = ROOT_URI . 'db.inc.php';
+ 	
 	# Check for db.inc.php outside of Shadow Directory
 	if( !IS_ROOT )
 	{
 		# Check if db.inc.php is level 2 up from Shadow Root
 		if( file_exists( $db_level2 ) && !file_exists( $db_level1 ) ) 
 		{	
-			define( 'DB', $db_level2 );
-			echo 'level 2';
+			/**
+			 * Define Database constant
+			 */
+				define( 'DB', $db_level2 );
+				echo 'level 2';
 		}
 		# Check if db.inc.php is level 2 up from Shadow Root
 		elseif( file_exists( $db_level1 ) ) 
 		{	
-			define( 'DB', $db_level1 );
+			/**
+			 * Define Database constant
+			 */
+				define( 'DB', $db_level1 );
 		}
 		else
 		{
@@ -117,23 +131,25 @@ $db_root = ROOT_URI . 'db.inc.php';
 	
 	# Check for db.inc.php inside of Shadow Directory
  	else
-	{	
-		define( 'DB', $db_root );	
+	{
+		/**
+		 * Define Database constant
+		 */	
+			define( 'DB', $db_root );	
 	}
 	  
-/**
- * Define Database
- */
-	/**
-	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-	 */
-	  define( 'MYSQL', DB );
+		/**
+		 * Define Database
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+		  define( 'MYSQL', DB );
 
 
 /**
  * Define Framework Name
  */
  	define('FW_NAME', 'Shadow');
+
 	
 /**
  * Table Prefix
@@ -143,7 +159,9 @@ $db_root = ROOT_URI . 'db.inc.php';
 	
 /**
  * IF USING WORDPRESS or WP directory exists, load Wordpress
+ * @todo Add Wordpress Intergration
  */
+ 	# Check for 'wordpress' directory
  	if( is_dir( 'wordpress' ) )
 	{	
 		# Wordpress view bootstrapper
@@ -154,11 +172,11 @@ $db_root = ROOT_URI . 'db.inc.php';
 	
 	} // end if( is_dir( 'wordpress' ) || is_dir( 'wp' ) )
 	
+	# Check for 'wp' directory
 	elseif( is_dir( 'wp' ) )
 	{	
 		# Wordpress view bootstrapper
 		define( 'WP_USE_THEMES', true );
-		
 		
 		# Load wordpress's bootstrap file
 		require( ABSPATH . 'wp-blog-header.php' );
@@ -167,7 +185,7 @@ $db_root = ROOT_URI . 'db.inc.php';
 
 	
 /**
- * ROOT FOLDER NAME
+ * Set Root folder name:
  */
  	# Check if alias is being used
 	if( SYS_ALIAS != '' ) 
@@ -203,7 +221,6 @@ $db_root = ROOT_URI . 'db.inc.php';
 			
 			// URL to the system folder
 			define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
-			
 			
 			/**
 			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
