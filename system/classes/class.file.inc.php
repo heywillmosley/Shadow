@@ -114,5 +114,22 @@ class Files
 		
 		
 	} // end function get_file_ext( $filename )
+	
+	/**
+	 * Image Exists Method
+	 *
+	 * This function function checks if an image exists
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s5
+	 * @param          string image
+	 * @return         boolean
+	 */
+		function image_exist( $img ) 
+		{
+			if( @file_get_contents( $img,0,NULL,0,1) ){ return 1; } else{ return 0; }
+			
+		} // end function image_exist( $img )
  
 } // end ClassName

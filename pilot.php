@@ -41,7 +41,7 @@
 	define( 'SHADOW_URI_LEVEL', 0 );
 	
 	# Define current App
-	define( 'CURRENT_APP', 'safeCareRx' );
+	define( 'CURRENT_APP', 'safeCareRxTransition' );
 	
 	/* Define app type\
 	 * Types:

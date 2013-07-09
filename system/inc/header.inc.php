@@ -66,6 +66,12 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
     </script>
 
 <?php if( is_logged_in() ) : ?>
+	<style>
+		#main{
+			padding-left: 180px !important
+		}
+	
+	</style>
 	<div id="shdw pilot-wrapper">
           	<div class="off-canvas relative">
             	<div id="shdw">
