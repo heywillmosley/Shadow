@@ -178,7 +178,12 @@ $db_root = ROOT_URI . 'db.inc.php';
 	
 	else
 	{
-		define( 'ROOT_NAME', basename( ROOT_URI ) );
+		if( !IS_ROOT )
+			# Resolve url for Shadow below root
+			define( 'ROOT_NAME', dirname(dirname( dirname( substr( __FILE__, strlen( $_SERVER[ 'DOCUMENT_ROOT' ] ) ) ) ) ) );
+			
+		else
+			define( 'ROOT_NAME', basename( ROOT_URI ) );
 	
 	} // end else
 
