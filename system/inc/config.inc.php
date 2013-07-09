@@ -271,7 +271,11 @@ $db_root = ROOT_URI . 'db.inc.php';
 	  define( 'CONTENT_PATH', CONTENT_URI );
 	
 	// URL to the system folder
-	define( 'CONTENT_URL', ROOT_URL . 'content/' );
+	if( !IS_ROOT )
+		define( 'CONTENT_URL', dirname( ROOT_URL ) . '/content/' );
+		
+	else
+		define( 'CONTENT_URL', ROOT_URL . 'content/' );
 	
 	// Path to the application folder
 	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
