@@ -28,7 +28,12 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
     <head>
         <meta charset="utf-8">
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> in HTACCESS FILE to Avoid Validation Error -->
-        <title><?php echo get_page_title(). ' | ' . SITE_NAME; ?></title>
+        <title><?php
+		if( get_page_title() == '' || get_page_title == 'home' )
+			echo SITE_NAME;
+		else
+		 	echo get_page_title(). ' | ' . SITE_NAME; ?>
+        </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
     	<meta name="keywords" content="natural medicine, natural health, homeopathic remedies, homeopathic medicines, homeopathy, no side effects, side effects, no side affects, no contraindications, natural drugs, natural meds, natural cures, natural remedies, safe medicine, nontoxic, non-toxic, not toxic, hypoallergenic, hypo-allergenic, non-allergic, no allergy, dr. king, king bio, bio king, safecare, smart medicine, safe-care, safe medicines, safe homeopathy"/> 
     	<meta name="author" content="<?php echo ADMIN_NAME; ?>">
