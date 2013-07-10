@@ -55,8 +55,8 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
       	<?php endif; ?> 
         
         <?php // Load Scripts; ?>
-		<script src="<?php echo SYS_JS_URI; ?>vendor/custom.modernizr.js"></script>
-        <script src="<?php echo SYS_JS_URI; ?>vendor/response.js"></script>
+		<script src="<?php echo SYS_JS_URL; ?>vendor/custom.modernizr.js"></script>
+        <script src="<?php echo SYS_JS_URL; ?>vendor/response.js"></script>
     </head>	
     
 	<script>
@@ -69,7 +69,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
     e.style.display = 'block';
     }
     </script>
-
+    
 <?php if( is_logged_in() ) : ?>
 	<style>
 		#main{

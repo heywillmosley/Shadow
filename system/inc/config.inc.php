@@ -607,11 +607,29 @@ $db_root = ROOT_URI . 'db.inc.php';
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
 
-	// Path to system javascript Folder
-	define('BASE_JS_URI', SYS_URI.'assets/js/');
+	/**
+	 * Path to system javascript Folder
+	 * @since 0.1.1 s8
+	 */
+		define( 'SYS_JS_URI', SYS_URI.'assets/js/' );
 	
-	// URL to system javascript
-	define('BASE_JS_URL', SYS_URL.'assets/js/');
+		/**
+		 * Path to system javascript Folder
+		 * @depreciated 0.1.1 s8 No longer used by internal code and not recommended. Support till 7/10/2014
+		 */
+			define( 'BASE_JS_URI', SYS_JS_URI );
+	
+	/**
+	 * URL to system javascript Folder
+	 * @since 0.1.1 s8
+	 */
+		define( 'SYS_JS_URL', SYS_URL.'assets/js/' );
+	
+		/**
+		 * URL to system javascript Folder
+		 * @depreciated 0.1.1 s8 No longer used by internal code and not recommended. Support till 7/10/2014
+		 */
+			define( 'BASE_JS_URL', SYS_JS_URI );
 	
 	
 	# Check if javascript directory exists and define
