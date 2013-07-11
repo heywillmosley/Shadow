@@ -52,7 +52,7 @@
  * And useable. This looks for the content folder
  * @todo Add another file/folder to look for E.g. db.inc.php to prevent breakage
  */
- 	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/Content' ) );
+ 	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/content' ) );
 
 
 /**
@@ -188,7 +188,7 @@
  * Set Root folder name:
  */
  	# Check if alias is being used
-	if( SYS_ALIAS != '' ) 
+	if( SYS_ALIAS != '' && ENVIRONMENT == 'development' ) 
 	{
 		define( 'ROOT_NAME', SYS_ALIAS );
 		
@@ -229,6 +229,22 @@
 			  
 			
 		} // end if( ADDON_DOMAIN != '' )
+		
+		else
+		{
+			$rooturl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ROOT_NAME;
+			$rooturl = rtrim( $rooturl, '/\\' );
+			$rooturl = $rooturl . '/';
+			
+			// URL to the system folder
+			define('ROOT_URL', str_replace("\\", "/", $rooturl));
+			
+			/**
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 */
+			  define( 'ROOTURL', ROOT_URL );
+			}
+		
 	
 	} // end if( ENVIRONMENT != 'development' )
 	
@@ -247,7 +263,6 @@
 		 */
 		  define( 'ROOTURL', ROOT_URL );
 		}
-	
 
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
@@ -1028,6 +1043,7 @@ if( !isset( $debug ) )
 
 require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
+require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
 
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #

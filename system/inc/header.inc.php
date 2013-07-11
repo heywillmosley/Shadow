@@ -56,20 +56,18 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
         
         <?php // Load Scripts; ?>
 		<script src="<?php echo SYS_JS_URL; ?>vendor/custom.modernizr.js"></script>
-        <script src="<?php echo SYS_JS_URL; ?>vendor/response.js"></script>
+        <script>
+		// Toggle_Visibility JS
+		function toggle_visibility(id) {
+		var e = document.getElementById(id);
+		if(e.style.display == 'block')
+		e.style.display = 'none';
+		else
+		e.style.display = 'block';
+		}
+		</script>
     </head>	
-    
-	<script>
-    // Toggle_Visibility JS
-    function toggle_visibility(id) {
-    var e = document.getElementById(id);
-    if(e.style.display == 'block')
-    e.style.display = 'none';
-    else
-    e.style.display = 'block';
-    }
-    </script>
-    
+
 <?php if( is_logged_in() ) : ?>
 	<style>
 		#main{
