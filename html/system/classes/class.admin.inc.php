@@ -36,7 +36,7 @@ class Admin
 	 */
 	 	function isLoggedIn()
 		{
-			return TRUE;
+			return FALSE;
 				
 		} // end function is_logged_in()
  
