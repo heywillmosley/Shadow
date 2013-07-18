@@ -1,0 +1,1 @@
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shadow.folks' doesn't existSQLSTATE[42S02]: Base table or view not found: 1146 Table 'shadow.folks' doesn't exist

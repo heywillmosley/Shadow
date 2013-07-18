@@ -244,6 +244,24 @@ INSERT INTO `shdw_specific_coffees` VALUES(8, 3, 4, 'caf', 'whole', 15.00, 26, '
 INSERT INTO `shdw_specific_coffees` VALUES(9, 3, 4, 'decaf', 'whole', 15.50, 15, '2010-08-15 19:15:54');
 INSERT INTO `shdw_specific_coffees` VALUES(10, 3, 5, 'caf', 'whole', 32.50, 3, '2010-08-15 19:15:54');
 
+
+--
+-- Table structure for table `shdw_products`
+--
+
+CREATE TABLE `shdw_products` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `non_coffee_category_id` tinyint(3) unsigned NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `description` tinytext,
+  `image` varchar(45) NOT NULL,
+  `price` decimal(5,2) unsigned NOT NULL,
+  `stock` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `non_coffee_category_id` (`non_coffee_category_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
