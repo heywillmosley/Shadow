@@ -70,6 +70,7 @@ class Page
 				$this->p = NULL;
 				
 				
+				
 			/**
 			 * Remove trailing slash from page slug
 			 */

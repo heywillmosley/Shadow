@@ -42,7 +42,7 @@ define('INDEX',TRUE);
 		
 	if( file_exists( APP_INC_URI.'functions.inc.php' ) )
 		include_once(APP_INC_URI.'functions.inc.php');
- 
+ 	
  
 /**
  * Include the header file:
@@ -54,6 +54,7 @@ define('INDEX',TRUE);
  * Include the content-specific page and unset page
  */
 	get_page();
+	
 
 /**
  * Include the footer file:
