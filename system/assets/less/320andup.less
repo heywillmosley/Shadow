@@ -241,10 +241,10 @@ sup {
   vertical-align: baselineheight; }
 
 sup {
-  top: -.5em; }
+  top: -.5px; }
 
 sub {
-  bottom: -.25em; }
+  bottom: -.25px; }
 
 .lead {
   .font-size(18.4) !important; }
@@ -341,6 +341,10 @@ sub {
     ol {
       margin: 0 0 1.5em -24px;
       padding: 0 0 0 24px; }
+	  
+	ul li, ol li{
+		list-style-position:inside;	
+	}
     
     li ul,
     li ol {
@@ -863,6 +867,27 @@ strong.s400, .strong.s400 { font-weight: 400; }
   list-style: none;
 }
 
+
+.book{
+	margin: 10px;
+	
+	
+	display: inline-block;	
+	img{
+		.box-shadow(0 1px 3px rgba(0,0,0,.25));
+		margin-bottom: 5px;
+		display: block;
+		width: 100%;
+	max-width:100%;
+	}
+	.title{
+		
+	}
+}
+
+.book.thumbnail{
+	
+}
 
 .shadow-nav {
 	height: 25px;

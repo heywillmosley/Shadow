@@ -144,11 +144,71 @@ class Page
 				$this->page_title = 'About Homeopathy';
 			 }
 			 
-			 elseif( $this->p == 'safecarerx-medicine' )
+			 elseif( $this->p == 'medicine' )
 			 {
-				$this->page = APP_PAGE_URI . 'about-medicine.php';
-				$this->page_title = SITE_NAME. ' + Medicine';
+				$this->page = APP_PAGE_URI . 'powerful-benefits.php';
+				$this->page_title = 'Powerful Benefits of SafeCareRx';
 			 }
+			 	
+				elseif( $this->p == 'medicine/powerful-benefits-of-safecarerx' )
+				 {
+					$this->page = APP_PAGE_URI . 'powerful-benefits.php';
+					$this->page_title = 'Powerful Benefits of SafeCareRx';
+				 }
+				 
+				 elseif( $this->p == 'medicine/what-is-homeopathy' )
+				 {
+					$this->page = APP_PAGE_URI . 'what-is-homeopathy.php';
+					$this->page_title = 'What Is Homeopathy';
+				 }
+			 
+				 elseif( $this->p == 'medicine/homeopathic-principles' )
+				 {
+					$this->page = APP_PAGE_URI . 'homeopathic-principles.php';
+					$this->page_title = 'Homeopathic Principles';
+				 }
+				 
+				 elseif( $this->p == 'medicine/what-types-of-diseases-does-homeopathy-address' )
+				 {
+					$this->page = APP_PAGE_URI . 'address-diseases.php';
+					$this->page_title = 'What Types of Diseases Does Homeopathy Address?';
+				 }
+				 
+				 elseif( $this->p == 'medicine/solving-contemporary-healthcare-problems' )
+				 {
+					$this->page = APP_PAGE_URI . 'solving-healthcare.php';
+					$this->page_title = 'Solving Contemporary Healthcare Problems';
+				 }
+				 
+				 elseif( $this->p == 'medicine/the-difference-between-homeopathic-herbal-and-nutritional-products' )
+				 {
+					$this->page = APP_PAGE_URI . 'the-difference.php';
+					$this->page_title = 'The Difference Between Homeopathic, Herbal and Nutritional Products';
+				 }
+				 
+				 elseif( $this->p == 'medicine/finding-the-right-formulas' )
+				 {
+					$this->page = APP_PAGE_URI . 'right-formulas.php';
+					$this->page_title = 'Finding the Right Formulas';
+				 }
+				 
+				 elseif( $this->p == 'medicine/dosage-be-flexible-to-be=successful' )
+				 {
+					$this->page = APP_PAGE_URI . 'dosage.php';
+					$this->page_title = 'DOSAGE: Be Flexible to Be Successful!';
+				 }
+				 
+				 elseif( $this->p == 'medicine/how-soon-can-results-be-expected' )
+				 {
+					$this->page = APP_PAGE_URI . 'results.php';
+					$this->page_title = 'How Soon Can Results Be Expected?';
+				 }
+				 
+				 elseif( $this->p == 'medicine/homeopathic-growth-statistics' )
+				 {
+					$this->page = APP_PAGE_URI . 'statistics.php';
+					$this->page_title = 'Homeopathic Growth Statistics';
+				 }
 			 
 			 elseif( $this->p == 'products' )
 			 {
@@ -166,6 +226,12 @@ class Page
 			 {
 				$this->page = APP_PAGE_URI . 'other-services.php';
 				$this->page_title = 'Other Services';
+			 }
+			 
+			 elseif( $this->p == 'about' )
+			 {
+				$this->page = APP_PAGE_URI . 'about.php';
+				$this->page_title = 'About';
 			 }
 			 
 			 elseif( $this->p == 'contact' )

@@ -47,6 +47,139 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
         
         <!-- Load Stylesheets -->
         <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>all.css" type="text/css" media="screen" />
+        
+        <style>
+			@media print{
+				.hide-for-print
+				{
+					display:none !important;
+				}
+				
+				.show-for-print
+				{
+					display:block !important;
+				}
+				
+				.print-page-break
+				{
+					 page-break-before: always !important;
+				}
+				
+				/* 1. ROOT 					============================== */
+
+				* { 
+				background : transparent !important; 
+				color : black !important; 
+				box-shadow : none !important; 
+				text-shadow : none !important; 
+				filter : none !important; 
+				-ms-filter : none !important;
+				font-family:Arial, Helvetica, sans-serif !important; }
+				
+				.page { 
+				margin : 0.5cm; }
+				
+				/* 2. TYPOGRAPHY 			============================== */
+				
+				h2, h3 { 
+				orphans : 3; 
+				widows : 3; 
+				page-break-after : avoid; }
+				
+				p { 
+				orphans : 3; 
+				widows : 3; }
+				
+				pre, blockquote { 
+				border : 1px solid @gray; 
+				page-break-inside : avoid; }
+				
+				abbr[title]:after { 
+				content: " (" attr(title) ")"; }
+				
+				/* 3. COLOUR 				============================== */
+				
+				a, a:visited { 
+				text-decoration : underline;
+				color: blue !important; }
+				
+				a[href]:after { 
+				content : " (" attr(href) ")"; }
+				
+				a[href^="javascript:"]:after, 
+				a[href^="#"]:after { 
+				content : ""; }
+				
+				/* 4. TEXTURE 				============================== */
+				
+				img { 
+				max-width : 100% !important;
+				page-break-inside : avoid; }
+				
+				thead { 
+				display : table-header-group; } 
+				
+				tr { 
+				page-break-inside : avoid; }
+				
+
+			
+			/* Don't display navigation elements */
+			nav, aside{
+				display: none;	
+			}
+			
+			/* Get rid of unneeded margins and padding */
+			body, article{
+				width: 100%;
+				margin: 0;
+				padding: 0;	
+			}
+			
+			/* Add 2cm margin */
+			@page{
+				margin: 2cm;	
+			}
+			
+			/* Make sure heading don't start at bottom of page */
+			h2, h3, .step{
+				page-break-after: avoid;
+			}
+			
+			/* Make sure images don't overflow page */
+			img{
+				max-width: 100%;	
+			}
+			
+			/* Begin articles on a seperate new page */
+			article, .reference, .diagrams, .resources {
+			   page-break-before: always !important;
+			}
+			
+			/* Prevent unordered lists and images from being split across multiple pages */
+			ul, img {
+			   page-break-inside: avoid;
+			}
+			
+			/* Make links bold */
+			article a {
+			  
+			  text-decoration: none;
+		   }
+			
+			/* Expand external link urls */
+		   article a[href^=http]:after {
+			  content:" <" attr(href) "> ";
+		   }
+		   
+		   /* Don't show anchor links around images */
+		   article a[href^="#"]:after {
+			   content: "";
+			}
+			
+		}
+		</style>
+        
         <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" media="screen" />
          <?php if( USE_GOOGLE_FONTS ) : ?>
