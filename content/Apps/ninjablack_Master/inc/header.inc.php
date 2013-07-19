@@ -21,16 +21,12 @@ if(!defined('ROOT_URI')){require'../../../system/inc/config.inc.php';header('Loc
  
 // --------------------------------------------------------------------------------?>
 
-<body data-responsejs='{
-    "create": [
-    { "breakpoints": [0,301,320,600,480,768,992,1382], "mode": "src", "prefix": "src" }, 
-    { "breakpoints": [0,301,320,600,480,768,992,1382], "mode": "markup", "prefix": "r" }
-    ]}'>
+<body>
 
 <div class="wrapper">
 <?php $e = new Environment; $e->environment_notice(); unset( $e ); ?>
 
-<a class="drop-nav-trigger" onclick="toggle_visibility('drop-nav')"></a>
+<a class="drop-nav-trigger" onClick="toggle_visibility('drop-nav')"></a>
 <nav class="actionbar">
 	<a class="show-for-small logo" href="<?php SITE_URL; ?>"><?php echo SITE_NAME; ?></a>
     <ul id="drop-nav" class="drop-nav">

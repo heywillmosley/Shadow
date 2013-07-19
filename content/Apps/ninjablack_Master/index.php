@@ -23,6 +23,57 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
 app_header();  
 ?>
 
+<<<<<<< HEAD
+
+=======
+<?php
+
+# Your development database name
+	define( 'DB_NAME', 'shadow' );
+	
+	# Your development database username
+	define( 'DB_USER', 'wm0513y' );
+	
+	# Your development database user password - change again 7/24/13
+	define( 'DB_PASSWORD', 'mRAcjwtr8xjeAVCm' );
+	
+	# Your development databases's connection type
+	define( 'DB_HOST', 'localhost' ); // Most likely localhost
+	
+	$host = DB_HOST;
+	$dbname = DB_NAME;
+	$user = DB_USER;
+	$pass = DB_PASSWORD;
+
+# connect to the database  
+try {  
+  	$DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);  
+  	$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
+  
+}  
+catch(PDOException $e) {  
+    echo "Could not connect to database";  
+    file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
+}
+
+# Insert into a new row 
+try {  
+	# Insert a new row
+	$data = array( 'Another Mug', 'The best mug in the world', 'bestmug.jpg' );
+	$stmt = "INSERT INTO shdw_non_coffee_products ( name, description, image )
+							VALUES ( ?, ?, ? )";
+  	$STH = $DBH->prepare( $stmt );  
+	$STH->execute( $data );  
+  	
+}  
+catch(PDOException $e) {  
+    echo "Could not insert new row.";  
+    file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
+}   
+
+?>
+>>>>>>> 0226974b118d0808a7cf6a36d51024ed7d15ca7b
+
 <div class="pas">
     <div class="row">
         <div class="small-12 large-8 columns">
