@@ -246,25 +246,6 @@ INSERT INTO `shdw_specific_coffees` VALUES(10, 3, 5, 'caf', 'whole', 32.50, 3, '
 
 
 --
--- Table structure for table `shdw_products`
---
-
-CREATE TABLE `shdw_products` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `non_coffee_category_id` tinyint(3) unsigned NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `description` tinytext,
-  `image` varchar(45) NOT NULL,
-  `price` decimal(5,2) unsigned NOT NULL,
-  `stock` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `non_coffee_category_id` (`non_coffee_category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `transactions`
 --
 
@@ -300,6 +281,68 @@ CREATE TABLE `shdw_wish_lists` (
   KEY `product_type` (`product_type`,`product_id`),
   KEY `user_session_id` (`user_session_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `shdw_categories` (
+  `id` tinyint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `category` varchar(40) NOT NULL,
+  `description` tinytext NULL,
+  `image` varchar(45) NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+--
+-- Dumping data for table `specific_coffees`
+--
+
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Allergy' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Cancer Support' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Children' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Circulation' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Cleansing & Detox' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Digestion' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Eyes' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Immune' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Men/Women' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Oral Health' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Pain' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Skin' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Sleep' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Sports' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Sleep' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Urinary Track' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Weight' );
+INSERT INTO `shdw_categories` ( category ) VALUES( 'Mind & Body' );
+
+
+--
+-- Table structure for table `shdw_products`
+--
+
+CREATE TABLE `shdw_products` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `category` tinytext NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `description` tinytext,
+  `active_ingred` TEXT NULL,
+  `inactive_ingred` TEXT NULL,
+  `potencies` TEXT NULL,
+  `weight` decimal(5,2) unsigned NOT NULL,
+  `image` varchar(45) NOT NULL,
+  `price` decimal(5,2) unsigned NOT NULL,
+  `SKU` INT unsigned NULL UNIQUE,
+  `UPC` INT unsigned NULL UNIQUE,
+  `stock` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+
 
 -- -----------------------------
 -- Stored Procedures --
