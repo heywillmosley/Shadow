@@ -103,18 +103,14 @@
  	$db_level2 = dirname( ROOT_URI  ) . '/db.inc.php';
 	$db_level1 = ROOT_URI . 'db.inc.php';
 	$db_root = ROOT_URI . 'db.inc.php';
- 	
-	# Check for db.inc.php outside of Shadow Directory
-	if( !IS_ROOT )
-	{
-		# Check if db.inc.php is level 2 up from Shadow Root
+	
+	# Check if db.inc.php is level 2 up from Shadow Root
 		if( file_exists( $db_level2 ) && !file_exists( $db_level1 ) ) 
 		{	
 			/**
 			 * Define Database constant
 			 */
 				define( 'DB', $db_level2 );
-				echo 'level 2';
 		}
 		# Check if db.inc.php is level 2 up from Shadow Root
 		elseif( file_exists( $db_level1 ) ) 
@@ -124,23 +120,20 @@
 			 */
 				define( 'DB', $db_level1 );
 		}
+		
+		elseif( file_exists( $db_root ) ) 
+		{	
+			/**
+			 * Define Database constant
+			 */
+				define( 'DB', $db_root );
+		}
 		else
 		{
 			echo '<h1>Database not set.</h1><p>Please place <code>db.inc.php</code> inside of your root folder.</p> <p>Alternatively, you can copy this from the root of your Shadow directory.';
 			exit;
 		}
-		
-	}
-	
-	# Check for db.inc.php inside of Shadow Directory
- 	else
-	{
-		/**
-		 * Define Database constant
-		 */	
-			define( 'DB', $db_root );	
-	}
-	  
+ 	
 		/**
 		 * Define Database
 		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
@@ -158,7 +151,8 @@
  * Table Prefix
  */
  	define('SYS_PREFIX', 'shdw-');
-	
+
+
 	
 /**
  * IF USING WORDPRESS or WP directory exists, load Wordpress
@@ -1017,6 +1011,7 @@ define( 'QA_NOTICE', 'Quality Assurance environment of ' . SITE_NAME . ' - Used 
  	define( 'HTTP_SERVER_PORT', '80' );
 
 
+
 # Most Important setting!
 
 /**
@@ -1063,6 +1058,7 @@ if( !isset( $debug ) )
 # ************************** #
 # ***** LOAD FUNCIONS ****** #
 
+require_once SYS_FUNCTIONS_URI.'function.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
@@ -1165,6 +1161,9 @@ set_error_handler( 'my_error_handler' );
 
 	# New Username
 	define( 'FORM_NEW_USERNAME', 'new_username' );
+	
+	# Username or Email
+	define( 'FORM_USERNAME_EMAIL', 'username_email' );
 
 	# New Email
 	define( 'FORM_NEW_EMAIL', 'new_email' );
@@ -1180,6 +1179,9 @@ set_error_handler( 'my_error_handler' );
 
 	# New Password
 	define( 'FORM_NEW_PASS', 'new_pass' );
+	
+	# New Password
+	define( 'FORM_PASS', 'pass' );
 
 	# Confirm New Password
 	define( 'FORM_CONFIRM_NEW_PASS', 'confirm_new_pass' );
@@ -1222,6 +1224,12 @@ set_error_handler( 'my_error_handler' );
 
 		# Empty New Username
 		define( 'ERR_EMPTY_NEW_USERNAME', 'Please enter a username' );
+		
+		# Empty Username or Email
+		define( 'ERR_EMPTY_USERNAME_EMAIL', 'Please enter your username or email.' );
+		
+		# Empty Password
+		define( 'ERR_EMPTY_PASS', 'Please enter your password.' );
 
 		# Empty New Password
 		define( 'ERR_EMPTY_NEW_PASS', 'Enter a password.' );
@@ -1260,6 +1268,9 @@ set_error_handler( 'my_error_handler' );
 
 		# Mismatched Password & Confirm
 		define( 'ERR_MM_PASS', 'Your passwords aren&rsquo;t the same. Please try again.' );
+		
+		# Mismatched Password & Login
+		define( 'ERR_MM_LOGIN', 'Incorrect Username/Email and Password combination. Please try again. Note' . SITE_NAME . ' passwords are case sensitive. Please check your CAPS lock key.' );
 
 	# Taken Inputs
 

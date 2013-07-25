@@ -118,6 +118,15 @@ elseif( $_SERVER['HTTP_HOST'] == 'shadow.superamazing.com' || $_SERVER['HTTP_HOS
 	# The production environment
 	define( 'ENVIRONMENT', 'production' );
 	
+	# Set Root Domain for use for add on domains
+	define( 'ROOT_SERVER', 'superamazing.com' );
+	
+	# Set Add On Domain for seperate domains hosted on same server
+	define( 'ADDON_DOMAIN', 'stgshadow.superamazing.com' );
+	
+	# Set Add On Domain for seperate domains hosted on same server
+	define( 'ROOT_FOLDER', 'shadow' );
+	
 	
 } // end production settings
 
