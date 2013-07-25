@@ -31,13 +31,14 @@
  * Shadow Version
  *
  * What's New:
- * - System and application styles and scripts seperated and cleaned up
- * - Support for IE8 Browsers
- * - Environments ( Production, Stage, QA, Development )
- * - Complete system remodel using Object Oriented Programming
- * - System version control and handling of legacy versions
- * - Implemented full git version control
- * - Content folder and db.inc.php executable outside of Shadow root
+ *  -Added basic database connection functionality
+ * - Added responsive image system
+ * - Fixed javascripts
+ * - Added Drop Nav
+ * - Added Netflix like product slider
+ * - New IE Alert Panel for Legacy IE Browsers
+ * -Added Basic Product Catalog
+ * -Implement Pilot Interface
  */
 	define('SYS_VER', '0.1 s8');
 	

@@ -1,5 +1,45 @@
 # Shadow Changelog
 
+## Version Beta 0.1.8
+---------------------------------------------------------------------
+Release Date: 7/25/2013
+
+### Major -----------------------------------------------------------
+
+#### Images
+* Added responsive image system to increase load speed
+
+#### Print
+* Added Print Friendly webpages
+
+### Minor -----------------------------------------------------------
+
+#### System
+* Added basic product catalog functionality
+* Added pilot interface
+
+#### Pattern Library
+* Added Drop Nav Element for mobile navigation
+* Added Netflix like slider for products
+
+#### Browsers
+* Added Legacy IE notification that lets users know their browser is out of date, and encourages them to update
+
+#### Server
+* Updated filenames to follow server case-sensitive conventions
+
+#### Vendor
+* Added hisrc js
+* Added iealert js
+* Added jpanelmenu js
+* Bootstrap js
+
+#### Bugs & Fixes
+* Fixed broken javascript links
+
+=========================================================================
+=========================================================================
+
 ## Version Beta 0.1.7
 ---------------------------------------------------------------------
 Release Date: 6/20/2013
