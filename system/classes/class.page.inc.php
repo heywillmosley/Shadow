@@ -47,6 +47,15 @@ class Page
 			return $this->page_title;
 			
 		} // end 
+		
+	/**
+	 * This method gets the page title
+	 */
+	 	function pageTitle()
+		{
+			return $this->page_title;
+			
+		} // end 
 	
 	/**
 	 * This methhod sets the page called from url slug
@@ -134,8 +143,20 @@ class Page
 			
 			elseif( $this->p == 'start' )
 			 {
-				$this->page = APP_PAGE_URI . 'start.php';
-				$this->page_title = 'Become as a Practioner';
+				$this->page = APP_PAGE_URI . 'about-becoming-provider.php';
+				$this->page_title = 'About Being a Provider SafeCareRx';
+			 }
+			 
+			 elseif( $this->p == 'start/about-being-a-provider' )
+			 {
+				$this->page = APP_PAGE_URI . 'about-becoming-provider.php';
+				$this->page_title = 'About Being a SafeCareRx Provider';
+			 }
+			 
+			 elseif( $this->p == 'start/provider-signup' )
+			 {
+				$this->page = APP_PAGE_URI . 'provider-signup.php';
+				$this->page_title = 'Professional Provider Sign-up';
 			 }
 			 
 			 elseif( $this->p == 'homeopathy' )
@@ -177,7 +198,7 @@ class Page
 				 elseif( $this->p == 'medicine/solving-contemporary-healthcare-problems' )
 				 {
 					$this->page = APP_PAGE_URI . 'solving-healthcare.php';
-					$this->page_title = 'Solving Contemporary Healthcare Problems';
+					$this->page_title = 'Solving Contemporary Health Care Problems';
 				 }
 				 
 				 elseif( $this->p == 'medicine/the-difference-between-homeopathic-herbal-and-nutritional-products' )
@@ -248,7 +269,7 @@ class Page
 			
 			else
 			 {
-				$this->page = BASE_PAGE_URI . '404.php';
+				$this->page = APP_PAGE_URI . '404.php';
 				$this->page_title = 404; 
 			 }
 			 
@@ -284,6 +305,7 @@ class Page
 		
 	}
 	
+	
 	# Load Function @since 0.1.1 s5
 	function load($page = 'login') {
 		$url = ROOTURL;
@@ -311,12 +333,15 @@ class Page
 		# Check if there's a 404.php file in application directory
 		if ( !file_exists( APP_PAGE_URI. '404.php' ) )
 		{
+			# Include System 404
+			include ( APP_PAGE_URI.'404.php' );
+			exit;
 	
 			# Check if there's a 404.html file in application directory
 			if ( !file_exists( APP_PAGE_URI. '404.html' ) )
 			{
 				# Include System 404
-				include ( BASE_PAGE_URI.'404.php' );
+				include ( APP_PAGE_URI.'404.php' );
 				exit;
 				
 			} // end if

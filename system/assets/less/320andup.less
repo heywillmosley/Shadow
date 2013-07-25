@@ -663,6 +663,11 @@ strong.s400, .strong.s400 { font-weight: 400; }
     }
 }
 
+.disable.selection, .disabled.selection { // Only Disables Selection
+	pointer-events: none;  
+	opacity: 1
+}
+
 /* Line Height ---------------------- */
 .lh0d0{line-height:0 !important;}
 .lh0d1{line-height:0.1 !important;}
@@ -684,6 +689,11 @@ strong.s400, .strong.s400 { font-weight: 400; }
 .lh1d7{line-height:1.7 !important;}
 .lh1d8{line-height:1.8 !important;}
 
+
+/* APA Formating */
+.apa,.apa ul,.apa ol,.apa dl,.ref-apa,.ref-apa ul,.ref-apa ol,.ref-apa dl,.apa-ref,.apa-ref ul,.apa-ref ol,.apa-ref dl,.refapa,.refapa ul,.refapa ol,.refapa dl,.aparef,.aparef ul,.aparef ol,.aparef dl{padding-left:0;margin-left:0;}
+  .apa li,.ref-apa li,.refapa li,.apa-ref li,.aparef li{list-style-type:none;}
+  .apa p,.apa li,.apa dd,.ref-apa p,.ref-apa li,.ref-apa dd,.refapa p,.refapa li,.refapa dd,.apa-ref p,.apa-ref li,.apa-ref dd,.aparef p,.aparef li,.aparef dd{margin-left:2em;text-indent:-2em;margin-top:1em;margin-bottom:1em;}
 
 
 // 3. COLOUR 				==============================
@@ -1192,6 +1202,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', e
 		text-transform:uppercase;	
 		.font-size(12);
 		margin-top: -10px;
+		position:absolute;
+		top: 21px;
+		left: -39px;
 	}
 }
 
@@ -2448,6 +2461,12 @@ button.button {
 .reveal-modal-bg.rw0d9 { background:rgba(255,255,255,0.90) !important; }
 .reveal-modal-bg.rw1 { background:rgba(255,255,255,1.00) !important; }
 
+.side-nav{
+	li{
+		line-height: 1.2;
+		margin: 0 0 12px 0;	
+	}
+}
 
 
 /* You can alter this CSS in order to give Smooth Div Scroll your own look'n'feel */

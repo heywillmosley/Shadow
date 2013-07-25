@@ -28,11 +28,10 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
     <head>
         <meta charset="utf-8">
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> in HTACCESS FILE to Avoid Validation Error -->
-        <title><?php
-		if( get_page_title() == '' || get_page_title == 'home' )
+        <title><?php $c = new Page; if( $c->pageTitle() == "" )
 			echo SITE_NAME;
 		else
-		 	echo get_page_title(). ' | ' . SITE_NAME; ?>
+		 	echo $c->pageTitle() . ' | '.SITE_NAME; ?>
         </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
     	<meta name="keywords" content="natural medicine, natural health, homeopathic remedies, homeopathic medicines, homeopathy, no side effects, side effects, no side affects, no contraindications, natural drugs, natural meds, natural cures, natural remedies, safe medicine, nontoxic, non-toxic, not toxic, hypoallergenic, hypo-allergenic, non-allergic, no allergy, dr. king, king bio, bio king, safecare, smart medicine, safe-care, safe medicines, safe homeopathy"/> 
@@ -47,7 +46,6 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
         
         <!-- Load Stylesheets -->
         <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>all.css" type="text/css" media="screen" />
-        
         <style>
 			@media print{
 				.hide-for-print
@@ -177,6 +175,13 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 			   content: "";
 			}
 			
+			
+			/* APA Formating */
+			.apa,.apa ul,.apa ol,.apa dl,.ref-apa,.ref-apa ul,.ref-apa ol,.ref-apa dl,.apa-ref,.apa-ref ul,.apa-ref ol,.apa-ref dl,.refapa,.refapa ul,.refapa ol,.refapa dl,.aparef,.aparef ul,.aparef ol,.aparef dl{padding-left:0;margin-left:0;}
+			  .apa li,.ref-apa li,.refapa li,.apa-ref li,.aparef li{list-style-type:none;}
+			  .apa p,.apa li,.apa dd,.ref-apa p,.ref-apa li,.ref-apa dd,.refapa p,.refapa li,.refapa dd,.apa-ref p,.apa-ref li,.apa-ref dd,.aparef p,.aparef li,.aparef dd{margin-left:2em;text-indent:-2em;margin-top:1em;margin-bottom:1em;}
+
+			
 		}
 		</style>
         
@@ -200,7 +205,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 		}
 		</script>
     </head>	
-
+    
 <?php if( is_logged_in() ) : ?>
 	<style>
 		#main{
@@ -527,6 +532,12 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
      	</div><!-- end pilot-wrapper -->
 <?php endif; ?>
 		<div role="main" id="main">
+        	<!--[if lt IE 9]>
+	<div data-alert class="alert-box hide-for-print" style="color:#000; background-color:#fcf8e3;">
+	<h3 class="mbt ">Did you know that your Internet Explorer is out of date?</h3>
+    <p class="mbn mxw700">To get the best possible experience using our site we recommend that you upgrade to a modern web browser. To download a newer web browser click on the Upgrade button. <a href="http://www.browsehappy.com" class="success button">Upgrade</a></p>
+</div>
+<![endif]-->
         	<?php if( is_logged_in() ) : ?>
                 <div class="pilot-trigger hide">
                     <a href="#" class="fs11">&larr; Close Pilot</a>

@@ -19,4 +19,4 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
  
 // --------------------------------------------------------------------------------?>
 
-<h1>Application 404 Page</h1>
+<h1>System 404 Page</h1>

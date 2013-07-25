@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name=".htaccess" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696626580" remote="130180295870000000" Dst="2" />
-<file name="config.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696756580" remote="130180296040000000" Dst="2" />
-<file name="groupsConfig.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696766580" remote="130180296060000000" Dst="2" />
-<file name="index.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696776580" remote="130180296070000000" Dst="2" />
-<file name="utils.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210697276580" remote="130180297250000000" Dst="2" />
+<file name=".htaccess" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413012925669" remote="130191739830000000" Dst="2" />
+<file name="config.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013525729" remote="130191739860000000" Dst="2" />
+<file name="groupsConfig.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013545731" remote="130191739870000000" Dst="2" />
+<file name="index.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013565733" remote="130191739870000000" Dst="2" />
+<file name="utils.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413014355812" remote="130191740080000000" Dst="2" />
+<file name=".htaccess" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413012925669" remote="130191642300000000" Dst="2" />
+<file name="config.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013525729" remote="130191642390000000" Dst="2" />
+<file name="groupsConfig.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013545731" remote="130191642390000000" Dst="2" />
+<file name="index.html" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013555732" remote="130191642390000000" Dst="2" />
+<file name="index.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013565733" remote="130191642400000000" Dst="2" />
+<file name="utils.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413014355812" remote="130191642660000000" Dst="2" />
+<file name="index.html" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013555732" remote="130191739870000000" Dst="2" />
 </dwsync>

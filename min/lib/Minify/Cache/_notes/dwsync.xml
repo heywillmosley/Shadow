@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="APC.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696946580" remote="130180296300000000" Dst="2" />
-<file name="File.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696956580" remote="130180296320000000" Dst="2" />
-<file name="Memcache.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696966580" remote="130180296340000000" Dst="2" />
-<file name="ZendPlatform.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130180210696976580" remote="130180296360000000" Dst="2" />
+<file name="APC.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013715748" remote="130191739920000000" Dst="2" />
+<file name="File.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013725749" remote="130191739920000000" Dst="2" />
+<file name="Memcache.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013735750" remote="130191739920000000" Dst="2" />
+<file name="ZendPlatform.php" server="www.kingbio.com:4968/public_html/safecarerx.com/" local="130185413013735750" remote="130191739930000000" Dst="2" />
+<file name="APC.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013715748" remote="130191642480000000" Dst="2" />
+<file name="File.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013725749" remote="130191642480000000" Dst="2" />
+<file name="Memcache.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013735750" remote="130191642480000000" Dst="2" />
+<file name="ZendPlatform.php" server="www.kingbio.com:4968/public_html/stg.safecarerx.com/" local="130185413013735750" remote="130191642480000000" Dst="2" />
 </dwsync>
