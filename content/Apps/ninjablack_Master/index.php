@@ -23,9 +23,6 @@ if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('
 app_header();  
 ?>
 
-<<<<<<< HEAD
-
-=======
 <?php
 
 # Your development database name
@@ -56,23 +53,50 @@ catch(PDOException $e) {
     file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
 }
 
-# Insert into a new row 
-try {  
-	# Insert a new row
-	$data = array( 'Another Mug', 'The best mug in the world', 'bestmug.jpg' );
-	$stmt = "INSERT INTO shdw_non_coffee_products ( name, description, image )
-							VALUES ( ?, ?, ? )";
-  	$STH = $DBH->prepare( $stmt );  
-	$STH->execute( $data );  
-  	
-}  
-catch(PDOException $e) {  
-    echo "Could not insert new row.";  
-    file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
-}   
+/**
+ * FETCH_OBJ
+ *
+ * This fetch type creates an object of std class for each row of fetched data.
+ */
+	try 
+	{  
+		# using the shortcut ->query() method here since there are no variable  
+		# values in the select statement.  
+		$STH = $DBH->query('SELECT name, description, price from shdw_non_coffee_products');  
+		  
+		# setting the fetch mode  
+		$STH->setFetchMode( PDO::FETCH_OBJ );  
+		  
+		while( $row = $STH->fetch( ) ) 
+		{  
+			echo $row->name . "<br/>";  
+			echo $row->description . "<br/>";  
+			echo $row->price . "<br/><br/>";  
+		}  
+		
+	}  
+	catch(PDOException $e) {  
+		echo "Could not fetch data.";  
+		file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
+	}
+	
+	
+/**
+ * The ->rowCount() method returns an integer indicating the number of
+ * rows affected by an operation. In at least one known version of PDO,
+ * according to [this bug report](http://bugs.php.net/40822) the method
+ * does not work with select statements.
+ */
+ 	try 
+	{  
+		echo $rows_affected = $STH->rowCount(); 
+	}  
+	catch(PDOException $e) {  
+		echo "Could not count rows effected by last statement.";  
+		file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
+	}   
 
 ?>
->>>>>>> 0226974b118d0808a7cf6a36d51024ed7d15ca7b
 
 <div class="pas">
     <div class="row">
