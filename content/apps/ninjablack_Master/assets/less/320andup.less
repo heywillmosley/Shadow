@@ -1,0 +1,135 @@
+// ==========================================================
+
+// 320 and Up by Andy Clarke
+// Version: 3.0
+// URL: http://stuffandnonsense.co.uk/projects/320andup/
+// Apache License: v2.0. http://www.apache.org/licenses/LICENSE-2.0
+
+// ==========================================================
+
+/* 320 =================================================== */
+
+// 2. TYPOGRAPHY 			==============================
+a{
+	color: @linkColor !important;	
+}
+
+// 1. ROOT     				==============================
+// 2. TYPOGRAPHY 			==============================
+.handwriting{
+	font-family: 'Zeyada', cursive !important;	
+	font-weight: normal;
+}
+
+// 3. COLOUR 				==============================
+// 4. TEXTURE 				==============================
+// 5. ELEMENTS 				==============================
+
+
+
+.main{
+	padding: 20px;
+}
+
+// 6. LAYOUT 				==============================
+
+.bg-container{
+	max-width: 1200px;
+	overflow: hidden;
+	height: 600px;	
+	position: fixed;
+	z-index: 1;
+	-ms-overflow-x: hidden;
+	top: 0;
+}
+
+	
+.lt-ie9 .hero{
+	background:none !important;
+}
+.hero .bg-container{
+	display: none;	
+}
+
+.lt-ie9 .hero .bg-container{
+	display: block;
+}
+
+.ie-bg{
+	min-width: (800px * 1.5);
+	min-height: (535px * 1.5);
+	max-width: (800px * 1.5);
+	max-height: (535px * 1.5);
+	overflow: hidden;
+	margin-left:-350px;
+	position: relative;
+}
+
+.hero.king{
+	.headline{
+		.font-size(200) !important;	
+		z-index: 10;
+		position: relative;
+	}
+}
+
+.hero { 
+	width: 100%;
+	height: 600px;
+	position: relative;
+	overflow: hidden;
+	.logo{
+		width: 150px;	
+	}
+	.bg-gradient{
+		width:100%;
+		height: 100%;	
+		position:absolute;
+		z-index: 1;
+		background: -moz-linear-gradient(left, rgba(229,18,18,0.65) 0%, rgba(242,201,21,0.65) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(229,18,18,0.65)), color-stop(100%,rgba(242,201,21,0.65))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, rgba(229,18,18,0.65) 0%,rgba(242,201,21,0.65) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, rgba(229,18,18,0.65) 0%,rgba(242,201,21,0.65) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, rgba(229,18,18,0.65) 0%,rgba(242,201,21,0.65) 100%); /* IE10+ */
+background: linear-gradient(to right, rgba(229,18,18,0.65) 0%,rgba(242,201,21,0.65) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6e51212', endColorstr='#a6f2c915',GradientType=1 ); /* IE6-9 */
+		
+	}
+	.content{
+		position: relative;
+		z-index: 2;
+		.feature.img img{
+			max-width:none !important;
+			height:600px;	
+		}
+		.story{
+			padding-top: 120px;
+			.headline {
+				color: @white;
+				padding: 0 23px 20px;
+				.font-size(100);
+				z-index: 4;
+				margin:0 !important;
+				font-weight: 600;
+				letter-spacing: -5;
+				.large{
+					.font-size(150);	
+				}
+			}
+			.subheadline {
+				color: @white;
+				.font-size(30);
+				text-align: center;
+				font-weight: 400;
+				z-index: 4;
+				padding: 0 30px;
+			}
+		}
+	}
+	
+}
+
+// 7. VENDOR-SPECIFIC 		==============================
+// 8. MODERNIZR 			==============================
+// 9. TEMPLATE SPECIFICS 	==============================
+
