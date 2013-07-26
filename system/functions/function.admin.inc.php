@@ -35,4 +35,70 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 		 
 	}
 	
+
+/**
+ * Checks if user is an admin user
+ *
+ * @since 1.1.1 s9
+ * @return Void
+ */		
+	function is_admin()
+	{
+		# Set new Page object
+		$c = new Admin();
+		
+		# Call setPage() method
+		return $c->isAdmin();
+		
+	}
+	
+	
+/**
+ * Determins if user is logged in and sets appropriate SESSION Varibales
+ *
+ * @since 1.1.1 s9
+ * @return Void
+ */
+	function loginTools()
+	{
+		# Set new Page object
+		$c = new Admin();
+		
+		# Call setPage() method
+		return $c->loginTools();
+		 
+	}
+	
+	
+/**
+ * Creates Login form
+ *
+ * @since 1.1.1 s9
+ * @return Void
+ */	
+	function loginForm()
+	{
+		# Set new Page object
+		$c = new Admin();
+		
+		# Call setPage() method
+		return $c->loginForm();
+		 
+	}
+	
+/**
+ * Clears session data, logs user out
+ *
+ * @since 1.1.1 s9
+ * @return Void
+ */		
+	function logout()
+	{
+		# Set new Page object
+		$c = new Admin();
+		
+		# Call setPage() method
+		return $c->logout();
+		
+	}	
 	

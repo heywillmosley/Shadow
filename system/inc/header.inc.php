@@ -206,7 +206,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
 		</script>
     </head>	
     
-<?php if( is_logged_in() ) : ?>
+<?php if( is_admin() ) : ?>
 	<style>
 		#main{
 			padding-left: 180px !important
@@ -276,7 +276,7 @@ if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);ex
                                                     <img src="<?php echo SYS_IMG_URL.'iconmonstr-user-2-icon.png'; ?>" alt="User" />
                                                 </div><!-- end right side w30 -->
                                                 <div class="ls15 pl2">
-                                                    <div class="ellipsis">William Clyde Mosley, III</div>
+                                                    <div class="ellipsis"><?php echo $_SESSION['first_name']. ' ' . $_SESSION['last_name']; ?></div>
                                                 </div><!-- end rs30 -->
                                             </a>
                                         </li>

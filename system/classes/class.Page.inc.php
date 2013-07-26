@@ -131,6 +131,17 @@ class Page
 				$this->page_title = 'Login';
 			 }
 			 
+			 elseif( $this->p == 'logout' )
+			 {
+				$this->page = SYS_PAGE_URI . 'logout.php';
+				$this->page_title = 'Logout';
+				if( isset( $_SESSION ) )
+				{
+					session_start();
+					logout();
+				}
+			 }
+			 
 			 elseif( $this->p == 'connections/profile' )
 			 {
 				$this->page = BASE_PAGE_URI . 'profile.php';

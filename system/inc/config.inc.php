@@ -1270,7 +1270,7 @@ set_error_handler( 'my_error_handler' );
 		define( 'ERR_MM_PASS', 'Your passwords aren&rsquo;t the same. Please try again.' );
 		
 		# Mismatched Password & Login
-		define( 'ERR_MM_LOGIN', 'Incorrect Username/Email and Password combination. Please try again. Note' . SITE_NAME . ' passwords are case sensitive. Please check your CAPS lock key.' );
+		define( 'ERR_MM_LOGIN', '<div data-alert class="alert-box alert"> <strong>Incorrect Username/Email and Password combination.</strong> Please try again. Note' . SITE_NAME . ' passwords are case sensitive. Please check your CAPS lock key.</div>' );
 
 	# Taken Inputs
 
@@ -1285,6 +1285,21 @@ set_error_handler( 'my_error_handler' );
 # ***************************#
 
 
+
+# ***********************#
+# ***** LOGIN TIME ***** #
+ob_start();
+session_start();
+
+# Call the database
+require_once( DB );
+
+// If it's a POST request, handle the login attempt:
+loginTools(); 
+
+
+# ***** LOGIN TIME ***** #
+# ***********************#
 
 # Prevents direct script access
 //if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}

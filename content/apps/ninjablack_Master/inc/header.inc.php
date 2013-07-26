@@ -28,9 +28,9 @@ if(!defined('ROOT_URI')){require'../../../system/inc/config.inc.php';header('Loc
 
 <a class="drop-nav-trigger" onClick="toggle_visibility('drop-nav')"></a>
 <nav class="actionbar">
-	<a class="show-for-small logo" href="<?php SITE_URL; ?>"><?php echo SITE_NAME; ?></a>
+	<a class="show-for-small logo" href="<?php echo SITE_URL; ?>"><?php echo SITE_NAME; ?></a>
     <ul id="drop-nav" class="drop-nav">
-        <li class="logo hide-for-small"><a href="<?php SITE_URL; ?>"><?php echo SITE_NAME; ?></a></li>
+        <li class="logo hide-for-small"><a href="<?php echo SITE_URL; ?>"><?php echo SITE_NAME; ?></a></li>
         <li><a href="<?php echo SITE_URL; ?>shop/coffee">Coffee</a></li>
         <li><a href="<?php echo SITE_URL; ?>shop/goodies">Goodies</a></li>
         <li><a href="<?php echo SITE_URL; ?>shop/sales">Sales</a></li>

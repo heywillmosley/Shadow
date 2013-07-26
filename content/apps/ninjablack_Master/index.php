@@ -37,6 +37,29 @@ app_header();
         </div><!-- end small-12 large-8 columns -->
         <div class="small-12 large-4 columns">
         	<div class="pls">
+            	<?php loginForm(); ?>
+                <!-- Begin MailChimp Signup Form -->
+                <div id="mc_embed_signup">
+                <form class="custom mxw500" action="http://kingbio.us7.list-manage.com/subscribe/post?u=ee20cfab92a2a3c2b00c838a2&amp;id=7b83669d3b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <h2>Subscribe to our mailing list</h2>
+                    <div class="row collapse">
+                        <div class="small-10 columns">
+                            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your Email ( Required )">
+                        </div><!-- end small-10 columns -->
+                        <div class="small-2 columns">
+                            <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>	<div class="clear"><input class="button postfix" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                        </div><!-- end small-2 columns -->
+                    </div><!-- end row -->
+                    
+                </div>
+                    
+                </form>
+                </div>
+                
+                <!--End mc_embed_signup-->
                 <h2>Sidebar</h2>
                 <p>Vivamus fermentum magna eu pretium accumsan. Nunc urna neque, suscipit id erat et, suscipit posuere nisi. Nulla molestie mauris sem, nec varius urna facilisis sit amet. Pellentesque eleifend et.</p>
           	</div><!-- end pls -->
