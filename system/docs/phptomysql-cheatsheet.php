@@ -11,14 +11,15 @@ $pass = DB_PASSWORD;
 	try 
 	{  
 		# Connect to mysql using credentials
-		$DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);  		
+		$DBH = new PDO( "mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD );  		
 		# Set Error handling method
 		$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
 	  
 	}  
 	catch(PDOException $e) {  
 		echo "Could not connect to database";  
-		file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
+		error_log($e->getMessage(), 3, APP_URI.'errs/dblog.txt');
+		file_put_contents(APP_URI.'errs/dblog.txt', $e->getMessage(), FILE_APPEND);  
 	} 
 
 

@@ -1,4 +1,4 @@
-<?php 
+<?php defined('INDEX') or die() and exit(); // Prevents direct script access
 /**
  * Shadow
  *
@@ -40,6 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
+ 
 	define('SYS_VER', '0.1 s9');
 	
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
@@ -95,6 +96,7 @@
 	
 	# Include App Settings
  	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	
 
 
 /**
@@ -1011,7 +1013,6 @@ define( 'QA_NOTICE', 'Quality Assurance environment of ' . SITE_NAME . ' - Used 
  	define( 'HTTP_SERVER_PORT', '80' );
 
 
-
 # Most Important setting!
 
 /**
@@ -1078,61 +1079,65 @@ require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
 # ***** ERROR MANAGEMENT **** #
 
 
-# Create the error handler:	
-function my_error_handler( $e_number, $e_message, $e_file, $e_line, $e_vars )
-{
-	if( ENVIRONMENT != 'production' )
-	$debug = TRUE;
-	else
-		$debug = FALSE;
-	
-	#Build the error message:
-	$message = "<div>$e_message\n
-			file: '$e_file'\n
-			line: $e_line \n
-	\n";
-	
-	global $debug;
-	
-	
-	/**
-	 * Add Backtrace information
-	 *
-	 * A backtrace is essentally everyhing that happened up until the point of the error.
-	 * This will include files that were executed, functions that were called,
-	 * arguments passed to the functions, and variables that existed
+
+
+function errorHandler($errno, $errstr, $errfile, $errline) {
+    /**
+	 * connect to the database  
 	 */
-	$message .= "<pre class='fs11'>" .print_r( debug_backtrace(), 1 ) . "</pre></div>\n";
-	
-	# If site isn't live, show errors
-	if( !$debug )
-	{
-		echo '<div data-alert class="alert-box alert-warning mas">' . nl2br($message). '</div>';
-	}
-	
-	else
-	{
-		error_log( $message, 1, ADMIN_EMAIL, 'From:' . ADMIN_EMAIL );
+	 	require_once DB;
+		try 
+		{  
+			# Connect to mysql using credentials
+			$DBH = new PDO( "mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD );  		
+			# Set Error handling method
+			$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
+		  
+		}  
+		catch(PDOException $e) {  
+			echo "Could not connect to database";  
+			error_log($e->getMessage(), 3, APP_URI.'errs/dblog.txt');
+			file_put_contents(APP_URI.'errs/dblog.txt', $e->getMessage(), FILE_APPEND);  
+		} 
 		
-		echo '<div data-alert class="alert-box secondary">A system error occured, We apologize for the inconvenience.</div>';
-		
-		if( $e_number != E_NOTICE )
-		{
-			echo '<div data-alert class="alert-box secondary">A system error occured, We apologize for the inconvenience.</div>';
-			
-		} // end if( $e_number != E_NOTICE )
-		
-	} // end else
-	
-	# If the site is live, show a generic message, if the error isn't a notice:
-	
-	return true;
- 
-} // end function my_error_handler( $e_number, $e_message, $e_file, $e_line, $e_vars )
+
+    $query = "INSERT INTO shdw_errorlog (severity, message, filename, lineno, time) VALUES (?, ?, ?, ?, NOW())";
+    $stmt = $DBH->prepare($query);
+
+    switch ($errno) {
+        case E_NOTICE:
+        case E_USER_NOTICE:
+        case E_DEPRECATED:
+        case E_USER_DEPRECATED:
+        case E_STRICT:
+            $stmt->execute(array("NOTICE", $errstr, $errfile, $errline));
+            break;
+
+        case E_WARNING:
+        case E_USER_WARNING:
+            $stmt->execute(array("WARNING", $errstr, $errfile, $errline));
+            break;
+
+        case E_ERROR:
+        case E_USER_ERROR:
+            $stmt->execute(array("FATAL", $errstr, $errfile, $errline));
+            exit("FATAL error $errstr at $errfile:$errline");
+
+        default:
+            exit("Unknown error at $errfile:$errline");
+    }
+}
+
+set_error_handler("errorHandler");
 
 
-# Apply the error handler
-set_error_handler( 'my_error_handler' );
+$e = new Error();
+
+$test = 5;
+if ($test > 1) {
+   trigger_error("Value of \$test must be 1 or less", E_USER_NOTICE);
+}
+
 
 
 # ***** ERROR MANAGEMENT ***** #

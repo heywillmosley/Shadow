@@ -1,5 +1,4 @@
-<?php # Prevents direct script access
-if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);exit;}
+<?php defined('INDEX') or die() and exit(); // Prevents direct script access
 /**
  * Shadow
  *
@@ -121,13 +120,13 @@ class Page
 			 
 			 elseif( $this->p == 'admin/pilot/products' )
 			 {
-				 $this->page = BASE_PAGE_URI . 'pilot/products.php';
+				 $this->page = SYS_PAGE_URI . 'pilot/products.php';
 				$this->page_title = FW_NAME . ' Products';
 			 }
 			 
 			 elseif( $this->p == 'login' )
 			 {
-				$this->page = BASE_PAGE_URI . 'login.php';
+				$this->page = SYS_PAGE_URI . 'login.php';
 				$this->page_title = 'Login';
 			 }
 			 
@@ -283,8 +282,6 @@ class Page
 				$this->page = APP_PAGE_URI . '404.php';
 				$this->page_title = 404; 
 			 }
-			 
-			 
 
 			
 			/**

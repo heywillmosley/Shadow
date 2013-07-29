@@ -1,5 +1,4 @@
-<?php # Prevents direct script access
-if(!defined('ROOT_URI')){require'config.inc.php';header('Location:'.SITE_URL);exit;}
+<?php defined('INDEX') or die() and exit(); // Prevents direct script access
 /**
  * Shadow
  *
@@ -242,5 +241,118 @@ class Admin
 			return true;
 			
 		}
+		
+	
+	/**
+	 * This method generates a unique token for every session
+	 * to prevent against CSFR attacks. Form token must match 
+	 * session token
+	 *
+	 * @since 1.1.1 s9
+	 * @return string
+	 */	
+		function generateFormToken( $form ) {
+		
+		   // generate a token from an unique value
+			$token = md5( uniqid( microtime( ), true) );  
+			
+			// Write the generated token to the session variable to check it against the hidden field when the form is sent
+			$_SESSION[$form.'_token'] = $token; 
+			
+			return $token;
+	
+		}
+		
+	/**
+	 * This method generates a unique token for every session
+	 * to prevent against CSFR attacks. Form token must match 
+	 * session token
+	 *
+	 * @since 1.1.1 s9
+	 * @return string
+	 */		
+		function verifyFormToken($form) {
+		
+		// check if a session is started and a token is transmitted, if not return an error
+		if(!isset($_SESSION[$form.'_token'])) { 
+			return false;
+		}
+		
+		// check if the form is sent with token in it
+		if(!isset($_POST['token'])) {
+			return false;
+		}
+		
+		// compare the tokens against each other if they are still the same
+		if ($_SESSION[$form.'_token'] !== $_POST['token']) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	/**
+	 * Gets the users real IP Address
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @params         string
+	 * @return         string
+	 */
+		function getRealIp() {
+		   if (!empty($_SERVER['HTTP_CLIENT_IP'])) {  //check ip from share internet
+			 $ip=$_SERVER['HTTP_CLIENT_IP'];
+		   } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  //to check ip is pass from proxy
+			 $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+		   } else {
+			 $ip=$_SERVER['REMOTE_ADDR'];
+		   }
+		   return $ip;
+		}
+	
+	
+	/**
+	 * Logs attempts at hacks on forms. ( Or emails if log fails )
+	 *
+	 * @since 1.1.1 s9
+	 * @return string
+	 */	
+		function writeLog( $where ) {
+	
+		$ip = $_SERVER["REMOTE_ADDR"]; // Get the IP from superglobal
+		$host = gethostbyaddr($ip);    // Try to locate the host of the attack
+		$date = date("d M Y");
+		
+		// create a logging message with php heredoc syntax
+		$logging = <<<LOG
+		\n
+		<< Start of Message >>
+		There was a hacking attempt on your form. \n 
+		Date of Attack: {$date}
+		IP-Adress: {$ip} \n
+		Host of Attacker: {$host}
+		Point of Attack: {$where}
+		<< End of Message >>
+LOG;
+        
+        // open log file
+		if($handle = fopen('hacklog.log', 'a')) {
+		
+			fputs($handle, $logging);  // write the Data to file
+			fclose($handle);           // close the file
+			
+		} else {  // if first method is not working, for example because of wrong file permissions, email the data
+		
+        	$to = ADMIN_EMAIL;  
+        	$subject = 'HACK ATTEMPT';
+        	$header = 'From:'. ADMIN_EMAIL.'';
+        	if (mail($to, $subject, $logging, $header)) {
+        		echo "Sent notice to admin.";
+        	}
+
+		}
+	}
  
 } // end ClassName
