@@ -50,19 +50,55 @@ class Error
         set_exception_handler(array($this, 'exceptionHandler'));
     }
 
-    public function exceptionHandler($exception)
-    {
-        $message = $exception->getMessage().' [code: '.$exception->getCode().']';
-        echo $message;
-    }
+    public function exceptionHandler( $exception )
+    { 
+		if( ENVIRONMENT != 'production' )
+		{
+			$message = $exception->getMessage().' [code: '.$exception->getCode().']'; 
+			
+			?>
+			<div class="alert alert-warning hide-for-print"> 
+				<?php echo $message; ?>
+			</div>
+			<?php 
+		}
+		else
+		{
+			?>
+			<div class="alert alert-info hide-for-print"> 
+				<?php echo 'We\'re sorry, an error occured.'; ?>
+			</div>
+			<?php 	
+		}
+	}
+	
     public function errorHandler($errno, $errstr, $errfile, $errline)
     {
-        $errString = (array_key_exists($errno, $this->errorConstants))
-            ? $this->errorConstants[$errno] : $errno;
-
-        echo ''.$errString.': '.$errstr.'
-';
-        error_log($errString.' ['.$errno.']: '.$errstr.' in '.$errfile.' on line '.$errline);
-    }
+		if( ENVIRONMENT != 'production' )
+		{
+			$errString = (array_key_exists($errno, $this->errorConstants))
+				? $this->errorConstants[$errno] : $errno; ?>
+				
+				<div class="alert alert-warning hide-for-print"> 
+					<?php 
+					$message = "<strong>".$errString.': '.$errstr."\n </strong>".
+						
+						'File: '.$errfile. ',  Line: '.$errline;
+					echo str_replace(array("\r\n","\r","\n"),'</br>',$message);	
+					 ?>
+				</div>
+			
+			<?php error_log($errString.' ['.$errno.']: '.$errstr.' in '.$errfile.' on line '.$errline);
+    	}
+		else
+		{
+			?>
+			<div class="alert alert-info hide-for-print"> 
+				<?php echo 'We\'re sorry, an error occured.'; ?>
+			</div>
+			<?php 	
+		}
+	
+	}	
  
 } // end ClassName

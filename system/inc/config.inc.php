@@ -1133,12 +1133,6 @@ set_error_handler("errorHandler");
 
 $e = new Error();
 
-$test = 5;
-if ($test > 1) {
-   trigger_error("Value of \$test must be 1 or less", E_USER_NOTICE);
-}
-
-
 
 # ***** ERROR MANAGEMENT ***** #
 # **************************** #

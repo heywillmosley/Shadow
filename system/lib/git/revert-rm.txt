@@ -1,0 +1,20 @@
+/**
+ * Revert a git rm
+ *
+ * @url http://stackoverflow.com/questions/2125710/how-to-revert-a-git-rm-r
+ */
+
+
+git reset HEAD
+
+# Should do it. If you don't have any uncommitted changes that you care about, then
+git reset --hard HEAD
+
+/**
+ * should forcibly reset everything to your last commit.
+ * If you do have uncommitted changes, but the first command doesn't work,
+ * then save your uncommitted changes with git stash
+ */
+	git stash
+	git reset --hard HEAD
+	git stash pop

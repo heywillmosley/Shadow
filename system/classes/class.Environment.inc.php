@@ -23,7 +23,7 @@
  * @since 0.1.1 s7
  * @author William Mosley, III <will@livesuperamazing.com>
  * 0 Arguments
- * 0 Methods
+ * 1 Methods
  */
 class Environment
 {
@@ -33,7 +33,7 @@ class Environment
 		{
 			?>	
 			
-			<div data-alert class="environment-notice alert-box warning">
+			<div class="environment-notice alert alert-info">
 			  <?php if( ENVIRONMENT == 'development' ) : ?>
 					<div class="relative">
 						<div class="left side w50 env">
