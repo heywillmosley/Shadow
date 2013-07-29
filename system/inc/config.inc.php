@@ -1056,9 +1056,11 @@ if( !isset( $debug ) )
 # ***** LOAD CLASSES ***** #
 # ************************ #
 
+
 # ************************** #
 # ***** LOAD FUNCIONS ****** #
 
+require_once SYS_FUNCTIONS_URI.'function.error.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
@@ -1077,59 +1079,6 @@ require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
 
 # *************************** #
 # ***** ERROR MANAGEMENT **** #
-
-
-
-
-function errorHandler($errno, $errstr, $errfile, $errline) {
-    /**
-	 * connect to the database  
-	 */
-	 	require_once DB;
-		try 
-		{  
-			# Connect to mysql using credentials
-			$DBH = new PDO( "mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD );  		
-			# Set Error handling method
-			$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
-		  
-		}  
-		catch(PDOException $e) {  
-			echo "Could not connect to database";  
-			error_log($e->getMessage(), 3, APP_URI.'errs/dblog.txt');
-			file_put_contents(APP_URI.'errs/dblog.txt', $e->getMessage(), FILE_APPEND);  
-		} 
-		
-
-    $query = "INSERT INTO shdw_errorlog (severity, message, filename, lineno, time) VALUES (?, ?, ?, ?, NOW())";
-    $stmt = $DBH->prepare($query);
-
-    switch ($errno) {
-        case E_NOTICE:
-        case E_USER_NOTICE:
-        case E_DEPRECATED:
-        case E_USER_DEPRECATED:
-        case E_STRICT:
-            $stmt->execute(array("NOTICE", $errstr, $errfile, $errline));
-            break;
-
-        case E_WARNING:
-        case E_USER_WARNING:
-            $stmt->execute(array("WARNING", $errstr, $errfile, $errline));
-            break;
-
-        case E_ERROR:
-        case E_USER_ERROR:
-            $stmt->execute(array("FATAL", $errstr, $errfile, $errline));
-            exit("FATAL error $errstr at $errfile:$errline");
-
-        default:
-            exit("Unknown error at $errfile:$errline");
-    }
-}
-
-set_error_handler("errorHandler");
-
 
 $e = new Error();
 

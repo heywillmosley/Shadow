@@ -44,61 +44,92 @@ class Error
         32767   => 'All'
     );
 
-    public function __construct()
-    {
-        set_error_handler(array($this, 'errorHandler'));
-        set_exception_handler(array($this, 'exceptionHandler'));
-    }
 
-    public function exceptionHandler( $exception )
-    { 
-		if( ENVIRONMENT != 'production' )
+	/**
+	 * This method sets the errorHandler and exceptionHandler when a new object is created
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9  
+	 * @return         void
+	 */
+		public function __construct()
 		{
-			$message = $exception->getMessage().' [code: '.$exception->getCode().']'; 
-			
-			?>
-			<div class="alert alert-warning hide-for-print"> 
-				<?php echo $message; ?>
-			</div>
-			<?php 
+			set_error_handler(array($this, 'errorHandler'));
+			set_exception_handler(array($this, 'exceptionHandler'));
 		}
-		else
-		{
-			?>
-			<div class="alert alert-info hide-for-print"> 
-				<?php echo 'We\'re sorry, an error occured.'; ?>
-			</div>
-			<?php 	
-		}
-	}
-	
-    public function errorHandler($errno, $errstr, $errfile, $errline)
-    {
-		if( ENVIRONMENT != 'production' )
-		{
-			$errString = (array_key_exists($errno, $this->errorConstants))
-				? $this->errorConstants[$errno] : $errno; ?>
-				
-				<div class="alert alert-warning hide-for-print"> 
-					<?php 
-					$message = "<strong>".$errString.': '.$errstr."\n </strong>".
-						
-						'File: '.$errfile. ',  Line: '.$errline;
-					echo str_replace(array("\r\n","\r","\n"),'</br>',$message);	
-					 ?>
+		
+		
+	/**
+	 * This method creates a custom exception handler for smarter error messages
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9  
+	 * @return         void
+	 */
+		public function exceptionHandler( $exception )
+		{ 
+			if( ENVIRONMENT != 'production' )
+			{
+			 ?>
+					
+					<div class="alert alert-warning hide-for-print"> 
+						<?php 
+						$message = "<strong>".$exception->getCode().': '.$exception->getMessage()."\n </strong>".
+							
+							'File: '.$exception->getFile(). ',  Line: '.$exception->getLine();
+						echo str_replace(array("\r\n","\r","\n"),'</br>',$message);	
+						 ?>
+					</div>
+                    <?php
+			}
+			else
+			{
+				?>
+				<div class="alert alert-info hide-for-print"> 
+					<?php echo 'We\'re sorry, an error occured.'; ?>
 				</div>
-			
-			<?php error_log($errString.' ['.$errno.']: '.$errstr.' in '.$errfile.' on line '.$errline);
-    	}
-		else
-		{
-			?>
-			<div class="alert alert-info hide-for-print"> 
-				<?php echo 'We\'re sorry, an error occured.'; ?>
-			</div>
-			<?php 	
+				<?php 	
+			}
 		}
+			
 	
-	}	
+	/**
+	 * This method creates a custom error handler for smarter error messages
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9  
+	 * @return         void
+	 */		
+		public function errorHandler($errno, $errstr, $errfile, $errline)
+		{
+			if( ENVIRONMENT != 'production' )
+			{
+				$errString = (array_key_exists($errno, $this->errorConstants))
+					? $this->errorConstants[$errno] : $errno; ?>
+					
+					<div class="alert alert-warning hide-for-print"> 
+						<?php 
+						$message = "<strong>".$errString.': '.$errstr."\n </strong>".
+							
+							'File: '.$errfile. ',  Line: '.$errline;
+						echo str_replace(array("\r\n","\r","\n"),'</br>',$message);	
+						 ?>
+					</div>
+				
+				<?php error_log($errString.' ['.$errno.']: '.$errstr.' in '.$errfile.' on line '.$errline);
+			}
+			else
+			{
+				?>
+				<div class="alert alert-info hide-for-print"> 
+					<?php echo 'We\'re sorry, an error occured.'; ?>
+				</div>
+				<?php 	
+			}
+		
+		}	
  
-} // end ClassName
+} // end Error Class

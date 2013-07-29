@@ -56,7 +56,7 @@ class Database extends PDO
 		# Report the eorror!
 		catch( PDOException $e )
 		{
-			echo '<h2 class="error">An error occured: ' . $e->getMessage() . '</h2>';
+			exceptionHandler( $e );
 			exit;
 			
 		} // end catch( PDOException $e )S

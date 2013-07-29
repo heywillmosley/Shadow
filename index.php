@@ -60,5 +60,4 @@ define('INDEX',TRUE);
  * Include the footer file:
  */
  include SYS_INC_URI . 'footer.inc.php';
-
 ?>
