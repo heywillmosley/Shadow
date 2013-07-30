@@ -1050,7 +1050,10 @@ if( !isset( $debug ) )
 	function __autoload( $class_name )  
 	{  
 		include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';  
-	} 
+	} // end function __autoload( $class_name ) 
+	
+
+//spl_autoload_register( 'class_loader' );
 	
 
 # ***** LOAD CLASSES ***** #
@@ -1060,7 +1063,6 @@ if( !isset( $debug ) )
 # ************************** #
 # ***** LOAD FUNCIONS ****** #
 
-require_once SYS_FUNCTIONS_URI.'function.error.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
@@ -1070,21 +1072,45 @@ require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
 # ************************** #
 
 
-/**
- * Check to see if DB_NAME is set if not, redirect to database install
- */
- 
-
-
-
 # *************************** #
 # ***** ERROR MANAGEMENT **** #
+
+require_once SYS_FUNCTIONS_URI.'function.error.inc.php';
 
 $e = new Error();
 
 
 # ***** ERROR MANAGEMENT ***** #
 # **************************** #
+
+/**
+ * Start the session
+ * The session is bing started at this point so that it can access
+ * all the class definitions( thanks to the autoloader). This order is
+ * required should there be a stored, serialized object in the session.
+ *
+ * @todo Secure session_start
+ */
+	session_start();
+	
+
+/**
+ * Check the user in the session
+ * The $user variable will be referenced to the currently logged-in
+ * user. The user object will be stored in the session upon successfully
+ * logging in. On subsequent pages, the $user variable will be
+ * reconstituted from the session.
+ *
+ * If the user is not logged in, then the  $user variable is set to NULL
+ */
+ 	$user = ( isset( $_SESSION['user'] ) ) ? $_SESSION['user'] : NULL;
+	
+	
+/**
+ * Connect the the Database
+ */
+ 	$DBH = new Database;
+ 	
 
 
 # ***************************#

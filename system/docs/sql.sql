@@ -1,5 +1,5 @@
 --
--- Database: `ecommerce2`
+-- Database: `shadow`
 --
 
 -- Do not run this page in batch mode!
@@ -7,6 +7,31 @@
 -- Either edit this SQL file accordingly, then run it in batch mode, or copy and paste commands as needed.
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `shdw_users`
+--
+
+CREATE TABLE IF NOT EXISTS `shdw_users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role` enum('member','admin','author','designer','developer','affiliate') NOT NULL DEFAULT 'member',
+  `first_name` varchar(40) NOT NULL,
+  `last_name` varchar(80) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `alt_email` varchar(80) DEFAULT NULL,
+  `pass` varchar(100) NOT NULL,
+  `release_level` enum('alpha','beta') DEFAULT NULL,
+  `date_expires` date DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+
+-- --------------------------------------------------------
+
 
 --
 -- Table structure for table `carts`
@@ -46,79 +71,6 @@ CREATE TABLE `shdw_customers` (
   PRIMARY KEY (`id`),
   KEY `email` (`email`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `general_coffees`
---
-
-CREATE TABLE `shdw_general_coffees` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `category` varchar(40) NOT NULL,
-  `description` tinytext,
-  `image` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `type` (`category`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `general_coffees`
---
-
-INSERT INTO `shdw_general_coffees` VALUES(1, 'Original Blend', 'Our original blend, featuring a quality mixture of bean and a medium roast for a rich color and smooth flavor.', 'original_coffee.jpg');
-INSERT INTO `shdw_general_coffees` VALUES(2, 'Dark Roast', 'Our darkest, non-espresso roast, with a full flavor and a slightly bitter aftertaste.', 'dark_roast.jpg');
-INSERT INTO `shdw_general_coffees` VALUES(3, 'Kona', 'A real treat! Kona coffee, fresh from the lush mountains of Hawaii. Smooth in flavor and perfectly roasted!', 'kona.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `non_coffee_categories`
---
-
-CREATE TABLE `shdw_non_coffee_categories` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `category` varchar(40) NOT NULL,
-  `description` tinytext NOT NULL,
-  `image` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `category` (`category`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `non_coffee_categories`
---
-
-INSERT INTO `shdw_non_coffee_categories` VALUES(1, 'Edibles', 'A wonderful assortment of goodies to eat. Includes biscotti, baklava, lemon bars, and more!', 'goodies.jpg');
-INSERT INTO `shdw_non_coffee_categories` VALUES(2, 'Gift Baskets', 'Gift baskets for any occasion! Including our many coffees and other goodies.', 'gift_basket.jpg');
-INSERT INTO `shdw_non_coffee_categories` VALUES(3, 'Mugs', 'A selection of lovely mugs for enjoying your coffee, tea, hot cocoa or other hot beverages.', '781426_32573620.jpg');
-INSERT INTO `shdw_non_coffee_categories` VALUES(4, 'Books', 'Our recommended books about coffee, goodies, plus anything written by Larry Ullman!', 'books.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `non_coffee_products`
---
-
-CREATE TABLE `shdw_non_coffee_products` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `non_coffee_category_id` tinyint(3) unsigned NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `description` tinytext,
-  `image` varchar(45) NOT NULL,
-  `price` decimal(5,2) unsigned NOT NULL,
-  `stock` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `non_coffee_category_id` (`non_coffee_category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `non_coffee_products`
---
-
-INSERT INTO `shdw_non_coffee_products` VALUES(1, 3, 'Pretty Flower Coffee Mug', 'A pretty coffee mug with a flower design on a white background.', 'd9996aee5639209b3fb618b07e10a34b27baad12.jpg', 6.50, 105, '2010-08-15 12:22:35');
-INSERT INTO `shdw_non_coffee_products` VALUES(2, 3, 'Red Dragon Mug', 'An elaborate, painted gold dragon on a red background. With partially detached, fancy handle.', '847a1a3bef0fb5c2f2299b06dd63669000f5c6c4.jpg', 7.95, 22, '2010-08-18 16:00:59');
 
 -- --------------------------------------------------------
 
@@ -175,16 +127,6 @@ CREATE TABLE `shdw_sales` (
   KEY `product_type` (`product_type`,`product_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `sales`
---
-
-INSERT INTO `shdw_sales` VALUES(1, 'other', 1, 5.00, '2010-08-16', '2010-09-30');
-INSERT INTO `shdw_sales` VALUES(2, 'coffee', 7, 7.00, '2010-08-19', NULL);
-INSERT INTO `shdw_sales` VALUES(3, 'coffee', 9, 13.00, '2010-08-19', '2010-09-29');
-INSERT INTO `shdw_sales` VALUES(4, 'other', 2, 7.00, '2010-08-22', NULL);
-INSERT INTO `shdw_sales` VALUES(5, 'coffee', 8, 13.00, '2010-08-22', '2010-09-30');
-INSERT INTO `shdw_sales` VALUES(6, 'coffee', 10, 30.00, '2010-08-22', '2010-09-30');
 
 -- --------------------------------------------------------
 
@@ -199,51 +141,7 @@ CREATE TABLE `shdw_sizes` (
   UNIQUE KEY `size` (`size`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `sizes`
---
-
-INSERT INTO `shdw_sizes` VALUES(1, '2 oz. Sample');
-INSERT INTO `shdw_sizes` VALUES(2, 'Half Pound');
-INSERT INTO `shdw_sizes` VALUES(3, '1 lb.');
-INSERT INTO `shdw_sizes` VALUES(4, '2 lbs.');
-INSERT INTO `shdw_sizes` VALUES(5, '5 lbs.');
-
 -- --------------------------------------------------------
-
---
--- Table structure for table `specific_coffees`
---
-
-CREATE TABLE `shdw_specific_coffees` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `general_coffee_id` tinyint(3) unsigned NOT NULL,
-  `size_id` tinyint(3) unsigned NOT NULL,
-  `caf_decaf` enum('caf','decaf') DEFAULT NULL,
-  `ground_whole` enum('ground','whole') DEFAULT NULL,
-  `price` decimal(5,2) unsigned NOT NULL,
-  `stock` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `general_coffee_id` (`general_coffee_id`),
-  KEY `size` (`size_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `specific_coffees`
---
-
-INSERT INTO `shdw_specific_coffees` VALUES(1, 3, 1, 'caf', 'ground', 2.00, 15, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(2, 3, 2, 'caf', 'ground', 4.50, 29, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(3, 3, 2, 'decaf', 'ground', 5.00, 21, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(4, 3, 3, 'caf', 'ground', 8.00, 35, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(5, 3, 3, 'decaf', 'ground', 8.50, 21, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(6, 3, 3, 'caf', 'whole', 7.50, 50, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(7, 3, 3, 'decaf', 'whole', 8.00, 17, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(8, 3, 4, 'caf', 'whole', 15.00, 26, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(9, 3, 4, 'decaf', 'whole', 15.50, 15, '2010-08-15 19:15:54');
-INSERT INTO `shdw_specific_coffees` VALUES(10, 3, 5, 'caf', 'whole', 32.50, 3, '2010-08-15 19:15:54');
-
 
 --
 -- Table structure for table `transactions`
@@ -283,7 +181,11 @@ CREATE TABLE `shdw_wish_lists` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `categories`
+--
 
 CREATE TABLE `shdw_categories` (
   `id` tinyint(5) unsigned NOT NULL AUTO_INCREMENT,
@@ -293,30 +195,7 @@ CREATE TABLE `shdw_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-
---
--- Dumping data for table `specific_coffees`
---
-
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Allergy' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Cancer Support' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Children' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Circulation' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Cleansing & Detox' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Digestion' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Eyes' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Immune' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Men/Women' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Oral Health' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Pain' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Skin' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Sleep' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Sports' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Sleep' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Urinary Track' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Weight' );
-INSERT INTO `shdw_categories` ( category ) VALUES( 'Mind & Body' );
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `shdw_products`
@@ -324,8 +203,8 @@ INSERT INTO `shdw_categories` ( category ) VALUES( 'Mind & Body' );
 
 CREATE TABLE `shdw_products` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `category` tinytext NOT NULL,
   `name` varchar(60) NOT NULL,
+  `category` tinytext NOT NULL,
   `description` tinytext,
   `active_ingred` TEXT NULL,
   `inactive_ingred` TEXT NULL,
@@ -335,13 +214,32 @@ CREATE TABLE `shdw_products` (
   `price` decimal(5,2) unsigned NOT NULL,
   `SKU` INT unsigned NULL UNIQUE,
   `UPC` INT unsigned NULL UNIQUE,
-  `stock` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `stock` mediumint(8) unsigned NOT NULL DEFAULT '1',
+  `availability` enum('Available for sale','Hidden but available for sale','Coming soon','Disabled') NOT NULL DEFAULT 'Available for sale',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
+
+--
+-- Table structure for table `shdw_pages`
+--
+
+CREATE TABLE `shdw_pages` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parentId` INT UNSIGNED DEFAULT NULL,
+  `creatorId` INT UNSIGNED NOT NULL,
+  `title` VARCHAR(100) NOT NULL,
+  `content` TEXT NOT NULL,
+  `slug` VARCHAR(100) NOT NULL,
+  `dateUpdated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dateAdded` TIMESTAMP NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 
 -- -----------------------------

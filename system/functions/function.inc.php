@@ -263,318 +263,317 @@
             <div class="off-canvas relative">
                 
         <?php if( is_admin() ) : ?>
-                    <nav id="complementary" role="complementary" class="side-complementary">
-                        <div id="shdw" class="pilot-head">Shadow Pilot</div>
-                            <ul class="pilot-nav phs man">
-                                <li class="shdw-head-nav">
-                                    <a href="<?php echo SITE_URL.'logout'; ?>">Logout</a>
-                                </li><!-- end shdw-head-nav -->
-                                <li class="caption">Current page</li>
-                                <li onclick="toggle_visibility('current-page-dropdown')" class="relative shdw-current">
-                                    <div class="left side w20">
-                                        <img src="<?php echo SYS_IMG_URL.'iconmonstr-note-10-icon.png'; ?>" alt="Current page" />
-                                    </div><!-- end left side w20 -->
-                                    <div class="ls20">
-                                        <div class="heading">
-                                            <?php 
-                                            $p = new Page;
-                                            if( $p->getPageTitle() == SITE_NAME ) echo 'Home'; else get_page_title(); unset( $p ); ?></div>
-                                            <ul id="current-page-dropdown">
-                                                <li><a href="#">Edit this page</a></li>
-                                            </ul>
-                                    </div><!-- end ls20 -->
-                                </li>
-                                <li>
-                                    <ul class="shdw-admin pbs">
-                                        <li class="caption">Main</li>
-                                        <li class="relative shdw-logo">
-                                            <a href="<?php echo SYS_PILOT_URL; ?>">
-                                                <div class="left side w20">
-                                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-briefcase-7-icon.png'; ?>" alt="<?php echo SITE_NAME; ?>" />
-                                                </div><!-- end right side w30 -->
-                                                <div class="ls20 pl2">
-                                                    <div class="ellipsis heading"><?php echo SITE_NAME; ?></div>
-                                                </div><!-- end rs30 -->
-                                            </a>
-                                        </li>
-                                        <li class="relative shdw-gotopilot">
-                                            <a href="<?php echo SYS_PILOT_URL; ?>">
-                                                <div class="left side w15">
-                                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-briefcase-4-icon.png'; ?>" alt="<?php echo SITE_NAME; ?>" />
-                                                </div><!-- end right side w30 -->
-                                                <div class="ls15 pl2">
-                                                    <div class="ellipsis">Go to Pilot</div>
-                                                </div><!-- end rs30 -->
-                                            </a>
-                                        </li>
-                                        <li class="relative shdw-gotowebsite">
-                                            <a href="<?php echo SITE_URL; ?>">
-                                                <div class="left side w15">
-                                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-home-2-icon.png'; ?>" alt="<?php echo SITE_NAME; ?>" />
-                                                </div><!-- end right side w30 -->
-                                                <div class="ls15 pl2">
-                                                    <div class="ellipsis">Go to website</div>
-                                                </div><!-- end rs30 -->
-                                            </a>
-                                        </li>
-                                        <li class="relative shdw-current-user">
-                                            <a href="<?php echo SYS_PILOT_URL.'users/me'; ?>">
-                                                <div class="left side w15">
-                                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-user-2-icon.png'; ?>" alt="User" />
-                                                </div><!-- end right side w30 -->
-                                                <div class="ls15 pl2">
-                                                    <div class="ellipsis"><?php echo $_SESSION['first_name']. ' ' . $_SESSION['last_name']; ?></div>
-                                                </div><!-- end rs30 -->
-                                            </a>
-                                        </li>
+            <nav id="complementary" class="global-pilot-nav">
+                <div id="shdw" class="pilot-head">Shadow Pilot</div>
+                    <ul class="pilot-nav phs man">
+                        <li class="shdw-head-nav">
+                            <a href="<?php echo SITE_URL.'logout'; ?>">Logout</a>
+                        </li><!-- end shdw-head-nav -->
+                        <li class="caption">Current page</li>
+                        <li onclick="toggle_visibility('current-page-dropdown')" class="relative shdw-current">
+                            <div class="left side w20">
+                                <img src="<?php echo SYS_IMG_URL.'iconmonstr-note-10-icon.png'; ?>" alt="Current page" />
+                            </div><!-- end left side w20 -->
+                            <div class="ls20">
+                                <div class="heading">
+                                    <?php 
+                                    $p = new Page;
+                                    if( $p->getPageTitle() == SITE_NAME ) echo 'Home'; else get_page_title(); unset( $p ); ?></div>
+                                    <ul id="current-page-dropdown">
+                                        <li><a href="#">Edit this page</a></li>
                                     </ul>
-                                </li>
-                                <li class="caption">System</li>
-                                <li onclick="toggle_visibility('product-dropdown')" class="relative">
-                                    <a href="<?php echo SYS_PILOT_URL.'products'; ?>">
+                            </div><!-- end ls20 -->
+                        </li>
+                        <li>
+                            <ul class="shdw-admin pbs">
+                                <li class="caption">Main</li>
+                                <li class="relative shdw-logo">
+                                    <a href="<?php echo SYS_PILOT_URL; ?>">
                                         <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-shopping-bag-8-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Products</div>
-                                        </div><!-- end ls20 -->
+                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-briefcase-7-icon.png'; ?>" alt="<?php echo SITE_NAME; ?>" />
+                                        </div><!-- end right side w30 -->
+                                        <div class="ls20 pl2">
+                                            <div class="ellipsis heading"><?php echo SITE_NAME; ?></div>
+                                        </div><!-- end rs30 -->
                                     </a>
                                 </li>
-                                <li onclick="toggle_visibility('inventory-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'inventory'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-shipping-box-2-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Inventory</div>
-                                        </div><!-- end ls20 -->
+                                <li class="relative shdw-gotopilot">
+                                    <a href="<?php echo SYS_PILOT_URL; ?>">
+                                        <div class="left side w15">
+                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-briefcase-4-icon.png'; ?>" alt="<?php echo SITE_NAME; ?>" />
+                                        </div><!-- end right side w30 -->
+                                        <div class="ls15 pl2">
+                                            <div class="ellipsis">Go to Pilot</div>
+                                        </div><!-- end rs30 -->
                                     </a>
                                 </li>
-                                <li onclick="toggle_visibility('inventory-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'shipping'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-shipping-box-12-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Shipping</div>
-                                        </div><!-- end ls20 -->
+                                <li class="relative shdw-gotowebsite">
+                                    <a href="<?php echo SITE_URL; ?>">
+                                        <div class="left side w15">
+                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-home-2-icon.png'; ?>" alt="<?php echo SITE_NAME; ?>" />
+                                        </div><!-- end right side w30 -->
+                                        <div class="ls15 pl2">
+                                            <div class="ellipsis">Go to website</div>
+                                        </div><!-- end rs30 -->
                                     </a>
                                 </li>
-                                <li onclick="toggle_visibility('backup-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'payment'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-credit-card-14-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Payment</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('page-dropdown')" class="relative ">
-                                    <a href="<?php echo SYS_PILOT_URL.'pages'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-document-file-2-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Pages</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li id="page-dropdown" class="hide">
-                                    <ul>
-                                        <li><a href="#">Create new page</a></li>
-                                        <li><a href="#">View all pages</a></li>
-                                    </ul>
-                                </li>
-                                <li onclick="toggle_visibility('post-dropdown')" class="relative ">
-                                    
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-note-4-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Posts</div>
-                                        </div><!-- end ls20 -->
-                                    
-                                </li>
-                                <li id="post-dropdown" class="hide">
-                                    <ul>
-                                        <li><a href="#">Create new post</a></li>
-                                        <li><a href="#">View all posts</a></li>
-                                    </ul>
-                                </li>
-                                <li onclick="toggle_visibility('app-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'apps'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-3d-view-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Apps</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('media-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'media'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-picture-box-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Media</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('department-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'departments'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-square-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Departments</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('categories-dropdown')" class="relative">
-                                    <a href="<?php echo SYS_PILOT_URL.'categories'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-triangle-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Categories</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('tags-dropdown')" class="relative">
-                                    <a href="<?php echo SYS_PILOT_URL.'tags'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-tag-2-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Tags</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('users-dropdown')" class="relative">
-                                    <a href="<?php echo SYS_PILOT_URL.'users'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-user-13-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Users</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('reviews-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'ratings-reviews'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-thumb-7-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Ratings & Reviews</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('comments-dropdown')" class="relative">
-                                    <a href="<?php echo SYS_PILOT_URL.'comments'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-speech-bubble-15-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Comments</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('comments-dropdown')" class="relative">
-                                    <a href="<?php echo SYS_PILOT_URL.'bridges'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-connection-5-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Bridges</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('comments-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'files'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-multi-files-4-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Files</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('comments-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'tasks'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-clipboard-4-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Tasks</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('version-control-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'version-control'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-clipboard-5-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Version Control</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('version-control-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'security'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-shield-20-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Security</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('backup-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'backup-restore'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-firewall-3-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Backup & Restore</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('settings-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'settings'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-gear-2-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Settings</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('settings-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'manual'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-book-20-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">User Manual</div>
-                                        </div><!-- end ls20 -->
-                                    </a>
-                                </li>
-                                <li onclick="toggle_visibility('settings-dropdown')" class="relative disable">
-                                    <a href="<?php echo SYS_PILOT_URL.'help'; ?>">
-                                        <div class="left side w20">
-                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-help-8-icon.png'; ?>" alt="Current page" />
-                                        </div><!-- end left side w20 -->
-                                        <div class="ls20">
-                                            <div class="heading">Help</div>
-                                        </div><!-- end ls20 -->
+                                <li class="relative shdw-current-user">
+                                    <a href="<?php echo SYS_PILOT_URL.'users/me'; ?>">
+                                        <div class="left side w15">
+                                            <img src="<?php echo SYS_IMG_URL.'iconmonstr-user-2-icon.png'; ?>" alt="User" />
+                                        </div><!-- end right side w30 -->
+                                        <div class="ls15 pl2">
+                                            <div class="ellipsis"><?php echo $_SESSION['first_name']. ' ' . $_SESSION['last_name']; ?></div>
+                                        </div><!-- end rs30 -->
                                     </a>
                                 </li>
                             </ul>
-                    </nav><!-- end complementary -->
-                
+                        </li>
+                        <li class="caption">System</li>
+                        <li onclick="toggle_visibility('product-dropdown')" class="relative">
+                            <a href="<?php echo SYS_PILOT_URL.'products'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-shopping-bag-8-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Products</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('inventory-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'inventory'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-shipping-box-2-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Inventory</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('inventory-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'shipping'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-shipping-box-12-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Shipping</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('backup-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'payment'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-credit-card-14-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Payment</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('page-dropdown')" class="relative ">
+                            <a href="#">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-document-file-2-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Pages</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li id="page-dropdown" class="hide">
+                            <ul>
+                                <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages/new-page">Create new page</a></li>
+                                <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages">View all pages</a></li>
+                            </ul>
+                        </li>
+                        <li onclick="toggle_visibility('post-dropdown')" class="relative ">
+                            
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-note-4-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Posts</div>
+                                </div><!-- end ls20 -->
+                            
+                        </li>
+                        <li id="post-dropdown" class="hide">
+                            <ul>
+                                <li><a href="#">Create new post</a></li>
+                                <li><a href="#">View all posts</a></li>
+                            </ul>
+                        </li>
+                        <li onclick="toggle_visibility('app-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'apps'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-3d-view-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Apps</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('media-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'media'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-picture-box-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Media</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('department-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'departments'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-square-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Departments</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('categories-dropdown')" class="relative">
+                            <a href="<?php echo SYS_PILOT_URL.'categories'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-triangle-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Categories</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('tags-dropdown')" class="relative">
+                            <a href="<?php echo SYS_PILOT_URL.'tags'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-tag-2-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Tags</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('users-dropdown')" class="relative">
+                            <a href="<?php echo SYS_PILOT_URL.'users'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-user-13-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Users</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('reviews-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'ratings-reviews'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-thumb-7-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Ratings & Reviews</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('comments-dropdown')" class="relative">
+                            <a href="<?php echo SYS_PILOT_URL.'comments'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-speech-bubble-15-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Comments</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('comments-dropdown')" class="relative">
+                            <a href="<?php echo SYS_PILOT_URL.'bridges'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-connection-5-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Bridges</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('comments-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'files'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-multi-files-4-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Files</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('comments-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'tasks'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-clipboard-4-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Tasks</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('version-control-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'version-control'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-clipboard-5-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Version Control</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('version-control-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'security'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-shield-20-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Security</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('backup-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'backup-restore'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-firewall-3-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Backup & Restore</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('settings-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'settings'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-gear-2-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Settings</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('settings-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'manual'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-book-20-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">User Manual</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                        <li onclick="toggle_visibility('settings-dropdown')" class="relative disable">
+                            <a href="<?php echo SYS_PILOT_URL.'help'; ?>">
+                                <div class="left side w20">
+                                    <img src="<?php echo SYS_IMG_URL.'iconmonstr-help-8-icon.png'; ?>" alt="Current page" />
+                                </div><!-- end left side w20 -->
+                                <div class="ls20">
+                                    <div class="heading">Help</div>
+                                </div><!-- end ls20 -->
+                            </a>
+                        </li>
+                    </ul>
+            </nav><!-- end complementary -->  
 	<?php endif; ?>
     <div role="main" id="main">
         <!--[if lt IE 9]>
