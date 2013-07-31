@@ -319,7 +319,7 @@ class MCAPI {
             int folder_id optional - automatically file the new campaign in the folder_id passed. Get using folders() - note that Campaigns and Autoresponders have separate folder setupsn 
             array tracking optional - set which recipient actions will be tracked, as a struct of boolean values with the following keys: "opens", "html_clicks", and "text_clicks".  By default, opens and HTML clicks will be tracked. Click tracking can not be disabled for Free accounts.
             string title optional - an internal name to use for this campaign.  By default, the campaign subject will be used.
-            boolean authenticate optional - set to true to enable SenderID, DomainKeys, and DKIM authentication, defaults to false.
+            boolean authenticate optional - set to true to enable Senderid, DomainKeys, and DKIM authentication, defaults to false.
             array analytics optional - if provided, use a struct with "service type" as a key and the "service tag" as a value. Use "google" for Google Analytics, "clicktale" for ClickTale, and "gooal" for Goo.al tracking. The "tag" is any custom text (up to 50 characters) that should be included.
             boolean auto_footer optional Whether or not we should auto-generate the footer for your content. Mostly useful for content from URLs or Imports
             boolean inline_css optional Whether or not css should be automatically inlined when this campaign is sent, defaults to false.
@@ -396,7 +396,7 @@ class MCAPI {
                     bool 7 optional Sunday, defaults to true</table></div>
     
      *
-     * @return string the ID for the created campaign
+     * @return string the id for the created campaign
      */
     function campaignCreate($type, $options, $content, $segment_opts=NULL, $type_opts=NULL) {
         $params = array();
@@ -1231,7 +1231,7 @@ class MCAPI {
                          string id The list id for this list. This will be used for all other list management functions.
                          int web_id The list id used in our web app, allows you to create a link directly to it
                          string name The name of the list.
-                         string date_created The date that this list was created.
+                         string dateCreated The date that this list was created.
                          boolean email_type_option Whether or not the List supports multiple formats for emails or just HTML
                          boolean use_awesomebar Whether or not campaigns for this list use the Awesome Bar in archives by default
                          string default_from_name Default From Name for campaigns using this list
@@ -2125,7 +2125,7 @@ class MCAPI {
                 string name Name of the template
                 string layout Layout of the template - "basic", "left_column", "right_column", or "postcard"
                 string preview_image If we've generated it, the url of the preview image for the template. We do out best to keep these up to date, but Preview image urls are not guaranteed to be available
-                string date_created The date/time the template was created
+                string dateCreated The date/time the template was created
                 boolean edit_source Whether or not you are able to edit the source of a template.
      */
     function templates($types=array (
@@ -2363,7 +2363,7 @@ class MCAPI {
      * @return array Array of folder structs (see Returned Fields for details)
                 int folder_id Folder Id for the given folder, this can be used in the campaigns() function to filter on.
                 string name Name of the given folder
-                string date_created The date/time the folder was created
+                string dateCreated The date/time the folder was created
                 string type The type of the folders being returned, just to make sure you know.
      */
     function folders($type='campaign') {

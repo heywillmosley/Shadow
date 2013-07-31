@@ -358,10 +358,10 @@
 	  define( 'APPURL', APP_URL );
 	
 	// Path to the application folder
-	define('BRIDGE_URI', CONTENT_URI . 'bridge/' );
+	define('BRidGE_URI', CONTENT_URI . 'bridge/' );
 	
 	// URL to the system folder
-	define('BRIDGE_URL', CONTENT_URL . 'bridge/' );
+	define('BRidGE_URL', CONTENT_URL . 'bridge/' );
 
 	// Name of the "system folder"
 	define('CONTENT_NAME', trim(strrchr(trim(CONTENT_URI, '/'), '/'), '/'));
@@ -1083,35 +1083,6 @@ $e = new Error();
 # ***** ERROR MANAGEMENT ***** #
 # **************************** #
 
-/**
- * Start the session
- * The session is bing started at this point so that it can access
- * all the class definitions( thanks to the autoloader). This order is
- * required should there be a stored, serialized object in the session.
- *
- * @todo Secure session_start
- */
-	session_start();
-	
-
-/**
- * Check the user in the session
- * The $user variable will be referenced to the currently logged-in
- * user. The user object will be stored in the session upon successfully
- * logging in. On subsequent pages, the $user variable will be
- * reconstituted from the session.
- *
- * If the user is not logged in, then the  $user variable is set to NULL
- */
- 	$user = ( isset( $_SESSION['user'] ) ) ? $_SESSION['user'] : NULL;
-	
-	
-/**
- * Connect the the Database
- */
- 	$DBH = new Database;
- 	
-
 
 # ***************************#
 # ***** FORM CONSTANTS ***** #
@@ -1122,13 +1093,13 @@ $e = new Error();
  * ------------------------------------------------------
  */
  	# First Name
-	define( 'FORM_FIRST_NAME', 'first_name' );
+	define( 'FORM_FIRST_NAME', 'firstName' );
 
 	# Middle Name
-	define( 'FORM_MIDDLE_NAME', 'middle_name' );
+	define( 'FORM_MidDLE_NAME', 'middle_name' );
 
 	# Last Name
-	define( 'FORM_LAST_NAME', 'last_name' );
+	define( 'FORM_LAST_NAME', 'lastName' );
 	
 	# First Name
 	define( 'FORM_FULLNAME', 'full_name' );
@@ -1179,7 +1150,7 @@ $e = new Error();
 		define( 'ERR_EMPTY_FIRST_NAME', 'Enter your first name.' );
 
 		# Empty Middle Name
-		define( 'ERR_EMPTY_MIDDLE_NAME', 'Enter your middle name.' );
+		define( 'ERR_EMPTY_MidDLE_NAME', 'Enter your middle name.' );
 
 		# Empty Last Name
 		define( 'ERR_EMPTY_LAST_NAME', 'Enter your last name.' );
@@ -1215,28 +1186,28 @@ $e = new Error();
 	# Invalid Inputs
 
 		# Invalid First Name
-		define( 'ERR_INVALID_FIRST_NAME', 'Please enter a valid first name.' );
+		define( 'ERR_INVALid_FIRST_NAME', 'Please enter a valid first name.' );
 
 		# Invalid Middle Name
-		define( 'ERR_INVALID_MIDDLE_NAME', 'Please enter a valid middle name.' );
+		define( 'ERR_INVALid_MidDLE_NAME', 'Please enter a valid middle name.' );
 
 		# Invalid Last Name
-		define( 'ERR_INVALID_LAST_NAME', 'Please enter a valid last name.' );
+		define( 'ERR_INVALid_LAST_NAME', 'Please enter a valid last name.' );
 		
 		# Invalid First Name
-		define( 'ERR_INVALID_FULLNAME', 'Please enter a valid full name. <code class="txt_wht">a-z, A-Z, -, and .</code> are allowed.' );
+		define( 'ERR_INVALid_FULLNAME', 'Please enter a valid full name. <code class="txt_wht">a-z, A-Z, -, and .</code> are allowed.' );
 
 		# Invalid New Email
-		define( 'ERR_INVALID_NEW_EMAIL', 'Please enter a valid email address.' );
+		define( 'ERR_INVALid_NEW_EMAIL', 'Please enter a valid email address.' );
 		
 		# Invalid New Phone Number
-		define( 'ERR_INVALID_NEW_PHONE', 'Please enter a valid telephone number.' );
+		define( 'ERR_INVALid_NEW_PHONE', 'Please enter a valid telephone number.' );
 
 		# Invalid New Username
-		define( 'ERR_INVALID_NEW_USERNAME', 'Please enter a valid username. Usernames must be at least 2 - 30 characters long and may only contain <code>a-z</code>, <code>A-Z</code>, <code>0-9</code> and <code>_</code>.' );
+		define( 'ERR_INVALid_NEW_USERNAME', 'Please enter a valid username. Usernames must be at least 2 - 30 characters long and may only contain <code>a-z</code>, <code>A-Z</code>, <code>0-9</code> and <code>_</code>.' );
 
 		# Invalid Password
-		define( 'ERR_INVALID_PASS', 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase and 1 number.' );
+		define( 'ERR_INVALid_PASS', 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase and 1 number.' );
 
 	# Match Inputs
 
@@ -1259,14 +1230,40 @@ $e = new Error();
 # ***************************#
 
 
-
 # ***********************#
 # ***** LOGIN TIME ***** #
-ob_start();
-session_start();
 
-# Call the database
-require_once( DB );
+/**
+ * Start the session
+ * The session is bing started at this point so that it can access
+ * all the class definitions( thanks to the autoloader). This order is
+ * required should there be a stored, serialized object in the session.
+ *
+ * @todo Secure session_start
+ */
+ 	ob_start();
+	session_start();
+	
+
+/**
+ * Check the user in the session
+ * The $user variable will be referenced to the currently logged-in
+ * user. The user object will be stored in the session upon successfully
+ * logging in. On subsequent pages, the $user variable will be
+ * reconstituted from the session.
+ *
+ * If the user is not logged in, then the  $user variable is set to NULL
+ */
+ 	$user = ( isset( $_SESSION['user'] ) ) ? $_SESSION['user'] : NULL;
+	
+	
+/**
+ * Connect the the Database
+ */
+ 	$DBH = new Database;
+	global $DBH;
+
+
 
 // If it's a POST request, handle the login attempt:
 loginTools(); 

@@ -48,10 +48,12 @@ define('INDEX',TRUE);
  * Include the header file:
  */
  include SYS_INC_URI . 'header.inc.php';
- 
 
-get_page();
 
+/**
+ * Include the content-specific page and unset page
+ */
+	get_page();
 
 /**
  * Include the footer file:

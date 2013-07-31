@@ -1,5 +1,4 @@
-<?php # Prevents direct script access
-if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('Location:'.SITE_URL);exit;}
+<?php defined('INDEX') or die() and exit(); // Prevents direct script access
 /**
  * Shadow
  *
@@ -52,7 +51,7 @@ app_header();
 					# Set first name
 					$fn = _cleanData( $_POST[ FORM_FIRST_NAME], $dbc );
 					
-				} else { $reg_errors[] = ERR_INVALID_FIRST_NAME; }
+				} else { $reg_errors[] = ERR_INVALid_FIRST_NAME; }
 				
 			} else { $reg_errors[] = ERR_EMPTY_FIRST_NAME; }
 		
@@ -69,7 +68,7 @@ app_header();
 					# Set last name
 					$ln = _cleanData( $_POST[ FORM_LAST_NAME], $dbc );
 					
-				} else { $reg_errors[] = ERR_INVALID_LAST_NAME; }
+				} else { $reg_errors[] = ERR_INVALid_LAST_NAME; }
 				
 			} else { $reg_errors[] = ERR_EMPTY_FIRST_NAME; }
 			
@@ -87,7 +86,7 @@ app_header();
 					# Set username
 					$un = _cleanData( $_POST[ FORM_NEW_USERNAME], $dbc );
 					
-				} else { $reg_errors[] = ERR_INVALID_NEW_USERNAME; }
+				} else { $reg_errors[] = ERR_INVALid_NEW_USERNAME; }
 				
 			} else { $reg_errors[] = ERR_EMPTY_NEW_USERNAME; }
 			
@@ -105,7 +104,7 @@ app_header();
 					# Sanitize email and set variable
 					$e = sEmail($_POST[FORM_NEW_EMAIL]);
 					
-				} else { $reg_errors[] = ERR_INVALID_NEW_EMAIL; }
+				} else { $reg_errors[] = ERR_INVALid_NEW_EMAIL; }
 				
 			} else { $reg_errors[] = ERR_EMPTY_NEW_EMAIL; }
 			
@@ -143,7 +142,7 @@ app_header();
 						# Set Password from POST variable
 						$p = $p1;
 						
-					} else { $reg_errors[] = ERR_INVALID_PASS; }
+					} else { $reg_errors[] = ERR_INVALid_PASS; }
 					
 				} else { $reg_errors[] = ERR_MM_PASS; }
 				
@@ -163,7 +162,7 @@ app_header();
 				$rows = mysqli_num_rows( $r );
 				if( $rows == 0 )
 				{
-					$q = "INSERT INTO sh-users( username, email, pass, first_name, last_name, date_expires )
+					$q = "INSERT INTO sh-users( username, email, pass, firstName, lastName, dateExpires )
 						  VALUES ('$un', '$e', '" . create_password_hash( $p ) . "' '$fn', '$ln', ADDDATE(NOW(), INTERVAL 1 MONTH) )";
 					
 					$r = mysqli_query( $dbc, $q );

@@ -54,7 +54,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' )
 			{  
 				# using the shortcut ->query() method here since there are no variable  
 				# values in the select statement.  
-				$STH = $DBH->query("SELECT ID, username, email, first_name, last_name, role, release_level, pass FROM shdw_users WHERE ( `username` = '$ue' OR `email` = '$ue' ) AND pass = '$p'");  
+				$STH = $DBH->query("SELECT id, username, email, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = '$ue' OR `email` = '$ue' ) AND pass = '$p'");  
 				  
 				# setting the fetch mode  
 				$STH->setFetchMode( PDO::FETCH_ASSOC );
@@ -65,18 +65,18 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' )
 					while($row = $STH->fetch( ) ) 
 				{  
 					# Set Session Variables from the database
-					$_SESSION['user_id'] = $row['ID']; 
+					$_SESSION['user_id'] = $row['id']; 
 					$_SESSION['username'] = $row['username']; 
 					$_SESSION['email'] = $row['email']; 
-					$_SESSION['first_name'] = $row['first_name'];
-					$_SESSION['last_name'] = $row['last_name'];
+					$_SESSION['firstName'] = $row['firstName'];
+					$_SESSION['lastName'] = $row['lastName'];
 					$_SESSION['pass'] = $row['pass']; 
 					$_SESSION['role'] = $row['role']; 
-					$_SESSION['release_level'] = $row['release_level'];
+					$_SESSION['releaseLevel'] = $row['releaseLevel'];
 					
 				}  // while($row = $STH->fetch( ) ) 
 				
-					echo 'Welcome home ' . $_SESSION['first_name'];
+					echo 'Welcome home ' . $_SESSION['firstName'];
 					
 				} // end $STH->setFetchMode( PDO::FETCH_ASSOC );
 				

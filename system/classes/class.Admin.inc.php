@@ -132,7 +132,7 @@ class Admin
 						{  
 							# using the shortcut ->query() method here since there are no variable  
 							# values in the select statement.  
-							$STH = $DBH->query("SELECT ID, username, email, first_name, last_name, role, release_level, pass FROM shdw_users WHERE ( `username` = '$ue' OR `email` = '$ue' ) AND pass = '$p'");  
+							$STH = $DBH->query("SELECT id, username, email, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = '$ue' OR `email` = '$ue' ) AND pass = '$p'");  
 							  
 							# setting the fetch mode  
 							$STH->setFetchMode( PDO::FETCH_ASSOC );
@@ -143,14 +143,14 @@ class Admin
 								while($row = $STH->fetch( ) ) 
 							{  
 								# Set Session Variables from the database
-								$_SESSION['user_id'] = $row['ID']; 
+								$_SESSION['user_id'] = $row['id']; 
 								$_SESSION['username'] = $row['username']; 
 								$_SESSION['email'] = $row['email']; 
-								$_SESSION['first_name'] = $row['first_name'];
-								$_SESSION['last_name'] = $row['last_name'];
+								$_SESSION['firstName'] = $row['firstName'];
+								$_SESSION['lastName'] = $row['lastName'];
 								$_SESSION['pass'] = $row['pass']; 
 								$_SESSION['role'] = $row['role']; 
-								$_SESSION['release_level'] = $row['release_level'];
+								$_SESSION['releaseLevel'] = $row['releaseLevel'];
 								
 							}  // while($row = $STH->fetch( ) ) 
 							
@@ -234,8 +234,8 @@ class Admin
 			session_destroy( );
 			
 			/* Modify the session cookie in the user's browser so it no longer
-			 * has a record of the session ID. Sends cookie with the same session name,
-			 but no value ( no session ID ) and expiration of five minutes ago */
+			 * has a record of the session id. Sends cookie with the same session name,
+			 but no value ( no session id ) and expiration of five minutes ago */
 			setcookie( session_name(), '', time()-300 );	
 			
 			return true;

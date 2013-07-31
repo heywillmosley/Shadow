@@ -1,5 +1,4 @@
-<?php # Prevents direct script access
-if(!defined('ROOT_URI')){require'../../../../system/inc/config.inc.php';header('Location:'.SITE_URL);exit;}
+<?php defined('INDEX') or die() and exit(); // Prevents direct script access
 /**
  * Shadow
  *
@@ -137,7 +136,7 @@ function vLogin( $db, $useroremail = "", $pwd = "" )
 	# Check if email and password are in database
 	if ( empty( $errors ) )
 	{
-		$q = "SELECT user_id, first_name, last_name
+		$q = "SELECT user_id, firstName, lastName
 		FROM users
 		WHERE email='$uoe'
 		AND pass = SHA1('$p')";
@@ -155,7 +154,7 @@ function vLogin( $db, $useroremail = "", $pwd = "" )
 		# Check if username and password are in the database
 		else 
 		{ 
-			$q = "SELECT user_id, first_name, last_name
+			$q = "SELECT user_id, firstName, lastName
 			FROM users
 			WHERE username='$uoe'
 			AND pass = SHA1('$p')";

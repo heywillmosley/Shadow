@@ -14,8 +14,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 		
 		# Set Session Variables
 		$_SESSION['user_id'] = $data['user_id'];
-		$_SESSION['first_name'] = $data['first_name'];
-		$_SESSION['last_name'] = $data['last_name'];
+		$_SESSION['firstName'] = $data['firstName'];
+		$_SESSION['lastName'] = $data['lastName'];
 		
 		# Redirec to home
 		load('home');

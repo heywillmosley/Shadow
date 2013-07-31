@@ -57,13 +57,13 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	# --------------------------
 	
 	# Check if first name is empty
-	if ( !empty( $_POST['first_name'] ) ) 
+	if ( !empty( $_POST['firstName'] ) ) 
 	{
 		# Check if first name is valid name
-		if ( vName($_POST['first_name']) )
+		if ( vName($_POST['firstName']) )
 		{
 			# Set first name
-			$fn = $_POST[ 'first_name'];
+			$fn = $_POST[ 'firstName'];
 			
 		} else { $errors[] = 'Please enter a valid first name.'; }
 		
@@ -74,13 +74,13 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	# --------------------------
 	
 	# Check if last name is empty
-	if ( !empty( $_POST['last_name'] ) ) 
+	if ( !empty( $_POST['lastName'] ) ) 
 	{
 		# Check if last name is valid name
-		if ( vName($_POST['last_name']) )
+		if ( vName($_POST['lastName']) )
 		{
 			# Set last name
-			$ln = $_POST[ 'last_name'];
+			$ln = $_POST[ 'lastName'];
 			
 		} else { $errors[] = 'Please enter a valid last name.'; }
 		
@@ -197,8 +197,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			`pass`               CHAR(128) NOT NULL,
 			`salt`               CHAR(128) NOT NULL,
 			`reg_date`           DATETIME,
-			`first_name`         VARCHAR(20) NOT NULL,
-			`last_name`          VARCHAR(40) NOT NULL,
+			`firstName`         VARCHAR(20) NOT NULL,
+			`lastName`          VARCHAR(40) NOT NULL,
 			`middle_name`        VARCHAR(20) NULL,
 			`name_title`         VARCHAR(20) NULL,
 			`suffix`             VARCHAR(10) NULL,
@@ -251,7 +251,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		
 		
 		$q = "INSERT INTO users
-		     (first_name, last_name, username, email, pass, salt, reg_date)
+		     (firstName, lastName, username, email, pass, salt, reg_date)
 			 VALUES ('$fn', '$ln', '$un', '$e', '$p', '$random_salt', NOW() )";
 		 
 		 $r = mysqli_query( $dbc, $q );
@@ -307,8 +307,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     	<div class="small-12 large-6 columns">
         	<label>Full Name</label>
             <div class="row">
-        		<input class="small-6 columns" type="text" name="first_name" value="<?php if ( isset( $_POST['first_name'] ) ) echo $_POST['first_name']; ?>" placeholder="First Name" />
-                <input class="small-6 columns" type="text" name="last_name" value="<?php if ( isset( $_POST['last_name'] ) ) echo $_POST['last_name']; ?>" placeholder="Last Name" />
+        		<input class="small-6 columns" type="text" name="firstName" value="<?php if ( isset( $_POST['firstName'] ) ) echo $_POST['firstName']; ?>" placeholder="First Name" />
+                <input class="small-6 columns" type="text" name="lastName" value="<?php if ( isset( $_POST['lastName'] ) ) echo $_POST['lastName']; ?>" placeholder="Last Name" />
          	</div><!-- end row -->
         </div><!-- end small-12 large-6 -->
     </div><!-- end row -->

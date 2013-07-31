@@ -323,7 +323,7 @@
                                             <img src="<?php echo SYS_IMG_URL.'iconmonstr-user-2-icon.png'; ?>" alt="User" />
                                         </div><!-- end right side w30 -->
                                         <div class="ls15 pl2">
-                                            <div class="ellipsis"><?php echo $_SESSION['first_name']. ' ' . $_SESSION['last_name']; ?></div>
+                                            <div class="ellipsis"><?php echo $_SESSION['firstName']. ' ' . $_SESSION['lastName']; ?></div>
                                         </div><!-- end rs30 -->
                                     </a>
                                 </li>
@@ -575,7 +575,7 @@
                     </ul>
             </nav><!-- end complementary -->  
 	<?php endif; ?>
-    <div role="main" id="main">
+    <div id="main">
         <!--[if lt IE 9]>
             <div data-alert class="alert-box hide-for-print" style="color:#000; background-color:#fcf8e3;">
             <h3 class="mbt ">Did you know that your Internet Explorer is out of date?</h3>

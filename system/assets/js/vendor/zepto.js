@@ -1118,7 +1118,7 @@ window.Zepto = Zepto
 })(Zepto)
 
 ;(function($){
-  var jsonpID = 0,
+  var jsonpid = 0,
       document = window.document,
       key,
       name,
@@ -1187,7 +1187,7 @@ window.Zepto = Zepto
   $.ajaxJSONP = function(options){
     if (!('type' in options)) return $.ajax(options)
 
-    var callbackName = 'jsonp' + (++jsonpID),
+    var callbackName = 'jsonp' + (++jsonpid),
       script = document.createElement('script'),
       cleanup = function() {
         clearTimeout(abortTimeout)

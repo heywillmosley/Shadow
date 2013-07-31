@@ -84,8 +84,7 @@ $pass = DB_PASSWORD;
 		
 	}  
 	catch(PDOException $e) {  
-		echo "Could not fetch data.";  
-		file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
+		exceptionHander( $e ); 
 	} 
 	
 	

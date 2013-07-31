@@ -3,8 +3,8 @@ CREATE TABLE `shdw_carts`(
 	`quantity` TINYINT UNSIGNED NOT NULL,
 	`user_session_id` CHAR(32) NOT NULL,
 	`product_type` ENUM('coffee', 'other') NOT NULL,
-	`date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`date_modified` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`dateCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`dateModified` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
 	PRIMARY KEY(`id`),
 	KEY `product_type` (`product_type`, `product_id`),
 	KEY `user_session_id` (`user_session_id`)

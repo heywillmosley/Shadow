@@ -30,7 +30,7 @@ class Database extends PDO
 	protected $dsn = NULL;
 	protected $username = NULL;
 	protected $password = NULL;
-	protected $driver_options = NULL;
+	protected $driverOptions = NULL;
 	
 	function __construct()
 	{

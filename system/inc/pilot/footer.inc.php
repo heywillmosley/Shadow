@@ -1,5 +1,4 @@
-<?php # Prevents direct script access
-if(!defined('ROOT_URI')){require'../config.inc.php';header('Location:'.SITE_URL);exit;}
+<?php defined('INDEX') or die() and exit(); // Prevents direct script access
 /**
  * Shadow
  *
@@ -22,3 +21,4 @@ if(!defined('ROOT_URI')){require'../config.inc.php';header('Location:'.SITE_URL)
 		</div><!-- end plt-wrap -->
   	</div><!-- end main -->
 </div><!-- end pilot -->
+</div>

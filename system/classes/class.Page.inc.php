@@ -19,31 +19,168 @@
 // --------------------------------------------------------------------------------
 
 /**
- * Class description
- * @since 0.1.1 s7
+ * This script defines the Page class
+ * @since 0.1.1 s9
  * @author William Mosley, III <will@livesuperamazing.com>
- * 3 Arguments
- * 5 Methods
+ * The class contains 8 attributes: id, parentId, creatorId, title, content, slug dateAdded, and dateUpdated
+ * - The attributes match the corresponding database columns.
+ * The class contains 7 methods
+ * - getId()
+ * - getParentId()
+ * - getCreatorId()
+ * - getTitle()
+ * - getContent()
+ * - getSlug()
+ * - getDateAdded()
+ * - getDateUpdated()
+ * - getIntro()
+ *
+ * @since 0.1.1 s9
  */
 class Page
 {
-	private $p;
+	private $p = NULL;
 	private $page = NULL;
-	private $page_title = NULL;
+	private $id = NULL;
+	private $parentId = NULL;
+	private $creatorId = NULL;
+	private $title = NULL;
+	private $content = NULL;
+	private $slug = NULL;
+	private $dateAdded = NULL;
+	private $dateUpdated = NULL;
+	private $viewFile = NULL;
+	
 	
 	function __construct()
 	{
 		$this->setPage();
 		
 	}
-
 	
 	/**
+	 * This method gets the page Id
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getId()
+		{
+			return $this->id;
+			
+		} // end function getId()
+		
+		
+	/**
+	 * This method gets the page parent Id
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getParentId()
+		{
+			return $this->parentId;
+			
+		} // end function getParentId()
+		
+		
+		
+	/**
+	 * This method gets the page creator id
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getCreatorId()
+		{
+			return $this->creatorId;
+			
+		} // end method getCreatorId()
+		
+		
+	/**
+	 * This method gets the page title
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getTitle()
+		{
+			return $this->title;
+			
+		} // end method getTitle()
+		
+	
+	/**
+	 * This method gets the page content
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getContent()
+		{
+			return $this->content;
+			
+		} // end method getContent()
+		
+		
+	/**
+	 * This method gets the page slug
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getSlug()
+		{
+			return $this->slug;
+			
+		} // end method getSlug()
+		
+		
+	/**
+	 * This method gets the date the page was added
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getDateAdded()
+		{
+			return $this->dateAdded;
+			
+		} // end method getDateAdded()
+		
+		
+	/**
+	 * This method gets the date the page was updated
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getDateUpdated()
+		{
+			return $this->dateUpdated;
+			
+		} // end method getDateUpdated()
+		
+		
+	/**
+	 * This method gets the intro (excerpt) of the page
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function getIntro( $count = 200 )
+		{
+			return substr( strip_tags( $this->content ), 0, $count ) . '...';
+			
+		} // end method getDateUpdated()
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/**
 	 * This method gets the page title
 	 */
 	 	function getPageTitle()
 		{
-			return $this->page_title;
+			return $this->title;
 			
 		} // end 
 		
@@ -52,7 +189,7 @@ class Page
 	 */
 	 	function pageTitle()
 		{
-			return $this->page_title;
+			return $this->title;
 			
 		} // end 
 	
@@ -66,231 +203,127 @@ class Page
 			 */
 			 if( isset( $_GET['p'] ) )
 			 
-				$this->p = $_GET['p']; 
+				$this->page = $_GET['p']; 
 			 
 			 # Forms
 			 elseif( isset( $_POST['p'] ) )
 			 
-				$this->p = $_POST['p']; 
+				$this->page = $_POST['p']; 
 			 
 			 else
-				
-				$this->p = NULL;
-				
-				
+				$this->page = NULL;
+					
 				
 			/**
 			 * Remove trailing slash from page slug
 			 */
-			 	if( substr( $this->p, -1 ) == '/' ) 
+			 	if( substr( $this->page, -1 ) == '/' ) 
 
-					$this->p = substr($this->p, 0, -1 );
+					$this->page = substr($this->page, 0, -1 );
+					
 			 
 			/**
 			 * Determine what page to display:
 			 */
-			 if( $this->p == '' )
-			 {
-				 if( file_exists( APP_INC_URI . 'index.php' ) && is_file ( APP_INC_URI . 'index.php' ) )
-				{
-					$this->page = APP_VIEWS_URI . 'index.php';
-					
-				}
-				elseif( APP_URI . 'index.php' ) 
-				{
-					$this->page = APP_URI . 'index.php';
-				} 
-			 }
-			 
-			 elseif( $this->p == 'home' )
-			 {
-				 if( file_exists( APP_INC_URI . 'index.php' ) )
-					$this->page = APP_VIEWS_URI . 'index.php';
-				else
-					$this->page = APP_URI . 'index.php';
-					
-				$this->page_title = SITE_NAME; 
-			 }
-			 
-			 elseif( $this->p == 'admin/pilot' )
-			 {
-				 $this->page = BASE_PAGE_URI . 'pilot.php';
-				$this->page_title = FW_NAME . ' Pilot';
-			 }
-			 
-			 elseif( $this->p == 'admin/pilot/products' )
-			 {
-				 $this->page = SYS_PAGE_URI . 'pilot/products.php';
-				$this->page_title = FW_NAME . ' Products';
-			 }
-			 
-			 elseif( $this->p == 'login' )
-			 {
-				$this->page = SYS_PAGE_URI . 'login.php';
-				$this->page_title = 'Login';
-			 }
-			 
-			 elseif( $this->p == 'logout' )
-			 {
-				$this->page = SYS_PAGE_URI . 'logout.php';
-				$this->page_title = 'Logout';
-				if( isset( $_SESSION ) )
-				{
-					session_start();
-					logout();
-				}
-			 }
-			 
-			 elseif( $this->p == 'connections/profile' )
-			 {
-				$this->page = BASE_PAGE_URI . 'profile.php';
-				$this->page_title = 'Profile';
-			 }
+				 switch ( $this->page ) 
+				 {
+					# Homepage
+					case '':
+						$this->title = SITE_NAME; 
+						
+						# Checks if index.php is in App root or App View folder
+						if( file_exists( APP_INC_URI . 'index.php' ) )
+							$this->viewFile = APP_VIEWS_URI . 'index.php';
+						else
+							$this->viewFile = APP_URI . 'index.php';
 
-			/**
-			 * Application Pages
-			 */
-			
-			elseif( $this->p == 'start' )
-			 {
-				$this->page = APP_PAGE_URI . 'about-becoming-provider.php';
-				$this->page_title = 'About Being a Provider SafeCareRx';
-			 }
-			 
-			 elseif( $this->p == 'start/about-being-a-provider' )
-			 {
-				$this->page = APP_PAGE_URI . 'about-becoming-provider.php';
-				$this->page_title = 'About Being a SafeCareRx Provider';
-			 }
-			 
-			 elseif( $this->p == 'start/provider-signup' )
-			 {
-				$this->page = APP_PAGE_URI . 'provider-signup.php';
-				$this->page_title = 'Professional Provider Sign-up';
-			 }
-			 
-			 elseif( $this->p == 'homeopathy' )
-			 {
-				$this->page = APP_PAGE_URI . 'homeopathy.php';
-				$this->page_title = 'About Homeopathy';
-			 }
-			 
-			 elseif( $this->p == 'medicine' )
-			 {
-				$this->page = APP_PAGE_URI . 'powerful-benefits.php';
-				$this->page_title = 'Powerful Benefits of SafeCareRx';
-			 }
-			 	
-				elseif( $this->p == 'medicine/powerful-benefits-of-safecarerx' )
-				 {
-					$this->page = APP_PAGE_URI . 'powerful-benefits.php';
-					$this->page_title = 'Powerful Benefits of SafeCareRx';
-				 }
-				 
-				 elseif( $this->p == 'medicine/what-is-homeopathy' )
-				 {
-					$this->page = APP_PAGE_URI . 'what-is-homeopathy.php';
-					$this->page_title = 'What Is Homeopathy';
-				 }
-			 
-				 elseif( $this->p == 'medicine/homeopathic-principles' )
-				 {
-					$this->page = APP_PAGE_URI . 'homeopathic-principles.php';
-					$this->page_title = 'Homeopathic Principles';
-				 }
-				 
-				 elseif( $this->p == 'medicine/what-types-of-diseases-does-homeopathy-address' )
-				 {
-					$this->page = APP_PAGE_URI . 'address-diseases.php';
-					$this->page_title = 'What Types of Diseases Does Homeopathy Address?';
-				 }
-				 
-				 elseif( $this->p == 'medicine/solving-contemporary-healthcare-problems' )
-				 {
-					$this->page = APP_PAGE_URI . 'solving-healthcare.php';
-					$this->page_title = 'Solving Contemporary Health Care Problems';
-				 }
-				 
-				 elseif( $this->p == 'medicine/the-difference-between-homeopathic-herbal-and-nutritional-products' )
-				 {
-					$this->page = APP_PAGE_URI . 'the-difference.php';
-					$this->page_title = 'The Difference Between Homeopathic, Herbal and Nutritional Products';
-				 }
-				 
-				 elseif( $this->p == 'medicine/finding-the-right-formulas' )
-				 {
-					$this->page = APP_PAGE_URI . 'right-formulas.php';
-					$this->page_title = 'Finding the Right Formulas';
-				 }
-				 
-				 elseif( $this->p == 'medicine/dosage-be-flexible-to-be=successful' )
-				 {
-					$this->page = APP_PAGE_URI . 'dosage.php';
-					$this->page_title = 'DOSAGE: Be Flexible to Be Successful!';
-				 }
-				 
-				 elseif( $this->p == 'medicine/how-soon-can-results-be-expected' )
-				 {
-					$this->page = APP_PAGE_URI . 'results.php';
-					$this->page_title = 'How Soon Can Results Be Expected?';
-				 }
-				 
-				 elseif( $this->p == 'medicine/homeopathic-growth-statistics' )
-				 {
-					$this->page = APP_PAGE_URI . 'statistics.php';
-					$this->page_title = 'Homeopathic Growth Statistics';
-				 }
-			 
-			 elseif( $this->p == 'products' )
-			 {
-				$this->page = APP_PAGE_URI . 'products.php';
-				$this->page_title = 'Our Products';
-			 }
-			 
-			 elseif( $this->p == 'manuals' )
-			 {
-				$this->page = APP_PAGE_URI . 'manuals.php';
-				$this->page_title = 'Manuals & Guides';
-			 }
-			 
-			 elseif( $this->p == 'other-services' )
-			 {
-				$this->page = APP_PAGE_URI . 'other-services.php';
-				$this->page_title = 'Other Services';
-			 }
-			 
-			 elseif( $this->p == 'about' )
-			 {
-				$this->page = APP_PAGE_URI . 'about.php';
-				$this->page_title = 'About';
-			 }
-			 
-			 elseif( $this->p == 'contact' )
-			 {
-				$this->page = APP_PAGE_URI . 'contact.php';
-				$this->page_title = 'Contact';
-			 }
-			 
-			else
-			 {
-				$this->page = APP_PAGE_URI . '404.php';
-				$this->page_title = 404; 
-			 }
+						break;
+					
+					# Administration	
+					case 'admin/pilot':
+						$this->title = 'Pilot'; 
+						$this->viewFile = SYS_PAGE_URI . 'pilot/pilot.php';
+						break;
+						
+					case 'admin/pilot/products':
+						$this->title = 'Products'; 
+						$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
+						break;
+						
+					case 'admin/login':
+						$this->title = 'Login'; 
+						$this->viewFile = SYS_PAGE_URI . 'login.php';
+						break;
+						
+					case 'admin/logout':
+						$this->title = 'Logout'; 
+						$this->viewFile = SYS_PAGE_URI . 'logout.php';
+						
+						# Kill session if one exists
+						if( isset( $_SESSION ) )
+							session_start() and logout();
+						break;
+					
+					# Products	
+					case 'admin/pilot/products':
+						$this->title = 'Products'; 
+						$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
+						break;
+					
+					# Pages
+					case 'admin/pilot/pages':
+						$this->title = 'All Pages'; 
+						$this->viewFile = SYS_PAGE_URI . 'pilot/pages.php';
+						break;	
+						
+					case 'admin/pilot/pages/new-page':
+						$this->title = 'Create New Page'; 
+						$this->viewFile = SYS_PAGE_URI . 'pilot/new-page.php';
+						break;	
+					
+					default:
+							
+						try 
+						{  
+							$DBH = new Database;
+							$STH = $DBH->query("SELECT id, title, content, slug, viewFile from shdw_pages WHERE slug = '$this->page' LIMIT 1");  
+							# setting the fetch mode  
+							$STH->setFetchMode(PDO::FETCH_ASSOC);  
+							  
+							while( $row = $STH->fetch() ) 
+							{  
+								$this->id = $row['id'];
+								$this->title = $row['title'];
+								$this->content = $row['content'];
+								$this->slug = $row['slug'];
+								$this->viewFile = APP_VIEWS_URI.$row['viewFile'];
 
-			
-			/**
-			 * Page 404 setup
-			 */
-			
+							} //  while( $row = $STH->fetch() ) 
+							
+						}  
+						catch( PDOException $e ) {  
+							exceptionHandler( $e ); 
+						}
+
+				} // end switch
+				
 			
 			/**
 			 * Make sure the file exists:
 			 */
-			 if( !file_exists( $this->page ) )
-			 {
-				$this->page = BASE_PAGE_URI . '404.php';
-				
-			 } // end if( !file_exists( $page ) )
+				 if( !file_exists( $this->viewFile ) )
+				 {
+					$this->page404();
+					
+				 } // end if( !file_exists( $page ) )
+				 
+				 
+			/**
+			 * Set viewFile to Content
+			 */
+			 	if( $this->viewFile != NULL )
+					$this->content = $this->viewFile;
+					
 			
 		} // end 
 		
@@ -303,7 +336,7 @@ class Page
 		 
 		 */
 		 
-		 return include( $this->page );
+		 return include_once( $this->content );
 		
 	}
 	
@@ -330,29 +363,29 @@ class Page
 	
 	
 	# Page 404 @since 0.1.1 s5
-	function page404 ()
+	function page404()
 	{
+		$this->title = '404'; 
+		
 		# Check if there's a 404.php file in application directory
-		if ( !file_exists( APP_PAGE_URI. '404.php' ) )
+		if ( !file_exists( APP_VIEWS_URI. '404.php' ) )
 		{
 			# Include System 404
-			include ( APP_PAGE_URI.'404.php' );
-			exit;
+			
+			$this->viewFile = SYS_PAGE_URI . '404.php';
 	
 			# Check if there's a 404.html file in application directory
-			if ( !file_exists( APP_PAGE_URI. '404.html' ) )
+			if ( !file_exists( APP_VIEWS_URI. '404.html' ) )
 			{
 				# Include System 404
-				include ( APP_PAGE_URI.'404.php' );
-				exit;
+				$this->viewFile = SYS_PAGE_URI . '404.php';
 				
 			} // end if
 			
 			else
 			{
 				# Load Application 404.php
-				include ( APP_PAGE_URI.'404.html' );
-				exit;
+				$this->viewFile = APP_PAGE_URI . '404.html';
 			
 			} // end else
 			
@@ -360,12 +393,11 @@ class Page
 		else {
 			
 			# Load Application 404.php
-			include ( APP_PAGE_URI.'404.php' );
-			exit;
+			$this->viewFile = APP_PAGE_URI . '404.php';
 			
 			
 		} // end else
 		
 	} // end page404
  
-} // end ClassName
+} // end Page

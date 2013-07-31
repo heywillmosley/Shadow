@@ -81,7 +81,7 @@
 	 * @return void
 	 */
 	function get_page()
-	{
+	{	
 		# Set new Page object
 		$p = new Page();
 		

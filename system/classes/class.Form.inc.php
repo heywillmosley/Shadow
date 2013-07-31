@@ -170,7 +170,7 @@ class Form
 	 */
 		function vEmail( $email )
 		{
-		  return filter_var( $email, FILTER_VALIDATE_EMAIL );
+		  return filter_var( $email, FILTER_VALidATE_EMAIL );
 		  
 		} // end method vEmail($email)
 	
@@ -268,8 +268,8 @@ class Form
 	 */
 		function vNumber( $value )
 		{
-			#return filter_var($value, FILTER_VALIDATE_FLOAT); // float
-			return filter_var( $value, FILTER_VALIDATE_INT ); # int
+			#return filter_var($value, FILTER_VALidATE_FLOAT); // float
+			return filter_var( $value, FILTER_VALidATE_INT ); # int
 			
 		} // end method vNumber($value)
 	
@@ -358,7 +358,7 @@ class Form
 	 */
 		function vUrl( $url )
 		{
-		  return filter_var( $url, FILTER_VALIDATE_URL );
+		  return filter_var( $url, FILTER_VALidATE_URL );
 		  
 		} // end method vUrl( $url )
 	
@@ -412,7 +412,7 @@ class Form
 	 */
 		function vIP( $ip )
 		{
-		  return filter_var( $ip, FILTER_VALIDATE_IP );
+		  return filter_var( $ip, FILTER_VALidATE_IP );
 		  
 		} // end method vIP( $ip )
 	

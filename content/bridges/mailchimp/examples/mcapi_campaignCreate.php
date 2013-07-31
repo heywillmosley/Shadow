@@ -40,7 +40,7 @@ if ($api->errorCode){
 	echo "\n\tCode=".$api->errorCode;
 	echo "\n\tMsg=".$api->errorMessage."\n";
 } else {
-	echo "New Campaign ID:".$retval."\n";
+	echo "New Campaign id:".$retval."\n";
 }
 
 ?>
