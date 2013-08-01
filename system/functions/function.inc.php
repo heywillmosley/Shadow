@@ -187,6 +187,7 @@
         <!-- jQuery library - Please load it from Google API's -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		
+        <script src="<?php echo SYS_JS_URL; ?>vendor/bootstrap.min.js"></script>
 		<script src="<?php echo SYS_JS_URL; ?>vendor/foundation/foundation.min.js"></script>
 		<script src="<?php echo SYS_JS_URL; ?>vendor/foundation/foundation.interchange.js"></script>
 		<script src="<?php echo APP_JS_URL; ?>application.js"></script>
