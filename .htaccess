@@ -50,6 +50,8 @@ RewriteRule ^(checkout\.php|billing\.php|final\.php|admin/(.*))$ https://%{HTTP_
 </IfModule>
 
 
+
+
 #MAINTENANCE-PAGE REDIRECT
 
 #Fix "Bad value X-UA-Compatible for attribute http-equiv on element meta." Validation Error

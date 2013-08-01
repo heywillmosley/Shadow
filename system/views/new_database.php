@@ -14,12 +14,12 @@ if(!defined('ROOT_URI')){require'../inc/config.inc.php';header('Location:'.SITE_
  * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
- * New Database
+ * new Page( $DBH );
  */
  
 // --------------------------------------------------------------------------------
 
-$page_title = "New Database";
+$page_title = "new Page( $DBH );";
 
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 

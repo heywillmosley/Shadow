@@ -26,11 +26,6 @@ define('INDEX',TRUE);
  */
  	require_once 'system/inc/config.inc.php';
 
-/**
- * Load System presetation layer functions
- */
-	require_once( BASE_INCLUDE_URI.'functions.inc.php');
-
  
 /*
  * ------------------------------------------------------
@@ -48,7 +43,6 @@ define('INDEX',TRUE);
  * Include the header file:
  */
  include SYS_INC_URI . 'header.inc.php';
- 
 
 get_page();
 

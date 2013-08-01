@@ -50,10 +50,12 @@ class Page
 	private $dateAdded = NULL;
 	private $dateUpdated = NULL;
 	private $viewFile = NULL;
+	protected $DBH;
 	
 	
-	function __construct()
+	function __construct( Database $DBH )
 	{
+		$this->DBH = $DBH;
 		$this->setPage();
 		
 	}
@@ -285,8 +287,8 @@ class Page
 							
 						try 
 						{  
-							$DBH = new Database;
-							$STH = $DBH->query("SELECT id, title, content, slug, viewFile from shdw_pages WHERE slug = '$this->page' LIMIT 1");  
+							
+							$STH = $this->DBH->query("SELECT id, title, content, slug, viewFile from shdw_pages WHERE slug = '$this->page' LIMIT 1");  
 							# setting the fetch mode  
 							$STH->setFetchMode(PDO::FETCH_ASSOC);  
 							  

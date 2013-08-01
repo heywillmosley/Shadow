@@ -1063,7 +1063,7 @@ if( !isset( $debug ) )
 # ************************** #
 # ***** LOAD FUNCIONS ****** #
 
-require_once SYS_FUNCTIONS_URI.'function.inc.php';
+require_once SYS_FUNCTIONS_URI.'functions.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
@@ -1241,7 +1241,6 @@ $e = new Error();
  *
  * @todo Secure session_start
  */
- 	ob_start();
 	session_start();
 	
 
@@ -1260,9 +1259,7 @@ $e = new Error();
 /**
  * Connect the the Database
  */
- 	$DBH = new Database;
-	global $DBH;
-
+ 	$DBH = new Database();
 
 
 // If it's a POST request, handle the login attempt:
