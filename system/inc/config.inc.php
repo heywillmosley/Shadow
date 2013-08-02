@@ -1067,6 +1067,7 @@ require_once SYS_FUNCTIONS_URI.'functions.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
+require_once SYS_FUNCTIONS_URI.'function.page.inc.php';
 
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #

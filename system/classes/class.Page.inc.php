@@ -50,6 +50,7 @@ class Page
 	private $dateAdded = NULL;
 	private $dateUpdated = NULL;
 	private $viewFile = NULL;
+	private $type = NULL;
 	protected $DBH;
 	
 	
@@ -169,15 +170,7 @@ class Page
 		} // end method getDateUpdated()
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		/**
+	/**
 	 * This method gets the page title
 	 */
 	 	function getPageTitle()
@@ -192,6 +185,16 @@ class Page
 	 	function pageTitle()
 		{
 			return $this->title;
+			
+		} // end 
+		
+		
+	/**
+	 * This method gets the page title
+	 */
+	 	function getPageUrl( $id )
+		{
+			return $this->slug;
 			
 		} // end 
 	
@@ -232,7 +235,7 @@ class Page
 					# Homepage
 					case '':
 						$this->title = SITE_NAME; 
-						
+						echo $this->id;
 						# Checks if index.php is in App root or App View folder
 						if( file_exists( APP_INC_URI . 'index.php' ) )
 							$this->viewFile = APP_VIEWS_URI . 'index.php';
@@ -244,21 +247,25 @@ class Page
 					# Administration	
 					case 'admin/pilot':
 						$this->title = 'Pilot'; 
+						$this->id = '0001'; 
 						$this->viewFile = SYS_PAGE_URI . 'pilot/pilot.php';
 						break;
 						
 					case 'admin/pilot/products':
-						$this->title = 'Products'; 
+						$this->title = 'Products';
+						$this->id = '0003';  
 						$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
 						break;
 						
 					case 'admin/login':
 						$this->title = 'Login'; 
+						$this->id = '0004'; 
 						$this->viewFile = SYS_PAGE_URI . 'login.php';
 						break;
 						
 					case 'admin/logout':
-						$this->title = 'Logout'; 
+						$this->title = 'Logout';
+						$this->id = '0005'; 
 						$this->viewFile = SYS_PAGE_URI . 'logout.php';
 						
 						# Kill session if one exists
@@ -268,19 +275,28 @@ class Page
 					
 					# Products	
 					case 'admin/pilot/products':
-						$this->title = 'Products'; 
+						$this->title = 'Products';
+						$this->id = '0006';  
 						$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
 						break;
 					
 					# Pages
 					case 'admin/pilot/pages':
 						$this->title = 'All Pages'; 
+						$this->id = '0007'; 
 						$this->viewFile = SYS_PAGE_URI . 'pilot/pages.php';
 						break;	
 						
 					case 'admin/pilot/pages/new-page':
-						$this->title = 'Create New Page'; 
+						$this->title = 'Create New Page';
+						$this->id = '0008'; 
 						$this->viewFile = SYS_PAGE_URI . 'pilot/new-page.php';
+						break;
+						
+					case 'admin/pilot/pages/edit-page':
+						$this->title = 'Edit' ;
+						$this->id = '0009'; 
+						$this->viewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
 						break;	
 					
 					default:
@@ -290,7 +306,10 @@ class Page
 							
 							$STH = $this->DBH->query("SELECT id, title, content, slug, viewFile from shdw_pages WHERE slug = '$this->page' LIMIT 1");  
 							# setting the fetch mode  
-							$STH->setFetchMode(PDO::FETCH_ASSOC);  
+							$STH->setFetchMode(PDO::FETCH_ASSOC);
+							
+							if( $STH->rowCount() == 0 )
+								$this->page404();
 							  
 							while( $row = $STH->fetch() ) 
 							{  
@@ -298,34 +317,37 @@ class Page
 								$this->title = $row['title'];
 								$this->content = $row['content'];
 								$this->slug = $row['slug'];
-								$this->viewFile = APP_VIEWS_URI.$row['viewFile'];
+								$this->viewFile = $row['viewFile'];
+								if( $row['viewFile'] != NULL )
+									$this->viewFile = APP_VIEWS_URI.$row['viewFile'];
+
 
 							} //  while( $row = $STH->fetch() ) 
+							
 							
 						}  
 						catch( PDOException $e ) {  
 							exceptionHandler( $e ); 
 						}
+						
 
 				} // end switch
-				
 			
 			/**
 			 * Make sure the file exists:
 			 */
-				 if( !file_exists( $this->viewFile ) )
-				 {
-					$this->page404();
-					
-				 } // end if( !file_exists( $page ) )
-				 
-				 
-			/**
-			 * Set viewFile to Content
-			 */
 			 	if( $this->viewFile != NULL )
-					$this->content = $this->viewFile;
+				{
 					
+					 if( !file_exists( $this->viewFile ) )
+					 {
+						 //new Exception( '<div class="alert">Could not find view file. Check path and that file exists in '. APP_VIEWS_URI.' directory</div>' );
+						$this->page404();
+						
+					 } // end if( !file_exists( $page ) )
+				}
+				 
+				
 			
 		} // end 
 		
@@ -337,8 +359,21 @@ class Page
 		 * $page is determined from the above switch.
 		 
 		 */
-		 
-		 return include_once( $this->content );
+		 				 
+		 if( $this->viewFile == NULL )
+		 {
+			 
+			 app_header();
+			echo "<h1>$this->title</h1>";
+			echo $this->content;
+			app_footer();
+			
+			return true;
+		 }
+		 else
+		 {
+		 	return include_once( $this->viewFile );
+		 }
 		
 	}
 	

@@ -106,7 +106,6 @@ if (!isset($new_page_errors)) $new_page_errors = array();
     <?php if ( empty( $new_page_errors ) && $_SERVER['REQUEST_METHOD'] == 'POST'  ) : ?>
     	<div class="alert alert-success">
         	Awesome. '<?php echo $t; ?>' has been created! <a class="alert-link" href="<?php echo SITE_URL.$s; ?>">View it now</a>.
-            <?php $_POST = NULL; ?>
         </div><!-- end alert alert-success -->
     <?php endif; ?>
     <div class="shdw-new-page-form">

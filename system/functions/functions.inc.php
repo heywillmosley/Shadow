@@ -175,16 +175,7 @@
         
          <?php // Load Scripts; ?>
 		<script src="<?php echo SYS_JS_URL; ?>vendor/custom.modernizr.js"></script>
-        <script>
-		// Toggle_Visibility JS
-		function toggle_visibility(id) {
-		var e = document.getElementById(id);
-		if(e.style.display == 'block')
-		e.style.display = 'none';
-		else
-		e.style.display = 'block';
-		}
-		</script>
+        
         
 	<?php
 		return true;
@@ -200,10 +191,8 @@
 	{ ?>
         <script src="<?php echo SYS_JS_URL; ?>vendor/jquery.min.js"></script>
         <script src="<?php echo SYS_JS_URL; ?>vendor/bootstrap.min.js"></script>
-		<script src="<?php echo SYS_JS_URL; ?>vendor/foundation-custom.min.js"></script>
+		<script src="<?php echo SYS_JS_URL; ?>vendor/foundation.min.js"></script>
 		<script src="<?php echo SYS_JS_URL; ?>shadow.js"></script>
-
-		
 		<script>
 			$(document).foundation('interchange', {
 			  named_queries : {
@@ -211,13 +200,7 @@
 			  }
 			});
 		</script>
-	
-		<script>
-          $(document).foundation();
-        </script>
-	
-
-		<!-- Smooth Div Scroll 1.3 minified-->
+        <!-- Smooth Div Scroll 1.3 minified-->
 		<script src="<?php echo SYS_JS_URL; ?>vendor/jquery.smoothdivscroll-1.3-min.js" type="text/javascript"></script>
 	
 	
@@ -231,6 +214,10 @@
 				});
 			});
 		</script>
+	
+		<script>
+          $(document).foundation();
+        </script>
 	<?php
 		return true;
 		
@@ -244,7 +231,7 @@
 	function the_page_title()
 	{ 
 		global $DBH;
-		 $c = new Page( $DBH ); if( $c->pageTitle() == "" )
+		 $c = new Page( $DBH ); if( $c->pageTitle() == SITE_NAME )
 				echo SITE_NAME;
 			else
 				echo $c->pageTitle() . ' | '.SITE_NAME; 
@@ -383,13 +370,13 @@
                                 </div><!-- end ls20 -->
                             </a>
                         </li>
-                        <li id="page-dropdown" class="hide">
+                        <li id="page-dropdown" <?php if( getPageId() == '0007' || '0008') echo "style='display:block;'"; else echo "style='display:none;'"; ?>>
                             <ul>
                                 <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages/new-page">Create new page</a></li>
                                 <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages">View all pages</a></li>
                             </ul>
                         </li>
-                        <li onclick="toggle_visibility('post-dropdown')" class="relative ">
+                        <li onclick="toggle_visibility('post-dropdown')" class="relative">
                             
                                 <div class="left side w20">
                                     <div class='sprite iconmonstr-note-4-icon-20'></div>
@@ -399,7 +386,7 @@
                                 </div><!-- end ls20 -->
                             
                         </li>
-                        <li id="post-dropdown" class="hide">
+                        <li id="post-dropdown">
                             <ul>
                                 <li><a href="#">Create new post</a></li>
                                 <li><a href="#">View all posts</a></li>

@@ -84,7 +84,7 @@ $pass = DB_PASSWORD;
 		
 	}  
 	catch(PDOException $e) {  
-		exceptionHander( $e ); 
+		exceptionHandler( $e ); 
 	} 
 	
 	

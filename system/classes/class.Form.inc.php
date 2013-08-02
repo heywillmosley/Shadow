@@ -95,8 +95,8 @@ class Form
 					# Set Error class and display error underneath input
 					echo 'class="form-' . $name . ' ' . $classes . ' error" >';
 					
-					if( isset( $_POST[FORM_NEW_FULL_ADDRESS] ) ) 
-						echo  htmlentities($_POST[FORM_NEW_FULL_ADDRESS]);
+						if( isset( $_POST[$name] ))
+						echo htmlentities($_POST[$name]);
 					
 					echo  '</textarea>'
 						. '<small class="error">' . $errors[$name] . '</small>';
@@ -108,8 +108,8 @@ class Form
 					echo 'class="form-' . $name . ' ' . $classes . '" >';
 					
 					# add the input's value, if applicable and strip html special characters
-					if( isset( $_POST[FORM_NEW_FULL_ADDRESS] ) ) 
-						echo  htmlentities($_POST[FORM_NEW_FULL_ADDRESS]);
+					  if( isset( $_POST[$name] ))
+						echo htmlentities($_POST[$name]);
 					
 					echo '</textarea>';
 					
@@ -358,7 +358,7 @@ class Form
 	 */
 		function vUrl( $url )
 		{
-		  return filter_var( $url, FILTER_VALidATE_URL );
+		  return filter_var( $url, FILTER_VALIDATE_URL );
 		  
 		} // end method vUrl( $url )
 	
