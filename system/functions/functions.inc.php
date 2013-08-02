@@ -799,7 +799,7 @@ function auto_copyright($year = 'auto'){
 
 
 # App Header @since 0.1.1 s5
-function app_header ()
+function app_header()
 {
 	global $DBH, $page, $page_title;
 	
@@ -809,7 +809,7 @@ function app_header ()
 } // end app_header
 
 # App Footer @since 0.1.1 s5
-function app_footer ()
+function app_footer()
 {
 	global $DBH, $page;
 	

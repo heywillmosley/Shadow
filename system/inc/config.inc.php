@@ -141,7 +141,8 @@
 		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
 		  define( 'MYSQL', DB );
-
+		  
+		
 
 /**
  * Define Framework Name
@@ -1229,6 +1230,15 @@ $e = new Error();
 
 # ***** FORM CONSTANTS ***** #
 # ***************************#
+
+# ***********************#
+# ***** DATABASE  ****** #
+
+
+
+
+# ***** DATABASE  ****** #
+# ***********************#
 
 
 # ***********************#

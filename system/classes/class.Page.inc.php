@@ -244,7 +244,12 @@ class Page
 
 						break;
 					
-					# Administration	
+					# Administration
+					case 'install':
+						$this->title = 'Install '. FW_NAME; 
+						$this->viewFile = SYS_PAGE_URI . 'install.php';
+						break;
+						
 					case 'admin/pilot':
 						$this->title = 'Pilot'; 
 						$this->id = '0001'; 
