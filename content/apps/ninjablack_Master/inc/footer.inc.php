@@ -19,7 +19,7 @@
 // --------------------------------------------------------------------------------?>
 
 <div class="footer row">
-	<div class="left">&copy; <?php auto_copyright(); echo ' ' . SITE_NAME; ?></div>
+	<div class="left">&copy; <?php echo '2013 ' . SITE_NAME; ?></div>
     <div class="right">
     	<a href="#" class="txt_wht">&uarr; Back to the Top</a>
     </div>

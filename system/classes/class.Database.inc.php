@@ -30,6 +30,8 @@ class Database extends PDO
 	protected $dsn = NULL;
 	protected $username = NULL;
 	protected $password = NULL;
+	protected $db_name = NULL;
+	protected $db_host = NULL;
 	protected $driverOptions = NULL;
 	
 	function __construct()
@@ -37,29 +39,42 @@ class Database extends PDO
 		# Require set database constants
 		require_once( DB );
 		
-		$this->dsn = 'mysql:dbname='.DB_NAME.';host='.DB_HOST.'';
+		$this->db_name = DB_NAME;
+		$this->db_host = DB_HOST;
+		$this->dsn = 'mysql:dbname='.$this->db_name.';host='.$this->db_host.'';
 		$this->username = DB_USER;
 		$this->password = DB_PASSWORD;
 		$this->driver = NULL;
 		
-		# Try to connect to the database:
-		try
-		{	
-			# Define Settings to Parent Construct
-			parent::__construct($this->dsn, $this->username, $this->password, $this->driver);
-			
-			# Show PDO Database Errors
-			$this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-			
-		} // end try
+		/**
+		 * Check if the database has be set
+		 */
 		
-		# Report the eorror!
-		catch( PDOException $e )
-		{
-			exceptionHandler( $e );
-			exit;
+			# Try to connect to the database:
+			try
+			{	
+				# Define Settings to Parent Construct
+				parent::__construct($this->dsn, $this->username, $this->password, $this->driver);
+				
+				# Show PDO Database Errors
+				$this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+				if( $this->db_name == NULL || '' || 'development-database-name-here' )
+				{
+					$this->db_name = NULL;
+					$_GET['p'] = 'install';
+				}
+				
+				
+			} // end try
 			
-		} // end catch( PDOException $e )S
+			# Report the eorror!
+			catch( PDOException $e )
+			{
+					exceptionHandler( $e ); 
+					exit;
+
+				
+			} // end catch( PDOException $e )S
 		
 	}
 	 
@@ -82,6 +97,7 @@ class Database extends PDO
 			 unset( $this->pdo ); 
 			 
 		 } // end function closeDB()
+		 
 		 
 	/**
 	 * Destroy database connection
