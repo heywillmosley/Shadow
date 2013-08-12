@@ -37,7 +37,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	if ( !empty($_POST['live_db_name'])) {
 		
 		# Validate email
-		if ( vDBName($_POST['live_db_name']) ) {
+		if ( vdb_name($_POST['live_db_name']) ) {
 			
 			# Set variable
 			$live_dbn = $_POST['live_db_name'];
@@ -55,7 +55,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	if ( !empty($_POST['live_db_username'])) {
 		
 		# Validate
-		if ( vDBName($_POST['live_db_username']) ) {
+		if ( vdb_name($_POST['live_db_username']) ) {
 			
 			# Set variable
 			$dbun = $_POST['live_db_username'];
@@ -84,7 +84,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	if ( !empty($_POST['live_db_host'])) {
 		
 		# Validate
-		if ( vDBName($_POST['live_db_host']) ) {
+		if ( vdb_name($_POST['live_db_host']) ) {
 			
 			# Set variable
 			$live_dbh = $_POST['live_db_host'];
@@ -106,7 +106,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		if ( !empty($_POST['local_db_username'])) {
 			
 			# Validate
-			if ( vDBName($_POST['local_db_username']) ) {
+			if ( vdb_name($_POST['local_db_username']) ) {
 				
 				# Set variable
 				$dbun = $_POST['local_db_username'];
@@ -143,7 +143,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		if ( !empty($_POST['local_db_host'])) {
 			
 			# Validate
-			if ( vDBName($_POST['local_db_host']) ) {
+			if ( vdb_name($_POST['local_db_host']) ) {
 				
 				# Set variable
 				$local_dbh = $_POST['local_db_host'];

@@ -27,6 +27,698 @@
  */
 class Form
 {
+	protected $_elements = array();
+	protected $_validation = array();
+	protected $_prefix = "http";
+	protected $_values = array();
+	protected $_attributes = array();
+
+	protected $ajax;
+	protected $ajaxCallback;
+	protected $errorView;
+	protected $labelToPlaceholder;
+	protected $resourcesPath;
+	/*Prevents various automated from being automatically applied.  Current options for this array
+	included jQuery, bootstrap and focus.*/
+	protected $prevent = array();
+	protected $form_id;
+	protected $form_class;
+	protected $form_method;
+	protected $form_action;
+	
+	protected $element_name;
+	
+	
+	/**
+	 * This method configures the new form
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @param          string
+	 * @param          string
+	 * @param          string
+	 * @param          string
+	 * @return         void
+	 */
+		function __construct( $id = 'form-formula', $class = '', $method = 'POST', $action = '#' )
+		{
+			$this->form_id = 'form-'.$id;
+			$this->form_method = $method;
+			$this->form_action = $action;
+			$this->form_class = $class;
+			
+			# Check if HTTPS is on, set prefix to https
+			if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on")
+			$this->_prefix = "https";
+			
+			# Open form and configure
+			echo "<form id='$this->form_id' class='mxw700 pam custom $this->form_class' method='$this->form_method' action='$this->form_action' >";
+			
+			
+		} // end function __construct( $id = 'Formula', $method = 'POST' )
+		
+		
+		
+	/**
+	 * This method calls all of the defined elements
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function callElements()
+		{
+			foreach ($this->_elements as $item) {
+				echo $item;
+			}
+			
+			echo "</form>";
+		}
+
+		
+		
+	/**
+	 * This method creates the element
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function addElement( $element )
+		{
+			$id = NULL;
+			$class = NULL;
+			$eValue = NULL;
+			$caption = NULL;
+			$label = NULL;
+			$placeholder = NULL;
+			$value = NULL;
+			$type = NULL;
+			$name = NULL;
+			
+			
+			foreach( $element as $attribute => $eValue ) 
+			{
+				# ELEMENT ATTRIBUTES
+				switch ( $attribute ) 
+				{
+					case 'type':
+						switch ( $eValue ) 
+						{
+							case 'button': // Defines a clickable button
+							case 'btn': // Defines a clickable button
+								$type = 'button';
+								break;
+								
+							case 'checkbox': // Defines a checkbox
+								$type = 'checkbox';
+								break;
+								
+							case 'color': // Defines a color picker
+								$type = 'color';
+								break;
+								
+							case 'date': // Defines a date control (year, month and day (no time))
+								$type = 'date';
+								break;
+								
+							case 'datetime': // Defines a date and time control (year, month, day, hour, minute, second, and fraction of a second, based on UTC time zone)
+								$type = 'datetime';
+								break;
+								
+							case 'datetime-local': // Defines a date and time control (year, month, day, hour, minute, second, and fraction of a second (no time zone)
+								$type = 'datetime-local';
+								break;
+								
+							case 'email': // Defines a field for an e-mail address
+								$type = 'email';
+								break;
+								
+							case 'file': // Defines a file-select field and a "Browse..." button (for file uploads)
+								$type = 'file';
+								break;
+								
+							case 'hidden': // Defines a hidden input field
+								$type = 'hidden';
+								break;
+								
+							case 'image': // Defines an image as the submit button
+								$type = 'image';
+								break;
+								
+							case 'month': // Defines a month and year control (no time zone)
+								$type = 'month';
+								break;
+								
+							case 'number': // Defines a field for entering a number
+								$type = 'number';
+								break;
+								
+							case 'password': // Defines a password field (characters are masked)
+							case 'pass': // Defines a password field (characters are masked)
+								$type = 'password';
+								break;
+								
+							case 'radio': // Defines a radio button
+								$type = 'radio';
+								break;
+								
+							case 'range': // Defines a control for entering a number whose exact value is not important (like a slider control)
+								$type = 'range';
+								break;
+								
+							case 'reset': // Defines a reset button (resets all form values to default values)
+								$type = 'reset';
+								break;
+								
+							case 'search': // Defines a text field for entering a search string
+								$type = 'search';
+								break;
+								
+							case 'submit': // Defines a submit button
+								$type = 'submit';
+								break;
+								
+							case 'tel': // Defines a field for entering a telephone number
+								$type = 'tel';
+								break;
+								
+							case 'text': // Default. Defines a single-line text field (default width is 20 characters)
+							case 'textbox':
+								$type = 'text';
+								break;
+								
+							case 'textarea': // Defines a nulti-line text field
+								$type = 'textarea';
+								break;
+								
+							case 'time': // Defines a control for entering a time (no time zone)
+								$type = 'time';
+								break;
+								
+							case 'url': // Defines a field for entering a URL
+								$type = 'url';
+								break;
+								
+							case 'week': // Defines a week and year control (no time zone)
+								$type = 'week';
+								break;
+							default:
+								throw new Exception( 'Invalid attribute with new Element Class. Please check your form. Please use one of the following as defined in W3 Attribute Values. <a href="http://www.w3schools.com/tags/att_input_type.asp" target="_blank">Valid Attribute Values</a>' );
+								break 2;
+							
+						} // end switch ( $eValue ) type
+						break;
+								
+						case 'name':
+							if( $eValue != '' && $eValue != NULL && $eValue != FALSE )
+								$name = $this->form_id . '-'. preg_replace( '/[^A-Za-z-_]/', "", $eValue );
+							else
+							{
+								throw new Exception( 'Please set a name for your form element.' );
+								break 2;
+								
+							} // end else			
+							break;
+							
+						case 'class':
+						case 'classes':
+							$class = $eValue;	
+							break;
+							
+						case 'id':
+						case 'ids':
+							$id = $eValue;	
+							break;
+							
+						case 'placeholder':
+							$placeholder = $eValue;	
+							break;
+						
+						case 'label':
+							$label = $eValue;	
+							break;	
+							
+						case 'caption':
+						case 'captions':
+							$caption = $eValue;	
+							break;	
+							
+						case 'value':
+							$value = $eValue;	
+							break;	
+						
+				} // end switch ( $rule ) 
+				
+			} // end foreach( $element as $attribute => $eValue ) 
+			
+			$errors = array();
+			
+			# VALIDATION
+			if( isset( $_POST[$name] ) )
+			{
+				foreach( $element as $rule => $msg ) 
+				{
+					
+					switch ( $rule ) 
+					{
+						case 'val_req':
+						case 'val_required':
+							if( empty( $_POST[$name] ) )
+								
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{
+									$errors[$name] = 'This field is required. Please enter a value.';
+									break 2;
+								}
+							break;
+							
+						case 'val_email':
+							if( $this->vEmail( $_POST[$name] ) )
+								$this->_cleanQuery( $this->sEmail( $_POST[$name] ) );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_INVALID_NEW_EMAIL;
+									break 2;
+								}
+							}
+							break;
+							
+							
+						case 'val_name':
+							if( $this->vName( $_POST[$name] ) )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_INVALID_NAME;
+									break 2;
+								}
+							}
+							break;
+							
+						case 'val_alpha':
+							if( $this->vAlpha( $_POST[$name] ) )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_INVALID_ALPHA;
+									break 2;
+								}
+							}
+							break;
+							
+						case 'val_alphanumeric':
+							if( $this->vAlphanumeric( $_POST[$name] ) )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_INVALID_ALPHANUMERIC;
+									break 2;
+								}
+							}
+							break;
+							
+						case 'val_int':
+							if( $this->vInt( $_POST[$name] ) )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_INVALID_INT;
+									break 2;
+								}
+							}
+							break;
+							
+						case 'val_number':
+							if( $this->vNumber( $_POST[$name] ) )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_INVALID_NUMBER;
+									break 2;
+								}
+							}
+							break;
+							
+							
+					} // end switch ( $rule ) 
+					
+				} // end foreach( $element as $attribute => $eValue ) 
+				
+			}
+			
+			/* ####################################### */
+			/* ############## ELEMENT ################ */
+			
+			
+			/* ################# */
+			/* ##### LABEL ##### */
+			
+			# Add label if there is one
+			if( !empty( $label ) )	
+				echo "<label>$label</label>";
+			
+			/* ##### LABEL ##### */
+			/* ################# */
+			
+			/* ######################## */
+			/* ##### ELEMENT TYPE ##### */
+			
+			
+				/* -------------------- Text, Textbox, or Password -------------------- */
+				
+				if( $type == 'text' || $type == 'textbox' || $type == 'password' )
+				{
+					# Begin creating the input
+					echo "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
+					
+					# Set value of $name if it's set ( using $_POST , $_GET or $value
+					if( isset( $_POST[$name] ) )  echo $_POST[$name];
+					elseif( isset( $_GET[$name] ) ) echo $_GET[$name]; 
+					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) echo $value;
+						
+					# Set the class
+					echo "' class='$name $class ";
+					
+					# Add appropriate spacing if there's a caption
+					if( !empty( $caption ) ) echo " mbt ";
+					
+					# Check for errors, # Set Error class and display error underneath input
+					if( array_key_exists( $name, $errors ) ) echo " error ";
+					
+					# Close text tag	
+					echo "' />";
+					
+				} // end if( $type == 'text' || $type == 'textbox' || $type == 'password' )
+				
+				
+				/* -------------------- Textarea -------------------- */
+				
+				if( $type == 'textarea' )
+				{
+					# Begin creating the input
+					echo "<textarea type='$type' name='$name' id='$name $id' placeholder='$placeholder"; 
+				
+					# Set the class
+					echo "' class='$name $class ";
+					
+					# Add appropriate spacing if there's a caption
+					if( !empty( $caption ) ) echo " mbt ";
+					
+					# Check for errors, # Set Error class and display error underneath input
+					if( array_key_exists( $name, $errors ) ) echo " error ";
+					
+					# Close tag	
+					echo "' >";
+					
+					# Set value of $name if it's set ( using $_POST , $_GET or $value
+					if( isset( $_POST[$name] ) )  echo $_POST[$name];
+					elseif( isset( $_GET[$name] ) ) echo $_GET[$name]; 
+					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) echo $value;
+					
+					echo  '</textarea>';
+					
+				} // end if( $type == 'textarea' )
+				
+				
+				/* -------------------- Submit -------------------- */
+				
+				if( $type == 'submit' || $type == 'button' || $type == 'btn' )
+				{
+					# Begin creating the input
+					echo "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
+					
+					# Set value of $name if it's set ( using $_POST , $_GET or $value
+					if( $value != '' || $value != FALSE || $value != NULL )  echo $value;
+					else echo 'Submit';
+						
+					# Set the class
+					echo "' class='$name btn btn-default $class ";
+					
+					# Add appropriate spacing if there's a caption
+					if( !empty( $caption ) ) echo " mbt ";
+					
+					# Check for errors, # Set Error class and display error underneath input
+					if( array_key_exists( $name, $errors ) ) echo " error ";
+					
+					# Close text tag	
+					echo "' />";
+					
+				} // end if( $type == 'textarea' )
+			
+			
+			/* ##### ELEMENT TYPE ##### */
+			/* ######################## */
+			
+			/* ################### */
+			/* ##### ERRORS ###### */
+			
+			# Check for errors
+			if( array_key_exists( $name, $errors ) )	
+				echo "<small class='error'>$errors[$name]</small>";
+				
+			/* ##### ERRORS ###### */
+			/* ################### */
+			
+			/* ################### */
+			/* ##### CAPTION ##### */
+			
+			
+			if( !empty( $caption ) )	
+				echo "<div class='caption mbs'>&uarr; $caption</div>";
+				
+				
+			/* ##### CAPTION ##### */
+			/* ################### */	
+				
+			
+			/* ############## ELEMENT ################ */
+			/* ####################################### */
+			
+			
+			if( isset( $_POST[$name] ) )
+			{
+				$output = $_POST[$name];
+				if( empty( $errors ) )
+					$valid = TRUE;
+					
+				else
+					$valid = FALSE;
+				
+			}
+			else
+			{
+				$output = FALSE;
+				$valid = FALSE;
+			}
+			
+			# Set Session Variables
+			$_SESSION[$name] = array( 'output' => $output,
+									  'valid' => $valid, 
+									  'name' => $name );
+									  
+
+									  
+				
+			return array( 'output' => $output,
+						  'valid' => $valid, 
+						  'name' => $name );
+			
+		}
+	
+	/* ############### ELEMENTS ################# */
+	
+	/**
+	 * This method creates a text element
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function text( $rules = array(), $name, $placeholder = '', $label = '', $caption = '', $class = '', $id = '', $value = '' )
+		{	
+			$errors = array();
+			
+			if( $_SERVER['REQUEST_METHOD'] == 'POST' )
+			{
+				foreach( $rules as $rule => $msg ) 
+				{
+					# Validation
+					switch ( $rule ) 
+					{
+						case 'req':
+						case 'required':
+							if( empty($_POST[$name] ) )
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{
+									$errors[$name] = 'The following field is required';
+									break 2;
+								}
+							break;
+							
+						case 'email':
+							if( $this->vEmail( $_POST[$name] ) )
+								$this->_cleanQuery( $this->sEmail( $_POST[$name] ) );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_EMPTY_NEW_EMAIL;
+									break 2;
+								}
+							}
+							
+							break;
+							
+						case 'email':
+							if( !$this->vEmail( $_POST[$name] ) )
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_EMPTY_NEW_EMAIL;
+									break 2;
+								}
+							break;
+							
+					} // end switch ( $rule ) 
+					
+				} // end while ( list($rule, $msg) = each( $rules ) ) 
+				
+				
+					
+					
+			} // end if( $_SERVER['REQUEST_METHOD'] == 'POST' )
+			
+			# Set value of $name if it's set and clean query
+			if( isset( $_POST[$name] ) )  _cleanQuery( $value = $_POST[$name] );
+				
+			elseif( isset( $_GET[$name] ) ) $value = _cleanQuery( $_GET[$name] );
+			
+			# Add label if there is one
+			if( !empty( $label ) )	
+				echo "<label>$label</label>";
+			
+			# Begin creating the input
+			echo "<input type='text' name='$name' id='$id' placeholder='$placeholder'"; 
+			
+			# add the input's value
+			if( isset( $value ) ) echo "value='$value'";
+			
+			# Check for errors
+			if( array_key_exists( $name, $errors ) )
+			{
+				# Set Error class and display error underneath input
+				echo "class='form-$name $class error ";
+				
+				# Add appropriate spacing if there's a caption
+				if( !empty( $caption ) ) echo " mbt ";
+					
+				echo "' /><small class='error'>$errors[$name]</small>";
+				
+			}
+			
+			else
+			{
+				echo "class='form-$name $class";
+				
+				# Add appropriate spacing if there's a caption
+				if( !empty( $caption ) ) echo " mbt ";
+				
+				echo "' />";
+			}
+			
+			if( !empty( $caption ) )	
+				echo "<div class='caption mbs'>&uarr; $caption</div>";
+				
+			
+		} // end function text( $class = '', $id = '', $name, $placeholder = '', $values = '' )
+		
+	
+	/**
+	 * This method submits the form
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function submit( $value = 'Submit', $class = '', $id = '', $name = FORM_SUBMIT )
+		{	
+			echo "<input name='$name' type='submit' id='$id' class='$class' value='$value' />";	
+			
+		} // end function text( $class = '', $id = '', $name, $placeholder = '', $values = '' )
+	
+	
+	
+	/**
+	 * This method sets the validation rules
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function addRule( $rule, $error_msg = '' )
+		{	
+			echo $this->element_name;
+			# Validation
+			switch ( $rule ) {
+				case 'req':
+					if( empty($_POST[$this->element_name] ) )
+						echo 'empty';
+					break;
+					
+				case 1:
+					echo "i equals 1";
+					break;
+				case 2:
+					echo "i equals 2";
+					break;
+			}
+			
+		} // end rule
+	
+	/**
+	 * This method sets the validation rules
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function callRules( $id )
+		{	
+			
+			
+		} // end rule
+	
+	
+	
 	/**
 	 * Create Form Input Method
 	 *
@@ -170,7 +862,7 @@ class Form
 	 */
 		function vEmail( $email )
 		{
-		  return filter_var( $email, FILTER_VALidATE_EMAIL );
+		  return filter_var( $email, FILTER_VALIDATE_EMAIL );
 		  
 		} // end method vEmail($email)
 	
@@ -209,7 +901,25 @@ class Form
 	 */
 		function vName( $name ) 
 		{	  
-				return preg_match ('/^[A-Z \',.-]{1,30}$/i', $name);
+				return preg_match ('/^[A-Z \',.-]{1,750}$/i', $name);
+						 
+		} // end method vName($name)
+		
+		
+	/**
+	 * Validate Name Method
+	 *
+	 * This method function validates alpha characters
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @param          string  name
+	 * @return         boolean
+	 */
+		function vAlpha( $name ) 
+		{	  
+				return ctype_alpha( $name );
 						 
 		} // end method vName($name)
 	
@@ -268,8 +978,27 @@ class Form
 	 */
 		function vNumber( $value )
 		{
-			#return filter_var($value, FILTER_VALidATE_FLOAT); // float
-			return filter_var( $value, FILTER_VALidATE_INT ); # int
+			#return filter_var($value, FILTER_VALIDATE_FLOAT); // float
+			return filter_var( $value, FILTER_VALIDATE_INT ); # int
+			
+		} // end method vNumber($value)
+		
+		
+	/**
+	 * Validate Numbers Method
+	 *
+	 * This method function validates if string is an integer ( negative, decimal, etc )
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @param          string  number
+	 * @return         boolean
+	 */
+		function vInt( $value )
+		{
+			#return filter_var($value, FILTER_VALIDATE_FLOAT); // float
+			return filter_var( $value, FILTER_VALIDATE_INT ); # int
 			
 		} // end method vNumber($value)
 	
@@ -412,7 +1141,7 @@ class Form
 	 */
 		function vIP( $ip )
 		{
-		  return filter_var( $ip, FILTER_VALidATE_IP );
+		  return filter_var( $ip, FILTER_VALIDATE_IP );
 		  
 		} // end method vIP( $ip )
 	
@@ -671,11 +1400,11 @@ class Form
 	 * @params         string  databbase connection
 	 * @return         boolean
 	 */
-		function vDBName ($db) 
+		function vdb_name ($db) 
 		{
 			return !preg_match('/[^a-z_\-0-9]/i', $db);
 			
-		} // end function vDBName ($db) 
+		} // end function vdb_name ($db) 
 	
 	
 	/**

@@ -8,7 +8,7 @@ header( 'Retry-After: 3600' );
 
 
 # Your staging database name
-define( 'DB_NAME', 'kingbioc_stage' );
+define( 'db_name', 'kingbioc_stage' );
 
 # Your staging database username
 define( 'DB_USER', 'kingbioc_KingBi0' );

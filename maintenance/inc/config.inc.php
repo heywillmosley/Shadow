@@ -65,7 +65,7 @@ define( 'GOOGLE_FONTS', '' );
 if( $_SERVER['HTTP_HOST'] == 'natural-pet.com' || $_SERVER['HTTP_HOST'] == 'www.natural-pet.com' )
 {	
 	# Your production database name
-	define( 'DB_NAME', 'kingbio_naturalpet' );
+	define( 'db_name', 'kingbio_naturalpet' );
 	
 	# Your production database username
 	define( 'DB_USER', 'root' );
@@ -90,7 +90,7 @@ if( $_SERVER['HTTP_HOST'] == 'natural-pet.com' || $_SERVER['HTTP_HOST'] == 'www.
 elseif( $_SERVER['HTTP_HOST'] == 'stg.natural-pet.com' || $_SERVER['HTTP_HOST'] == 'www.stg.natural-pet.com' )
 {
 	# Your staging database name
-	define( 'DB_NAME', 'naturalpet_stage' );
+	define( 'db_name', 'naturalpet_stage' );
 	
 	# Your staging database username
 	define( 'DB_USER', 'kingbioc_KingBi0' );
@@ -122,7 +122,7 @@ elseif( $_SERVER['HTTP_HOST'] == 'stg.natural-pet.com' || $_SERVER['HTTP_HOST'] 
 elseif( $_SERVER['HTTP_HOST'] == 'qa.natural-pet.com' || $_SERVER['HTTP_HOST'] == 'www.qa.natural-pet.com' )
 {
 	# Your staging database name
-	define( 'DB_NAME', 'naturalpet_stage' );
+	define( 'db_name', 'naturalpet_stage' );
 	
 	# Your staging database username
 	define( 'DB_USER', 'kingbioc_KingBi0' );
@@ -154,7 +154,7 @@ elseif( $_SERVER['HTTP_HOST'] == 'qa.natural-pet.com' || $_SERVER['HTTP_HOST'] =
 elseif( $_SERVER['HTTP_HOST'] == 'localhost' )
 {
 	# Your development database name
-	define( 'DB_NAME', 'naturalpet' );
+	define( 'db_name', 'naturalpet' );
 	
 	# Your development database username
 	define( 'DB_USER', 'K!ngB!0Inc' );

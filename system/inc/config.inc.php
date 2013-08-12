@@ -155,7 +155,6 @@
  */
  	define('SYS_PREFIX', 'shdw-');
 
-
 	
 /**
  * IF USING WORDPRESS or WP directory exists, load Wordpress
@@ -1098,7 +1097,7 @@ $e = new Error();
 	define( 'FORM_FIRST_NAME', 'firstName' );
 
 	# Middle Name
-	define( 'FORM_MidDLE_NAME', 'middle_name' );
+	define( 'FORM_MIDDLE_NAME', 'middle_name' );
 
 	# Last Name
 	define( 'FORM_LAST_NAME', 'lastName' );
@@ -1152,7 +1151,7 @@ $e = new Error();
 		define( 'ERR_EMPTY_FIRST_NAME', 'Enter your first name.' );
 
 		# Empty Middle Name
-		define( 'ERR_EMPTY_MidDLE_NAME', 'Enter your middle name.' );
+		define( 'ERR_EMPTY_MIDDLE_NAME', 'Enter your middle name.' );
 
 		# Empty Last Name
 		define( 'ERR_EMPTY_LAST_NAME', 'Enter your last name.' );
@@ -1186,30 +1185,50 @@ $e = new Error();
 
 
 	# Invalid Inputs
-
+		# Invalid Alpha
+		define( 'ERR_INVALID_NAME', 'Please enter a valid name. <code>a-z</code>, <code>A-Z</code>, <code>\'</code>, <code>,</code>, <code>.</code>, and <code>-</code> are allowed.' );
+		
+		# Invalid Alpha
+		define( 'ERR_INVALID_ALPHA', 'Invalid input. <code>a-z</code> and <code>A-Z</code>.</code> are allowed.' );
+		
+		# Invalid Alpha
+		define( 'ERR_INVALID_ALPHANUMERIC', 'Invalid input. <code>a-z</code>, <code>A-Z</code> and <code>0-9</code>.</code> are allowed.' );
+		
+		# Invalid Alpha
+		define( 'ERR_INVALID_INT', 'Please enter a valid integer. E.g. <code>42</code>, <code>-4</code>, <code>932.5</code>.' );
+		
+		# Invalid Alpha
+		define( 'ERR_INVALID_NUMBER', 'Please enter a valid number. Whole numbers allowed. E.g. <code>42</code>, <code>937</code>, and <code>0</code>.' );
+		
 		# Invalid First Name
-		define( 'ERR_INVALid_FIRST_NAME', 'Please enter a valid first name.' );
+		define( 'ERR_INVALID_FIRST_NAME', 'Please enter a valid first name.' );
 
 		# Invalid Middle Name
-		define( 'ERR_INVALid_MidDLE_NAME', 'Please enter a valid middle name.' );
+		define( 'ERR_INVALID_MIDDLE_NAME', 'Please enter a valid middle name.' );
 
 		# Invalid Last Name
-		define( 'ERR_INVALid_LAST_NAME', 'Please enter a valid last name.' );
+		define( 'ERR_INVALID_LAST_NAME', 'Please enter a valid last name.' );
 		
 		# Invalid First Name
-		define( 'ERR_INVALid_FULLNAME', 'Please enter a valid full name. <code class="txt_wht">a-z, A-Z, -, and .</code> are allowed.' );
+		define( 'ERR_INVALID_FULLNAME', 'Please enter a valid full name. <code>a-z</code>, <code>A-Z</code>, and <code>-</code> are allowed.' );
 
 		# Invalid New Email
-		define( 'ERR_INVALid_NEW_EMAIL', 'Please enter a valid email address.' );
+		define( 'ERR_INVALID_NEW_EMAIL', 'Please enter a valid email address.' );
 		
 		# Invalid New Phone Number
-		define( 'ERR_INVALid_NEW_PHONE', 'Please enter a valid telephone number.' );
+		define( 'ERR_INVALID_NEW_PHONE', 'Please enter a valid telephone number.' );
+		
+		# Invalid New Phone Number
+		define( 'ERR_INVALID_URL', 'Please enter a valid url.' );
 
 		# Invalid New Username
-		define( 'ERR_INVALid_NEW_USERNAME', 'Please enter a valid username. Usernames must be at least 2 - 30 characters long and may only contain <code>a-z</code>, <code>A-Z</code>, <code>0-9</code> and <code>_</code>.' );
+		define( 'ERR_INVALID_NEW_USERNAME', 'Please enter a valid username. Usernames must be at least 2 - 30 characters long and may only contain <code>a-z</code>, <code>A-Z</code>, <code>0-9</code> and <code>_</code>.' );
 
 		# Invalid Password
-		define( 'ERR_INVALid_PASS', 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase and 1 number.' );
+		define( 'ERR_INVALID_PASS', 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase and 1 number.' );
+		
+		# Invalid Password
+		define( 'ERR_INVALID_DB_NAME', 'Please enter a valid database name. Only <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, <code>-</code>, and <code>_</code> allowed.' );
 
 	# Match Inputs
 

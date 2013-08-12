@@ -533,12 +533,12 @@
 	 * @params         string  databbase connection
 	 * @return         boolean
 	 */
-		function vDBName ($db) 
+		function vdb_name ($db) 
 		{
 			$c = new Form;
-			return $c->vDBName( $db );
+			return $c->vdb_name( $db );
 			
-		} // end function vDBName ($db) 
+		} // end function vdb_name ($db) 
 	
 	
 	/**

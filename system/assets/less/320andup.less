@@ -117,8 +117,9 @@ address {
 
   
 .caption{
-	.font-size(9);
-	color: @gray;	
+	.font-size(11);
+	line-height: 1.4;
+	color: #999;	
 }
 
 ul,
@@ -2575,6 +2576,14 @@ div.scrollingHotSpotRightVisible
 	.opacity( .35 );
 	zoom: 1;
 }
+
+
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
+	height: 33px!important;
+	.font-size(14);
+}
+
+
 
 /* The scroll wrapper is always the same width and height as the containing element (div).
    Overflow is hidden because you don't want to show all of the scrollable area.

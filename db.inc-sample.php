@@ -36,7 +36,7 @@
 if(  ENVIRONMENT == 'development' )
 {
 	# Your development database name
-	define( 'DB_NAME', 'development-database-name-here' );
+	define( 'db_name', 'development-database-name-here' );
 	
 	# Your development database username
 	define( 'DB_USER', 'development-database-username-here' );
@@ -53,7 +53,7 @@ if(  ENVIRONMENT == 'development' )
 elseif( ENVIRONMENT == 'stage' )
 {
 	# Your staging database name
-	define( 'DB_NAME', 'stage-database-name-here' );
+	define( 'db_name', 'stage-database-name-here' );
 	
 	# Your staging database username
 	define( 'DB_USER', 'stage-database-username-here' );
@@ -70,7 +70,7 @@ elseif( ENVIRONMENT == 'stage' )
 elseif( ENVIRONMENT == 'qa' )
 {
 	# Your staging database name
-	define( 'DB_NAME', 'qa-database-name-here' );
+	define( 'db_name', 'qa-database-name-here' );
 	
 	# Your staging database username
 	define( 'DB_USER', 'qa-database-username-here' );
@@ -86,7 +86,7 @@ elseif( ENVIRONMENT == 'qa' )
 elseif( ENVIRONMENT == 'production' )
 {	
 	# Your production database name
-	define( 'DB_NAME', 'production-database-name-here' );
+	define( 'db_name', 'production-database-name-here' );
 	
 	# Your production database username
 	define( 'DB_USER', 'production-database-username-here' );

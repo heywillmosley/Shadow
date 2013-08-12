@@ -1,7 +1,7 @@
 <?php
 
 $host = DB_HOST;
-$dbname = DB_NAME;
+$db_name = db_name;
 $user = DB_USER;
 $pass = DB_PASSWORD;
 
@@ -11,7 +11,7 @@ $pass = DB_PASSWORD;
 	try 
 	{  
 		# Connect to mysql using credentials
-		$DBH = new PDO( "mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD );  		
+		$DBH = new PDO( "mysql:host=".DB_HOST.";db_name=".db_name, DB_USER, DB_PASSWORD );  		
 		# Set Error handling method
 		$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
 	  

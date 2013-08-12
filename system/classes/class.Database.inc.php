@@ -30,8 +30,8 @@ class Database extends PDO
 	protected $dsn = NULL;
 	protected $username = NULL;
 	protected $password = NULL;
-	protected $db_name = NULL;
-	protected $db_host = NULL;
+	protected $dbName = NULL;
+	protected $dbHost = NULL;
 	protected $driverOptions = NULL;
 	
 	function __construct()
@@ -39,9 +39,9 @@ class Database extends PDO
 		# Require set database constants
 		require_once( DB );
 		
-		$this->db_name = DB_NAME;
-		$this->db_host = DB_HOST;
-		$this->dsn = 'mysql:dbname='.$this->db_name.';host='.$this->db_host.'';
+		$this->dbName = DB_NAME;
+		$this->dbHost = DB_HOST;
+		$this->dsn = 'mysql:dbName='.$this->dbName.';host='.$this->dbHost.'';
 		$this->username = DB_USER;
 		$this->password = DB_PASSWORD;
 		$this->driver = NULL;
@@ -58,9 +58,10 @@ class Database extends PDO
 				
 				# Show PDO Database Errors
 				$this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-				if( $this->db_name == NULL || '' || 'development-database-name-here' )
+				
+				if( $this->dbName == NULL || $this->dbName == '' || $this->dbName == 'development-database-name-here' )
 				{
-					$this->db_name = NULL;
+					$this->dbName = NULL;
 					$_GET['p'] = 'install';
 				}
 				
