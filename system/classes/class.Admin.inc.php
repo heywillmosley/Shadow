@@ -27,10 +27,17 @@
  */
 class Admin
 {
+	protected $DBH = NULL;
+	
 	# Set Errors array
 	public $login_errors = array();
 
 	
+	function __construct( Database $DBH )
+	{
+		$this->DBH = $DBH;
+		
+	}
 	
 	/**
 	 * Determines if user is logged in
@@ -98,30 +105,6 @@ class Admin
 				
 				if ( empty( $this->login_errors ) ) 
 				{ // OK to proceed!
-				
-					# Call the database
-					require_once( DB );
-
-					$host = DB_HOST;
-					$db_name = db_name;
-					$user = DB_USER;
-					$pass = DB_PASSWORD;
-					
-					/**
-					 * connect to the database  
-					 */
-						try 
-						{  
-							# Connect to mysql using credentials
-							$DBH = new PDO("mysql:host=$host;db_name=$db_name", $user, $pass);  		
-							# Set Error handling method
-							$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
-						  
-						}  
-						catch(PDOException $e) {  
-							echo "Could not connect to database";  
-							file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
-						} 
 						
 					/**
 					 * FETCH_ASSOC
@@ -132,7 +115,7 @@ class Admin
 						{  
 							# using the shortcut ->query() method here since there are no variable  
 							# values in the select statement.  
-							$STH = $DBH->query("SELECT id, username, email, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = '$ue' OR `email` = '$ue' ) AND pass = '$p'");  
+							$STH = $this->DBH->query("SELECT id, username, email, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = '$ue' OR `email` = '$ue' ) AND pass = '$p'");  
 							  
 							# setting the fetch mode  
 							$STH->setFetchMode( PDO::FETCH_ASSOC );

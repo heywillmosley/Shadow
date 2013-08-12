@@ -41,7 +41,7 @@ class Database extends PDO
 		
 		$this->dbName = DB_NAME;
 		$this->dbHost = DB_HOST;
-		$this->dsn = 'mysql:dbName='.$this->dbName.';host='.$this->dbHost.'';
+		$this->dsn = 'mysql:dbname='.$this->dbName.';host='.$this->dbHost.'';
 		$this->username = DB_USER;
 		$this->password = DB_PASSWORD;
 		$this->driver = NULL;
@@ -59,13 +59,6 @@ class Database extends PDO
 				# Show PDO Database Errors
 				$this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 				
-				if( $this->dbName == NULL || $this->dbName == '' || $this->dbName == 'development-database-name-here' )
-				{
-					$this->dbName = NULL;
-					$_GET['p'] = 'install';
-				}
-				
-				
 			} // end try
 			
 			# Report the eorror!
@@ -76,6 +69,13 @@ class Database extends PDO
 
 				
 			} // end catch( PDOException $e )S
+			
+			if( $this->dbName == NULL || $this->dbName == '' || $this->dbName == 'development-database-name-here' )
+			{
+				$this->dbName = NULL;
+				$_GET['p'] = 'install';
+			}	
+			
 		
 	}
 	 

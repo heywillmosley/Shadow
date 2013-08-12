@@ -38,7 +38,8 @@ $form = new Form( 'install' );
 			'value'       => FALSE, // Default value
 			# VALIDATION  => Custom Error Message
 			# RULE           Leave blank for default message
-			'val_req'     => ''
+			'val_req'     => '',
+			'val_email'   => ''
 	) ); // end $siteTitle = new Element
 	
 	$siteTagline = $form->addElement( array( 

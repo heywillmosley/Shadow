@@ -43,8 +43,9 @@
  */		
 	function is_admin()
 	{
+		global $DBH;
 		# Set new Page object
-		$c = new Admin();
+		$c = new Admin( $DBH );
 		
 		# Call setPage() method
 		return $c->isAdmin();
@@ -60,8 +61,9 @@
  */
 	function loginTools()
 	{
+		global $DBH;
 		# Set new Page object
-		$c = new Admin();
+		$c = new Admin( $DBH );
 		
 		# Call setPage() method
 		return $c->loginTools();
@@ -77,8 +79,9 @@
  */	
 	function loginForm()
 	{
+		global $DBH;
 		# Set new Page object
-		$c = new Admin();
+		$c = new Admin( $DBH );
 		
 		# Call setPage() method
 		return $c->loginForm();
@@ -93,8 +96,9 @@
  */		
 	function logout()
 	{
+		global $DBH;
 		# Set new Page object
-		$c = new Admin();
+		$c = new Admin( $DBH );
 		
 		# Call setPage() method
 		return $c->logout();

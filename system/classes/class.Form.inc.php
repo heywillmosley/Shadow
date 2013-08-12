@@ -841,8 +841,6 @@ class Form
 	 */
 	 	function get_password_hash( $password )
 		{
-			$db = new Page( $DBH );
-			
 			return hash_hmac( 'sha256', $password, 'c#haRl891', false );
 			
 		} // end method get_password_hash( $password )

@@ -26,7 +26,6 @@ define('INDEX',TRUE);
  */
  	require_once 'system/inc/config.inc.php';
 
- 
 /*
  * ------------------------------------------------------
  *  Load Application Includes
