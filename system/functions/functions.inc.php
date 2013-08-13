@@ -213,6 +213,10 @@
 					autoScrollingMode: ""
 				});
 			});
+			
+			$("#makeMeScrollable").SmoothDivScroll({
+				touchScrolling: true
+			});
 		</script>
 	
 		<script>

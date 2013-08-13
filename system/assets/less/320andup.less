@@ -876,28 +876,6 @@ strong.s400, .strong.s400 { font-weight: 400; }
   list-style: none;
 }
 
-
-.book{
-	margin: 10px;
-	
-	
-	display: inline-block;	
-	img{
-		.box-shadow(0 1px 3px rgba(0,0,0,.25));
-		margin-bottom: 5px;
-		display: block;
-		width: 100%;
-	max-width:100%;
-	}
-	.title{
-		
-	}
-}
-
-.book.thumbnail{
-	
-}
-
 .shadow-nav {
 	height: 25px;
 	background: -moz-linear-gradient(top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.8) 100%); /* FF3.6+ */
@@ -1256,6 +1234,46 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', e
 .sprite.iconmonstr-home-2-icon-16 { background-position: -1336px 0px; width: 16px; height: 16px;  } 
 .sprite.iconmonstr-user-2-icon-16 { background-position: -1362px 0px; width: 16px; height: 16px;  } 
 .sprite.iconmonstr-side-left-view-icon { background-position: -1388px 0px; width: 30px; height: 30px;  } 
+
+
+
+/***************** BOOK ********************/
+.book{
+	margin: 10px;
+	.book-cover{
+		display: inline-block;	
+		img{
+			.box-shadow(0 1px 3px rgba(0,0,0,.25));
+			margin-bottom: 5px;
+			display: block;
+			width: 100%;
+			max-width:100%;
+		}
+	}
+	.book-title{
+		font-weight: bold;
+		line-height: 1.4;
+		color: inherit;
+		display:block;
+	}
+	.book-author{
+		.font-size(12);
+		color: #666;	
+	}
+	.book-summary{
+		.font-size(14);	
+		line-height: 1.4;
+		margin-bottom: 10px;
+		display: block;
+	}
+}
+
+.book.thumbnail{
+	
+}
+
+/*************** DOWNLOAD ******************/
+
 
 
 
