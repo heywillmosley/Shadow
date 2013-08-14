@@ -1,0 +1,132 @@
+/***************** SPECS ********************/
+
+.specs{
+	.specs-banner{
+		
+	}
+	.specs-info{
+		overflow: hidden;
+  		zoom: 1;
+		padding: 10px;
+		.specs-cover-container{
+			float: left !important;
+			.specs-cover-image{
+				.box-shadow(0 1px 3px rgba(0,0,0,.25));	
+				max-width: 80px;
+				@media only screen and (min-width: 480px) {
+					max-width: 120px;
+				}
+				@media only screen and (min-width: 600px) {
+					max-width: 160px;
+				}
+				@media only screen and (min-width: 768px) {
+					max-width: 200px;
+				}
+			}
+		}
+		.specs-info-container{
+			overflow: hidden;
+  			zoom: 1;
+			padding-left: 20px;
+			.specs-document-title{
+				margin-bottom: 10px;
+				.font-size(15);
+				@media only screen and (min-width: 480px) {
+					.font-size(20);
+				}
+				@media only screen and (min-width: 768px) {
+					.font-size(24);
+				}
+				line-height: 1.2;
+				color: inherit;
+				display:block;
+				padding: 5px 0;	
+			}
+			.specs-document-subtitle{
+				display: inline-block;
+				color: #666;
+				margin-bottom: 15px;
+			}
+			.specs-document-subtitle.primary{
+				font-weight: 400;	
+				text-transform:uppercase;
+			}
+			.specs-actions{
+				display: block;
+				.btn{
+					padding: 2.5px;	
+					.font-size(11);
+					width: 100%;
+					@media only screen and (min-width: 480px) {
+						width: auto;
+						display: inline-block;
+						padding: 5px;
+						margin: 0 5px 5px 0;
+					}
+					@media only screen and (min-width: 768px) {
+						padding: 10px;
+						.font-size(13);
+					}
+					margin-bottom: 5px;
+					position: relative;
+				right:0;
+				}
+			}
+			.specs-info-divider{
+				border-bottom: 1px solid #CCC;
+				margin: 5px 0 10px;
+				width: 100%;	
+			}
+			.specs-meta{
+				display: inline-block;
+				color: #666;
+				margin-bottom: 14px;
+			}
+		}
+	}
+	.specs-section{
+		background-color: #F8F8F8;
+		.font-size(12);
+		@media only screen and (min-width: 768px) {
+			.font-size(14);
+		}	
+		line-height: 1.4;
+		padding: 20px;
+		display: block;
+		color: #333;
+		p{
+			.font-size(12);
+				@media only screen and (min-width: 768px) {
+				.font-size(14);
+			}	
+			line-height: 1.4;
+			margin-bottom: 10px;
+		}
+		.specs-section-divider{
+			border-bottom: 1px solid #CCC;
+			padding: 10px 0;
+			width: 100%;
+		}
+		.specs-section-heading{
+			.font-size(16);
+			@media only screen and (min-width: 768px) {
+				.font-size(20);
+			}
+			line-height: 1.2;
+			color: inherit;
+			display:block;
+			padding: 5px 0;
+			color: #333;
+			font-style:italic;
+			margin-bottom: 5px;
+		}
+		.specs-section-contents{
+			.specs-section-body{
+				
+			}
+		}
+	}
+	.specs-section.description{
+		
+	}
+}
