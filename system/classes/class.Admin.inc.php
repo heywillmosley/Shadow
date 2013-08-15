@@ -115,7 +115,7 @@ class Admin
 						{  
 							# using the shortcut ->query() method here since there are no variable  
 							# values in the select statement.  
-							$STH = $this->DBH->query("SELECT id, username, email, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = '$ue' OR `email` = '$ue' ) AND pass = '$p'");  
+							$STH = $this->DBH->query("SELECT id, username, primaryEmail, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = '$ue' OR `primaryEmail` = '$ue' ) AND pass = '$p'");  
 							  
 							# setting the fetch mode  
 							$STH->setFetchMode( PDO::FETCH_ASSOC );
@@ -150,8 +150,7 @@ class Admin
 							
 						}  
 						catch(PDOException $e) {  
-							echo "Could not fetch data.";  
-							file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);  
+							exceptionHandler( $e );
 						} 
 						
 				} // end if (empty($this->login_errors)) { // OK to proceed!
