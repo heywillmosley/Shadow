@@ -1,8 +1,146 @@
 /***************** ITEM ********************/
 
 .item{
-	width: 250px;
-	.item-image{
-		
+	width: 160px;
+	@media only screen and (min-width: 768px) {
+		width: 250px;
 	}
+	background-color: @white;
+	.box-shadow(0 1px 1px rgba(0,0,0,.25));
+	position: relative;
+	margin: 5px;
+	float: left;
+	a{
+		position: relative;
+		z-index:1;	
+	}
+	.item-click{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		z-index:0;
+	}
+	.item-cover{
+		background-color: #CCC;
+		display: block;
+		position: relative;
+		height: 200px;
+		@media only screen and (min-width: 768px) {
+			height: 320px;
+		}
+		overflow: hidden;
+		.item-cover-darken-on-hover{
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index:0;
+			z-index:2;
+			&:hover{
+			.background-alpha( @black, 10%);
+			a{
+				width: 100%;
+				height: 100%;
+				display:block;	
+			}
+		}
+		}
+		.item-cover-image{
+			
+		}
+	}
+	.item-details{
+		.font-size(13);
+		color: #999;
+		padding: 8px;
+		border-top: 1px solid #CCC;
+		.item-title{
+			.font-size(16);
+			@media only screen and (min-width: 768px) {
+				.font-size(18);
+			}
+			margin-bottom: 5px;
+			width: 100%; 
+			white-space: nowrap; 
+			overflow: hidden; 
+			-ms-text-overflow: ellipsis; // Required for IE8
+			-o-text-overflow: ellipsis; // Required for Opera
+			text-overflow: ellipsis; 
+		}
+		.item-title.item-title-flow{
+			width: 100%; 
+			white-space:normal; 
+			overflow:auto; 
+			-ms-text-overflow: auto; // Required for IE8
+			-o-text-overflow: auto; // Required for Opera
+			text-overflow: auto; 	
+		}
+		.item-subtitle{
+			margin-bottom: 2.5px;
+			height: 13px;
+		}
+		.item-subtitle.primary{
+			
+		}
+		.item-price-container{
+			overflow: hidden;
+			zoom: 1;
+			.item-price{
+				float: right !important;
+				.btn{
+				
+				}
+			}
+			.item-price-container-body{
+				overflow: hidden;
+				zoom: 1;
+				margin-top: 8px;
+				white-space: nowrap; 
+				overflow: hidden; 
+				-ms-text-overflow: ellipsis; // Required for IE8
+				-o-text-overflow: ellipsis; // Required for Opera
+				text-overflow: ellipsis; 
+			}
+			.item-price-container-body.item-price-container-body-flow{
+				white-space:normal; 
+				overflow:auto; 
+				-ms-text-overflow: auto; // Required for IE8
+				-o-text-overflow: auto; // Required for Opera
+				text-overflow: auto; 		
+			}
+		}
+		.item-description{
+			border-top: 1px solid #CCC;
+			padding-top: 8px;
+		}
+	}
+	.item-reason-why{
+		border-top: 1px solid #CCC;
+		color: #999;
+		font-style:italic;
+		.font-size(13);
+		margin: 0 8px;
+		padding: 8px 0;
+	}
+}
+
+.item.item-sm{
+	width: 160px;
+	.item-cover{
+		height: 200px;
+	}
+	.item-details{
+		.item-title{
+			.font-size(16);
+		}
+	}
+}
+
+.item-container{
+	display: block;	
+	width: 100%;
+	clear: both;
 }

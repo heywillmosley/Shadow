@@ -29,9 +29,6 @@
         <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>all.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
         <style>
-			#main{ margin-left: 180px !important; }
-		</style>
-        <style>
 			@media print{
 				.hide-for-print
 				{
