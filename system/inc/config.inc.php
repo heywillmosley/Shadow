@@ -358,10 +358,10 @@
 	  define( 'APPURL', APP_URL );
 	
 	// Path to the application folder
-	define('BRidGE_URI', CONTENT_URI . 'bridge/' );
+	define('BRIDGE_URI', CONTENT_URI . 'bridges/' );
 	
 	// URL to the system folder
-	define('BRidGE_URL', CONTENT_URL . 'bridge/' );
+	define('BRIDGE_URL', CONTENT_URL . 'bridges/' );
 
 	// Name of the "system folder"
 	define('CONTENT_NAME', trim(strrchr(trim(CONTENT_URI, '/'), '/'), '/'));
@@ -1071,6 +1071,14 @@ require_once SYS_FUNCTIONS_URI.'function.page.inc.php';
 
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #
+
+# ************************* #
+# ***** LOAD BRIDGES ****** #
+
+include_once BRIDGE_URI.'mailchimp/bridge.php';
+
+# ***** LOAD BRIDGES ***** #
+# ************************ #
 
 
 # *************************** #

@@ -21,7 +21,6 @@
 # includes header.php
 app_header();  
 ?>
-
 <div class="pas">
     <div class="row">
         <div class="small-12 large-8 columns">
@@ -37,30 +36,110 @@ app_header();
         <div class="small-12 large-4 columns">
         	<div class="pls">
             	<?php loginForm(); ?>
-                <!-- Begin MailChimp Signup Form -->
-                <div id="mc_embed_signup">
-                <form class="custom mxw500" action="http://kingbio.us7.list-manage.com/subscribe/post?u=ee20cfab92a2a3c2b00c838a2&amp;id=7b83669d3b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                    <h2>Subscribe to our mailing list</h2>
-                    <div class="row collapse">
-                        <div class="small-10 columns">
-                            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your Email ( Required )">
-                        </div><!-- end small-10 columns -->
-                        <div class="small-2 columns">
-                            <div id="mce-responses" class="clear">
-                        <div class="response" id="mce-error-response" style="display:none"></div>
-                        <div class="response" id="mce-success-response" style="display:none"></div>
-                    </div>	<div class="clear"><input class="button postfix" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-                        </div><!-- end small-2 columns -->
-                    </div><!-- end row -->
-                    
-                </div>
-                    
-                </form>
-                </div>
                 
-                <!--End mc_embed_signup-->
-                <h2>Sidebar</h2>
-                <p>Vivamus fermentum magna eu pretium accumsan. Nunc urna neque, suscipit id erat et, suscipit posuere nisi. Nulla molestie mauris sem, nec varius urna facilisis sit amet. Pellentesque eleifend et.</p>
+                <?php
+				
+				$form = new Form( 'new_mc_subscriber' );
+					$firstName = $form->addElement( array( 
+							# ELEMENT ATTRIBUTES 
+							'type'        => 'text', // REQUIRED
+							'name'        => 'fname', // REQUIRED a-z only, dashes, underscores, no spaces
+							'placeholder' => 'First Name',
+							# VALIDATION  => Custom Error Message
+							# RULE           Leave blank for default message
+							'val_req'     => ERR_EMPTY_FIRST_NAME,
+							'val_name'    => ERR_INVALID_FIRST_NAME
+					) ); // end $siteTitle = new Element
+					
+					$lastName = $form->addElement( array( 
+							# ELEMENT ATTRIBUTES 
+							'type'        => 'text', // REQUIRED
+							'name'        => 'name', // REQUIRED a-z only, dashes, underscores, no spaces
+							'placeholder' => 'Last Name',
+							# VALIDATION  => Custom Error Message
+							# RULE           Leave blank for default message
+							'val_req'     => ERR_EMPTY_LAST_NAME,
+							'val_name'    => ERR_INVALID_LAST_NAME
+					) ); // end $siteTitle = new Element
+					
+					$email = $form->addElement( array( 
+							# ELEMENT ATTRIBUTES 
+							'type'        => 'email', // REQUIRED
+							'name'        => 'email', // REQUIRED a-z only, dashes, underscores, no spaces
+							'placeholder' => 'Email',
+							# VALIDATION  => Custom Error Message
+							# RULE           Leave blank for default message
+							'val_req'     => ERR_EMPTY_NEW_EMAIL,
+							'val_email'   => ERR_INVALID_NEW_EMAIL
+					) ); // end $siteTitle = new Element
+					
+					$subscribe = $form->addElement( array( 
+							# ELEMENT ATTRIBUTES 
+							'type'        => 'submit', // REQUIRED
+							'name'        => 'submit', // REQUIRED a-z only, dashes, underscores, no spaces
+							'class'       => 'btn-info',
+							'value' => 'Subscribe',
+					) ); // end $siteTitle = new Element
+					
+					
+					# CHECK FOR ERRORS
+					if( $_SERVER['REQUEST_METHOD'] == 'POST' && $firstName['valid'] && $lastName['valid'] && $email['valid'] )
+					{
+						
+						# New Mailchimp settings
+						$apikey = 'df655cc3ab3c189ff2a6965857adb32e-us7'; // Your Mailchimp API key
+						$list_id = '482657ae49'; // # Your Mailchimp mailing list ID
+						
+						# Create new API object & Create new list object
+						$api = new Mailchimp( $apikey );
+						$mailchimp_lists = new Mailchimp_Lists( $api );
+						
+						# Email being subscribed
+						$subscriber_email = array(
+							"email" => $email['output'],
+						);
+						
+						# More options (such as name)
+						$merge_vars = array(
+							'FNAME' => $firstName['output'],
+							'LNAME' => $lastName['output']
+						);
+						
+						
+						# SUBSCRIBE TO LIST
+						if ( $mailchimp_lists->subscribe($list_id, $subscriber_email, $merge_vars) )
+							echo '<div class="alert alert-success"><p>Thanks! You\'re one step away from becoming a subscriber. <strong>Check your email to finalize registration.</strong> Confirmation email will arrive shortly.</p></div>';
+						else
+							echo '<div class="alert alert-danger">An error occured. Please try again.</div>';
+						
+					} // end error check
+					
+					else // run form
+					{
+						$form->openForm();
+							?> 
+                            	<h2 class="mbt">Become a part of The Healing Revolution<sup style="top:-5.5px">&trade;</sup>!</h2>
+                            	<div class="media">
+                                	<div class="pull-left">
+                                    	<img class="pbs" src="<?php echo APP_IMG_URL; ?>steve-jobs-magazine-cover.jpg" alt="newsletter" />
+                                    </div><!-- end pull-left -->
+                                    <div class="media-body">
+                                    	
+                                        <p>Join our mailing list to receive future promotions and updates from (company name).</p>
+                                    </div><!-- end media-body -->
+                                </div><!-- end media -->
+                                
+                            
+                            <?php
+							echo $firstName['element'];
+							echo $lastName['element'];
+							echo $email['element'];
+							echo $subscribe['element'];
+						echo '</form>';
+					}
+				
+				
+				?>
           	</div><!-- end pls -->
         </div><!-- end small-12 large-4 columns -->
     </div><!-- end row -->

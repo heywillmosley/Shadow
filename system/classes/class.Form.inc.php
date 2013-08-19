@@ -72,13 +72,23 @@ class Form
 			if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on")
 			$this->_prefix = "https";
 			
-			# Open form and configure
-			echo "<form id='$this->form_id' class='mxw700 pam custom $this->form_class' method='$this->form_method' action='$this->form_action' >";
-			
-			
 		} // end function __construct( $id = 'Formula', $method = 'POST' )
 		
 		
+		
+	/**
+	 * This method calls all of the defined elements
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function openForm()
+		{
+			# Open form and configure
+			echo "<form id='$this->form_id' class='mxw700 pam custom $this->form_class' method='$this->form_method' action='$this->form_action' >";
+		}
 		
 	/**
 	 * This method calls all of the defined elements
@@ -295,7 +305,7 @@ class Form
 									$errors[$name] = 'This field is required. Please enter a value.';
 									break 2;
 								}
-							break;
+							break 2;
 							
 						case 'val_email':
 							if( $this->vEmail( $_POST[$name] ) )
@@ -313,7 +323,8 @@ class Form
 							
 							
 						case 'val_name':
-							if( $this->vName( $_POST[$name] ) )
+							
+							if( $this->vName( $_POST[$name] ) == 1 )
 								$this->_cleanQuery( $_POST[$name] );
 							else
 							{
@@ -409,27 +420,27 @@ class Form
 			
 				/* -------------------- Text, Textbox, or Password -------------------- */
 				
-				if( $type == 'text' || $type == 'textbox' || $type == 'password' )
+				if( $type == 'text' || $type == 'textbox' || $type == 'password' || $type == 'email' )
 				{
 					# Begin creating the input
-					echo "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
+					$element = "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
 					
 					# Set value of $name if it's set ( using $_POST , $_GET or $value
-					if( isset( $_POST[$name] ) )  echo $_POST[$name];
-					elseif( isset( $_GET[$name] ) ) echo $_GET[$name]; 
-					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) echo $value;
+					if( isset( $_POST[$name] ) )  $element .= $_POST[$name];
+					elseif( isset( $_GET[$name] ) ) $element .= $_GET[$name]; 
+					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) $element .= $value;
 						
 					# Set the class
-					echo "' class='$name $class ";
+					$element .= "' class='$name $class ";
 					
 					# Add appropriate spacing if there's a caption
-					if( !empty( $caption ) ) echo " mbt ";
+					if( !empty( $caption ) ) $element .= " mbt ";
 					
 					# Check for errors, # Set Error class and display error underneath input
-					if( array_key_exists( $name, $errors ) ) echo " error ";
+					if( array_key_exists( $name, $errors ) ) $element .= " error ";
 					
 					# Close text tag	
-					echo "' />";
+					$element .= "' />";
 					
 				} // end if( $type == 'text' || $type == 'textbox' || $type == 'password' )
 				
@@ -439,26 +450,26 @@ class Form
 				if( $type == 'textarea' )
 				{
 					# Begin creating the input
-					echo "<textarea type='$type' name='$name' id='$name $id' placeholder='$placeholder"; 
+					$element = "<textarea type='$type' name='$name' id='$name $id' placeholder='$placeholder"; 
 				
 					# Set the class
-					echo "' class='$name $class ";
+					$element .= "' class='$name $class ";
 					
 					# Add appropriate spacing if there's a caption
-					if( !empty( $caption ) ) echo " mbt ";
+					if( !empty( $caption ) ) $element .= " mbt ";
 					
 					# Check for errors, # Set Error class and display error underneath input
-					if( array_key_exists( $name, $errors ) ) echo " error ";
+					if( array_key_exists( $name, $errors ) ) $element .= " error ";
 					
 					# Close tag	
-					echo "' >";
+					$element .= "' >";
 					
 					# Set value of $name if it's set ( using $_POST , $_GET or $value
-					if( isset( $_POST[$name] ) )  echo $_POST[$name];
-					elseif( isset( $_GET[$name] ) ) echo $_GET[$name]; 
-					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) echo $value;
+					if( isset( $_POST[$name] ) )  $element .= $_POST[$name];
+					elseif( isset( $_GET[$name] ) ) $element .= $_GET[$name]; 
+					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) $element .= $value;
 					
-					echo  '</textarea>';
+					$element .=  '</textarea>';
 					
 				} // end if( $type == 'textarea' )
 				
@@ -468,23 +479,23 @@ class Form
 				if( $type == 'submit' || $type == 'button' || $type == 'btn' )
 				{
 					# Begin creating the input
-					echo "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
+					$element = "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
 					
 					# Set value of $name if it's set ( using $_POST , $_GET or $value
-					if( $value != '' || $value != FALSE || $value != NULL )  echo $value;
-					else echo 'Submit';
+					if( $value != '' || $value != FALSE || $value != NULL )  $element .= $value;
+					else $element .= 'Submit';
 						
 					# Set the class
-					echo "' class='$name btn btn-default $class ";
+					$element .= "' class='$name btn btn-default $class ";
 					
 					# Add appropriate spacing if there's a caption
-					if( !empty( $caption ) ) echo " mbt ";
+					if( !empty( $caption ) ) $element .= " mbt ";
 					
 					# Check for errors, # Set Error class and display error underneath input
-					if( array_key_exists( $name, $errors ) ) echo " error ";
+					if( array_key_exists( $name, $errors ) ) $element .= " error ";
 					
 					# Close text tag	
-					echo "' />";
+					$element .= "' />";
 					
 				} // end if( $type == 'textarea' )
 			
@@ -497,7 +508,7 @@ class Form
 			
 			# Check for errors
 			if( array_key_exists( $name, $errors ) )	
-				echo "<small class='error'>$errors[$name]</small>";
+				$element .= "<small class='error'>$errors[$name]</small>";
 				
 			/* ##### ERRORS ###### */
 			/* ################### */
@@ -507,7 +518,7 @@ class Form
 			
 			
 			if( !empty( $caption ) )	
-				echo "<div class='caption mbs'>&uarr; $caption</div>";
+				$element .= "<div class='caption mbs'>&uarr; $caption</div>";
 				
 				
 			/* ##### CAPTION ##### */
@@ -535,14 +546,16 @@ class Form
 			}
 			
 			# Set Session Variables
-			$_SESSION[$name] = array( 'output' => $output,
+			$_SESSION[$name] = array( 'element' => $element,
+								      'output' => $output,
 									  'valid' => $valid, 
 									  'name' => $name );
 									  
 
 									  
 				
-			return array( 'output' => $output,
+			return array( 'element' => $element,
+						  'output' => $output,
 						  'valid' => $valid, 
 						  'name' => $name );
 			
@@ -899,7 +912,7 @@ class Form
 	 */
 		function vName( $name ) 
 		{	  
-				return preg_match ('/^[A-Z \',.-]{1,750}$/i', $name);
+				return preg_match ("/^[a-zA-ZàáâäãåąćęèéêëìíîïłńòóôöõøùúûüÿýżźñçčšžÀÁÂÄÃÅĄĆĘÈÉÊËÌÍÎÏŁŃÒÓÔÖÕØÙÚÛÜŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u", $name);
 						 
 		} // end method vName($name)
 		
