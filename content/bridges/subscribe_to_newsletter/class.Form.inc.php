@@ -465,7 +465,6 @@ class Form
 					$element = "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
 					
 					# Set value of $name if it's set ( using $_POST , $_GET or $value
-
 					if( isset( $_POST[$name] ) )  $element .= $_POST[$name];
 					elseif( isset( $_GET[$name] ) ) $element .= $_GET[$name]; 
 					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) $element .= $value;

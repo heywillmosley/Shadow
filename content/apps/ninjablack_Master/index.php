@@ -38,109 +38,150 @@ app_header();
             	<?php loginForm(); ?>
                 
                 <?php
+				/* ############################# */
+				/* ##### SET FORM ELEMENTS ##### */
 				
 				$form = new Form( 'new_mc_subscriber' );
-					$firstName = $form->addElement( array( 
-							# ELEMENT ATTRIBUTES 
-							'type'        => 'text', // REQUIRED
-							'name'        => 'fname', // REQUIRED a-z only, dashes, underscores, no spaces
-							'placeholder' => 'First Name',
-							# VALIDATION  => Custom Error Message
-							# RULE           Leave blank for default message
-							'val_req'     => ERR_EMPTY_FIRST_NAME,
-							'val_name'    => ERR_INVALID_FIRST_NAME
-					) ); // end $siteTitle = new Element
+				$firstName = $form->addElement( array( 
+						# ELEMENT ATTRIBUTES 
+						'type'        => 'text', // REQUIRED
+						'name'        => 'fname', // REQUIRED a-z only, dashes, underscores, no spaces
+						'placeholder' => 'First Name',
+						# VALIDATION  => Custom Error Message
+						# RULE           Leave blank for default message
+						'val_req'     => ERR_EMPTY_FIRST_NAME,
+						'val_name'    => ERR_INVALID_FIRST_NAME
+				) ); // end $siteTitle = new Element
+				
+				$lastName = $form->addElement( array( 
+						# ELEMENT ATTRIBUTES 
+						'type'        => 'text', // REQUIRED
+						'name'        => 'name', // REQUIRED a-z only, dashes, underscores, no spaces
+						'placeholder' => 'Last Name',
+						# VALIDATION  => Custom Error Message
+						# RULE           Leave blank for default message
+						'val_req'     => ERR_EMPTY_LAST_NAME,
+						'val_name'    => ERR_INVALID_LAST_NAME
+				) ); // end $siteTitle = new Element
+				
+				$email = $form->addElement( array( 
+						# ELEMENT ATTRIBUTES 
+						'type'        => 'email', // REQUIRED
+						'name'        => 'email', // REQUIRED a-z only, dashes, underscores, no spaces
+						'placeholder' => 'Email',
+						# VALIDATION  => Custom Error Message
+						# RULE           Leave blank for default message
+						'val_req'     => ERR_EMPTY_NEW_EMAIL,
+						'val_email'   => ERR_INVALID_NEW_EMAIL
+				) ); // end $siteTitle = new Element
+				
+				$subscribe = $form->addElement( array( 
+						# ELEMENT ATTRIBUTES 
+						'type'        => 'submit', // REQUIRED
+						'name'        => 'submit', // REQUIRED a-z only, dashes, underscores, no spaces
+						'class'       => 'btn-info',
+						'value'       => 'Subscribe',
+				) ); // end $siteTitle = new Element
 					
-					$lastName = $form->addElement( array( 
-							# ELEMENT ATTRIBUTES 
-							'type'        => 'text', // REQUIRED
-							'name'        => 'name', // REQUIRED a-z only, dashes, underscores, no spaces
-							'placeholder' => 'Last Name',
-							# VALIDATION  => Custom Error Message
-							# RULE           Leave blank for default message
-							'val_req'     => ERR_EMPTY_LAST_NAME,
-							'val_name'    => ERR_INVALID_LAST_NAME
-					) ); // end $siteTitle = new Element
-					
-					$email = $form->addElement( array( 
-							# ELEMENT ATTRIBUTES 
-							'type'        => 'email', // REQUIRED
-							'name'        => 'email', // REQUIRED a-z only, dashes, underscores, no spaces
-							'placeholder' => 'Email',
-							# VALIDATION  => Custom Error Message
-							# RULE           Leave blank for default message
-							'val_req'     => ERR_EMPTY_NEW_EMAIL,
-							'val_email'   => ERR_INVALID_NEW_EMAIL
-					) ); // end $siteTitle = new Element
-					
-					$subscribe = $form->addElement( array( 
-							# ELEMENT ATTRIBUTES 
-							'type'        => 'submit', // REQUIRED
-							'name'        => 'submit', // REQUIRED a-z only, dashes, underscores, no spaces
-							'class'       => 'btn-info',
-							'value' => 'Subscribe',
-					) ); // end $siteTitle = new Element
+				
+				/* ##### SET FORM ELEMENTS ##### */
+				/* ############################# */
+				
+				/* #################### */
+				/* ##### THE FORM ##### */	
+				
+				if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v'] )
+				{ 
+				?>
+					<?php $form->openForm(); ?> 
+						<h2 class="mbt">Become a part of The Healing Revolution<sup style="top:-5.5px">&trade;</sup>!</h2>
+						<div class="media">
+							<div class="pull-left">
+								<img class="pbs" src="<?php echo APP_IMG_URL; ?>steve-jobs-magazine-cover.jpg" alt="newsletter" />
+							</div><!-- end pull-left -->
+							<div class="media-body">
+								
+								<p>Join our mailing list to receive future promotions and updates from (company name).</p>
+							</div><!-- end media-body -->
+						</div><!-- end media -->
+						<div class="caption">All fields are required.</div>
+						<?= $firstName['e']; ?>
+						<?= $lastName['e']; ?>
+						<?= $email['e']; ?>
+						<?= $subscribe['e']; ?>
+					<?php $form->closeForm(); ?> 
 					
 					
-					# CHECK FOR ERRORS
-					if( $_SERVER['REQUEST_METHOD'] == 'POST' && $firstName['valid'] && $lastName['valid'] && $email['valid'] )
+				<?php 
+				} // end error check
+				
+				/* ##### THE FORM ##### */
+				/* #################### */
+				
+				/* ##################################### */
+				/* ##### CONTINUE AFTER VALIDATION ##### */
+				
+				else // run form
+				{ 
+					# New Mailchimp settings
+					$apikey = 'df655cc3ab3c189ff2a6965857adb32e-us7'; // Your Mailchimp API key
+					$list_id = '482657ae49'; // # Your Mailchimp mailing list ID
+					
+					# Create new API object & Create new list object
+					$api = new Mailchimp( $apikey );
+					$mailchimp_lists = new Mailchimp_Lists( $api );
+					
+					
+					# Email being subscribed
+					$subscriber_email = array(
+						"emails" => array(
+							"email" => $email['output']
+						)
+					);
+					
+					# More options (such as name)
+					$merge_vars = array(
+						'FNAME' => $firstName['output'],
+						'LNAME' => $lastName['output']
+					);
+					
+					
+					$member = $mailchimp_lists->memberInfo( $list_id, $subscriber_email );
+					
+					# Check if member exists in Mailchimp List
+					if( $member['success_count'] )
 					{
+						echo '<div class="alert alert-info"><p>You\'ve already subscribed to this newsletter. Check your email for frequent updates and promotions.</p></div>';
 						
-						# New Mailchimp settings
-						$apikey = 'df655cc3ab3c189ff2a6965857adb32e-us7'; // Your Mailchimp API key
-						$list_id = '482657ae49'; // # Your Mailchimp mailing list ID
-						
-						# Create new API object & Create new list object
-						$api = new Mailchimp( $apikey );
-						$mailchimp_lists = new Mailchimp_Lists( $api );
-						
-						# Email being subscribed
+					} // end ( $member['success_count'] )
+					
+					# Member doesn't exist in database, add them
+					else
+					{
+						# format for subscription list
 						$subscriber_email = array(
-							"email" => $email['output'],
+							"email" => $email['output']
 						);
-						
-						# More options (such as name)
-						$merge_vars = array(
-							'FNAME' => $firstName['output'],
-							'LNAME' => $lastName['output']
-						);
-						
 						
 						# SUBSCRIBE TO LIST
-						if ( $mailchimp_lists->subscribe($list_id, $subscriber_email, $merge_vars) )
-							echo '<div class="alert alert-success"><p>Thanks! You\'re one step away from becoming a subscriber. <strong>Check your email to finalize registration.</strong> Confirmation email will arrive shortly.</p></div>';
-						else
-							echo '<div class="alert alert-danger">An error occured. Please try again.</div>';
+					if ( $mailchimp_lists->subscribe($list_id, $subscriber_email, $merge_vars) )
+						echo '<div class="alert alert-success"><p>Thanks! You\'re one step away from becoming a subscriber. <strong>Check your email to finalize registration.</strong> Confirmation email will arrive shortly.</p></div>';
+					else
+						echo '<div class="alert alert-danger">An error occured. Please try again.</div>';
 						
-					} // end error check
-					
-					else // run form
-					{
-						$form->openForm();
-							?> 
-                            	<h2 class="mbt">Become a part of The Healing Revolution<sup style="top:-5.5px">&trade;</sup>!</h2>
-                            	<div class="media">
-                                	<div class="pull-left">
-                                    	<img class="pbs" src="<?php echo APP_IMG_URL; ?>steve-jobs-magazine-cover.jpg" alt="newsletter" />
-                                    </div><!-- end pull-left -->
-                                    <div class="media-body">
-                                    	
-                                        <p>Join our mailing list to receive future promotions and updates from (company name).</p>
-                                    </div><!-- end media-body -->
-                                </div><!-- end media -->
-                                
-                            
-                            <?php
-							echo $firstName['element'];
-							echo $lastName['element'];
-							echo $email['element'];
-							echo $subscribe['element'];
-						echo '</form>';
-					}
+					} // end else
+						
 				
+				} // end else
 				
-				?>
+				/* ##### CONTINUE AFTER VALIDATION ##### */
+				/* ##################################### */
+			
+			?>
           	</div><!-- end pls -->
+            
+            <?php include_once BRIDGE_URI .'subscribe_to_newsletter/bridge.php'; ?>
+           
         </div><!-- end small-12 large-4 columns -->
     </div><!-- end row -->
 </div><!-- end pas -->
