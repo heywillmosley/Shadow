@@ -1075,7 +1075,13 @@ require_once SYS_FUNCTIONS_URI.'function.page.inc.php';
 # ************************* #
 # ***** LOAD BRIDGES ****** #
 
-include_once BRIDGE_URI.'mailchimp/bridge.php';
+# Mailchimp API
+if( file_exists( BRIDGE_URI.'mailchimp/bridge.php' ) )
+	include_once BRIDGE_URI.'mailchimp/bridge.php';
+	
+# Subscribe to Newsletter
+if( file_exists( BRIDGE_URI.'subscribe_to_newsletter/bridge.php' ) )
+	include_once BRIDGE_URI.'subscribe_to_newsletter/bridge.php';
 
 # ***** LOAD BRIDGES ***** #
 # ************************ #
