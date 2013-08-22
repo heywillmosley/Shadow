@@ -21,6 +21,8 @@
 # includes header.php
 app_header();  
 ?>
+
+<a  id="example" href="#" data-toggle="tooltip" title="first tooltip">Hover over me</a>
 <div class="pas">
     <div class="row">
         <div class="small-12 large-8 columns">

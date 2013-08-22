@@ -44,7 +44,7 @@
 	define('SYS_VER', '0.1 s9');
 	
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
-	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( '.', '', SYS_VER ) ) ) );
+	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
 
 	
 /**

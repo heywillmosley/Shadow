@@ -1,6 +1,6 @@
 // Load Foundation & Bootstrap
-@import url("vendor/bootstrap.less");
-@import url("vendor/foundation.less");
+@import url("vendor/custom.bootstrap.less");
+@import url("vendor/custom.foundation.less");
 
 
 html{
@@ -14,9 +14,9 @@ font-size : ~"@{rem}rem"; }
 
 body {
     background: @white;
-    font-size:16px;
+    font-size:14px;
     line-height: 1; 
-    color: #333; 
+    color: #333;
     position: relative; 
     -webkit-font-smoothing: antialiased; 
     height: 100%;
@@ -33,20 +33,14 @@ body {
 }
 
 
+
 // Variables and mixins
 @import url("variables.less");
 @import url("mixins.less");
 
 // Elements
-@import url("elements/admin.less");
 @import url("elements/graph.less");
-@import url("elements/grid.less");
-@import url("elements/navigation.less");
-@import url("elements/notify.less");
-@import url("elements/panel.less");
 @import url("elements/sidebar.less");
-@import url("elements/story.less");
-@import url("elements/wireframe.less");
 @import url("elements/specs.less");
 @import url("elements/item.less");
 @import url("elements/feature.less");
@@ -57,40 +51,5 @@ body {
 @import "print.less";
 }
 
-@import "320andup.less";
-
-// 480px
-@media only screen and (min-width: 480px) {
-@import "480.less";
-}
-
-// 600px
-@media only screen and (min-width: 600px) {
-@import "600.less";
-}
-
-// 768px
-@media only screen and (min-width: 768px) {
-@import "768.less";
-}
-
-// 992px
-@media only screen and (min-width: 992px) {
-@import "992.less";
-}
-
-// 1382px
-@media only screen and (min-width: 1382px) {
-@import "1382.less";
-}
-
-// 2x Retina Displays
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (   -moz-min-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) { 
-@import "2x.less"; }
+@import "global.less";
 
