@@ -1,0 +1,10 @@
+/***************** SPECS ********************/
+.cart .cart-item .cart-item-image-container {
+  width: 142px;
+  height: 96px;
+  padding: 5px 10px;
+}
+.cart .cart-item .cart-item-image-container .cart-item-image {
+  max-height: 100%;
+  max-width: 100%;
+}

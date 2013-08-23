@@ -4,6 +4,31 @@
 function toggle_visibility(e){var t=document.getElementById(e);if(t.style.display=="block")t.style.display="none";else t.style.display="block"}
 
 
+/* Sticky */
+$(function(){ // document ready
+
+  if (!!$('.sticky').offset()) { // make sure ".sticky" element exists
+
+	var stickyTop = $('.sticky').offset().top; // returns number 
+
+	$(window).scroll(function(){ // scroll event
+
+	  var windowTop = $(window).scrollTop(); // returns number 
+
+	  if (stickyTop < windowTop){
+		$('.sticky').css({ position: 'fixed', top: 0 });
+	  }
+	  else {
+		$('.sticky').css('position','static');
+	  }
+
+	});
+
+  }
+
+});
+
+
 /*!
  * Masonry PACKAGED v3.1.1
  * Cascading grid layout library
