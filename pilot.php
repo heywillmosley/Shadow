@@ -33,6 +33,10 @@
 	# Define mailing email
 	define( 'MAIL_EMAIL', 'will@livesuperamazing.com' );
 	
+	/* Define a custom database file name for multiple databases in root
+	 * Leave blank if unsure */
+	define( 'DB_FILE', '' );
+	
 	/* Shadow Level location on server
 	 * E.g.
 	 * 0 = /shadow (root)

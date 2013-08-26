@@ -1,71 +1,63 @@
 /***************** FEATURE ********************/
 
 .feature{
-	position: relative;
-	padding: 10px;
-	.feature-headline{
-		.font-size(30);
-		@media only screen and (min-width: 660px) {
-			.font-size(45);
-		}
-		@media only screen and (min-width: 768px) {
-			.font-size(42);
-		}
-		margin-bottom: 15px;
-	}
-	.feature-headline.feature-headline-large{
-		.font-size(60);
-		@media only screen and (min-width: 660px) {
-			.font-size(90);
-		}
-		@media only screen and (min-width: 768px) {
-			.font-size(90);
-		}
-		margin-bottom: 20px;
-	}
-	.feature-subheadline{
-		.font-size(20);
-		padding-bottom: 20px;
-		@media only screen and (min-width: 660px) {
-			.font-size(30);
-		}
-		@media only screen and (min-width: 768px) {
-			.font-size(40);
-		}
-		margin-bottom: 10px;
-	}
-	.feature-background-image{
-		position: absolute;
-	}
-	.feature-body{
-		padding-left: 10px;
-		.feature-cover-image{
-			position: relative;
-			margin-bottom: 20px;
-			width: 50%;
-			float: left;
-		}
-		.feature-content{
-			padding-left: 20px;
-			width:50%;
-			float: left;
-			.feature-lead{
-				margin-bottom: 10px;
-				font-weight: bold;
-				.font-size(15);
-				@media only screen and (min-width: 660px) {
-					.font-size(20);
-				}
-				@media only screen and (min-width: 768px) {
-					.font-size(18);
-				}
+	padding: 20px 0;
+	white-space: no-wrap;
+	.feature-text{
+		padding: 2%;
+		display: inline-block;
+		vertical-align: middle;
+		white-space: normal;
+		width: 50%;
+		.feature-text-container{
+			max-width: 510px;
+			float: right;
+			.feature-desc-title{
+				.font-size(42);
+				color: #333;
+				line-height: 48px;
+				margin: 0 0 20px 0;
+			}
+			.feature-item-title{
+				.font-size(18);
+				color: #333;
+				line-height: 48px;
+				margin: 10px 0 5px 0;
 			}
 		}
-		.feature-content-right{
-			padding-right: 20px;
-		}
-		.feature-content-center{
-			padding: 0;
+	}
+	.feature-text.feature-text-right{
+		padding-left: 2%;
+		float: right;
+	}
+	.feature-text.feature-text-left{
+		padding-right: 2%;
+		float: left;
+	}
+	.feature-image{
+		display: inline-block;
+		vertical-align: middle;
+		white-space: normal;
+		width: 50%;
+		.feature-desc-image{
+			vertical-align: middle;
+			max-width: none;
 		}
 	}
+	.feature-image.feature-image-right{
+		padding-left: 2%;
+		.feature-desc-image{
+			float: left;
+		}
+	}
+	.feature-image.feature-image-left{
+		padding-right: 2%;
+		.feature-desc-image{
+			float: right;
+		}
+	}
+}
+
+.feature-container{
+	overflow: hidden;
 }

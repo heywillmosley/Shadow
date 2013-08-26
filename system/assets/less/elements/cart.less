@@ -100,5 +100,23 @@
 	}
 	.cart-checkout-actions{
 			text-align: right;
+			.btn-lg{
+				.font-size(15);
+				padding: 7px 10px;
+				width: 100%;
+				margin-bottom: 5px;
+				@media only screen and (min-width: 480px) {
+					width: auto;
+				}
+				@media only screen and (min-width: 600px) {
+					.font-size(16);
+					padding: 8px 13px;
+				}
+				@media only screen and (min-width: 768px) {
+					.font-size(18);
+					padding: 10px 16px;
+					width: auto;
+				}
+			}
 		}
 }

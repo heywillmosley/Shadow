@@ -102,6 +102,10 @@
 /**
  * Check if database is above root
  */
+ 	# Define DB_FILE if not defined already in pilot
+	if( !defined( 'DB_FILE' ) )
+		define( 'DB_FILE', '' );
+		
  	# Check for custom db file
 	if( DB_FILE == '' )
 		$db_file = 'db.inc.php';
