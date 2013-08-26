@@ -155,7 +155,7 @@ if( $form->isSubmitted() && $uoe['v'] && $pass['v'] )
 				// At this point we are pretty positive its a brute force attempt:
 		 
 				// At the 30th failure, we send an email to support about the brute force attempt.
-				if ( $STH->rowCount() >= 2 || $STH->rowCount() == 30 )
+				if ( $STH->rowCount() >= 10 || $STH->rowCount() == 20 )
 					$message = "Attempted brute force of username/email: " . $uoe['output'] . " from IP: " . $_SERVER['REMOTE_ADDR'] . " on ". SITE_NAME . " at ". SITE_URL . '. ' . $STH->rowCount() . " Attempts. Time UTC: " . date( 'Y-m-d H:i:s', time() . 'TAKE IMMEDIATE ACTION!' );
 					$headers = "From: " . ADMIN_EMAIL . "\r\n" .
 					"Reply-To:" . ADMIN_EMAIL . "\r\n" .

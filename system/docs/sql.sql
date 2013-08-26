@@ -256,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `shdw_login_failed_attempts` (
   `username` VARCHAR( 2056 ) NULL,
   `email` VARCHAR( 2056 ) NULL,
   `pass` VARCHAR(2056) NOT NULL,
-  `datetimeFailed` DATETIME NOT NULL,
+  `datetimeFailed` TIMESTAMP NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 

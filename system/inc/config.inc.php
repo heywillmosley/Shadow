@@ -1092,7 +1092,7 @@ if( file_exists( BRIDGE_URI.'mailchimp/bridge.php' ) )
 	
 # Subscribe to Newsletter
 if( file_exists( BRIDGE_URI.'subscribe_to_newsletter/bridge.php' ) )
-	include_once BRIDGE_URI.'subscribe_to_newsletter/bridge.php';
+	// include_once BRIDGE_URI.'subscribe_to_newsletter/bridge.php';
 
 # ***** LOAD BRIDGES ***** #
 # ************************ #
