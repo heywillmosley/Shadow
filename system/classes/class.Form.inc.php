@@ -47,6 +47,7 @@ class Form
 	protected $form_action;
 	
 	protected $element_name;
+	protected $form_token = FALSE;
 	
 	
 	/**
@@ -67,9 +68,10 @@ class Form
 			$this->form_method = $method;
 			$this->form_action = $action;
 			$this->form_class = $class;
+			$this->form_token = $this->generateFormToken( $this->form_id );
 			
 			if( $this->form_action = '#' )
-				$this->form_action = '#'.$this->form_id;
+				$this->form_action = '#'.$_SESSION[$this->form_id.'_token'];
 			
 			# Check if HTTPS is on, set prefix to https
 			if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on")
@@ -90,7 +92,7 @@ class Form
 	 	function openForm()
 		{
 			# Open form and configure
-			echo "<form id='$this->form_id' class='mxw700 pam custom $this->form_class' method='$this->form_method' action='$this->form_action' >";
+			echo "<form id='$this->form_token' class='mxw700 pam custom $this->form_class' method='$this->form_method' action='$this->form_action' >";
 			echo "<input type='hidden' name='$this->form_id-issubmitted' />";
 		}
 		
@@ -432,6 +434,13 @@ class Form
 							}
 							break;
 							
+						/* ----------- SANITIZE DATA ------------*/
+						
+						case 's_query':
+							$this->_cleanQuery( $_POST[$name] );
+							break;
+						
+							
 							
 					} // end switch ( $rule ) 
 					
@@ -765,6 +774,54 @@ class Form
 			
 		} // end rule
 	
+	
+	/**
+	 * This method generates a unique token for every session
+	 * to prevent against CSFR attacks. Form token must match 
+	 * session token
+	 *
+	 * @since 1.1.1 s9
+	 * @return string
+	 */	
+		function generateFormToken( $form ) {
+		
+		   // generate a token from an unique value
+			$token = md5( uniqid( microtime( ), true) );  
+			
+			// Write the generated token to the session variable to check it against the hidden field when the form is sent
+			$_SESSION[$form.'_token'] = $token; 
+			
+			return $token;
+	
+		}
+		
+	/**
+	 * This method generates a unique token for every session
+	 * to prevent against CSFR attacks. Form token must match 
+	 * session token
+	 *
+	 * @since 1.1.1 s9
+	 * @return string
+	 */		
+		function verifyFormToken($form) {
+		
+		// check if a session is started and a token is transmitted, if not return an error
+		if(!isset($_SESSION[$form.'_token'])) { 
+			return false;
+		}
+		
+		// check if the form is sent with token in it
+		if(!isset($_POST['token'])) {
+			return false;
+		}
+		
+		// compare the tokens against each other if they are still the same
+		if ($_SESSION[$form.'_token'] !== $_POST['token']) {
+			return false;
+		}
+		
+		return true;
+	}
 	
 	
 	/**

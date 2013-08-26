@@ -59,6 +59,7 @@ class Database extends PDO
 				# Show PDO Database Errors
 				$this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 				
+				
 			} // end try
 			
 			# Report the eorror!

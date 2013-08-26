@@ -68,18 +68,23 @@ $pass = DB_PASSWORD;
  */
 	try 
 	{  
-		# using the shortcut ->query() method here since there are no variable  
-		# values in the select statement.  
-		$STH = $DBH->query('SELECT name, description, price from shdw_non_coffee_products');  
+		$STH = $this->DBH->query("SELECT id, username, primaryEmail, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = '$username_valid' OR `primaryEmail` = '$email_valid' ) AND pass = '$pass_valid'");  
+		
+		$STH = $this->DBH->prepare("SELECT id, username, primaryEmail, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = :username OR `primaryEmail` = :email ) AND pass = :pass");  
+		$STH->execute( array(
+			':username' => $username_valid,
+			':email'    => $email_valid,
+			':pass'     => $pass_valid
+			));
 		  
 		# setting the fetch mode  
-		$STH->setFetchMode(PDO::FETCH_ASSOC);  
+		$STH->setFetchMode( PDO::FETCH_ASSOC );
 		  
 		while($row = $STH->fetch()) 
 		{  
-			echo $row['name'] . "<br/>";  
-			echo $row['description'] . "<br/>";  
-			echo $row['price'] . "<br/><br/>";  
+			echo $row['username'] . "<br/>";  
+			echo $row['primaryEmail'] . "<br/>";  
+			echo $row['firstName'] . "<br/><br/>";  
 		}  
 		
 	}  

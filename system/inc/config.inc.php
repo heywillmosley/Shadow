@@ -97,14 +97,21 @@
 	# Include App Settings
  	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
 	
-
+	
 
 /**
  * Check if database is above root
  */
- 	$db_level2 = dirname( ROOT_URI  ) . '/db.inc.php';
-	$db_level1 = ROOT_URI . 'db.inc.php';
-	$db_root = ROOT_URI . 'db.inc.php';
+ 	# Check for custom db file
+	if( DB_FILE == '' )
+		$db_file = 'db.inc.php';
+	
+	else
+		$db_file = DB_FILE;
+		
+ 	$db_level2 = dirname( ROOT_URI  ) . '/'.$db_file;
+	$db_level1 = ROOT_URI .$db_file;
+	$db_root = ROOT_URI .$db_file;
 	
 	# Check if db.inc.php is level 2 up from Shadow Root
 		if( file_exists( $db_level2 ) && !file_exists( $db_level1 ) ) 
@@ -1250,7 +1257,7 @@ $e = new Error();
 		define( 'ERR_MM_PASS', 'Your passwords aren&rsquo;t the same. Please try again.' );
 		
 		# Mismatched Password & Login
-		define( 'ERR_MM_LOGIN', '<div data-alert class="alert-box alert"> <strong>Incorrect Username/Email and Password combination.</strong> Please try again. Note' . SITE_NAME . ' passwords are case sensitive. Please check your CAPS lock key.</div>' );
+		define( 'ERR_MM_LOGIN', '<div class="alert alert-danger"> <strong>Incorrect Username/Email and Password combination.</strong> Please try again. Note ' . SITE_NAME . ' passwords are case sensitive. Please check your CAPS lock key.</div>' );
 
 	# Taken Inputs
 
@@ -1263,16 +1270,6 @@ $e = new Error();
 
 # ***** FORM CONSTANTS ***** #
 # ***************************#
-
-# ***********************#
-# ***** DATABASE  ****** #
-
-
-
-
-# ***** DATABASE  ****** #
-# ***********************#
-
 
 # ***********************#
 # ***** LOGIN TIME ***** #
@@ -1299,15 +1296,93 @@ $e = new Error();
  */
  	$user = ( isset( $_SESSION['user'] ) ) ? $_SESSION['user'] : NULL;
 	
-	
 /**
  * Connect the the Database
  */
  	$DBH = new Database();
+	
 
+# *************************#
+# ***** SET TIMEZONE ***** #
+
+# Set PHP Timezone to UTC Standard
+date_default_timezone_set( 'UTC' );
+
+try
+{
+	# Set MySql Timezone to UTC Standard
+	$STH = $DBH->query( "SET time_zone = 'UTC'" ); 
+}
+catch(PDOException $e) {  
+	exceptionHandler( $e ); 
+} 
+
+# One Second
+define( 'HALF_SECOND', .5 );
+
+# One Second
+define( 'ONE_SECOND', 1 );
+
+# One Minute
+define( 'ONE_MINUTE', 60 );
+
+# One Hour
+define( 'ONE_HOUR', 3600 );
+
+# One Day
+define( 'ONE_DAY', 86400 );
+
+# One Week
+define( 'ONE_WEEK', 604800 );
+
+# One Year ( 52 Weeks ) - Not exact for leap years
+define( 'ONE_YEAR', 31449600 );
+
+
+# ***** SET TIMEZONE ***** #
+# *************************#
 
 // If it's a POST request, handle the login attempt:
 loginTools(); 
+
+# Check for suspicious activity and immediately destroy any suspect session.
+if( isset( $_SESSION['_USER_IP'] ) )
+{
+	if ($_SESSION['_USER_LOOSE_IP'] != long2ip(ip2long($_SERVER['REMOTE_ADDR']) 
+                                           & ip2long("255.255.0.0"))
+    || $_SESSION['_USER_AGENT'] != $_SERVER['HTTP_USER_AGENT']
+    || $_SESSION['_USER_ACCEPT'] != $_SERVER['HTTP_ACCEPT']
+    || $_SESSION['_USER_ACCEPT_ENCODING'] != $_SERVER['HTTP_ACCEPT_ENCODING']
+    || $_SESSION['_USER_ACCEPT_LANG'] != $_SERVER['HTTP_ACCEPT_LANGUAGE']
+    || $_SESSION['_USER_ACCEPT_CHARSET'] != $_SERVER['HTTP_ACCEPT_CHARSET'])
+	{
+		// Destroy and start a new session
+		session_unset(); // Same as $_SESSION = array();
+		session_destroy(); // Destroy session on disk
+		session_start();
+		session_regenerate_id(true);
+	
+		echo "Possible session hijacking attempt. Redirect to login.";
+			
+		# Reauthenticate
+		header('Location:'. SITE_URL . 'admin/login');
+		exit;
+	}
+}
+else
+{
+	// Store these values into the session so I can check on subsequent requests.
+	$_SESSION['_USER_AGENT']           = $_SERVER['HTTP_USER_AGENT'];
+	$_SESSION['_USER_ACCEPT']          = $_SERVER['HTTP_ACCEPT'];
+	$_SESSION['_USER_ACCEPT_ENCODING'] = $_SERVER['HTTP_ACCEPT_ENCODING'];
+	$_SESSION['_USER_ACCEPT_LANG']     = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	// $_SESSION['_USER_ACCEPT_CHARSET']  = $_SERVER['HTTP_ACCEPT_CHARSET'];
+	
+	// Only use the first two blocks of the IP (loose IP check). Use a
+	// netmask of 255.255.0.0 to get the first two blocks only.
+	$_SESSION['_USER_LOOSE_IP'] = long2ip(ip2long($_SERVER['REMOTE_ADDR']) 
+										  & ip2long("255.255.0.0"));
+}
 
 
 # ***** LOGIN TIME ***** #

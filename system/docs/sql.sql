@@ -246,6 +246,22 @@ CREATE TABLE IF NOT EXISTS `shdw_users` (
 
 -- --------------------------------------------------------
 
+
+--
+-- Table structure for table `shdw_login_failed_attempts`
+--
+
+CREATE TABLE IF NOT EXISTS `shdw_login_failed_attempts` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR( 2056 ) NULL,
+  `email` VARCHAR( 2056 ) NULL,
+  `pass` VARCHAR(2056) NOT NULL,
+  `datetimeFailed` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `shdw_carts`
 --
