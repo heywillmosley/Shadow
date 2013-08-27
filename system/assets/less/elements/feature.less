@@ -8,7 +8,10 @@
 		display: inline-block;
 		vertical-align: middle;
 		white-space: normal;
-		width: 50%;
+		width: 70%;
+		@media only screen and (min-width: 600px) {
+			width: 50%;
+		}
 		.feature-text-container{
 			max-width: 510px;
 			float: right;
@@ -21,7 +24,7 @@
 			.feature-item-title{
 				.font-size(18);
 				color: #333;
-				line-height: 48px;
+				line-height: 1.4;
 				margin: 10px 0 5px 0;
 			}
 		}
@@ -38,24 +41,64 @@
 		display: inline-block;
 		vertical-align: middle;
 		white-space: normal;
-		width: 50%;
+		width: 30%;
+		@media only screen and (min-width: 600px) {
+			width: 50%;
+		}
 		.feature-desc-image{
 			vertical-align: middle;
 			max-width: none;
 		}
 	}
 	.feature-image.feature-image-right{
-		padding-left: 2%;
+		padding-left: 8%;
+		@media only screen and (min-width: 600px) {
+			padding-left: 2%;
+		}
 		.feature-desc-image{
 			float: left;
 		}
 	}
 	.feature-image.feature-image-left{
-		padding-right: 2%;
+		padding-right: 8%;
+		@media only screen and (min-width: 600px) {
+			padding-right: 2%;
+		}
 		.feature-desc-image{
 			float: right;
 		}
 	}
+}
+.feature.feature-full{
+	padding: 20px 0;
+	white-space: normal;
+	.feature-text{
+		padding: 2%;
+		display: block;
+		width: 100%;
+		.feature-text-container{
+			max-width: none;
+			float: both;
+			.feature-desc-title{
+				text-align: center;
+			}
+		}
+	}
+	.feature-image{
+		display: block;
+		vertical-align: middle;
+		white-space: normal;
+		width: 100%;
+		.feature-desc-image{
+			vertical-align: middle;
+			max-width: none;
+			margin: 0 auto;
+			display: block;
+		}
+	}
+}
+.feature.feature-stack-for-small{
+
 }
 
 .feature-container{
