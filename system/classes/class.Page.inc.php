@@ -274,8 +274,10 @@ class Page
 						$this->viewFile = SYS_PAGE_URI . 'logout.php';
 						
 						# Kill session if one exists
-						if( isset( $_SESSION ) )
-							session_start() and logout();
+						if ( session_status() == PHP_SESSION_NONE )
+							session_start();
+							
+						logout();
 						break;
 					
 					# Products	

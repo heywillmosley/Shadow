@@ -26,8 +26,9 @@
  */
 	function is_logged_in()
 	{
+		global $DBH;
 		# Set new Page object
-		$u = new Admin();
+		$u = new Admin( $DBH );
 		
 		# Call setPage() method
 		return $u->isLoggedIn();

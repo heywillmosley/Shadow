@@ -1286,7 +1286,9 @@ $e = new Error();
  *
  * @todo Secure session_start
  */
-	session_start();
+ 	# Check if session has been started, # If no session has been called, intiate
+	if ( session_status() == PHP_SESSION_NONE )
+		session_start();
 	
 
 /**

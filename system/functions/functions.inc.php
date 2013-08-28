@@ -267,7 +267,7 @@
                 <div id="shdw" class="pilot-head">Shadow Pilot</div>
                     <ul class="pilot-nav phs man">
                         <li class="shdw-head-nav">
-                            <a href="<?php echo SITE_URL.'logout'; ?>">Logout</a>
+                            <a href="<?php echo SITE_URL.'admin/logout'; ?>">Logout</a>
                         </li><!-- end shdw-head-nav -->
                         <li class="caption">Current page</li>
                         <li onclick="toggle_visibility('current-page-dropdown')" class="relative shdw-current">
