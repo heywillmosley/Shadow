@@ -1,0 +1,10 @@
+/**
+ * Removing and Ignoring a file in entire repository
+ *
+ * @url http://stackoverflow.com/questions/4114095/git-revert-to-previous-commit-how
+ */
+
+
+# This will destroy any local modifications
+# Don't do it if you have uncommitted work you want to keep
+git reset --hard 0d1d7fc32
