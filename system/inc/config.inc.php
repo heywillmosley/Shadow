@@ -46,6 +46,25 @@
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
 
+
+/** 
+ * Set as Bootstrap libarary if in Wordpress
+ * @since 0.1 s9
+ */
+	if( substr( dirname( dirname( dirname (dirname (dirname(__FILE__) ) ) ) ), -10 ) == 'wp-content')
+		define( 'WP', TRUE );
+	else
+		define( 'WP', FALSE );
+		
+/** 
+ * Set as Shadow Framework if standalone
+ * @since 0.1 s9
+ */
+ 	if( !WP )
+		define( 'SHDW', TRUE );
+	else
+		define( 'SHDW', FALSE );
+
 	
 /**
  * Check if Content is above Shadow root folder
@@ -80,6 +99,23 @@
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CORE_PATH', CORE_URI );
+	  
+	  
+/**
+ * IF USING WORDPRESS or WP directory exists, load Wordpress
+ * @todo Add Wordpress Intergration
+ */
+ 	# Check for 'wordpress' directory
+ 	if( is_dir( 'wordpress' ) )
+	{	
+		# Wordpress view bootstrapper
+		define( 'WP_USE_THEMES', true );
+	
+	} // end if( is_dir( 'wordpress' ) || is_dir( 'wp' ) )
+	
+	//echo FRONT_PATH;
+
+	
 
 
 /**
@@ -98,61 +134,64 @@
  	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
 	
 	
-
-/**
- * Check if database is above root
- */
- 	# Define DB_FILE if not defined already in pilot
-	if( !defined( 'DB_FILE' ) )
-		define( 'DB_FILE', '' );
+if( SHDW )
+{
+	/**
+	 * Check if database is above root
+	 */
+		# Define DB_FILE if not defined already in pilot
+		if( !defined( 'DB_FILE' ) )
+			define( 'DB_FILE', '' );
+			
+		# Check for custom db file
+		if( DB_FILE == '' )
+			$db_file = 'db.inc.php';
 		
- 	# Check for custom db file
-	if( DB_FILE == '' )
-		$db_file = 'db.inc.php';
-	
-	else
-		$db_file = DB_FILE;
-		
- 	$db_level2 = dirname( ROOT_URI  ) . '/'.$db_file;
-	$db_level1 = ROOT_URI .$db_file;
-	$db_root = ROOT_URI .$db_file;
-	
-	# Check if db.inc.php is level 2 up from Shadow Root
-		if( file_exists( $db_level2 ) && !file_exists( $db_level1 ) ) 
-		{	
-			/**
-			 * Define Database constant
-			 */
-				define( 'DB', $db_level2 );
-		}
-		# Check if db.inc.php is level 2 up from Shadow Root
-		elseif( file_exists( $db_level1 ) ) 
-		{	
-			/**
-			 * Define Database constant
-			 */
-				define( 'DB', $db_level1 );
-		}
-		
-		elseif( file_exists( $db_root ) ) 
-		{	
-			/**
-			 * Define Database constant
-			 */
-				define( 'DB', $db_root );
-		}
 		else
-		{
-			echo '<h1>Database not set.</h1><p>Please place <code>db.inc.php</code> inside of your root folder.</p> <p>Alternatively, you can copy this from the root of your Shadow directory.';
-			exit;
-		}
- 	
-		/**
-		 * Define Database
-		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-		 */
-		  define( 'MYSQL', DB );
-		  
+			$db_file = DB_FILE;
+			
+		$db_level2 = dirname( ROOT_URI  ) . '/'.$db_file;
+		$db_level1 = ROOT_URI .$db_file;
+		$db_root = ROOT_URI .$db_file;
+		
+		# Check if db.inc.php is level 2 up from Shadow Root
+			if( file_exists( $db_level2 ) && !file_exists( $db_level1 ) ) 
+			{	
+				/**
+				 * Define Database constant
+				 */
+					define( 'DB', $db_level2 );
+			}
+			# Check if db.inc.php is level 2 up from Shadow Root
+			elseif( file_exists( $db_level1 ) ) 
+			{	
+				/**
+				 * Define Database constant
+				 */
+					define( 'DB', $db_level1 );
+			}
+			
+			elseif( file_exists( $db_root ) ) 
+			{	
+				/**
+				 * Define Database constant
+				 */
+					define( 'DB', $db_root );
+			}
+			else
+			{
+				echo '<h1>Database not set.</h1><p>Please place <code>db.inc.php</code> inside of your root folder.</p> <p>Alternatively, you can copy this from the root of your Shadow directory.';
+				exit;
+			}
+		
+			/**
+			 * Define Database
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 */
+			  define( 'MYSQL', DB );
+			  
+	} // end SHDW
+			  
 		
 
 /**
@@ -167,31 +206,7 @@
  	define('SYS_PREFIX', 'shdw-');
 
 	
-/**
- * IF USING WORDPRESS or WP directory exists, load Wordpress
- * @todo Add Wordpress Intergration
- */
- 	# Check for 'wordpress' directory
- 	if( is_dir( 'wordpress' ) )
-	{	
-		# Wordpress view bootstrapper
-		define( 'WP_USE_THEMES', true );
-		
-		# Load wordpress's bootstrap file
-		require( ABSPATH .'wp-blog-header.php' );
-	
-	} // end if( is_dir( 'wordpress' ) || is_dir( 'wp' ) )
-	
-	# Check for 'wp' directory
-	elseif( is_dir( 'wp' ) )
-	{	
-		# Wordpress view bootstrapper
-		define( 'WP_USE_THEMES', true );
-		
-		# Load wordpress's bootstrap file
-		require( ABSPATH . 'wp-blog-header.php' );
-	
-	} // end elseif( is_dir( 'wp' ) )
+
 
 	
 /**
@@ -340,10 +355,11 @@
 	else
 		define( 'CONTENT_URL', ROOT_URL . 'content/' );
 	
+if( SHDW )
+{
 	// Path to the application folder
 	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
 	
-
 	/**
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
@@ -367,6 +383,16 @@
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPURL', APP_URL );
+}
+
+if( WP )
+{
+	// Path to the application folder
+	define('APP_URI',  get_template_directory() . '/' );
+	
+	// URL to the system folder
+	define('APP_URL', get_template_directory_uri() . '/' );
+}
 	
 	// Path to the application folder
 	define('BRIDGE_URI', CONTENT_URI . 'bridges/' );
@@ -1055,13 +1081,28 @@ if( !isset( $debug ) )
 # ************************ #
 # ***** LOAD CLASSES ***** #
 
-/**
- * Loads all system classes in system inc folder
- */
-	function __autoload( $class_name )  
-	{  
-		include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';  
-	} // end function __autoload( $class_name ) 
+if( !WP )
+{
+	/**
+	 * Loads all system classes in system inc folder
+	 */
+		// Or, using an anonymous function as of PHP 5.3.0
+		spl_autoload_register(function ( $class_name ) {
+			include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';  
+		} );
+}
+else
+{
+	include_once SYS_CLASS_URI . 'class.Admin.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.Database.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.Form.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.Element.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.Environment.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.Error.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.File.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.Maintenance.inc.php'; 
+	include_once SYS_CLASS_URI . 'class.Page.inc.php'; 
+}
 	
 
 //spl_autoload_register( 'class_loader' );
@@ -1275,53 +1316,60 @@ $e = new Error();
 # ***** FORM CONSTANTS ***** #
 # ***************************#
 
-# ***********************#
-# ***** LOGIN TIME ***** #
-
-/**
- * Start the session
- * The session is bing started at this point so that it can access
- * all the class definitions( thanks to the autoloader). This order is
- * required should there be a stored, serialized object in the session.
- *
- * @todo Secure session_start
- */
- 	# Check if session has been started, # If no session has been called, intiate
-	if ( session_status() == PHP_SESSION_NONE )
-		session_start();
+if( SHDW )
+{
+	# ***********************#
+	# ***** LOGIN TIME ***** #
 	
-
-/**
- * Check the user in the session
- * The $user variable will be referenced to the currently logged-in
- * user. The user object will be stored in the session upon successfully
- * logging in. On subsequent pages, the $user variable will be
- * reconstituted from the session.
- *
- * If the user is not logged in, then the  $user variable is set to NULL
- */
- 	$user = ( isset( $_SESSION['user'] ) ) ? $_SESSION['user'] : NULL;
+	/**
+	 * Start the session
+	 * The session is bing started at this point so that it can access
+	 * all the class definitions( thanks to the autoloader). This order is
+	 * required should there be a stored, serialized object in the session.
+	 *
+	 * @todo Secure session_start
+	 */
+		# Check if session has been started, # If no session has been called, intiate
+		if ( session_status() == PHP_SESSION_NONE )
+			session_start();
+		
 	
-/**
- * Connect the the Database
- */
- 	$DBH = new Database();
+	/**
+	 * Check the user in the session
+	 * The $user variable will be referenced to the currently logged-in
+	 * user. The user object will be stored in the session upon successfully
+	 * logging in. On subsequent pages, the $user variable will be
+	 * reconstituted from the session.
+	 *
+	 * If the user is not logged in, then the  $user variable is set to NULL
+	 */
+		$user = ( isset( $_SESSION['user'] ) ) ? $_SESSION['user'] : NULL;
+		
+	/**
+	 * Connect the the Database
+	 */
+		$DBH = new Database();
+		
+} // end SHDW
 	
 
 # *************************#
 # ***** SET TIMEZONE ***** #
 
-# Set PHP Timezone to UTC Standard
-date_default_timezone_set( 'UTC' );
-
-try
+if( SHDW )
 {
-	# Set MySql Timezone to UTC Standard
-	$STH = $DBH->query( "SET time_zone = 'UTC'" ); 
-}
-catch(PDOException $e) {  
-	exceptionHandler( $e ); 
-} 
+	# Set PHP Timezone to UTC Standard
+	date_default_timezone_set( 'UTC' );
+	
+	try
+	{
+		# Set MySql Timezone to UTC Standard
+		$STH = $DBH->query( "SET time_zone = 'UTC'" ); 
+	}
+	catch(PDOException $e) {  
+		exceptionHandler( $e ); 
+	} 
+} // end SHDW
 
 # One Second
 define( 'HALF_SECOND', .5 );
@@ -1348,47 +1396,52 @@ define( 'ONE_YEAR', 31449600 );
 # ***** SET TIMEZONE ***** #
 # *************************#
 
-// If it's a POST request, handle the login attempt:
-loginTools(); 
+if( SHDW )
+{
+	// If it's a POST request, handle the login attempt:
+	loginTools(); 
 
-# Check for suspicious activity and immediately destroy any suspect session.
-if( isset( $_SESSION['_USER_IP'] ) )
-{
-	if ($_SESSION['_USER_LOOSE_IP'] != long2ip(ip2long($_SERVER['REMOTE_ADDR']) 
-                                           & ip2long("255.255.0.0"))
-    || $_SESSION['_USER_AGENT'] != $_SERVER['HTTP_USER_AGENT']
-    || $_SESSION['_USER_ACCEPT'] != $_SERVER['HTTP_ACCEPT']
-    || $_SESSION['_USER_ACCEPT_ENCODING'] != $_SERVER['HTTP_ACCEPT_ENCODING']
-    || $_SESSION['_USER_ACCEPT_LANG'] != $_SERVER['HTTP_ACCEPT_LANGUAGE']
-    || $_SESSION['_USER_ACCEPT_CHARSET'] != $_SERVER['HTTP_ACCEPT_CHARSET'])
+
+	# Check for suspicious activity and immediately destroy any suspect session.
+	if( isset( $_SESSION['_USER_IP'] ) )
 	{
-		// Destroy and start a new session
-		session_unset(); // Same as $_SESSION = array();
-		session_destroy(); // Destroy session on disk
-		session_start();
-		session_regenerate_id(true);
-	
-		echo "Possible session hijacking attempt. Redirect to login.";
-			
-		# Reauthenticate
-		header('Location:'. SITE_URL . 'admin/login');
-		exit;
+		if ($_SESSION['_USER_LOOSE_IP'] != long2ip(ip2long($_SERVER['REMOTE_ADDR']) 
+											   & ip2long("255.255.0.0"))
+		|| $_SESSION['_USER_AGENT'] != $_SERVER['HTTP_USER_AGENT']
+		|| $_SESSION['_USER_ACCEPT'] != $_SERVER['HTTP_ACCEPT']
+		|| $_SESSION['_USER_ACCEPT_ENCODING'] != $_SERVER['HTTP_ACCEPT_ENCODING']
+		|| $_SESSION['_USER_ACCEPT_LANG'] != $_SERVER['HTTP_ACCEPT_LANGUAGE']
+		|| $_SESSION['_USER_ACCEPT_CHARSET'] != $_SERVER['HTTP_ACCEPT_CHARSET'])
+		{
+			// Destroy and start a new session
+			session_unset(); // Same as $_SESSION = array();
+			session_destroy(); // Destroy session on disk
+			session_start();
+			session_regenerate_id(true);
+		
+			echo "Possible session hijacking attempt. Redirect to login.";
+				
+			# Reauthenticate
+			header('Location:'. SITE_URL . 'admin/login');
+			exit;
+		}
 	}
-}
-else
-{
-	// Store these values into the session so I can check on subsequent requests.
-	$_SESSION['_USER_AGENT']           = $_SERVER['HTTP_USER_AGENT'];
-	$_SESSION['_USER_ACCEPT']          = $_SERVER['HTTP_ACCEPT'];
-	$_SESSION['_USER_ACCEPT_ENCODING'] = $_SERVER['HTTP_ACCEPT_ENCODING'];
-	$_SESSION['_USER_ACCEPT_LANG']     = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-	// $_SESSION['_USER_ACCEPT_CHARSET']  = $_SERVER['HTTP_ACCEPT_CHARSET'];
+	else
+	{
+		// Store these values into the session so I can check on subsequent requests.
+		$_SESSION['_USER_AGENT']           = $_SERVER['HTTP_USER_AGENT'];
+		$_SESSION['_USER_ACCEPT']          = $_SERVER['HTTP_ACCEPT'];
+		$_SESSION['_USER_ACCEPT_ENCODING'] = $_SERVER['HTTP_ACCEPT_ENCODING'];
+		$_SESSION['_USER_ACCEPT_LANG']     = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+		// $_SESSION['_USER_ACCEPT_CHARSET']  = $_SERVER['HTTP_ACCEPT_CHARSET'];
+		
+		// Only use the first two blocks of the IP (loose IP check). Use a
+		// netmask of 255.255.0.0 to get the first two blocks only.
+		$_SESSION['_USER_LOOSE_IP'] = long2ip(ip2long($_SERVER['REMOTE_ADDR']) 
+											  & ip2long("255.255.0.0"));
+	}
 	
-	// Only use the first two blocks of the IP (loose IP check). Use a
-	// netmask of 255.255.0.0 to get the first two blocks only.
-	$_SESSION['_USER_LOOSE_IP'] = long2ip(ip2long($_SERVER['REMOTE_ADDR']) 
-										  & ip2long("255.255.0.0"));
-}
+} // SHDW
 
 
 # ***** LOGIN TIME ***** #

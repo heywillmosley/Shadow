@@ -18,91 +18,94 @@
  
 // --------------------------------------------------------------------------------
 
-/**
- * Determines if user is logged in or not
- *
- * @since 1.1.1 b8
- * @return void
- */
-	function is_logged_in()
-	{
-		global $DBH;
-		# Set new Page object
-		$u = new Admin( $DBH );
+if( SHDW )
+{
+	/**
+	 * Determines if user is logged in or not
+	 *
+	 * @since 1.1.1 b8
+	 * @return void
+	 */
+		function is_logged_in()
+		{
+			global $DBH;
+			# Set new Page object
+			$u = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $u->isLoggedIn();
+			 
+		}
 		
-		# Call setPage() method
-		return $u->isLoggedIn();
-		 
-	}
 	
-
-/**
- * Checks if user is an admin user
- *
- * @since 1.1.1 s9
- * @return Void
- */		
-	function is_admin()
-	{
-		global $DBH;
-		# Set new Page object
-		$c = new Admin( $DBH );
+	/**
+	 * Checks if user is an admin user
+	 *
+	 * @since 1.1.1 s9
+	 * @return Void
+	 */		
+		function is_admin()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->isAdmin();
+			
+		}
 		
-		# Call setPage() method
-		return $c->isAdmin();
 		
-	}
-	
-	
-/**
- * Determins if user is logged in and sets appropriate SESSION Varibales
- *
- * @since 1.1.1 s9
- * @return Void
- */
-	function loginTools()
-	{
-		global $DBH;
-		# Set new Page object
-		$c = new Admin( $DBH );
+	/**
+	 * Determins if user is logged in and sets appropriate SESSION Varibales
+	 *
+	 * @since 1.1.1 s9
+	 * @return Void
+	 */
+		function loginTools()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->loginTools();
+			 
+		}
 		
-		# Call setPage() method
-		return $c->loginTools();
-		 
-	}
-	
-	
-/**
- * Creates Login form
- *
- * @since 1.1.1 s9
- * @return Void
- */	
-	function loginForm()
-	{
-		global $DBH;
-		# Set new Page object
-		$c = new Admin( $DBH );
 		
-		# Call setPage() method
-		return $c->loginForm();
-		 
-	}
-	
-/**
- * Clears session data, logs user out
- *
- * @since 1.1.1 s9
- * @return Void
- */		
-	function logout()
-	{
-		global $DBH;
-		# Set new Page object
-		$c = new Admin( $DBH );
+	/**
+	 * Creates Login form
+	 *
+	 * @since 1.1.1 s9
+	 * @return Void
+	 */	
+		function loginForm()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->loginForm();
+			 
+		}
 		
-		# Call setPage() method
-		return $c->logout();
-		
-	}	
+	/**
+	 * Clears session data, logs user out
+	 *
+	 * @since 1.1.1 s9
+	 * @return Void
+	 */		
+		function logout()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->logout();
+			
+		}	
+} // end SHDW
 	

@@ -600,83 +600,85 @@
 	} // end shdw_header
 
 
-
-/* Presentational level of Page Class
- *******************************************************/
-
-	/**
-	 * Sets page from class Page:setPage()
-	 *
-	 * @since 1.1.1 b8
-	 * @return void
-	 */
-		function page_title()
+if( SHDW )
+{
+	/* Presentational level of Page Class
+	 *******************************************************/
+	
+		/**
+		 * Sets page from class Page:setPage()
+		 *
+		 * @since 1.1.1 b8
+		 * @return void
+		 */
+			function page_title()
+			{
+				global $DBH;
+				# Set new Page object
+				$p = new Page( $DBH );
+				
+				# Call setPage() method
+				echo $p->getPageTitle();
+				 
+			}
+		
+		/**
+		 * Sets page from class Page:setPage()
+		 *
+		 * @since 1.1.1 b8
+		 * @return void
+		 */
+			function get_page_title()
+			{
+				global $DBH;
+				# Set new Page object
+				$p = new Page( $DBH );
+				
+				# Call setPage() method
+				echo $p->getPageTitle();
+				
+				
+			}
+	
+		/**
+		 * Sets page from class Page:setPage()
+		 *
+		 * @since 1.1.1 b8
+		 * @return void
+		 */
+		function set_page()
 		{
 			global $DBH;
 			# Set new Page object
 			$p = new Page( $DBH );
 			
 			# Call setPage() method
-			echo $p->getPageTitle();
+			$p->setPage();
 			 
+			# Unset Object
+			unset( $p );
 		}
-	
-	/**
-	 * Sets page from class Page:setPage()
-	 *
-	 * @since 1.1.1 b8
-	 * @return void
-	 */
-		function get_page_title()
-		{
+		
+		
+		/**
+		 * Gets page from class Page:getPage()
+		 *
+		 * @since 1.1.1 b8
+		 * @return void
+		 */
+		function get_page()
+		{	
 			global $DBH;
 			# Set new Page object
 			$p = new Page( $DBH );
 			
 			# Call setPage() method
-			echo $p->getPageTitle();
-			
-			
+			$p->getPage();
+			 
+			# Unset Object
+			unset( $p );
 		}
-
-	/**
-	 * Sets page from class Page:setPage()
-	 *
-	 * @since 1.1.1 b8
-	 * @return void
-	 */
-	function set_page()
-	{
-		global $DBH;
-		# Set new Page object
-		$p = new Page( $DBH );
-		
-		# Call setPage() method
-		$p->setPage();
-		 
-		# Unset Object
-		unset( $p );
-	}
-	
-	
-	/**
-	 * Gets page from class Page:getPage()
-	 *
-	 * @since 1.1.1 b8
-	 * @return void
-	 */
-	function get_page()
-	{	
-		global $DBH;
-		# Set new Page object
-		$p = new Page( $DBH );
-		
-		# Call setPage() method
-		$p->getPage();
-		 
-		# Unset Object
-		unset( $p );
-	}
+} // end SHDW
 	
 	
 	

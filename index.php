@@ -37,17 +37,25 @@ define('INDEX',TRUE);
 	if( file_exists( APP_INC_URI.'functions.inc.php' ) )
 		include_once(APP_INC_URI.'functions.inc.php');
  	
- 
-/**
- * Include the header file:
- */
- include SYS_INC_URI . 'header.inc.php';
-
-get_page();
-
-
-/**
- * Include the footer file:
- */
- include SYS_INC_URI . 'footer.inc.php';
+if( WP )
+{
+	
+	
+}
+if( SHDW )
+{ 
+	/**
+	 * Include the header file:
+	 */
+	 include SYS_INC_URI . 'header.inc.php';
+	
+	get_page();
+	
+	
+	/**
+	 * Include the footer file:
+	 */
+	 include SYS_INC_URI . 'footer.inc.php';
+	 
+} // end SHDW
 ?>

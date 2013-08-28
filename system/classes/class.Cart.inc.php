@@ -25,7 +25,7 @@
  * 0 Arguments
  * 0 Methods
  */
-class ClassName
+class Cart
 {
  
 } // end ClassName
