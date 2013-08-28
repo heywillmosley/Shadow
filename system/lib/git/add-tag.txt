@@ -1,0 +1,5 @@
+1) Add a new tag for the newest stable release: 
+git tag -a v0.5 -m "Version 0.5 Stable"
+
+2) Push the latest tag to GitHub (two dashes): 
+git push --tags

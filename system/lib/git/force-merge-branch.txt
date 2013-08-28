@@ -1,0 +1,6 @@
+You should be able to use the "ours" merge strategy to overwrite master with seotweaks like this:
+
+git checkout seotweaks
+git merge -s ours master
+git checkout master
+git merge seotweaks

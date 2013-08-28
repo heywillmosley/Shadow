@@ -1,0 +1,5 @@
+1) Delete the v0.4 tag locally:
+git tag -d 12345
+ 
+2) Delete the v0.4 tag on GitHub (which removes its download link):
+git push origin :refs/tags/12345
