@@ -1995,8 +1995,10 @@ th.e-hidden-lg,td.e-hidden-lg{display:table-cell !important;}
 th.e-visible-print,td.e-visible-print{display:none !important;}
 @media print{.e-visible-print{display:block !important;}tr.e-visible-print{display:table-row !important;} th.e-visible-print,td.e-visible-print{display:table-cell !important;} .e-hidden-print{display:none !important;}tr.e-hidden-print{display:none !important;} th.e-hidden-print,td.e-hidden-print{display:none !important;}}
 
-form .label{
-	
+// Fix issue: broken labels ( inline )
+// @Since 0.2 - 08/29/13 WM
+form.custom label{
+	display: block
 }
 
 
