@@ -70,7 +70,7 @@ if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v']
 { 
 ?>
 	
-		<h2 class="mbt"><sup style="top:-5.5px">&trade;</sup>!</h2>
+		<h2 class="mbt">Join the Healing Revolution<sup style="top:-5.5px">&trade;</sup>!</h2>
 		<div class="media">
 			<div class="pull-left">
             	<?php if( defined('SYS_VER' ) ) : ?>
