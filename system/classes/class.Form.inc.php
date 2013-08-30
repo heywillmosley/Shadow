@@ -92,7 +92,9 @@ class Form
 	 	function openForm()
 		{
 			# Open form and configure
+
 			echo "<form id='$this->form_token' class='pam custom $this->form_class' method='$this->form_method' action='$this->form_action'>";
+
 			echo "<input type='hidden' name='$this->form_id-issubmitted' />";
 		}
 		

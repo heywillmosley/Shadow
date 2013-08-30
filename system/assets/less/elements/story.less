@@ -1,0 +1,140 @@
+/***************** STORY ********************/
+
+.story{
+	padding: 20px 10px;
+	max-width: 661px;
+	margin:0 auto;
+	.story-header{
+		.story-title{
+			.font-size(27);
+			font-weight: bold;
+			line-height:1.2;
+			margin: 10px 0;
+		}
+		.story-author{
+			color: #999;
+			.font-size(18);
+		}
+	}
+	.story-header.story-header-highlight-title{
+		.story-title{
+			.font-size(33);
+		}
+		.story-banner-publish-meta{
+			border-top: 1px solid #e2e2e2;
+			margin-top: 0;
+			.font-size(11);
+			.story-author{
+				.font-size(11);
+				text-transform: uppercase;
+			}
+			.story-cat{
+				margin: 0;
+				padding: 0px;
+				line-height:1;
+				li{
+					.font-size(11);
+					text-transform: uppercase;
+					margin: 0;
+					padding: 0px;
+				}
+			}
+			.story-root-cat{
+				text-transform: uppercase;	
+				color: #999;
+				a {
+					color: #999;
+				}
+			}
+			.story-publish-date{
+				text-transform: uppercase;	
+			}
+			.story-comment-count{
+				text-transform: uppercase;
+				display: inline;	
+			}
+		}
+	}
+	.story-banner-publish-meta{
+		border-top: 1px solid #999;
+		padding-top: 7px;
+		margin-bottom: 8px;
+		margin-top: 5px;
+		.font-size(14);
+		color: #999;
+		.story-meta-inline-list{
+			display: inline-block;
+			list-style: none;
+			margin-bottom: 2.5px;
+			li{
+				display: inline-block;
+				margin-right: 2.5px;
+				.font-size(14);
+			}
+		}
+		.story-comment-count{
+			display: inline-block;
+		}
+	}
+	.story-body{
+		.story-lead{
+			.font-size(18);	
+			line-height: 1.6;
+			margin-bottom: 15px;
+		}
+		.story-feature-image{
+			margin-bottom: 20px;
+			display: block;
+		}
+		p{
+			.font-size(14.5);	
+		}
+	}
+	.story-footer{
+		.story-actions{
+			
+		}
+	}
+	.story-section-title{
+		border-bottom: 1px solid #999;
+		margin: 5px 0 10px;
+		font-size: 18px;
+		text-transform: uppercase;		
+	}
+	.story-about-author{
+		margin-bottom: 20px;
+		.story-about-author-title{
+			.font-size(18);	
+		}
+	}
+}
+
+.story.story-summary{
+	border-bottom: 1px dashed #F0F0F0;
+	margin-bottom: 10px;
+	padding-bottom: 10px;	
+}
+.story.story-news-column{
+	.story-header{
+		.story-banner-published-meta{
+			height: 40px;
+			overflow: hidden;	
+		}
+		.story-title{
+			.font-size(20);
+			height: 45px;
+			overflow: hidden;
+		}
+	}
+	.story-body{
+		.story-feature-image{
+			height: 220px;
+			overflow: hidden;
+		}
+		.story-lead{
+			.font-size(16);
+			height: 200px;
+			overflow: hidden;
+		}	
+	}
+}
