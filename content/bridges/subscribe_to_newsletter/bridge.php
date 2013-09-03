@@ -1,4 +1,4 @@
-<link href="subscribe_to_newsletter/styles.css" rel="stylesheet" type="text/css">
+
 
 <?php 
 if( defined('SYS_VER' ) )
@@ -8,6 +8,7 @@ if( defined('SYS_VER' ) )
 }
 else
 {
+	echo '<link href="subscribe_to_newsletter/styles.css" rel="stylesheet" type="text/css">';
 	require_once 'subscribe_to_newsletter/mailchimp/bridge.php';
 	require_once 'subscribe_to_newsletter/class.Form.inc.php';
 }
@@ -15,7 +16,7 @@ else
 /* ############################# */
 /* ##### SET FORM ELEMENTS ##### */
 
-$form = new Form( 'new_mc_subscriber' );
+$form = new Form( 'new_mc_subscriber', 'mxw400 mCenter' );
 $firstName = $form->addElement( array( 
 		# ELEMENT ATTRIBUTES 
 		'type'        => 'text', // REQUIRED
@@ -70,20 +71,25 @@ if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v']
 { 
 ?>
 	
-		<h2 class="mbt">Join the Healing Revolution<sup style="top:-5.5px">&trade;</sup>!</h2>
-		<div class="media">
-			<div class="pull-left">
+		<h3 class="mbt" style="color: #77BC43;">Join the Healing Revolution<sup style="top:-5.5px">&trade;</sup>!</h3>
+        <div class="row">
+        	<div class="col-xs-3 pan">
+            	<style>
+					.newsletter-cover{
+						-webkit-box-shadow:  0px 0px 1px 1px rgba(0, 0, 0, .2);
+        				box-shadow:  0px 0px 1px 1px rgba(0, 0, 0, .2);
+					}
+				</style>
             	<?php if( defined('SYS_VER' ) ) : ?>
-					<img class="pbs" src="<?php echo BRIDGE_URL; ?>subscribe_to_newsletter/newsletter.jpg" alt="newsletter" />
+					<img class="mbs newsletter-cover" src="<?php echo BRIDGE_URL; ?>subscribe_to_newsletter/newsletter.jpg" alt="newsletter" />
                	<?php else : ?>
-                	<img class="pbs" src="subscribe_to_newsletter/newsletter.jpg" alt="newsletter" />
+                	<img class="mbs newsletter-cover" src="subscribe_to_newsletter/newsletter.jpg" alt="newsletter" />
                 <?php endif; ?>
-			</div><!-- end pull-left -->
-			<div class="media-body">
-				
-				<p>Join our mailing list to receive future promotions and updates from (company name).</p>
-			</div><!-- end media-body -->
-		</div><!-- end media -->
+            </div><!-- end col-4 -->
+            <div class="col-xs-9 pls prn">
+            	<p>Join our mailing list to receive future promotions and updates from (company name).</p>
+            </div><!-- end col-xs-8 -->
+        </div><!-- end row -->
 		<div class="caption">All fields are required.</div>
 		<?= $firstName['e']; ?>
 		<?= $lastName['e']; ?>
