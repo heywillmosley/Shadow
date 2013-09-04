@@ -5,12 +5,13 @@ if( defined('SYS_VER' ) )
 {
 	if( !class_exists('Mailchimp') )
 		require_once BRIDGE_URI.'subscribe_to_newsletter/mailchimp/bridge.php';
+		
 }
 else
 {
 	echo '<link href="subscribe_to_newsletter/styles.css" rel="stylesheet" type="text/css">';
-	require_once 'subscribe_to_newsletter/mailchimp/bridge.php';
-	require_once 'subscribe_to_newsletter/class.Form.inc.php';
+	include 'subscribe_to_newsletter/mailchimp/bridge.php';
+	include 'subscribe_to_newsletter/class.Form.inc.php';
 }
 
 /* ############################# */
