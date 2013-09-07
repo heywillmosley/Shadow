@@ -53,6 +53,13 @@
 <div class="wrapper">
 <?php $e = new Environment; $e->environment_notice(); unset( $e ); ?>
 
+<?php if( !is_logged_in() ) : ?>
+	<?php login_form(); ?>
+<?php else : ?>
+	<?php // pilot(); ?>
+    Pilot
+<?php endif; ?>
+
 <a class="drop-nav-trigger" onClick="toggle_visibility('drop-nav')"></a>
 <nav class="actionbar">
 	<a class="show-for-small logo" href="<?php echo SITE_URL; ?>"><?php echo SITE_NAME; ?></a>

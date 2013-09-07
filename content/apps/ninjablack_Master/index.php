@@ -81,7 +81,7 @@ app_header();
         </div><!-- end small-12 large-8 columns -->
         <div class="small-12 large-4 columns">
         	<div class="pls">
-            	<?php loginForm(); ?>
+            	
                 
                 <?php
 				/* ############################# */
