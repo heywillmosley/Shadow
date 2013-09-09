@@ -138,6 +138,30 @@ class Page
 		} // end method theCreatorId()
 		
 		
+		
+	/**
+	 * This method returns the page type
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function getType()
+		{
+			echo $this->theType();
+			
+		} // end method theType()
+		
+		
+	/**
+	 * This method gets the page type
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theType()
+		{
+			return $this->type;
+			
+		} // end method theType()
+		
 	/**
 	 * This method returns the page title
 	 * @since 0.1.1 s9
@@ -232,7 +256,7 @@ class Page
 	 */
 		function theSlug()
 		{
-			return $this->slug;
+			return $this->page;
 			
 		} // end method theSlug()
 		
@@ -374,8 +398,12 @@ class Page
 			elseif( substr( $this->page, 0, 8 ) == 'product/' )
 				$this->type = 'product-single';
 				
+			elseif( substr( $this->page, 0, 11 ) == 'admin/pilot' )
+				$this->type = 'pilot';
+				
 			else
 				$this->type = 'page';
+				
 				
 			
 			/**
@@ -384,7 +412,6 @@ class Page
 			 	if( substr( $this->page, -1 ) == '/' ) 
 
 					$this->page = substr($this->page, 0, -1 );
-					
 			 
 			/**
 			 * Determine what page to display:
@@ -542,6 +569,83 @@ class Page
 					catch( PDOException $e ) {  
 						exceptionHandler( $e ); 
 					}
+				}
+				
+				
+				elseif( $this->type == 'pilot' )
+				{
+					switch ( $this->page ) 
+					 {
+						case 'install':
+							$this->title = 'Install '. FW_NAME; 
+							$this->viewFile = SYS_PAGE_URI . 'install.php';
+							break;
+							
+						case 'admin/pilot':
+							$this->title = 'Pilot'; 
+							$this->id = '0001'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/pilot.php';
+							break;
+							
+						case 'admin/pilot/products':
+							$this->title = 'Products';
+							$this->id = '0003';  
+							$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
+							break;
+							
+						case 'admin/login':
+							$this->title = 'Login'; 
+							$this->id = '0004'; 
+							$this->viewFile = SYS_PAGE_URI . 'login.php';
+							break;
+							
+						case 'admin/logout':
+							$this->title = 'Logout';
+							$this->id = '0005'; 
+							$this->viewFile = SYS_PAGE_URI . 'logout.php';
+							
+							# Kill session if one exists
+							if ( session_status() == PHP_SESSION_NONE )
+								session_start();
+								
+							logout();
+							break;
+						
+						# Products	
+						case 'admin/pilot/products':
+							$this->title = 'Products';
+							$this->id = '0006';  
+							$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
+							break;
+						
+						# Pages
+						case 'admin/pilot/pages':
+							$this->title = 'All Pages'; 
+							$this->id = '0007'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/pages.php';
+							break;	
+							
+						case 'admin/pilot/pages/new-page':
+							$this->title = 'Create New Page';
+							$this->id = '0008'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/new-page.php';
+							break;
+							
+						case 'admin/pilot/pages/edit-page':
+							$this->title = 'Edit' ;
+							$this->id = '0009'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
+							break;	
+							
+						case 'admin/pilot/pages/edit-page':
+							$this->title = 'Edit' ;
+							$this->id = '0009'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
+							break;	
+	
+					} // end switch
+					
+					$this->viewFile = SYS_VIEWS_URI.'pilot.php';
 				}
 			
 			/**

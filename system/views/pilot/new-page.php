@@ -18,7 +18,6 @@
  
 // --------------------------------------------------------------------------------?>
 
-<?php require SYS_INC_URI . 'pilot/header.inc.php'; ?>
 
 <div class="mxw700 pam">
     <?php
@@ -135,6 +134,3 @@ if (!isset($new_page_errors)) $new_page_errors = array();
     </div><!-- end shdw-login-form -->
     
 </div><!-- end mCenter mxw700 -->
-
-
-<?php require SYS_INC_URI . 'pilot/footer.inc.php'; ?>

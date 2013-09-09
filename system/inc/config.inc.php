@@ -1102,6 +1102,7 @@ require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.page.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.product.inc.php';
+require_once SYS_FUNCTIONS_URI.'function.pilot.inc.php';
 
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #

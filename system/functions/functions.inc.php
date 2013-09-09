@@ -649,58 +649,18 @@ function maintenance_mode()
 
 
 /**
- * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/19/2014
- * Use Maintenance Class Environment->environment_notice() instead
+ * This function displays a notice to let the developer know which version of Shadow they are on and what environment they're in
+ * @since 0.1.5
+ * @return string
  */
-function environment_notice()
-{
-	if( ENVIRONMENT != 'production' )
+	function environment_notice()
 	{
-		?>	
-		
-		<div data-alert class="environment-notice alert-box warning">
-		  <?php if( ENVIRONMENT == 'development' ) : ?>
-                <div class="relative">
-                    <div class="left side w50 env">
-                        <h1 class="title">DEV</h1>
-                        <div class="ver">v<?php echo APP_VER; ?></div>
-                    </div><!-- end left side w50 -->
-                    <div class="ls50 content">
-                        <?php echo DEVELOPMENT_NOTICE; ?>
-                    </div><!-- end ls50 -->
-                </div><!-- end relative -->
-		  <?php endif; ?>
-          <?php if( ENVIRONMENT == 'stage' ) : ?>
-			  <div class="relative">
-                    <div class="left side w50 env">
-                        <h1 class="title">STG</h1>
-                        <div class="ver">v<?php echo APP_VER; ?></div>
-                    </div><!-- end left side w50 -->
-                    <div class="ls50 content">
-                        <?php echo STAGE_NOTICE; ?>
-                    </div><!-- end ls50 -->
-                </div><!-- end relative -->
-		  <?php endif; ?>
-          <?php if( ENVIRONMENT == 'qa' ) : ?>
-			  <div class="relative">
-                    <div class="left side w50 env">
-                        <h1 class="title">QA</h1>
-                        <div class="ver">v<?php echo APP_VER; ?></div>
-                    </div><!-- end left side w50 -->
-                    <div class="ls50 content">
-                        <?php echo QA_NOTICE; ?>
-                    </div><!-- end ls50 -->
-                </div><!-- end relative -->
-		  <?php endif; ?>
-		  
-		</div>
-		
-		<?php
-	}
+		global $DBH;
+		# Set new Product object
+		$u = new Environment( $DBH );
+		return $u->environmentNotice();
 	
-	return true;
-
-}
+	} // end function environment_notice()
 
 # Keep Copyright up to date
 function auto_copyright($year = 'auto'){

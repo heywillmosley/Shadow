@@ -112,6 +112,36 @@ if( !WP )
 	
 	
 /**
+ * This function returns the page type
+ * @since 1.1.0
+ * @return string
+ */
+	function get_page_type()
+	{
+		global $DBH;
+		# Set new Page object
+		$c = new Page( $DBH );
+		return $c->getType();
+		
+	} // end function get_page_type()
+	
+	
+/**
+ * This function gets the page type
+ * @since 1.1.0
+ * @return string
+ */
+	function the_page_type()
+	{
+		global $DBH;
+		# Set new Page object
+		$c = new Page( $DBH );
+		return $c->theType();
+		
+	} // end function the_page_type()
+	
+	
+/**
  * This function returns the page title
  * @since 1.1.0
  * @return string
