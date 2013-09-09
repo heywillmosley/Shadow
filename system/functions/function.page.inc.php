@@ -18,6 +18,9 @@
  
 // --------------------------------------------------------------------------------
 
+if( !WP )
+{
+
 /**
  * This function returns the page Id
  * @since 1.1.0
@@ -361,3 +364,6 @@
 		return $c->page404();
 		
 	} // end function page_404()
+	
+	
+} // end !WP
