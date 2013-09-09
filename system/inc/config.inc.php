@@ -40,7 +40,6 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
- 
 	define('SYS_VER', '0.1 s9');
 	
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
@@ -1102,6 +1101,7 @@ require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.page.inc.php';
+require_once SYS_FUNCTIONS_URI.'function.product.inc.php';
 
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #
@@ -1115,7 +1115,7 @@ if( file_exists( BRIDGE_URI.'mailchimp/bridge.php' ) )
 	
 # Subscribe to Newsletter
 if( file_exists( BRIDGE_URI.'subscribe_to_newsletter/bridge.php' ) )
-	// include_once BRIDGE_URI.'subscribe_to_newsletter/bridge.php';
+	// \include_once BRIDGE_URI.'subscribe_to_newsletter/bridge.php';
 
 # ***** LOAD BRIDGES ***** #
 # ************************ #
@@ -1331,6 +1331,9 @@ if( SHDW )
 	 * Connect the the Database
 	 */
 		$DBH = new Database();
+		
+		# Set new Page object
+		$u = new Product( $DBH );
 		
 } // end SHDW
 	

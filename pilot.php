@@ -35,7 +35,7 @@
 	
 	/* Define a custom database file name for multiple databases in root
 	 * Leave blank if unsure */
-	define( 'DB_FILE', '' );
+	define( 'DB_FILE', 'db-shadow.inc.php' );
 	
 	/* Shadow Level location on server
 	 * E.g.

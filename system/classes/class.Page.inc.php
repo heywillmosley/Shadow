@@ -54,23 +54,40 @@ class Page
 	protected $DBH;
 	
 	
-	function __construct( Database $DBH )
-	{
-		$this->DBH = $DBH;
-		$this->setPage();
-		
-	}
+	/**
+	 * This method establishes a database connection on set
+	 * @since 0.1.1 s9
+	 * @return string
+	 */
+		function __construct( Database $DBH )
+		{
+			$this->DBH = $DBH;
+			$this->setPage();
+			
+		}
 	
 	/**
-	 * This method gets the page Id
+	 * This method returns the page Id
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
 		function getId()
 		{
-			return $this->id;
+			echo $this->theId();
 			
 		} // end function getId()
+		
+		
+	/**
+	 * This method gets the page Id
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theId()
+		{
+			return $this->id;
+			
+		} // end function theId()
 		
 		
 	/**
@@ -80,109 +97,214 @@ class Page
 	 */
 		function getParentId()
 		{
-			return $this->parentId;
+			echo $this->theParentId();
 			
 		} // end function getParentId()
 		
 		
+	/**
+	 * This method gets the page parent Id
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theParentId()
+		{
+			return $this->parentId;
+			
+		} // end function gtheParentId()
+		
 		
 	/**
-	 * This method gets the page creator id
+	 * This method returns the page creator id
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
 		function getCreatorId()
 		{
-			return $this->creatorId;
+			echo $this->theCreatorId();
 			
 		} // end method getCreatorId()
 		
 		
 	/**
-	 * This method gets the page title
+	 * This method gets the page creator id
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theCreatorId()
+		{
+			return $this->creatorId;
+			
+		} // end method theCreatorId()
+		
+		
+	/**
+	 * This method returns the page title
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
 		function getTitle()
 		{
-			return $this->title;
+			echo $this->theTitle();
 			
 		} // end method getTitle()
 		
+		
+	/**
+	 * This method gets the page title
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theTitle()
+		{
+			return $this->title;
+			
+		} // end method theTitle()	
+	
 	
 	/**
-	 * This method gets the page content
+	 * This method gets the page title
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function getHeaderTitle()
+		{
+			echo $this->theHeaderTitle();
+			
+		} // end method getHeaderTitle()
+		
+		
+	/**
+	 * This method gets the page title
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theHeaderTitle()
+		{
+			if( $this->title == SITE_NAME )
+				return SITE_NAME;
+			else
+				return $this->title . ' | '.SITE_NAME; 
+			
+		} // end method theHeaderTitle()
+		
+
+	/**
+	 * This method returns the page content
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
 		function getContent()
 		{
-			return $this->content;
+			echo $this->theContent();
 			
 		} // end method getContent()
 		
 		
 	/**
-	 * This method gets the page slug
+	 * This method gets the page content
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theContent()
+		{
+			return $this->content;
+			
+		} // end method theContent()
+		
+		
+	/**
+	 * This method returns the page slug
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
 		function getSlug()
 		{
-			return $this->slug;
+			echo $this->theSlug();
 			
 		} // end method getSlug()
 		
 		
 	/**
-	 * This method gets the date the page was added
+	 * This method gets the page slug
+	 * @since 1.0.0
+	 * @return string
+	 */
+		function theSlug()
+		{
+			return $this->slug;
+			
+		} // end method theSlug()
+		
+		
+	/**
+	 * This method returns the date the page was added
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
 		function getDateAdded()
 		{
-			return $this->dateAdded;
+			echo $this->theDateAdded();
 			
 		} // end method getDateAdded()
 		
 		
 	/**
-	 * This method gets the date the page was updated
+	 * This method gets the date the page was added
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theDateAdded()
+		{
+			return $this->dateAdded;
+			
+		} // end method theDateAdded()
+		
+		
+	/**
+	 * This method returns the date the page was updated
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
 		function getDateUpdated()
 		{
-			return $this->dateUpdated;
+			echo $this->theDateUpdated();
 			
 		} // end method getDateUpdated()
 		
 		
 	/**
-	 * This method gets the intro (excerpt) of the page
+	 * This method gets the date the page was updated
+	 * @since 1.1.0
+	 * @return string
+	 */
+		function theDateUpdated()
+		{
+			return $this->dateUpdated;
+			
+		} // end method theDateUpdated()
+		
+		
+	/**
+	 * This method returns the page title
+	 * @depreciated since 1.1.0. Will not be in 2.0.0. Use getTitle() instead.
 	 * @since 0.1.1 s9
 	 * @return string
 	 */
-		function getIntro( $count = 200 )
-		{
-			return substr( strip_tags( $this->content ), 0, $count ) . '...';
-			
-		} // end method getDateUpdated()
-		
-		
-	/**
-	 * This method gets the page title
-	 */
 	 	function getPageTitle()
 		{
-			return $this->title;
+			echo $this->pageTitle();
 			
-		} // end 
+		} // end method getPageTitle()
+		
+		
 		
 	/**
 	 * This method gets the page title
+	 * @depreciated since 1.1.0. Will not be available in 2.0.0. Please
+	 * use thePageTitle() instead.
 	 */
-	 	function pageTitle()
+		function pageTitle()
 		{
 			return $this->title;
 			
@@ -191,15 +313,43 @@ class Page
 		
 	/**
 	 * This method gets the page title
+	 * @depreciated since 1.1.0. Will not be available in 2.0.0. Please use theUrl() instead.
+	 * @since 0.1.1 s9
+	 * @return string
 	 */
 	 	function getPageUrl( $id )
 		{
 			return $this->slug;
 			
-		} // end 
+		} // end method getPageUrl( $id )
+		
 	
 	/**
-	 * This methhod sets the page called from url slug
+	 * This method returns the page title
+	 * @since 1.1.0
+	 * @return string
+	 */
+	 	function getUrl()
+		{
+			echo $this->theUrl;
+			
+		} // end method theUrl( $id )	
+		
+		
+	/**
+	 * This method gets the page title
+	 * @since 1.1.0
+	 * @return string
+	 */
+	 	function theUrl()
+		{
+			return SITE_URL . $this->slug;
+			
+		} // end method theUrl( $id )	
+		
+	
+	/**
+	 * This method sets the page called from url slug
 	 */
 		function setPage()
 		{
@@ -218,7 +368,16 @@ class Page
 			 else
 				$this->page = NULL;
 					
+			if( $this->page  == 'product/' || $this->page  == 'product' || $this->page  == 'products/' || $this->page  == 'products' )
+				$this->type = 'products';
 				
+			elseif( substr( $this->page, 0, 8 ) == 'product/' )
+				$this->type = 'product-single';
+				
+			else
+				$this->type = 'page';
+				
+			
 			/**
 			 * Remove trailing slash from page slug
 			 */
@@ -230,115 +389,160 @@ class Page
 			/**
 			 * Determine what page to display:
 			 */
-				 switch ( $this->page ) 
-				 {
-					# Homepage
-					case '':
-						$this->title = SITE_NAME; 
-						echo $this->id;
-						# Checks if index.php is in App root or App View folder
-						if( file_exists( APP_INC_URI . 'index.php' ) )
-							$this->viewFile = APP_VIEWS_URI . 'index.php';
-						else
-							$this->viewFile = APP_URI . 'index.php';
-
-						break;
-					
-					# Administration
-					case 'install':
-						$this->title = 'Install '. FW_NAME; 
-						$this->viewFile = SYS_PAGE_URI . 'install.php';
-						break;
+			 	if( $this->type == 'page' )
+				{
+					 switch ( $this->page ) 
+					 {
+						# Homepage
+						case '':
+							$this->title = SITE_NAME; 
+							echo $this->id;
+							# Checks if index.php is in App root or App View folder
+							if( file_exists( APP_INC_URI . 'index.php' ) )
+								$this->viewFile = APP_VIEWS_URI . 'index.php';
+							else
+								$this->viewFile = APP_URI . 'index.php';
+	
+							break;
 						
-					case 'admin/pilot':
-						$this->title = 'Pilot'; 
-						$this->id = '0001'; 
-						$this->viewFile = SYS_PAGE_URI . 'pilot/pilot.php';
-						break;
-						
-					case 'admin/pilot/products':
-						$this->title = 'Products';
-						$this->id = '0003';  
-						$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
-						break;
-						
-					case 'admin/login':
-						$this->title = 'Login'; 
-						$this->id = '0004'; 
-						$this->viewFile = SYS_PAGE_URI . 'login.php';
-						break;
-						
-					case 'admin/logout':
-						$this->title = 'Logout';
-						$this->id = '0005'; 
-						$this->viewFile = SYS_PAGE_URI . 'logout.php';
-						
-						# Kill session if one exists
-						if ( session_status() == PHP_SESSION_NONE )
-							session_start();
+						# Administration
+						case 'install':
+							$this->title = 'Install '. FW_NAME; 
+							$this->viewFile = SYS_PAGE_URI . 'install.php';
+							break;
 							
-						logout();
-						break;
-					
-					# Products	
-					case 'admin/pilot/products':
-						$this->title = 'Products';
-						$this->id = '0006';  
-						$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
-						break;
-					
-					# Pages
-					case 'admin/pilot/pages':
-						$this->title = 'All Pages'; 
-						$this->id = '0007'; 
-						$this->viewFile = SYS_PAGE_URI . 'pilot/pages.php';
-						break;	
+						case 'admin/pilot':
+							$this->title = 'Pilot'; 
+							$this->id = '0001'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/pilot.php';
+							break;
+							
+						case 'admin/pilot/products':
+							$this->title = 'Products';
+							$this->id = '0003';  
+							$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
+							break;
+							
+						case 'admin/login':
+							$this->title = 'Login'; 
+							$this->id = '0004'; 
+							$this->viewFile = SYS_PAGE_URI . 'login.php';
+							break;
+							
+						case 'admin/logout':
+							$this->title = 'Logout';
+							$this->id = '0005'; 
+							$this->viewFile = SYS_PAGE_URI . 'logout.php';
+							
+							# Kill session if one exists
+							if ( session_status() == PHP_SESSION_NONE )
+								session_start();
+								
+							logout();
+							break;
 						
-					case 'admin/pilot/pages/new-page':
-						$this->title = 'Create New Page';
-						$this->id = '0008'; 
-						$this->viewFile = SYS_PAGE_URI . 'pilot/new-page.php';
-						break;
+						# Products	
+						case 'admin/pilot/products':
+							$this->title = 'Products';
+							$this->id = '0006';  
+							$this->viewFile = SYS_PAGE_URI . 'pilot/products.php';
+							break;
 						
-					case 'admin/pilot/pages/edit-page':
-						$this->title = 'Edit' ;
-						$this->id = '0009'; 
-						$this->viewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
-						break;	
-					
-					default:
+						# Pages
+						case 'admin/pilot/pages':
+							$this->title = 'All Pages'; 
+							$this->id = '0007'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/pages.php';
+							break;	
 							
-						try 
-						{  
+						case 'admin/pilot/pages/new-page':
+							$this->title = 'Create New Page';
+							$this->id = '0008'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/new-page.php';
+							break;
 							
-							$STH = $this->DBH->query("SELECT id, title, content, slug, viewFile from shdw_pages WHERE slug = '$this->page' LIMIT 1");  
-							# setting the fetch mode  
-							$STH->setFetchMode(PDO::FETCH_ASSOC);
+						case 'admin/pilot/pages/edit-page':
+							$this->title = 'Edit' ;
+							$this->id = '0009'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
+							break;	
 							
-							if( $STH->rowCount() == 0 )
-								$this->page404();
-							  
-							while( $row = $STH->fetch() ) 
+						case 'admin/pilot/pages/edit-page':
+							$this->title = 'Edit' ;
+							$this->id = '0009'; 
+							$this->viewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
+							break;	
+						
+						default:
+								
+							try 
 							{  
-								$this->id = $row['id'];
-								$this->title = $row['title'];
-								$this->content = $row['content'];
-								$this->slug = $row['slug'];
-								$this->viewFile = $row['viewFile'];
-								if( $row['viewFile'] != NULL )
-									$this->viewFile = APP_VIEWS_URI.$row['viewFile'];
-
-
-							} //  while( $row = $STH->fetch() ) 
-							
-							
-						}  
-						catch( PDOException $e ) {  
-							exceptionHandler( $e ); 
-						}
+								
+								$STH = $this->DBH->query("SELECT id, title, content, slug, viewFile from shdw_pages WHERE slug = '$this->page' LIMIT 1");  
+								# setting the fetch mode  
+								$STH->setFetchMode(PDO::FETCH_ASSOC);
+								
+								if( $STH->rowCount() == 0 )
+									$this->page404();
+								  
+								while( $row = $STH->fetch() ) 
+								{  
+									$this->id = $row['id'];
+									$this->title = $row['title'];
+									$this->content = $row['content'];
+									$this->slug = $row['slug'];
+									$this->viewFile = $row['viewFile'];
+									if( $row['viewFile'] != NULL )
+										$this->viewFile = APP_VIEWS_URI.$row['viewFile'];
+	
+	
+								} //  while( $row = $STH->fetch() ) 
+								
+								
+							}  
+							catch( PDOException $e ) {  
+								exceptionHandler( $e ); 
+							}
+	
+					} // end switch
+					
+				} // end if type
+				
+				elseif( $this->type == 'products' )
+				{
+					$this->id = 0010;
+					$this->title = 'Products';
+					$this->slug = 'products/';
+					$this->viewFile = APP_VIEWS_URI.'products.php';
+				}
+				
+				elseif( $this->type == 'product-single' )
+				{
+					try 
+					{  
 						
+						$STH = $this->DBH->query("SELECT id, name, slug from shdw_products WHERE slug = '$this->page' LIMIT 1");  
+						# setting the fetch mode  
+						$STH->setFetchMode(PDO::FETCH_ASSOC);
+						
+						if( $STH->rowCount() == 0 )
+							$this->page404();
+						  
+						while( $row = $STH->fetch() ) 
+						{  
+							$this->id = $row['id'];
+							$this->title = $row['name'];
+							$this->slug = $row['slug'];
+							$this->viewFile = APP_VIEWS_URI.'product-single.php';
 
-				} // end switch
+						} //  while( $row = $STH->fetch() ) 
+						
+						
+					}  
+					catch( PDOException $e ) {  
+						exceptionHandler( $e ); 
+					}
+				}
 			
 			/**
 			 * Make sure the file exists:
@@ -382,27 +586,6 @@ class Page
 		 	return include_once( $this->viewFile );
 		 }
 		
-	}
-	
-	
-	# Load Function @since 0.1.1 s5
-	function load($page = 'login') {
-		$url = ROOTURL;
-		$url = rtrim( $url, '/\\');
-		$url .= '/' . $page;	
-		
-		header("Location: $url");
-		exit();
-	}
-	
-	# Load Path Function @since 0.1.1 s5
-	function load_URI($page = 'login') {
-		$path = ROOTPATH;
-		$path = rtrim( $url, '/\\');
-		$path .= '/' . $page;	
-		
-		header("Location: $path");
-		exit();
 	}
 	
 	

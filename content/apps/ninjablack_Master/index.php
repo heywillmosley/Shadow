@@ -19,8 +19,7 @@
 // --------------------------------------------------------------------------------
 
 # includes header.php
-app_header();  
-?>
+app_header(); ?> 
 
 <div class="feature-container">
     <div class="feature">
@@ -81,7 +80,7 @@ app_header();
         </div><!-- end small-12 large-8 columns -->
         <div class="small-12 large-4 columns">
         	<div class="pls">
-            	<?php loginForm(); ?>
+            	
                 
                 <?php
 				/* ############################# */

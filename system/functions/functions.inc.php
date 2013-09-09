@@ -235,23 +235,6 @@
 	
 	
 /**
- * Load title meta
- * @since 0.1.1 s9
- */
-	function the_page_title()
-	{ 
-		global $DBH;
-		 $c = new Page( $DBH ); if( $c->pageTitle() == SITE_NAME )
-				echo SITE_NAME;
-			else
-				echo $c->pageTitle() . ' | '.SITE_NAME; 
-				
-			 return true;
-		
-	} // end shdw_header
-	
-	
-/**
  * Load pilot interface
  * @since 0.1.1 s9
  */
@@ -599,88 +582,6 @@
 		
 	} // end shdw_header
 
-
-if( SHDW )
-{
-	/* Presentational level of Page Class
-	 *******************************************************/
-	
-		/**
-		 * Sets page from class Page:setPage()
-		 *
-		 * @since 1.1.1 b8
-		 * @return void
-		 */
-			function page_title()
-			{
-				global $DBH;
-				# Set new Page object
-				$p = new Page( $DBH );
-				
-				# Call setPage() method
-				echo $p->getPageTitle();
-				 
-			}
-		
-		/**
-		 * Sets page from class Page:setPage()
-		 *
-		 * @since 1.1.1 b8
-		 * @return void
-		 */
-			function get_page_title()
-			{
-				global $DBH;
-				# Set new Page object
-				$p = new Page( $DBH );
-				
-				# Call setPage() method
-				echo $p->getPageTitle();
-				
-				
-			}
-	
-		/**
-		 * Sets page from class Page:setPage()
-		 *
-		 * @since 1.1.1 b8
-		 * @return void
-		 */
-		function set_page()
-		{
-			global $DBH;
-			# Set new Page object
-			$p = new Page( $DBH );
-			
-			# Call setPage() method
-			$p->setPage();
-			 
-			# Unset Object
-			unset( $p );
-		}
-		
-		
-		/**
-		 * Gets page from class Page:getPage()
-		 *
-		 * @since 1.1.1 b8
-		 * @return void
-		 */
-		function get_page()
-		{	
-			global $DBH;
-			# Set new Page object
-			$p = new Page( $DBH );
-			
-			# Call setPage() method
-			$p->getPage();
-			 
-			# Unset Object
-			unset( $p );
-		}
-} // end SHDW
-	
-	
 	
 /* Presentational level of Database Class
  *******************************************************/
