@@ -1119,6 +1119,7 @@ require_once SYS_FUNCTIONS_URI.'function.admin.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.form.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.file.inc.php';
 require_once SYS_FUNCTIONS_URI.'function.page.inc.php';
+require_once SYS_FUNCTIONS_URI.'function.product.inc.php';
 
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #
@@ -1348,6 +1349,9 @@ if( SHDW )
 	 * Connect the the Database
 	 */
 		$DBH = new Database();
+		
+		# Set new Page object
+		$u = new Product( $DBH );
 		
 } // end SHDW
 	

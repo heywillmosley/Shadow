@@ -19,8 +19,7 @@
 // --------------------------------------------------------------------------------
 
 # includes header.php
-app_header();  
-?>
+app_header(); ?> 
 
 <div class="feature-container">
     <div class="feature">
