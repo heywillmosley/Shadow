@@ -99,24 +99,6 @@
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CORE_PATH', CORE_URI );
-	  
-	  
-/**
- * IF USING WORDPRESS or WP directory exists, load Wordpress
- * @todo Add Wordpress Intergration
- */
- 	# Check for 'wordpress' directory
- 	if( is_dir( 'wordpress' ) )
-	{	
-		# Wordpress view bootstrapper
-		define( 'WP_USE_THEMES', true );
-	
-	} // end if( is_dir( 'wordpress' ) || is_dir( 'wp' ) )
-	
-	//echo FRONT_PATH;
-
-	
-
 
 /**
  * Load Shadow Config Settings
