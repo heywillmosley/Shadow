@@ -1294,5 +1294,121 @@ class Form
 		
 			return strip_tags(htmlentities(trim(stripslashes($s))), ENT_NOQUOTES, "UTF-8");
 		} // end function cleantohtml( $s )
+		
+		
+		
+	/**
+	 * Create Form Input Method
+	 *
+	 * This method method streamlines form input and keeps from repeating code
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s5  
+	 * @param          string  the name of form input
+	 * @param          string  the type of input
+	 * @param          string  the error message
+	 * @param          string  OPTIONAL add placeholder text
+	 * @param          string  OPTIONAL the class input
+	 * @param          string  OPTIONAL the id input
+	 * @param          string  OPTIONAL set $_POST or $_GET
+	 * @return         string
+	 */
+
+		function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST', $checked )
+		{
+			# Check for and process value
+			$value = false;
+
+			# Set value of $name if it's set
+			if( isset( $_POST[$name] ) ) $value = $_POST[$name];
+
+			# Strip magic slashes if enabled
+			//if( $value && get_magic_quotes_gcp( ) ) $value = stripslashes( $value );
+
+			# Check if the input type is text or password
+			if( ( $type == 'text' ) || ( $type == 'password' ) )
+			{
+				# Begin creating the input
+				echo '<input type="' . $type . '" name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
+
+				# add the input's value, if applicable and strip html special characters
+				if( isset( $value ) ) 
+					echo ' value="' .  $value . '" ';
+
+				# Check for errors
+				if( array_key_exists( $name, $errors ) )
+				{
+					# Set Error class and display error underneath input
+					echo 'class="form-' . $name . ' ' . $classes . ' error" />'
+						. '<small class="error">' . $errors[$name] . '</small>';
+
+				} // end if( array_key_exists( $name, $errors ) )
+
+				else
+				{
+					echo 'class="form-' . $name . ' ' . $classes . '" />';
+
+				} // end else
+
+			} // end if( ( $type == 'text' ) || ( $type == 'password' ) )
+
+			elseif( $type == 'textarea' )
+			{
+				# Begin creating the input
+				echo '<textarea name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
+
+
+				# Check for errors
+				if( array_key_exists( $name, $errors ) )
+				{
+					# Set Error class and display error underneath input
+					echo 'class="form-' . $name . ' ' . $classes . ' error" >';
+
+						if( isset( $_POST[$name] ))
+						echo htmlentities($_POST[$name]);
+
+					echo  '</textarea>'
+						. '<small class="error">' . $errors[$name] . '</small>';
+
+				} // end if( array_key_exists( $name, $errors ) )
+
+				else
+				{
+					echo 'class="form-' . $name . ' ' . $classes . '" >';
+
+					# add the input's value, if applicable and strip html special characters
+					  if( isset( $_POST[$name] ))
+						echo htmlentities($_POST[$name]);
+
+					echo '</textarea>';
+
+
+				} // end else
+
+			} // end elseif( $type == 'textarea' )
+
+			elseif( $type = 'checkbox' )
+			{
+				echo  "<label for='checkbox1' class='form-$name $classes' id='$ids'><input type='checkbox' name='$name' ";
+
+				if(isset($_POST[FORM_OPT_IN]) && $_POST[FORM_OPT_IN] == 'on') 
+				{
+					echo " value='" . $_POST[FORM_OPT_IN] . "'";
+
+					if( $checked == TRUE )
+
+						 echo  'value="on" CHECKED ';
+				}
+
+
+
+
+				echo "><span class='mls'>$placeholder</span></label>";
+
+			} // end
+
+		} // end method create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
+
  
 } // end ClassName
