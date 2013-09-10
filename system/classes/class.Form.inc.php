@@ -32,20 +32,16 @@ class Form
 	protected $_prefix = "http";
 	protected $_values = array();
 	protected $_attributes = array();
-
 	protected $ajax;
 	protected $ajaxCallback;
 	protected $errorView;
 	protected $labelToPlaceholder;
 	protected $resourcesPath;
-	/*Prevents various automated from being automatically applied.  Current options for this array
-	included jQuery, bootstrap and focus.*/
 	protected $prevent = array();
 	protected $form_id;
 	protected $form_class;
 	protected $form_method;
 	protected $form_action;
-	
 	protected $element_name;
 	protected $form_token = FALSE;
 	
@@ -112,45 +108,7 @@ class Form
 			# Open form and configure
 			echo "</form>";
 		}
-		
-	
-	/**
-	 * This closes the form
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s9
-	 * @return         void
-	 */
-	 	function isSubmitted()
-		{
-			if( isset($_POST[$this->form_id.'-issubmitted'] ) )
-				return TRUE;
-			else
-				return FALSE;
 				
-		}
-		
-		
-		
-	/**
-	 * This method calls all of the defined elements
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s9
-	 * @return         void
-	 */
-	 	function callElements()
-		{
-			foreach ($this->_elements as $item) {
-				echo $item;
-			}
-			
-			echo "</form>";
-		}
-
-		
 		
 	/**
 	 * This method creates the element
@@ -610,174 +568,6 @@ class Form
 	/* ############### ELEMENTS ################# */
 	
 	/**
-	 * This method creates a text element
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s9
-	 * @return         void
-	 */
-	 	function text( $rules = array(), $name, $placeholder = '', $label = '', $caption = '', $class = '', $id = '', $value = '' )
-		{	
-			$errors = array();
-			
-			if( $_SERVER['REQUEST_METHOD'] == 'POST' )
-			{
-				foreach( $rules as $rule => $msg ) 
-				{
-					# Validation
-					switch ( $rule ) 
-					{
-						case 'req':
-						case 'required':
-							if( empty($_POST[$name] ) )
-								if( !empty( $msg ) ) $errors[$name] = $msg;
-								else 
-								{
-									$errors[$name] = 'The following field is required';
-									break 2;
-								}
-							break;
-							
-						case 'email':
-							if( $this->vEmail( $_POST[$name] ) )
-								$this->_cleanQuery( $this->sEmail( $_POST[$name] ) );
-							else
-							{
-								if( !empty( $msg ) ) $errors[$name] = $msg;
-								else 
-								{ 
-									$errors[$name] = ERR_EMPTY_NEW_EMAIL;
-									break 2;
-								}
-							}
-							
-							break;
-							
-						case 'email':
-							if( !$this->vEmail( $_POST[$name] ) )
-								if( !empty( $msg ) ) $errors[$name] = $msg;
-								else 
-								{ 
-									$errors[$name] = ERR_EMPTY_NEW_EMAIL;
-									break 2;
-								}
-							break;
-							
-					} // end switch ( $rule ) 
-					
-				} // end while ( list($rule, $msg) = each( $rules ) ) 
-				
-				
-					
-					
-			} // end if( $_SERVER['REQUEST_METHOD'] == 'POST' )
-			
-			# Set value of $name if it's set and clean query
-			if( isset( $_POST[$name] ) )  _cleanQuery( $value = $_POST[$name] );
-				
-			elseif( isset( $_GET[$name] ) ) $value = _cleanQuery( $_GET[$name] );
-			
-			# Add label if there is one
-			if( !empty( $label ) )	
-				echo "<label>$label</label>";
-			
-			# Begin creating the input
-			echo "<input type='text' name='$name' id='$id' placeholder='$placeholder'"; 
-			
-			# add the input's value
-			if( isset( $value ) ) echo "value='$value'";
-			
-			# Check for errors
-			if( array_key_exists( $name, $errors ) )
-			{
-				# Set Error class and display error underneath input
-				echo "class='form-$name $class error ";
-				
-				# Add appropriate spacing if there's a caption
-				if( !empty( $caption ) ) echo " mbt ";
-					
-				echo "' /><small class='error'>$errors[$name]</small>";
-				
-			}
-			
-			else
-			{
-				echo "class='form-$name $class";
-				
-				# Add appropriate spacing if there's a caption
-				if( !empty( $caption ) ) echo " mbt ";
-				
-				echo "' />";
-			}
-			
-			if( !empty( $caption ) )	
-				echo "<div class='caption mbs'>&uarr; $caption</div>";
-				
-			
-		} // end function text( $class = '', $id = '', $name, $placeholder = '', $values = '' )
-		
-	
-	/**
-	 * This method submits the form
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s9
-	 * @return         void
-	 */
-	 	function submit( $value = 'Submit', $class = '', $id = '', $name = FORM_SUBMIT )
-		{	
-			echo "<input name='$name' type='submit' id='$id' class='$class' value='$value' />";	
-			
-		} // end function text( $class = '', $id = '', $name, $placeholder = '', $values = '' )
-	
-	
-	
-	/**
-	 * This method sets the validation rules
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s9
-	 * @return         void
-	 */
-	 	function addRule( $rule, $error_msg = '' )
-		{	
-			echo $this->element_name;
-			# Validation
-			switch ( $rule ) {
-				case 'req':
-					if( empty($_POST[$this->element_name] ) )
-						echo 'empty';
-					break;
-					
-				case 1:
-					echo "i equals 1";
-					break;
-				case 2:
-					echo "i equals 2";
-					break;
-			}
-			
-		} // end rule
-	
-	/**
-	 * This method sets the validation rules
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s9
-	 * @return         void
-	 */
-	 	function callRules( $id )
-		{	
-			
-			
-		} // end rule
-	
-	
-	/**
 	 * This method generates a unique token for every session
 	 * to prevent against CSFR attacks. Form token must match 
 	 * session token
@@ -826,119 +616,6 @@ class Form
 	}
 	
 	
-	/**
-	 * Create Form Input Method
-	 *
-	 * This method method streamlines form input and keeps from repeating code
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s5  
-	 * @param          string  the name of form input
-	 * @param          string  the type of input
-	 * @param          string  the error message
-	 * @param          string  OPTIONAL add placeholder text
-	 * @param          string  OPTIONAL the class input
-	 * @param          string  OPTIONAL the id input
-	 * @param          string  OPTIONAL set $_POST or $_GET
-	 * @return         string
-	 */
-	 
-		function create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST', $checked )
-		{
-			# Check for and process value
-			$value = false;
-			
-			# Set value of $name if it's set
-			if( isset( $_POST[$name] ) ) $value = $_POST[$name];
-			
-			# Strip magic slashes if enabled
-			//if( $value && get_magic_quotes_gcp( ) ) $value = stripslashes( $value );
-			
-			# Check if the input type is text or password
-			if( ( $type == 'text' ) || ( $type == 'password' ) )
-			{
-				# Begin creating the input
-				echo '<input type="' . $type . '" name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
-				
-				# add the input's value, if applicable and strip html special characters
-				if( isset( $value ) ) 
-					echo ' value="' .  $value . '" ';
-				
-				# Check for errors
-				if( array_key_exists( $name, $errors ) )
-				{
-					# Set Error class and display error underneath input
-					echo 'class="form-' . $name . ' ' . $classes . ' error" />'
-						. '<small class="error">' . $errors[$name] . '</small>';
-					
-				} // end if( array_key_exists( $name, $errors ) )
-				
-				else
-				{
-					echo 'class="form-' . $name . ' ' . $classes . '" />';
-					
-				} // end else
-				
-			} // end if( ( $type == 'text' ) || ( $type == 'password' ) )
-			
-			elseif( $type == 'textarea' )
-			{
-				# Begin creating the input
-				echo '<textarea name="' . $name . '" id="' . $ids . '" placeholder="' . $placeholder . '" '; 
-				
-				
-				# Check for errors
-				if( array_key_exists( $name, $errors ) )
-				{
-					# Set Error class and display error underneath input
-					echo 'class="form-' . $name . ' ' . $classes . ' error" >';
-					
-						if( isset( $_POST[$name] ))
-						echo htmlentities($_POST[$name]);
-					
-					echo  '</textarea>'
-						. '<small class="error">' . $errors[$name] . '</small>';
-					
-				} // end if( array_key_exists( $name, $errors ) )
-				
-				else
-				{
-					echo 'class="form-' . $name . ' ' . $classes . '" >';
-					
-					# add the input's value, if applicable and strip html special characters
-					  if( isset( $_POST[$name] ))
-						echo htmlentities($_POST[$name]);
-					
-					echo '</textarea>';
-					
-					
-				} // end else
-			
-			} // end elseif( $type == 'textarea' )
-			
-			elseif( $type = 'checkbox' )
-			{
-				echo  "<label for='checkbox1' class='form-$name $classes' id='$ids'><input type='checkbox' name='$name' ";
-				
-				if(isset($_POST[FORM_OPT_IN]) && $_POST[FORM_OPT_IN] == 'on') 
-				{
-					echo " value='" . $_POST[FORM_OPT_IN] . "'";
-					
-					if( $checked == TRUE )
-
-						 echo  'value="on" CHECKED ';
-				}
-					
-					
-				
-				
-				echo "><span class='mls'>$placeholder</span></label>";
-				
-			} // end
-			
-		} // end method create_form_input( $name, $type, $errors, $placeholder = '', $classes = '', $ids = '', $postGet = '$_POST' )
-		
 	/**
 	 * This method method creates a hash for given password
 	 *
@@ -1555,27 +1232,7 @@ class Form
 			return strtolower(substr($sex, 0, 1));
 			
 		} // end function sSex ( $sex ) 
-	
-	
-	/**
-	 * This method checks if form name is set
-	 *
-	 * @package        Shadow   
-	 * @author         Super Amazing
-	 * @since          Version 0.1.1 s5
-	 * @params         string  name
-	 * @return         boolean
-	 */
-		function kv( $name ) 
-		{
-			# Check if name is set, then echo
-			if ( isset( $name ) ) echo $name;
-			
-			return true;
-			
-		} // end function kv( $name ) 
 		
-	
 	
 	/**
 	 * Use: Anything that shouldn't contain html (pretty much

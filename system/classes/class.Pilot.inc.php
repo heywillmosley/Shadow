@@ -70,12 +70,12 @@ class Pilot
                                     	<a class="btn btn-default" href="<?php echo SITE_URL; ?>admin/pilot">Go to Pilot</a>
                                   	<?php endif; ?>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Pages</a></li>
+                                        <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages">Pages</a></li>
                                         <li><a href="#">Products</a></li>
                                         <li><a href="#">Deployment &amp; Maintenance</a></li>
                                     </ul>
                                 </div>
-                                <a class="btn btn-default" href="#">New Page</a>
+                                <a class="btn btn-default" href="<?php echo SITE_URL; ?>admin/pilot/pages/new-page">New Page</a>
                                 <a class="btn btn-default" href="#">New Product</a>
                             </div>
                             <div class="btn-group pull-right">
