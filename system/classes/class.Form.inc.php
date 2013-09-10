@@ -108,6 +108,24 @@ class Form
 			# Open form and configure
 			echo "</form>";
 		}
+		
+		
+	/**
+	 * This closes the form
+	 *
+	 * @package        Shadow   
+	 * @author         Super Amazing
+	 * @since          Version 0.1.1 s9
+	 * @return         void
+	 */
+	 	function isSubmitted()
+		{
+			if( isset($_POST[$this->form_id.'-issubmitted'] ) )
+				return TRUE;
+			else
+				return FALSE;
+
+		}
 				
 		
 	/**
