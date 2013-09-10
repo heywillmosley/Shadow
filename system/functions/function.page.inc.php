@@ -396,4 +396,34 @@ if( !WP )
 	} // end function page_404()
 	
 	
+/**
+ * This method gets the pilot view file
+ * @since 1.1.0
+ * @return string
+ */
+	function the_pilot_view_file()
+	{
+		global $DBH;
+		# Set new Page object
+		$c = new Page( $DBH );
+		return $c->thePilotViewFile();
+		
+	} // end function the_pilot_view_file()
+	
+	
+/**
+ * This method returns the pilot view file
+ * @since 1.1.0
+ * @return string
+ */
+	function get_pilot_view_file()
+	{
+		global $DBH;
+		# Set new Page object
+		$c = new Page( $DBH );
+		return $c->getPilotViewFile();
+		
+	} // end function get_pilot_view_file()
+	
+	
 } // end !WP

@@ -57,11 +57,11 @@ class Pilot
                 <div class="pilot-wrapper <?php if( the_page_type() == 'pilot' ) echo 'mnh100p'; ?>">
                     <div class="pilot">
                         <div class="pilot-header">
-                            <span class="pilot-title mrs">Pilot</span>
+                            <span class="pilot-title mrs"><a href="<?php echo SITE_URL; ?>admin/pilot">Pilot</a></span>
                             <div class="btn-group btn-group-sm">
                                 <div class="btn-group btn-group-sm">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                       <?php if( the_page_title() == SITE_NAME ) echo 'Dashboard'; else get_page_title(); ?>
+                                       <?php if( the_page_title() == SITE_NAME ) echo 'Home'; elseif( the_page_title() == 'Pilot' ) echo 'Dashboard'; else get_page_title(); ?>
                                       <span class="caret"></span>
                                     </button>
                                     <?php if( the_page_type() == 'pilot' ) : ?>
@@ -72,87 +72,41 @@ class Pilot
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages">Pages</a></li>
                                         <li><a href="#">Products</a></li>
-                                        <li><a href="#">Deployment &amp; Maintenance</a></li>
+                                        <li><a href="<?php echo SITE_URL; ?>admin/pilot/deploy">Deployment &amp; Maintenance</a></li>
+                                        <li><a href="<?php echo SITE_URL; ?>admin/pilot/backup-restore">Backup &amp; Restore</a></li>
                                     </ul>
                                 </div>
                                 <a class="btn btn-default" href="<?php echo SITE_URL; ?>admin/pilot/pages/new-page">New Page</a>
                                 <a class="btn btn-default" href="#">New Product</a>
                             </div>
                             <div class="btn-group pull-right">
-                                <a class="btn btn-default" onclick="toggle_visibility('pilot-body')">_</a>
+                            	<?php if( the_page_type() != 'pilot' ) : ?>
+                                    <a class="btn btn-default" onclick="toggle_visibility('pilot-body')">_</a>
+                                <?php endif; ?>
                                 <a href="<?php echo SITE_URL; ?>admin/logout" class="btn btn-default" >Logout</a>
                             </div>
                         </div><!-- end pilot-header -->
                         <div id="pilot-body" class="pilot-body">
                         	<div class="phs">
-								<?php
-                                    switch ( the_page_slug() ) 
-                                     {
-                                        case 'install':
-                                            include_once SYS_PAGE_URI . 'install.php';
-                                            break;
-                                            
-                                        case 'admin/pilot':
-                                            include_once SYS_PAGE_URI . 'pilot/pilot.php';
-                                            break;
-                                            
-                                        case 'admin/pilot/products':
-                                            include_once SYS_PAGE_URI . 'pilot/products.php';
-                                            break;
-                                            
-                                        case 'admin/login':
-                                            include_once SYS_PAGE_URI . 'login.php';
-                                            break;
-                                            
-                                        case 'admin/logout':
-                                            include_once SYS_PAGE_URI . 'logout.php';
-                                            
-                                            # Kill session if one exists
-                                            if ( session_status() == PHP_SESSION_NONE )
-                                                session_start();
-                                                
-                                            logout();
-                                            break;
-                                        
-                                        # Products	
-                                        case 'admin/pilot/products':  
-                                            include_once SYS_PAGE_URI . 'pilot/products.php';
-                                            break;
-                                        
-                                        # Pages
-                                        case 'admin/pilot/pages':
-                                            include_once SYS_PAGE_URI . 'pilot/pages.php';
-                                            break;	
-                                            
-                                        case 'admin/pilot/pages/new-page':
-                                            include_once SYS_PAGE_URI . 'pilot/new-page.php';
-                                            break;
-                                            
-                                        case 'admin/pilot/pages/edit-page':
-                                            include_once SYS_PAGE_URI . 'pilot/edit-page.php';
-                                            break;	
-                                            
-                                        case 'admin/pilot/pages/edit-page':
-                                            include_once SYS_PAGE_URI . 'pilot/edit-page.php';
-                                            break;	
-                    
-                                    } // end switch
-                                
-                                ?>
+                            	<?php if( file_exists( the_pilot_view_file() ) ) : ?>
+									<?php include_once the_pilot_view_file() ?>
+                               	<?php endif; ?>
                            	</div><!-- end phs -->
-                            <div class="pilot-current-page">
-                                <?php get_page_title(); ?> <span class="caption">Current Page</span>
-                                <div class="clearfix"></div>
-                                <div class="btn-group btn-group-sm">
+                            <?php if( the_page_type() != 'pilot' ) : ?>
+                                <div class="pilot-current-page">
+									<?php get_page_title(); ?> <span class="caption">Current Page</span>
+                                    <div class="clearfix"></div>
                                     <div class="btn-group btn-group-sm">
-                                        <ul class="dropdown-menu">
-                                          <li><a href="#">Dropdown link</a></li>
-                                          <li><a href="#">Dropdown link</a></li>
-                                        </ul>
+                                        <div class="btn-group btn-group-sm">
+                                            <ul class="dropdown-menu">
+                                              <li><a href="#">Dropdown link</a></li>
+                                              <li><a href="#">Dropdown link</a></li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-default">Edit Page</button>
                                     </div>
-                                    <button type="button" class="btn btn-default">Edit Page</button>
-                                </div>
-                            </div><!-- end pilot-current-page -->
+                                </div><!-- end pilot-current-page -->
+                            <?php endif; ?>
                         </div><!-- end pilot-body -->
                         <div class="pilot-footer">
                         
