@@ -17,12 +17,9 @@
  */
  
 // --------------------------------------------------------------------------------
-app_header();  ?>
+?>
 
 <div class="mxw300 mCenter">
 	<?php loginForm(); ?>
 </div><!-- end mxw300 mCenter -->
 
-
-
-<?php app_footer(); ?>

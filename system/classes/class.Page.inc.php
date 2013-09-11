@@ -422,13 +422,12 @@ class Page
 			elseif( substr( $this->page, 0, 8 ) == 'product/' )
 				$this->type = 'product-single';
 				
-			elseif( substr( $this->page, 0, 11 ) == 'admin/pilot' )
+			elseif( substr( $this->page, 0, 6 ) == 'admin/' )
 				$this->type = 'pilot';
 				
 			else
 				$this->type = 'page';
-				
-				
+
 			
 			/**
 			 * Remove trailing slash from page slug
@@ -530,89 +529,111 @@ class Page
 				
 				elseif( $this->type == 'pilot' )
 				{
-					switch ( $this->page ) 
-					 {
-						case 'install':
-							$this->title = 'Install '. FW_NAME; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'install.php';
-							break;
-							
-						case 'admin/pilot':
-							$this->title = 'Pilot'; 
-							$this->id = '0001'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/pilot.php';
-							break;
-							
-						case 'admin/pilot/products':
-							$this->title = 'Products';
-							$this->id = '0003';  
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/products.php';
-							break;
-							
-						case 'admin/login':
-							$this->title = 'Login'; 
-							$this->id = '0004'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'login.php';
-							break;
-							
-						case 'admin/logout':
-							$this->title = 'Logout';
-							$this->id = '0005'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'logout.php';
-							
-							# Kill session if one exists
-							if ( session_status() == PHP_SESSION_NONE )
-								session_start();
+					# LOGGED OUT
+					if( !is_logged_in() )
+					{
+						switch ( $this->page ) 
+						 {
+							case 'install':
+								$this->title = 'Install '. FW_NAME; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'install.php';
+								break;
 								
-							logout();
-							break;
+							case 'admin/login':
+								$this->title = 'Login'; 
+								$this->id = '0004'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'login.php';
+								break;
+								
+							case 'admin/logout':
+								$this->sendHome();
+								break;
+
+						} // end switch
 						
-						# Products	
-						case 'admin/pilot/products':
-							$this->title = 'Products';
-							$this->id = '0006';  
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/products.php';
-							break;
+					}
+					
+					# LOGGED IN ADMIN
+					elseif( is_admin() )
+					{
+						switch ( $this->page ) 
+						 {	
+							case 'admin/pilot':
+								$this->title = 'Pilot'; 
+								$this->id = '0001'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/pilot.php';
+								break;
+								
+							case 'admin/pilot/products':
+								$this->title = 'Products';
+								$this->id = '0003';  
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/products.php';
+								break;
+								
+							case 'admin/logout':
+								$this->title = 'Logout';
+								$this->id = '0005'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'logout.php';
+								
+								# Kill session if one exists
+								if ( session_status() == PHP_SESSION_NONE )
+									session_start();
+									
+								logout();
+								break;
+							
+							# Products	
+							case 'admin/pilot/products':
+								$this->title = 'Products';
+								$this->id = '0006';  
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/products.php';
+								break;
+							
+							# Pages
+							case 'admin/pilot/pages':
+								$this->title = 'All Pages'; 
+								$this->id = '0007'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/pages.php';
+								break;	
+								
+							case 'admin/pilot/pages/new-page':
+								$this->title = 'Create New Page';
+								$this->id = '0008'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/new-page.php';
+								break;
+								
+							case 'admin/pilot/pages/edit-page':
+								$this->title = 'Edit' ;
+								$this->id = '0009'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
+								break;	
+								
+							case 'admin/pilot/deploy':
+								$this->title = 'Deployment &amp; Maintenance';
+								$this->id = '0010'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/deploy.php';
+								break;	
+								
+							case 'admin/pilot/backup-restore':
+								$this->title = 'Backup &amp; Restore';
+								$this->id = '0010'; 
+								$this->pilotViewFile = SYS_PAGE_URI . 'pilot/backup-restore.php';
+								break;	
+		
+						} // end switch
+
+					} // end elseif
+					
+					else
+						$this->page404();
 						
-						# Pages
-						case 'admin/pilot/pages':
-							$this->title = 'All Pages'; 
-							$this->id = '0007'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/pages.php';
-							break;	
-							
-						case 'admin/pilot/pages/new-page':
-							$this->title = 'Create New Page';
-							$this->id = '0008'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/new-page.php';
-							break;
-							
-						case 'admin/pilot/pages/edit-page':
-							$this->title = 'Edit' ;
-							$this->id = '0009'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/edit-page.php';
-							break;	
-							
-						case 'admin/pilot/deploy':
-							$this->title = 'Deployment &amp; Maintenance';
-							$this->id = '0010'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/deploy.php';
-							break;	
-							
-						case 'admin/pilot/backup-restore':
-							$this->title = 'Backup &amp; Restore';
-							$this->id = '0010'; 
-							$this->pilotViewFile = SYS_PAGE_URI . 'pilot/backup-restore.php';
-							break;	
-							
-	
-					} // end switch
 					
 					$this->viewFile = SYS_VIEWS_URI.'pilot.php';
 					
 					if( $this->pilotViewFile == NULL )
 						$this->page404();
 				}
+				
 			
 			/**
 			 * Make sure the file exists:
@@ -658,6 +679,16 @@ class Page
 		
 	}
 	
+	/**
+	 * This method redirects users to the homepage
+	 * @since 1.1.0
+	 */
+		function sendHome()
+		{
+			header('Location: '.SITE_URL);
+					
+		} // end sendHome
+		
 	
 	# Page 404 @since 0.1.1 s5
 	function page404()

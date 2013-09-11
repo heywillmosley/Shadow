@@ -53,7 +53,7 @@ class Pilot
 	 */
 		function getPilot()
 		{ ?>
-			<?php if( is_admin() ) : ?>
+			
                 <div class="pilot-wrapper <?php if( the_page_type() == 'pilot' ) echo 'mnh100p'; ?>">
                     <div class="pilot">
                         <div class="pilot-header">
@@ -113,7 +113,6 @@ class Pilot
                         </div><!-- end pilot-footer -->
                     </div><!-- end pilot -->
                 </div><!-- end pilot-wrapper -->
-            <?php endif; ?>
 			
 			<?php return true;
 			

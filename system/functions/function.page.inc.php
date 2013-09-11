@@ -26,6 +26,7 @@ if( !WP )
  * @since 1.1.0
  * @return string
  */
+ 
 	function get_page_id()
 	{
 		global $DBH;
@@ -424,6 +425,21 @@ if( !WP )
 		return $c->getPilotViewFile();
 		
 	} // end function get_pilot_view_file()
+	
+	
+	
+/**
+ * This functions redirects users to the homepage
+ * @since 1.1.0
+ */
+	function send_home()
+	{
+		global $DBH;
+		# Set new Page object
+		$c = new Page( $DBH );
+		return $c->sendHome();
+				
+	} // end send_home()
 	
 	
 } // end !WP
