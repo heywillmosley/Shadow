@@ -69,7 +69,7 @@ if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v']
 			</div><!-- end pull-left -->
 			<div class="media-body">
 				
-				<p>Join our mailing list to receive future promotions and updates from (company name).</p>
+				<p>Join our mailing list to receive future promotions and updates from King Bio.</p>
 			</div><!-- end media-body -->
 		</div><!-- end media -->
 		<div class="caption">All fields are required.</div>
