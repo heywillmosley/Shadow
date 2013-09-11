@@ -25,7 +25,7 @@ if(!defined('ROOT_URI')){require'../inc/config.inc.php';header('Location:'.SITE_
 
 $file = new File;
 
-$file->backup( ROOT_URI, ROOT_NAME, CORE_URI, TRUE, ROOT_NAME, FW_NAME );
+//$file->backup( ROOT_URI, ROOT_NAME, CORE_URI, TRUE, ROOT_NAME, FW_NAME );
 
 
 /**
