@@ -124,6 +124,25 @@ if( SHDW )
 			# Call setPage() method
 			return $c->logout();
 			
-		}	
+		}
+		
+		
+	/**
+		 * Creates Login form
+		 *
+		 * @since 0.1.1 s9
+		 * @depreciated since 1.0.0
+		 * @return Void
+		 */	
+			function register_form()
+			{
+				global $DBH;
+				# Set new Page object
+				$c = new Admin( $DBH );
+				
+				# Call setPage() method
+				return $c->registerForm();
+				 
+			}	
 } // end SHDW
 	
