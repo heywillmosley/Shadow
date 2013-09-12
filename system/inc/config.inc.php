@@ -1066,11 +1066,11 @@ if( !WP )
 {
 	/**
 	 * Loads all system classes in system inc folder
-	 */
-		// Or, using an anonymous function as of PHP 5.3.0
-		spl_autoload_register(function ( $class_name ) {
-			include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';  
-		} );
+	 */		
+		function __autoload($class_name) 
+		{
+    		include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';
+		}
 }
 else
 {
