@@ -103,8 +103,12 @@ class Admin
 			
 			/* ############################# */
 			/* ##### SET FORM ELEMENTS ##### */
+			if( the_page_slug() == '' )
+				$action = SITE_URL.'admin/login';
+			else
+				$action = '#';
 			
-			$this->form = new Form( 'system-login', 'mxw300 mCenter' );
+			$this->form = new Form( 'system-login', 'mxw300 mCenter', 'POST', $action );
 			$this->uoe = $this->form->addElement( array( 
 					# ELEMENT ATTRIBUTES 
 					'type'        => 'text', // REQUIRED
@@ -303,38 +307,80 @@ exit;
 	 * @since 1.1.1 s9
 	 * @return Void
 	 */	
-		function loginForm()
+		function loginForm( $type = 'stacked' )
 		{
-			$this->loginTools();
-			
-			/* #################### */
-			/* ##### THE FORM ##### */
-			
-			if( !$this->form->isSubmitted() || !$this->uoe['v'] || !$this->pass['v'] || !empty( $this->login_errors ) || !$this->catcha_valid )
-			{ 
-			?>
-				<?php $this->form->openForm(); ?>
-                    <h3 class="mbt pull-left">Sign in</h3>
-                    <h3 class="pull-right"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
-                    <hr class="mbn"/>
-                    <?php if( isset( $this->login_errors['mm_credentials'] ) ) 
-                        echo $this->login_errors['mm_credentials']; ?>
-                    <?= $this->uoe['e']; ?>
-                    <?= $this->pass['e']; ?>
-                    <?php
-                        # Catcha Element after 7 invalid attempts
-                        if( defined( 'CATCHA' ) )
-                            echo recaptcha_get_html($this->publickey);
-                    ?>
-                    <?= $this->submit['e']; ?> <?= $this->signup['e']; ?>
-                    <div class="mtm"><a href="#">Can't access your account?</a></div>
-                    <?php $this->form->closeForm(); ?>
-			<?php 
-			
-			} // end else 
-			
-			/* ##### THE FORM ##### */
-			/* #################### */
+			if( !is_logged_in() )
+			{
+				$this->loginTools();
+				
+				/* #################### */
+				/* ##### THE FORM ##### */
+				
+				if( !$this->form->isSubmitted() || !$this->uoe['v'] || !$this->pass['v'] || !empty( $this->login_errors ) || !$this->catcha_valid )
+				{ 
+					if( $type == 'stacked' )
+					{
+					?>
+						<?php $this->form->openForm(); ?>
+							<h3 class="mbt pull-left">Sign in</h3>
+							<h3 class="pull-right"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
+							<hr class="mbn"/>
+							<?php if( isset( $this->login_errors['mm_credentials'] ) ) 
+								echo $this->login_errors['mm_credentials']; ?>
+							<?= $this->uoe['e']; ?>
+							<?= $this->pass['e']; ?>
+							<?php
+								# Catcha Element after 7 invalid attempts
+								if( defined( 'CATCHA' ) )
+									echo recaptcha_get_html($this->publickey);
+							?>
+							<?= $this->submit['e']; ?> <?= $this->signup['e']; ?>
+							<div class="mtm"><a href="#">Can't access your account?</a></div>
+						<?php $this->form->closeForm(); ?>
+					<?php
+					}
+					elseif( $type == 'inline' )
+					{ ?>
+						<style>
+							.form-inline input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
+								display: inline-block;	
+								height: 28px !important; 
+							}
+							.form-inline .btn{
+								height: 28px;	
+								line-height: 0.4;
+							
+							}
+						</style>
+						<?php $this->form->openForm( 'form-inline mxw600 pan', '', FALSE, 'form' ); ?>
+							<h3 class="mbt pull-left sr-only">Sign in</h3>
+							<h3 class="pull-right sr-only"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
+							<?php if( isset( $this->login_errors['mm_credentials'] ) ) 
+								echo $this->login_errors['mm_credentials']; ?>
+							<div class="form-group">
+								<div class="mxw150 ilb">
+									<?= $this->uoe['e']; ?>
+								</div>
+								<div class="mxw150 ilb">
+									<?= $this->pass['e']; ?>
+								</div>
+								<?php
+									# Catcha Element after 7 invalid attempts
+									if( defined( 'CATCHA' ) )
+										echo recaptcha_get_html($this->publickey);
+								?>
+								<?= $this->submit['e']; ?>
+							</div><!-- end form-group -->
+						<?php $this->form->closeForm(); ?>
+						
+					<?php }
+				
+				} // end else 
+				
+				/* ##### THE FORM ##### */
+				/* #################### */
+				
+			} // end is_logged_in()
               
 			
 			 return true;

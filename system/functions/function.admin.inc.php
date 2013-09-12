@@ -80,14 +80,14 @@ if( SHDW )
 	 * @since 1.1.1 s9
 	 * @return Void
 	 */	
-		function login_form()
+		function login_form( $type = 'stacked' )
 		{
 			global $DBH;
 			# Set new Page object
 			$c = new Admin( $DBH );
 			
 			# Call setPage() method
-			return $c->loginForm();
+			return $c->loginForm( $type );
 			 
 		}
 		
