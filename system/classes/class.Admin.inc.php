@@ -264,7 +264,8 @@ exit;
 							// Sleep between 9 and 21 seconds
 							// Enable Captcha
 							sleep( $this->STH->rowCount() * ONE_SECOND * 2);
-							define( 'CATCHA', TRUE );
+							if( !defined( 'CATCHA' ) )
+								define( 'CATCHA', TRUE );
 							if( isset( $_POST["recaptcha_challenge_field"] ) )
 							{
 								$this->catcha_valid = recaptcha_check_answer ($this->privatekey,

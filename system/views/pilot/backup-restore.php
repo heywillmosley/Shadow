@@ -19,3 +19,19 @@ if(!defined('ROOT_URI')){require'../inc/config.inc.php';header('Location:'.SITE_
  
 // --------------------------------------------------------------------------------?>
 
+<h2>Backup Your Site</h2>
+
+<?php
+
+$file = new File;
+
+//$file->backup( ROOT_URI, ROOT_NAME, CORE_URI, TRUE, ROOT_NAME, FW_NAME );
+
+
+/**
+ * this method saves a compressed zip to a defined destination
+ * @since 1.1.0
+ * return boolean
+ */
+
+
