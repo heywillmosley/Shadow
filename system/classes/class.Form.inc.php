@@ -44,6 +44,7 @@ class Form
 	protected $form_action;
 	protected $element_name;
 	protected $form_token = FALSE;
+	protected $form_role = NULL;
 	
 	
 	/**
@@ -58,15 +59,17 @@ class Form
 	 * @param          string
 	 * @return         void
 	 */
-		function __construct( $id = 'form-formula', $class = '', $method = 'POST', $action = '#' )
+		function __construct( $id = 'form-formula', $class = '', $method = 'POST', $action = '#', $role = NULL )
 		{
+			echo $role;
 			$this->form_id = 'form-'.$id;
 			$this->form_method = $method;
 			$this->form_action = $action;
 			$this->form_class = $class;
 			$this->form_token = $this->generateFormToken( $this->form_id );
+			$this->form_role = $role;
 			
-			if( $this->form_action = '#' )
+			if( $this->form_action == '#' )
 				$this->form_action = '#'.$_SESSION[$this->form_id.'_token'];
 			
 			# Check if HTTPS is on, set prefix to https
@@ -85,11 +88,13 @@ class Form
 	 * @since          Version 0.1.1 s9
 	 * @return         void
 	 */
-	 	function openForm()
+	 	function openForm( $class = NULL, $id = NULL, $action = FALSE, $role = NULL )
 		{
 			# Open form and configure
+			if( $action != FALSE )
+				$this->form_action = $action;
 
-			echo "<form id='$this->form_token' class='pam custom $this->form_class' method='$this->form_method' action='$this->form_action'>";
+			echo "<form id='$this->form_token $id' class='$this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
 
 			echo "<input type='hidden' name='$this->form_id-issubmitted' />";
 		}
