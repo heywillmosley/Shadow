@@ -460,7 +460,7 @@ exit;
 					# VALIDATION  => Custom Error Message
 					# RULE           Leave blank for default message
 					'val_req'     => '',
-					'val_username'=> ''
+					'val_username'=> ERR_INVALID_NEW_USERNAME
 			) ); // end $username = new Element
 			
 			$this->email = $this->form->addElement( array( 
@@ -471,7 +471,7 @@ exit;
 					# VALIDATION  => Custom Error Message
 					# RULE           Leave blank for default message
 					'val_req'     => '',
-					'val_email'     => ''
+					'val_email'     => ERR_INVALID_NEW_EMAIL
 			) ); // end $lastName = new Element
 			
 			$this->pass = $this->form->addElement( array( 
@@ -481,7 +481,8 @@ exit;
 					'placeholder' => 'Password',
 					# VALIDATION  => Custom Error Message
 					# RULE           Leave blank for default message
-					'val_req'     => ''
+					'val_req'     => '',
+					'val_password'=> '' 
 				
 			) ); // end $pass = new Element
 			
@@ -492,7 +493,8 @@ exit;
 					'placeholder' => 'Confirm Password',
 					# VALIDATION  => Custom Error Message
 					# RULE           Leave blank for default message
-					'val_req'     => ''
+					'val_req'     => '',
+					'val_password'=> '' 
 				
 			) ); // end $pass = new Element
 			
@@ -514,8 +516,13 @@ exit;
 			/* ##### CONTINUE AFTER VALIDATION ##### */
 				
 			# Check password matches
-			if( $this->pass['o'] != $this->pass2['o'] )
-				$this->register_errors['mm_password'] = ERR_MM_PASS;
+			if( $this->pass['v'] && $this->pass2['v'] && $this->pass['o'] != $this->pass2['o'] )
+			{
+				$this->pass['v'] = FALSE;
+				$this->pass2['v'] = FALSE;
+				$this->pass['em'] = "<small class='error'>".ERR_MM_PASS."</small>";
+				//$this->register_errors['mm_password'] = '<div class="alert alert-danger">'.ERR_MM_PASS.'</div>';
+			}
 			
 			# Check for username or email in database
 			
@@ -524,68 +531,26 @@ exit;
 				
 				if( $this->pass['o'] == $this->pass2['o'] )
 				{
+					# Set valid outputs
+					$this->username_valid = $this->username['o'];
+					$this->email_valid = $this->email['o'];
+					
+					$this->STH = $this->DBH->prepare("SELECT username, primaryEmail FROM shdw_users WHERE ( `username` = :username OR `primaryEmail` = :email )");  
+					$this->STH->execute( array(
+						':username' => $this->username_valid,
+						':email'    => $this->email_valid,
+						));
+					  
+					# setting the fetch mode  
+					$this->STH->setFetchMode( PDO::FETCH_ASSOC );
+					
+					# Check if there was a match
+					if( $this->STH->rowCount() == 1 )
+						echo 'email or username exist in database';
+					else
+						echo 'all good';
 				
-					# Check credentials
-					try 
-					{   
-						# Encrypt
-						$this->pass_valid = get_password_hash( $this->pass['output'] );
-						
-						try 
-						{  
-							
-							$this->data = array( $this->username_valid, $this->email_valid, $this->pass_valid );
-							$this->stmt = "INSERT INTO shdw_login_failed_attempts ( username, email, pass )
-													VALUES ( ?, ?, ? )";
-							$this->STH = $this->DBH->prepare( $this->stmt );  
-							$this->STH->execute( $this->data );  
-						
-						}  
-						catch(PDOException $e) {
-							$err = new Error;  
-							$err->exceptionHandler( $e );  
-						}  
-						
-						$this->STH = $this->DBH->prepare("SELECT id, username, primaryEmail, firstName, lastName, role, releaseLevel, pass FROM shdw_users WHERE ( `username` = :username OR `primaryEmail` = :email ) AND pass = :pass");  
-						$this->STH->execute( array(
-							':username' => $this->username_valid,
-							':email'    => $this->email_valid,
-							':pass'     => $this->pass_valid
-							));
-						  
-						# setting the fetch mode  
-						$this->STH->setFetchMode( PDO::FETCH_ASSOC );
-						
-						# Check if there was a match
-						if( $this->STH->rowCount() == 1 && $this->catcha_valid )
-						{
-							while($this->row = $this->STH->fetch( ) ) 
-							{  
-								# Set Session Variables from the database
-								$_SESSION['user_id'] = $this->row['id']; 
-								$_SESSION['username'] = $this->row['username']; 
-								$_SESSION['email'] = $this->row['primaryEmail']; 
-								$_SESSION['firstName'] = $this->row['firstName'];
-								$_SESSION['lastName'] = $this->row['lastName'];
-								$_SESSION['pass'] = $this->row['pass']; 
-								$_SESSION['role'] = $this->row['role']; 
-								$_SESSION['releaseLevel'] = $this->row['releaseLevel'];
-								
-							}  // while($row = $STH->fetch( ) ) 
-							
-							header('Location: '.SITE_URL);
-	exit;
-						}
-						else
-						{
-							echo 'error';
-							
-							
-						}
-					}
-					catch(PDOException $e) {  
-						exceptionHandler( $e );  
-					} 
+					
 					
 				} // end if( $this->pass['o'] == $this->pass2['o'] )
 				
@@ -607,8 +572,6 @@ exit;
                                 	<h3 class="mbt pull-left">Register</h3>
                                     <h3 class="pull-right"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
                                     <hr class="mbn"/>
-                                    <?php if( isset( $this->register_errors['mm_password'] ) ) 
-                                        echo $this->register_errors['mm_password']; ?>
                                 </div><!-- end col-xs-12 -->
                             </div><!-- end row -->
                            	<div class="row">
@@ -628,11 +591,27 @@ exit;
                                	</div><!-- end col-xs-12 col-sm-6 -->
                             </div><!-- end row -->
                             <div class="row">
+                            	<div class="col-xs-12">
+                                	<?php if( isset( $this->register_errors['mm_password'] ) ) 
+                                        echo $this->register_errors['mm_password']; ?>
+                                </div><!-- end col-xs-12 -->
+                            </div><!-- end row -->
+                            <div class="row">
                             	<div class="col-xs-12 col-sm-6">
-									<?= $this->pass['e']; ?>
+                                	<?php if( !$this->pass['em'] ) : ?>
+										<?= $this->pass['f']; ?>
+                                   	<?php else : ?>
+                                    	<?= $this->pass['ef']; ?>
+                                    <?php endif; ?>
+                                    <?= $this->pass['em']; ?>
                                	</div><!-- end col-xs-12 col-sm-6 -->
                                 <div class="col-xs-12 col-sm-6">
-									<?= $this->pass2['e']; ?>
+									<?php if( !$this->pass['em'] ) : ?>
+										<?= $this->pass['f']; ?>
+                                   	<?php else : ?>
+                                    	<?= $this->pass['ef']; ?>
+                                    <?php endif; ?>
+                                    <?= $this->pass2['em']; ?>
                                	</div><!-- end col-xs-12 col-sm-6 -->
                             </div><!-- end row -->
                             <div class="row">
