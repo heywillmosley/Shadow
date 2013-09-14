@@ -342,7 +342,10 @@ if( SHDW )
 if( SHDW )
 {
 	// Path to the application folder
-	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
+	if( file_exists( CONTENT_URI . 'apps/' ) )
+		define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
+	else
+		define('APPLICATIONS_URI', CONTENT_URI . 'Apps/' );
 	
 	/**
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
