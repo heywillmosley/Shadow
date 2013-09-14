@@ -1317,7 +1317,7 @@ if( SHDW )
 	 * @todo Secure session_start
 	 */
 		# Check if session has been started, # If no session has been called, intiate
-		if ( session_status() == PHP_SESSION_NONE )
+		if ( !isset( $_SESSION ) )
 			session_start();
 		
 	
@@ -1349,7 +1349,7 @@ if( SHDW )
 if( SHDW )
 {
 	# Set PHP Timezone to UTC Standard
-	date_default_timezone_set( 'UTC' );
+	// date_default_timezone_set( 'UTC' );
 	
 	try
 	{
