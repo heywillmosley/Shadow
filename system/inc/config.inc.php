@@ -112,7 +112,10 @@
 	else require_once( ROOT_URI . 'pilot.php' );
 	
 	# Include App Settings
- 	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	if( file_exists( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' ) )
+ 		require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	else
+		require_once( ROOT_URI . 'content/Apps/' . CURRENT_APP . '/app-settings.php' );
 	
 	
 if( SHDW )
