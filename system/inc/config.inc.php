@@ -241,21 +241,21 @@ if( SHDW )
 		
 		else
 		{
-			$rooturl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ROOT_NAME;
-			$rooturl = rtrim( $rooturl, '/\\' );
-			$rooturl = $rooturl . '/';
-			
+			# Define Http/https
+			if( isset($_SERVER['HTTPS'] ) ) 
+				$http = 'https://';
+				
+			else
+				$http = 'http://';
+					
 			// URL to the system folder
-			//define('ROOT_URL', str_replace("\\", "/", $rooturl));
-			
-			// URL to the system folder
-			define('ROOT_URL', 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] );
+			define('ROOT_URL', $http.$_SERVER['HTTP_HOST'].'/' );
 			
 			/**
-			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-			 */
-			  define( 'ROOTURL', ROOT_URL );
-			}
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+		  define( 'ROOTURL', ROOT_URL );
+		}
 		
 	
 	} // end if( ENVIRONMENT != 'development' )
@@ -352,8 +352,13 @@ if( SHDW )
 	 */
 	  define( 'APPLICATIONS_PATH', APPLICATIONS_URI );
 	
+	
+	
 	// URL to the system folder
-	define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
+	if( file_exists( CONTENT_URL . 'apps/' ) )
+		define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
+	else
+		define('APPLICATIONS_URL', CONTENT_URL . 'Apps/' );
 	
 	// Path to the application folder
 	define('APP_URI',  APPLICATIONS_URI . CURRENT_APP . '/' );
