@@ -415,14 +415,18 @@ class Page
 			 
 			 else
 				$this->page = NULL;
+				
+			/* Disabled until issue 7 is fixed.
+				 * See https://github.com/superamazing/Shadow/issues/7
 					
 			if( $this->page  == 'product/' || $this->page  == 'product' || $this->page  == 'products/' || $this->page  == 'products' )
 				$this->type = 'products';
 				
 			elseif( substr( $this->page, 0, 8 ) == 'product/' )
 				$this->type = 'product-single';
+			*/
 				
-			elseif( substr( $this->page, 0, 6 ) == 'admin/' )
+			if( substr( $this->page, 0, 6 ) == 'admin/' )
 				$this->type = 'pilot';
 				
 			else
@@ -490,41 +494,42 @@ class Page
 					
 				} // end if type
 				
-				elseif( $this->type == 'products' )
-				{
-					$this->id = 0010;
-					$this->title = 'Products';
-					$this->slug = 'products/';
-					$this->viewFile = APP_VIEWS_URI.'products.php';
-				}
-				
-				elseif( $this->type == 'product-single' )
-				{
-					try 
-					{  
-						
-						$STH = $this->DBH->query("SELECT id, name, slug from shdw_products WHERE slug = '$this->page' LIMIT 1");  
-						# setting the fetch mode  
-						$STH->setFetchMode(PDO::FETCH_ASSOC);
-						
-						if( $STH->rowCount() == 0 )
-							$this->page404();
-						  
-						while( $row = $STH->fetch() ) 
-						{  
-							$this->id = $row['id'];
-							$this->title = $row['name'];
-							$this->slug = $row['slug'];
-							$this->viewFile = APP_VIEWS_URI.'product-single.php';
-
-						} //  while( $row = $STH->fetch() ) 
-						
-						
-					}  
-					catch( PDOException $e ) {  
-						exceptionHandler( $e ); 
+					elseif( $this->type == 'products' )
+					{
+						$this->id = 0010;
+						$this->title = 'Products';
+						$this->slug = 'products/';
+						$this->viewFile = APP_VIEWS_URI.'products.php';
 					}
-				}
+					
+					elseif( $this->type == 'product-single' )
+					{
+						try 
+						{  
+							
+							$STH = $this->DBH->query("SELECT id, name, slug from shdw_products WHERE slug = '$this->page' LIMIT 1");  
+							# setting the fetch mode  
+							$STH->setFetchMode(PDO::FETCH_ASSOC);
+							
+							if( $STH->rowCount() == 0 )
+								$this->page404();
+							  
+							while( $row = $STH->fetch() ) 
+							{  
+								$this->id = $row['id'];
+								$this->title = $row['name'];
+								$this->slug = $row['slug'];
+								$this->viewFile = APP_VIEWS_URI.'product-single.php';
+	
+							} //  while( $row = $STH->fetch() ) 
+							
+							
+						}  
+						catch( PDOException $e ) {  
+							$error = new Error;
+							$error->exceptionHandler( $e ); 
+						}
+					}
 				
 				
 				elseif( $this->type == 'pilot' )
