@@ -40,7 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '0.1 s9');
+	define('SYS_VER', '1.1.0');
 	
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
@@ -112,7 +112,10 @@
 	else require_once( ROOT_URI . 'pilot.php' );
 	
 	# Include App Settings
- 	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	if( file_exists( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' ) )
+ 		require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	else
+		require_once( ROOT_URI . 'content/Apps/' . CURRENT_APP . '/app-settings.php' );
 	
 	
 if( SHDW )
@@ -238,21 +241,21 @@ if( SHDW )
 		
 		else
 		{
-			$rooturl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ROOT_NAME;
-			$rooturl = rtrim( $rooturl, '/\\' );
-			$rooturl = $rooturl . '/';
-			
+			# Define Http/https
+			if( isset($_SERVER['HTTPS'] ) ) 
+				$http = 'https://';
+				
+			else
+				$http = 'http://';
+					
 			// URL to the system folder
-			//define('ROOT_URL', str_replace("\\", "/", $rooturl));
-			
-			// URL to the system folder
-			define('ROOT_URL', 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] );
+			define('ROOT_URL', $http.$_SERVER['HTTP_HOST'].'/' );
 			
 			/**
-			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-			 */
-			  define( 'ROOTURL', ROOT_URL );
-			}
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+		  define( 'ROOTURL', ROOT_URL );
+		}
 		
 	
 	} // end if( ENVIRONMENT != 'development' )
@@ -339,15 +342,23 @@ if( SHDW )
 if( SHDW )
 {
 	// Path to the application folder
-	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
+	if( file_exists( CONTENT_URI . 'apps/' ) )
+		define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
+	else
+		define('APPLICATIONS_URI', CONTENT_URI . 'Apps/' );
 	
 	/**
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPLICATIONS_PATH', APPLICATIONS_URI );
 	
+	
+	
 	// URL to the system folder
-	define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
+	if( file_exists( CONTENT_URL . 'apps/' ) )
+		define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
+	else
+		define('APPLICATIONS_URL', CONTENT_URL . 'Apps/' );
 	
 	// Path to the application folder
 	define('APP_URI',  APPLICATIONS_URI . CURRENT_APP . '/' );
@@ -1066,11 +1077,12 @@ if( !WP )
 {
 	/**
 	 * Loads all system classes in system inc folder
-	 */		
+	 */
 		function __autoload($class_name) 
 		{
     		include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';
-		}
+			
+		} // end __autoload
 }
 else
 {
@@ -1347,7 +1359,6 @@ if( SHDW )
 {
 	# Set PHP Timezone to UTC Standard
 	// date_default_timezone_set( 'UTC' ); - Disabled until fix issue https://github.com/superamazing/Shadow/issues/13
-	
 	try
 	{
 		# Set MySql Timezone to UTC Standard

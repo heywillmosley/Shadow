@@ -439,6 +439,7 @@ class Page
 			 	if( substr( $this->page, -1 ) == '/' ) 
 
 					$this->page = substr($this->page, 0, -1 );
+					
 			 
 			/**
 			 * Determine what page to display:
@@ -450,7 +451,6 @@ class Page
 						# Homepage
 						case '':
 							$this->title = SITE_NAME; 
-							echo $this->id;
 							# Checks if index.php is in App root or App View folder
 							if( file_exists( APP_INC_URI . 'index.php' ) )
 								$this->viewFile = APP_VIEWS_URI . 'index.php';
@@ -491,6 +491,7 @@ class Page
 							}
 	
 					} // end switch
+					
 					
 				} // end if type
 				
@@ -630,7 +631,10 @@ class Page
 					} // end elseif
 					
 					else
+					{	
 						$this->page404();
+					}
+						
 						
 					
 					$this->viewFile = SYS_VIEWS_URI.'pilot.php';
@@ -638,7 +642,10 @@ class Page
 					if( $this->pilotViewFile == NULL )
 						$this->page404();
 				}
-				
+			
+			
+			if( $this->pilotViewFile == NULL && $this->type == 'pilot' )
+				$this->page404();
 			
 			/**
 			 * Make sure the file exists:
