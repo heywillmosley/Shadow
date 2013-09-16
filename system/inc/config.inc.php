@@ -99,6 +99,8 @@
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 
+
+
 /**
  * Load Shadow Config Settings
  * @todo make all of this functionality doable through the database and pilot
@@ -232,32 +234,57 @@ if( SHDW )
 			define( 'ROOT_NAME', basename( ROOT_URI ) );
 	
 	} // end else
+	
 
 
 /**
  *  Resolve the front url for increased reliability
  */
- 	if( ENVIRONMENT != 'development' )
+	if( SHDW )
 	{
-		# Check if there is an addon domain
-		if( ADDON_DOMAIN != '' )
+		if( ENVIRONMENT != 'development' )
 		{
-			# Set Front URL to Add on domain
-			$rooturl = 'http://' . ADDON_DOMAIN . '/';
-			$rooturl = rtrim( $rooturl, '/\\' );
-			$rooturl = $rooturl . '/';
+			# Check if there is an addon domain
+			if( ADDON_DOMAIN != '' )
+			{
+				# Set Front URL to Add on domain
+				$rooturl = 'http://' . ADDON_DOMAIN . '/';
+				$rooturl = rtrim( $rooturl, '/\\' );
+				$rooturl = $rooturl . '/';
+				
+				// URL to the system folder
+				define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
+				
+				/**
+				 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+				 */
+				  define( 'ROOTURL', ROOT_URL );
+				  
+				
+			} // end if( ADDON_DOMAIN != '' )
 			
-			// URL to the system folder
-			define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
-			
-			/**
+			else
+			{
+				# Define Http/https
+				if( isset($_SERVER['HTTPS'] ) ) 
+					$http = 'https://';
+					
+				else
+					$http = 'http://';
+						
+				// URL to the system folder
+				define('ROOT_URL', $http.$_SERVER['HTTP_HOST'].'/' );
+				
+				/**
 			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 			 */
 			  define( 'ROOTURL', ROOT_URL );
-			  
+			}
 			
-		} // end if( ADDON_DOMAIN != '' )
 		
+		} // end if( ENVIRONMENT != 'development' )
+		
+		# Set Front URL based on Server url
 		else
 		{
 			# Define Http/https
@@ -266,44 +293,29 @@ if( SHDW )
 				
 			else
 				$http = 'http://';
-					
+			
+			# Define ROOT URL	
+			$root_url = strtolower( $http . $_SERVER['HTTP_HOST'] . 
+				str_replace( 
+					str_replace( '\\', '/', $_SERVER['DOCUMENT_ROOT'] ), 
+						"", str_replace( '\\', '/', ROOT_URI ) ) );
+						
 			// URL to the system folder
-			define('ROOT_URL', $http.$_SERVER['HTTP_HOST'].'/' );
+			define('ROOT_URL', $root_url );
+			
 			
 			/**
-		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-		 */
-		  define( 'ROOTURL', ROOT_URL );
-		}
-		
-	
-	} // end if( ENVIRONMENT != 'development' )
-	
-	# Set Front URL based on Server url
-	else
-	{
-		# Define Http/https
-		if( isset($_SERVER['HTTPS'] ) ) 
-			$http = 'https://';
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 */
+			  define( 'ROOTURL', ROOT_URL );
+			}
 			
-		else
-			$http = 'http://';
-		
-		# Define ROOT URL	
-		$root_url = strtolower( $http . $_SERVER['HTTP_HOST'] . 
-			str_replace( 
-				str_replace( '\\', '/', $_SERVER['DOCUMENT_ROOT'] ), 
-					"", str_replace( '\\', '/', ROOT_URI ) ) );
-					
-		// URL to the system folder
-		define('ROOT_URL', $root_url );
-		
-		
-		/**
-		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-		 */
-		  define( 'ROOTURL', ROOT_URL );
-		}
+	} // end SHDW
+	
+	elseif( WP )
+	{
+		define('ROOT_URL', get_theme_root_uri().'/'.ROOT_NAME.'/' );
+	}
 
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));

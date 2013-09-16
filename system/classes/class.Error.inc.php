@@ -84,14 +84,6 @@ class Error
 					</div>
                     <?php
 			}
-			else
-			{
-				?>
-				<div class="alert alert-info hide-for-print"> 
-					<?php echo 'We\'re sorry, an error occured.'; ?>
-				</div>
-				<?php 	
-			}
 		}
 			
 	
@@ -120,14 +112,6 @@ class Error
 					</div>
 				
 				<?php error_log($errString.' ['.$errno.']: '.$errstr.' in '.$errfile.' on line '.$errline);
-			}
-			else
-			{
-				?>
-				<div class="alert alert-info hide-for-print"> 
-					<?php echo 'We\'re sorry, an error occured.'; ?>
-				</div>
-				<?php 	
 			}
 		
 		}	
