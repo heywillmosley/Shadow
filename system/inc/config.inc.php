@@ -104,12 +104,31 @@
  * @todo make all of this functionality doable through the database and pilot
  */
  	# Include Pilot
-	if( !IS_ROOT ) require_once( ROOT_URI . 'pilot.php' );
+	if( !IS_ROOT && file_exists( ROOT_URI . 'pilot.php' ) ) 
+		require_once( ROOT_URI . 'pilot.php' );
 	
 	elseif( file_exists( CORE_URI . 'pilot.php' ) )
 		require_once( CORE_URI . 'pilot.php' );
 	
-	else require_once( ROOT_URI . 'pilot.php' );
+	elseif( file_exists( ROOT_URI . 'pilot.php' ) )
+		require_once( ROOT_URI . 'pilot.php' );
+	
+	else
+	{
+		try 
+		{
+			throw new Exception("<h2>Please configure <code>pilot-sample.php</code> and rename to <code>pilot.php</code>. <br/><code>pilot.php</code> may rest above Shadow's root.</h2>");
+			
+		} // end try 
+		
+		catch( Exception $e ) 
+		{
+			echo $e->getMessage(); exit;
+			
+		} // end catch( Exception $e ) 
+		
+	} // end else
+	
 	
 	# Include App Settings
 	if( file_exists( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' ) )
