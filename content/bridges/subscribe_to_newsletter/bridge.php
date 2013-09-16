@@ -23,6 +23,7 @@ $firstName = $form->addElement( array(
 		'type'        => 'text', // REQUIRED
 		'name'        => 'fname', // REQUIRED a-z only, dashes, underscores, no spaces
 		'placeholder' => 'First Name',
+		'class'       => 'form-control mbs',
 		# VALIDATION  => Custom Error Message
 		# RULE           Leave blank for default message
 		'val_req'     => 'Enter your first name.',
@@ -34,6 +35,7 @@ $lastName = $form->addElement( array(
 		'type'        => 'text', // REQUIRED
 		'name'        => 'name', // REQUIRED a-z only, dashes, underscores, no spaces
 		'placeholder' => 'Last Name',
+		'class'       => 'form-control mbs',
 		# VALIDATION  => Custom Error Message
 		# RULE           Leave blank for default message
 		'val_req'     => 'Enter your first name.',
@@ -45,6 +47,7 @@ $email = $form->addElement( array(
 		'type'        => 'email', // REQUIRED
 		'name'        => 'email', // REQUIRED a-z only, dashes, underscores, no spaces
 		'placeholder' => 'Email',
+		'class'       => 'form-control mbs',
 		# VALIDATION  => Custom Error Message
 		# RULE           Leave blank for default message
 		'val_req'     => 'Please enter email.',
