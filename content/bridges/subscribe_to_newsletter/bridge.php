@@ -88,7 +88,7 @@ if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v']
                 <?php endif; ?>
             </div><!-- end col-4 -->
             <div class="col-xs-9 pls prn">
-            	<p>Join our mailing list to receive future promotions and updates from (company name).</p>
+            	<p>Join our mailing list to receive future promotions and updates from SafeCareRx.</p>
             </div><!-- end col-xs-8 -->
         </div><!-- end row -->
 		<div class="caption">All fields are required.</div>
