@@ -36,6 +36,22 @@ if( !WP )
 		
 	} // end function getId()
 	
+		/**
+		 * This function returns the page Id
+		 * @since 1.1.5
+		 * @depreciated since 1.1.5
+		 * @return string
+		 */
+		 
+			function getPageId()
+			{
+				global $DBH;
+				# Set new Page object
+				$c = new Page( $DBH );
+				return $c->theId();
+				
+			} // end function getId()
+	
 	
 /**
  * This function gets the page Id
