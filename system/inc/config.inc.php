@@ -377,6 +377,7 @@ if( SHDW )
 		define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
 	else
 		define('APPLICATIONS_URI', CONTENT_URI . 'Apps/' );
+
 	
 	/**
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
@@ -384,9 +385,8 @@ if( SHDW )
 	  define( 'APPLICATIONS_PATH', APPLICATIONS_URI );
 	
 	
-	
 	// URL to the system folder
-	if( file_exists( CONTENT_URL . 'apps/' ) )
+	if( file_exists( CONTENT_URI . 'apps/' ) )
 		define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
 	else
 		define('APPLICATIONS_URL', CONTENT_URL . 'Apps/' );
@@ -1150,6 +1150,16 @@ require_once SYS_FUNCTIONS_URI.'function.pilot.inc.php';
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #
 
+# *************************** #
+# ***** ERROR MANAGEMENT **** #
+
+require_once SYS_FUNCTIONS_URI.'function.error.inc.php';
+$e = new Error();
+
+
+# ***** ERROR MANAGEMENT ***** #
+# **************************** #
+
 # ************************* #
 # ***** LOAD BRIDGES ****** #
 
@@ -1165,16 +1175,7 @@ if( file_exists( BRIDGE_URI.'subscribe_to_newsletter/bridge.php' ) )
 # ************************ #
 
 
-# *************************** #
-# ***** ERROR MANAGEMENT **** #
 
-require_once SYS_FUNCTIONS_URI.'function.error.inc.php';
-
-$e = new Error();
-
-
-# ***** ERROR MANAGEMENT ***** #
-# **************************** #
 
 
 # ***************************#
