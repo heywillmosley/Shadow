@@ -29,9 +29,15 @@ class Admin
 {
 	protected $DBH = NULL;
 	protected $form = NULL;
-	protected $uoe = NULL;
+	protected $first_name = NULL;
+	protected $last_name = NULL;
+	protected $username = NULL;
 	protected $email = NULL;
+	protected $register = NULL;
+	protected $register_errors = NULL;
+	protected $uoe = NULL;
 	protected $pass = NULL;
+	protected $pass2 = NULL;
 	protected $submit = NULL;
 	protected $publickey = NULL;
 	protected $privatekey = NULL;
@@ -103,8 +109,12 @@ class Admin
 			
 			/* ############################# */
 			/* ##### SET FORM ELEMENTS ##### */
+			if( the_page_slug() == '' )
+				$action = SITE_URL.'admin/login';
+			else
+				$action = '#';
 			
-			$this->form = new Form( 'system-login', 'mxw300 mCenter' );
+			$this->form = new Form( 'system-login', 'mxw300 mCenter', 'POST', $action );
 			$this->uoe = $this->form->addElement( array( 
 					# ELEMENT ATTRIBUTES 
 					'type'        => 'text', // REQUIRED
@@ -303,38 +313,85 @@ exit;
 	 * @since 1.1.1 s9
 	 * @return Void
 	 */	
-		function loginForm()
+		function loginForm( $type = 'stacked' )
 		{
-			$this->loginTools();
-			
-			/* #################### */
-			/* ##### THE FORM ##### */
-			
-			if( !$this->form->isSubmitted() || !$this->uoe['v'] || !$this->pass['v'] || !empty( $this->login_errors ) || !$this->catcha_valid )
-			{ 
-			?>
-				<?php $this->form->openForm(); ?>
-                    <h3 class="mbt pull-left">Sign in</h3>
-                    <h3 class="pull-right"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
-                    <hr class="mbn"/>
-                    <?php if( isset( $this->login_errors['mm_credentials'] ) ) 
-                        echo $this->login_errors['mm_credentials']; ?>
-                    <?= $this->uoe['e']; ?>
-                    <?= $this->pass['e']; ?>
-                    <?php
-                        # Catcha Element after 7 invalid attempts
-                        if( defined( 'CATCHA' ) )
-                            echo recaptcha_get_html($this->publickey);
-                    ?>
-                    <?= $this->submit['e']; ?> <?= $this->signup['e']; ?>
-                    <div class="mtm"><a href="#">Can't access your account?</a></div>
-                    <?php $this->form->closeForm(); ?>
-			<?php 
-			
-			} // end else 
-			
-			/* ##### THE FORM ##### */
-			/* #################### */
+			if( !is_logged_in() )
+			{
+				$this->loginTools();
+				
+				/* #################### */
+				/* ##### THE FORM ##### */
+				
+				if( !$this->form->isSubmitted() || !$this->uoe['v'] || !$this->pass['v'] || !empty( $this->login_errors ) || !$this->catcha_valid )
+				{ 
+					if( $type == 'stacked' )
+					{
+					?>
+						<?php $this->form->openForm(); ?>
+							<h3 class="mbt pull-left">Sign in</h3>
+							<h3 class="pull-right"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
+							<hr class="mbn"/>
+							<?php if( isset( $this->login_errors['mm_credentials'] ) ) 
+								echo $this->login_errors['mm_credentials']; ?>
+							<?= $this->uoe['e']; ?>
+							<?= $this->pass['e']; ?>
+							<?php
+								# Catcha Element after 7 invalid attempts
+								if( defined( 'CATCHA' ) )
+									echo recaptcha_get_html($this->publickey);
+							?>
+							<?= $this->submit['e']; ?> <?= $this->signup['e']; ?>
+							<div class="mtm"><a href="#">Can't access your account?</a></div>
+						<?php $this->form->closeForm(); ?>
+					<?php
+					}
+					elseif( $type == 'inline' )
+					{ ?>
+						<style>
+							.form-inline{
+								margin: 0;	
+							}
+							.form-inline input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
+								display: inline-block;	
+								height: 28px !important; 
+								margin-bottom: 0;
+							}
+							.form-inline .btn{
+								height: 28px;	
+								line-height: 0.4;
+								margin-top: -2px;
+							
+							}
+						</style>
+						<?php $this->form->openForm( 'form-inline mxw600 pan', '', FALSE, 'form' ); ?>
+							<h3 class="mbt pull-left sr-only">Sign in</h3>
+							<h3 class="pull-right sr-only"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
+							<?php if( isset( $this->login_errors['mm_credentials'] ) ) 
+								echo $this->login_errors['mm_credentials']; ?>
+							<div class="form-group">
+								<div class="mxw150 ilb">
+									<?= $this->uoe['e']; ?>
+								</div>
+								<div class="mxw150 ilb">
+									<?= $this->pass['e']; ?>
+								</div>
+								<?php
+									# Catcha Element after 7 invalid attempts
+									if( defined( 'CATCHA' ) )
+										echo recaptcha_get_html($this->publickey);
+								?>
+								<?= $this->submit['e']; ?>
+							</div><!-- end form-group -->
+						<?php $this->form->closeForm(); ?>
+						
+					<?php }
+				
+				} // end else 
+				
+				/* ##### THE FORM ##### */
+				/* #################### */
+				
+			} // end is_logged_in()
               
 			
 			 return true;
@@ -364,6 +421,222 @@ exit;
 			return true;
 			
 		}
+		
+		
+	/**
+	 * Creates login form
+	 *
+	 * @since 1.1.1 s9
+	 * @return Void
+	 */	
+		function registerForm()
+		{
+			if( !is_logged_in() )
+			{
+			
+			$this->form = new Form( 'register');
+			$this->first_name = $this->form->addElement( array( 
+					# ELEMENT ATTRIBUTES 
+					'type'        => 'text', // REQUIRED
+					'name'        => 'fname', // REQUIRED a-z only, dashes, underscores, no spaces
+					'placeholder' => 'First Name',
+					# VALIDATION  => Custom Error Message
+					# RULE           Leave blank for default message
+					'val_req'     => '',
+					'val_name'     => ''
+			) ); // end $firstName = new Element
+			
+			$this->last_name = $this->form->addElement( array( 
+					# ELEMENT ATTRIBUTES 
+					'type'        => 'text', // REQUIRED
+					'name'        => 'lname', // REQUIRED a-z only, dashes, underscores, no spaces
+					'placeholder' => 'Last Name',
+					# VALIDATION  => Custom Error Message
+					# RULE           Leave blank for default message
+					'val_req'     => '',
+					'val_name'     => ''
+			) ); // end $lastName = new Element
+			
+			$this->username = $this->form->addElement( array( 
+					# ELEMENT ATTRIBUTES 
+					'type'        => 'text', // REQUIRED
+					'name'        => 'username', // REQUIRED a-z only, dashes, underscores, no spaces
+					'placeholder' => 'Username',
+					# VALIDATION  => Custom Error Message
+					# RULE           Leave blank for default message
+					'val_req'     => '',
+					'val_username'=> ERR_INVALID_NEW_USERNAME
+			) ); // end $username = new Element
+			
+			$this->email = $this->form->addElement( array( 
+					# ELEMENT ATTRIBUTES 
+					'type'        => 'text', // REQUIRED
+					'name'        => 'email', // REQUIRED a-z only, dashes, underscores, no spaces
+					'placeholder' => 'Email',
+					# VALIDATION  => Custom Error Message
+					# RULE           Leave blank for default message
+					'val_req'     => '',
+					'val_email'     => ERR_INVALID_NEW_EMAIL
+			) ); // end $lastName = new Element
+			
+			$this->pass = $this->form->addElement( array( 
+					# ELEMENT ATTRIBUTES 
+					'type'        => 'password', // REQUIRED
+					'name'        => 'pass', // REQUIRED a-z only, dashes, underscores, no spaces
+					'placeholder' => 'Password',
+					# VALIDATION  => Custom Error Message
+					# RULE           Leave blank for default message
+					'val_req'     => '',
+					'val_password'=> '' 
+				
+			) ); // end $pass = new Element
+			
+			$this->pass2 = $this->form->addElement( array( 
+					# ELEMENT ATTRIBUTES 
+					'type'        => 'password', // REQUIRED
+					'name'        => 'pass-two', // REQUIRED a-z only, dashes, underscores, no spaces
+					'placeholder' => 'Confirm Password',
+					# VALIDATION  => Custom Error Message
+					# RULE           Leave blank for default message
+					'val_req'     => '',
+					'val_password'=> '' 
+				
+			) ); // end $pass = new Element
+			
+			$this->register = $this->form->addElement( array( 
+					# ELEMENT ATTRIBUTES 
+					'type'        => 'submit', // REQUIRED
+					'name'        => 'register', // REQUIRED a-z only, dashes, underscores, no spaces
+					'class'       => 'btn-success btn-block',
+					'value'       => 'Register',
+			) ); // end $siteTitle = new Element
+				
+			
+			/* ##### SET FORM ELEMENTS ##### */
+			/* ############################# */
+			
+			$this->register_errors = array();
+			
+			/* ##################################### */
+			/* ##### CONTINUE AFTER VALIDATION ##### */
+				
+			# Check password matches
+			if( $this->pass['v'] && $this->pass2['v'] && $this->pass['o'] != $this->pass2['o'] )
+			{
+				$this->pass['v'] = FALSE;
+				$this->pass2['v'] = FALSE;
+				$this->pass['em'] = "<small class='error'>".ERR_MM_PASS."</small>";
+				//$this->register_errors['mm_password'] = '<div class="alert alert-danger">'.ERR_MM_PASS.'</div>';
+			}
+			
+			# Check for username or email in database
+			
+			if( $this->form->isSubmitted() && $this->first_name['v'] && $this->last_name['v'] && $this->username['v'] && $this->email['v'] && $this->pass['v'] && $this->pass2['v'] )
+			{ 
+				
+				if( $this->pass['o'] == $this->pass2['o'] )
+				{
+					# Set valid outputs
+					$this->username_valid = $this->username['o'];
+					$this->email_valid = $this->email['o'];
+					
+					$this->STH = $this->DBH->prepare("SELECT username, primaryEmail FROM shdw_users WHERE ( `username` = :username OR `primaryEmail` = :email )");  
+					$this->STH->execute( array(
+						':username' => $this->username_valid,
+						':email'    => $this->email_valid,
+						));
+					  
+					# setting the fetch mode  
+					$this->STH->setFetchMode( PDO::FETCH_ASSOC );
+					
+					# Check if there was a match
+					if( $this->STH->rowCount() == 1 )
+						echo 'email or username exist in database';
+					else
+						echo 'all good';
+				
+					
+					
+				} // end if( $this->pass['o'] == $this->pass2['o'] )
+				
+			} // end error check
+			
+			/* ##### CONTINUE AFTER VALIDATION ##### */
+			/* ##################################### */
+			 
+				
+				/* #################### */
+				/* ##### THE FORM ##### */
+				
+				if( !$this->form->isSubmitted() || !$this->uoe['v'] || !$this->pass['v'] || !empty( $this->register_errors ) )
+				{ 
+					?>
+						<?php $this->form->openForm( 'mxw600 mCenter' ); ?>
+                        	<div class="row">
+                            	<div class="col-xs-12">
+                                	<h3 class="mbt pull-left">Register</h3>
+                                    <h3 class="pull-right"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
+                                    <hr class="mbn"/>
+                                </div><!-- end col-xs-12 -->
+                            </div><!-- end row -->
+                           	<div class="row">
+                            	<div class="col-xs-12 col-sm-6">
+									<?= $this->first_name['e']; ?>
+                               	</div><!-- end col-xs-12 col-sm-6 -->
+                                <div class="col-xs-12 col-sm-6">
+									<?= $this->last_name['e']; ?>
+                               	</div><!-- end col-xs-12 col-sm-6 -->
+                            </div><!-- end row -->
+                            <div class="row">
+                            	<div class="col-xs-12 col-sm-6">
+									<?= $this->username['e']; ?>
+                               	</div><!-- end col-xs-12 col-sm-6 -->
+                                <div class="col-xs-12 col-sm-6">
+									<?= $this->email['e']; ?>
+                               	</div><!-- end col-xs-12 col-sm-6 -->
+                            </div><!-- end row -->
+                            <div class="row">
+                            	<div class="col-xs-12">
+                                	<?php if( isset( $this->register_errors['mm_password'] ) ) 
+                                        echo $this->register_errors['mm_password']; ?>
+                                </div><!-- end col-xs-12 -->
+                            </div><!-- end row -->
+                            <div class="row">
+                            	<div class="col-xs-12 col-sm-6">
+                                	<?php if( !$this->pass['em'] ) : ?>
+										<?= $this->pass['f']; ?>
+                                   	<?php else : ?>
+                                    	<?= $this->pass['ef']; ?>
+                                    <?php endif; ?>
+                                    <?= $this->pass['em']; ?>
+                               	</div><!-- end col-xs-12 col-sm-6 -->
+                                <div class="col-xs-12 col-sm-6">
+									<?php if( !$this->pass['em'] ) : ?>
+										<?= $this->pass['f']; ?>
+                                   	<?php else : ?>
+                                    	<?= $this->pass['ef']; ?>
+                                    <?php endif; ?>
+                                    <?= $this->pass2['em']; ?>
+                               	</div><!-- end col-xs-12 col-sm-6 -->
+                            </div><!-- end row -->
+                            <div class="row">
+                            	<div class="col-xs-12">
+                                	<?= $this->register['e']; ?>
+                                </div><!-- end col-xs-12 -->
+                          	</div><!-- end row -->
+						<?php $this->form->closeForm(); ?>
+				
+				<?php } // end else 
+				
+				/* ##### THE FORM ##### */
+				/* #################### */
+				
+			} // end is_logged_in()
+              
+			
+			 return true;
+			
+		} // end method loginForm()
 		
 	
 	/**

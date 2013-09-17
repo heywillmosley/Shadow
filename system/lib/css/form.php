@@ -69,7 +69,13 @@ if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v']
 			</div><!-- end pull-left -->
 			<div class="media-body">
 				
+<<<<<<< HEAD
 				<p>Join our mailing list to receive future promotions and updates from SafeCareRx.</p>
+||||||| merged common ancestors
+				<p>Join our mailing list to receive future promotions and updates from (company name).</p>
+=======
+				<p>Join our mailing list to receive future promotions and updates from King Bio.</p>
+>>>>>>> 777982be184790010de41bc0476a7b534adee9bd
 			</div><!-- end media-body -->
 		</div><!-- end media -->
 		<div class="caption">All fields are required.</div>

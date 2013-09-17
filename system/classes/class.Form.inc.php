@@ -44,6 +44,7 @@ class Form
 	protected $form_action;
 	protected $element_name;
 	protected $form_token = FALSE;
+	protected $form_role = NULL;
 	
 	
 	/**
@@ -58,15 +59,17 @@ class Form
 	 * @param          string
 	 * @return         void
 	 */
-		function __construct( $id = 'form-formula', $class = '', $method = 'POST', $action = '#' )
+		function __construct( $id = 'form-formula', $class = '', $method = 'POST', $action = '#', $role = NULL )
 		{
+			echo $role;
 			$this->form_id = 'form-'.$id;
 			$this->form_method = $method;
 			$this->form_action = $action;
 			$this->form_class = $class;
 			$this->form_token = $this->generateFormToken( $this->form_id );
+			$this->form_role = $role;
 			
-			if( $this->form_action = '#' )
+			if( $this->form_action == '#' )
 				$this->form_action = '#'.$_SESSION[$this->form_id.'_token'];
 			
 			# Check if HTTPS is on, set prefix to https
@@ -85,11 +88,13 @@ class Form
 	 * @since          Version 0.1.1 s9
 	 * @return         void
 	 */
-	 	function openForm()
+	 	function openForm( $class = NULL, $id = NULL, $action = FALSE, $role = NULL )
 		{
 			# Open form and configure
+			if( $action != FALSE )
+				$this->form_action = $action;
 
-			echo "<form id='$this->form_token' class='pam custom $this->form_class' method='$this->form_method' action='$this->form_action'>";
+			echo "<form id='$this->form_token $id' class='$this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
 
 			echo "<input type='hidden' name='$this->form_id-issubmitted' />";
 		}
@@ -307,11 +312,11 @@ class Form
 			$errors = array();
 			
 			# VALIDATION
-			if( isset( $_POST[$name] ) )
+
+			if( $this->isSubmitted() )
 			{
 				foreach( $element as $rule => $msg ) 
 				{
-					
 					switch ( $rule ) 
 					{
 						case 'val_req':
@@ -324,7 +329,7 @@ class Form
 									$errors[$name] = 'This field is required. Please enter a value.';
 									break 2;
 								}
-							break 2;
+							break;
 							
 						case 'val_email':
 							if( $this->vEmail( $_POST[$name] ) )
@@ -412,6 +417,22 @@ class Form
 							}
 							break;
 							
+							
+						case 'val_pass':
+						case 'val_password':
+							if( $this->vPassword( $_POST[$name] ) == 1 )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !empty( $msg ) ) $errors[$name] = $msg;
+								else 
+								{ 
+									$errors[$name] = ERR_INVALID_PASS;
+									break 2;
+								}
+							}
+							break;
+							
 						/* ----------- SANITIZE DATA ------------*/
 						
 						case 's_query':
@@ -458,7 +479,7 @@ class Form
 					elseif( !isset( $_POST[$name] ) && !isset( $_GET[$name] ) && isset( $value ) ) $element .= $value;
 						
 					# Set the class
-					$element .= "' class='$name $class ";
+					$element .= "' class='$name $class";
 					
 					# Add appropriate spacing if there's a caption
 					if( !empty( $caption ) ) $element .= " mbt ";
@@ -534,8 +555,9 @@ class Form
 			/* ##### ERRORS ###### */
 			
 			# Check for errors
+			$error_msg = NULL;
 			if( array_key_exists( $name, $errors ) )	
-				$element .= "<small class='error'>$errors[$name]</small>";
+				$error_msg = "<small class='error'>$errors[$name]</small>";
 				
 			/* ##### ERRORS ###### */
 			/* ################### */
@@ -545,7 +567,7 @@ class Form
 			
 			
 			if( !empty( $caption ) )	
-				$element .= "<div class='caption mbs'>&uarr; $caption</div>";
+				$error_msg .= "<div class='caption mbs'>&uarr; $caption</div>";
 				
 				
 			/* ##### CAPTION ##### */
@@ -559,6 +581,7 @@ class Form
 			if( isset( $_POST[$name] ) )
 			{
 				$output = $_POST[$name];
+				$error_field = "<style>input.$name, textarea.$name{ border-color: #c60f13; background-color:rgba(198,15,19,0.1);}</style>".$element;
 				if( empty( $errors ) )
 					$valid = TRUE;
 					
@@ -570,10 +593,19 @@ class Form
 			{
 				$output = FALSE;
 				$valid = FALSE;
-			}						  
+				$error_msg = FALSE;
+				$error_field = FALSE;
 				
-			return array( 'element' => $element,
-						  'e' => $element,
+			}					  
+				
+			return array( 'element' => $element.$error_msg,
+						  'e' => $element.$error_msg,
+						  'field' => $element,
+						  'f' => $element,
+						  'error_field' => $error_field,
+						  'ef' => $error_field,
+						  'error_msg' => $error_msg,
+						  'em' => $error_msg,
 						  'output' => $output,
 						  'o' => $output,
 						  'valid' => $valid, 

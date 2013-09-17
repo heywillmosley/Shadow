@@ -40,7 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '0.1 s9');
+	define('SYS_VER', '1.1.5');
 	
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
@@ -99,20 +99,44 @@
 	 */
 	  define( 'CORE_PATH', CORE_URI );
 
+
+
 /**
  * Load Shadow Config Settings
  * @todo make all of this functionality doable through the database and pilot
  */
  	# Include Pilot
-	if( !IS_ROOT ) require_once( ROOT_URI . 'pilot.php' );
+	if( !IS_ROOT && file_exists( ROOT_URI . 'pilot.php' ) ) 
+		require_once( ROOT_URI . 'pilot.php' );
 	
 	elseif( file_exists( CORE_URI . 'pilot.php' ) )
 		require_once( CORE_URI . 'pilot.php' );
 	
-	else require_once( ROOT_URI . 'pilot.php' );
+	elseif( file_exists( ROOT_URI . 'pilot.php' ) )
+		require_once( ROOT_URI . 'pilot.php' );
+	
+	else
+	{
+		try 
+		{
+			throw new Exception("<h2>Please configure <code>pilot-sample.php</code> and rename to <code>pilot.php</code>. <br/><code>pilot.php</code> may rest above Shadow's root.</h2>");
+			
+		} // end try 
+		
+		catch( Exception $e ) 
+		{
+			echo $e->getMessage(); exit;
+			
+		} // end catch( Exception $e ) 
+		
+	} // end else
+	
 	
 	# Include App Settings
- 	require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	if( file_exists( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' ) )
+ 		require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+	else
+		require_once( ROOT_URI . 'content/Apps/' . CURRENT_APP . '/app-settings.php' );
 	
 	
 if( SHDW )
@@ -210,78 +234,88 @@ if( SHDW )
 			define( 'ROOT_NAME', basename( ROOT_URI ) );
 	
 	} // end else
+	
 
 
 /**
  *  Resolve the front url for increased reliability
  */
- 	if( ENVIRONMENT != 'development' )
+	if( SHDW )
 	{
-		# Check if there is an addon domain
-		if( ADDON_DOMAIN != '' )
+		if( ENVIRONMENT != 'development' )
 		{
-			# Set Front URL to Add on domain
-			$rooturl = 'http://' . ADDON_DOMAIN . '/';
-			$rooturl = rtrim( $rooturl, '/\\' );
-			$rooturl = $rooturl . '/';
+			# Check if there is an addon domain
+			if( ADDON_DOMAIN != '' )
+			{
+				# Set Front URL to Add on domain
+				$rooturl = 'http://' . ADDON_DOMAIN . '/';
+				$rooturl = rtrim( $rooturl, '/\\' );
+				$rooturl = $rooturl . '/';
+				
+				// URL to the system folder
+				define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
+				
+				/**
+				 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+				 */
+				  define( 'ROOTURL', ROOT_URL );
+				  
+				
+			} // end if( ADDON_DOMAIN != '' )
 			
-			// URL to the system folder
-			define( 'ROOT_URL', str_replace( "\\", "/", $rooturl ) );
-			
-			/**
+			else
+			{
+				# Define Http/https
+				if( isset($_SERVER['HTTPS'] ) ) 
+					$http = 'https://';
+					
+				else
+					$http = 'http://';
+						
+				// URL to the system folder
+				define('ROOT_URL', $http.$_SERVER['HTTP_HOST'].'/' );
+				
+				/**
 			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 			 */
 			  define( 'ROOTURL', ROOT_URL );
-			  
+			}
 			
-		} // end if( ADDON_DOMAIN != '' )
 		
+		} // end if( ENVIRONMENT != 'development' )
+		
+		# Set Front URL based on Server url
 		else
 		{
-			$rooturl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ROOT_NAME;
-			$rooturl = rtrim( $rooturl, '/\\' );
-			$rooturl = $rooturl . '/';
+			# Define Http/https
+			if( isset($_SERVER['HTTPS'] ) ) 
+				$http = 'https://';
+				
+			else
+				$http = 'http://';
 			
+			# Define ROOT URL	
+			$root_url = strtolower( $http . $_SERVER['HTTP_HOST'] . 
+				str_replace( 
+					str_replace( '\\', '/', $_SERVER['DOCUMENT_ROOT'] ), 
+						"", str_replace( '\\', '/', ROOT_URI ) ) );
+						
 			// URL to the system folder
-			//define('ROOT_URL', str_replace("\\", "/", $rooturl));
+			define('ROOT_URL', $root_url );
 			
-			// URL to the system folder
-			define('ROOT_URL', 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] );
 			
 			/**
 			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 			 */
 			  define( 'ROOTURL', ROOT_URL );
 			}
-		
-	
-	} // end if( ENVIRONMENT != 'development' )
-	
-	# Set Front URL based on Server url
-	else
-	{
-		# Define Http/https
-		if( isset($_SERVER['HTTPS'] ) ) 
-			$http = 'https://';
 			
-		else
-			$http = 'http://';
-		
-		# Define ROOT URL	
-		$root_url = strtolower( $http . $_SERVER['HTTP_HOST'] . 
-			str_replace( 
-				str_replace( '\\', '/', $_SERVER['DOCUMENT_ROOT'] ), 
-					"", str_replace( '\\', '/', ROOT_URI ) ) );
-					
-		// URL to the system folder
-		define('ROOT_URL', $root_url );
-		
-		
-		/**
-		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-		 */
-		  define( 'ROOTURL', ROOT_URL );
-		}
+	} // end SHDW
+	
+	elseif( WP )
+	{
+		define('ROOT_URL', get_theme_root_uri().'/'.ROOT_NAME.'/' );
+	}
 
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
@@ -339,15 +373,23 @@ if( SHDW )
 if( SHDW )
 {
 	// Path to the application folder
-	define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
+	if( file_exists( CONTENT_URI . 'apps/' ) )
+		define('APPLICATIONS_URI', CONTENT_URI . 'apps/' );
+	else
+		define('APPLICATIONS_URI', CONTENT_URI . 'Apps/' );
+
 	
 	/**
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'APPLICATIONS_PATH', APPLICATIONS_URI );
 	
+	
 	// URL to the system folder
-	define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
+	if( file_exists( CONTENT_URI . 'apps/' ) )
+		define('APPLICATIONS_URL', CONTENT_URL . 'apps/' );
+	else
+		define('APPLICATIONS_URL', CONTENT_URL . 'Apps/' );
 	
 	// Path to the application folder
 	define('APP_URI',  APPLICATIONS_URI . CURRENT_APP . '/' );
@@ -1067,10 +1109,11 @@ if( !WP )
 	/**
 	 * Loads all system classes in system inc folder
 	 */
-		// Or, using an anonymous function as of PHP 5.3.0
-		spl_autoload_register(function ( $class_name ) {
-			include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';  
-		} );
+		function __autoload($class_name) 
+		{
+    		include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';
+			
+		} // end __autoload
 }
 else
 {
@@ -1107,6 +1150,16 @@ require_once SYS_FUNCTIONS_URI.'function.pilot.inc.php';
 # ***** LOAD FUNCTIONS ***** #
 # ************************** #
 
+# *************************** #
+# ***** ERROR MANAGEMENT **** #
+
+require_once SYS_FUNCTIONS_URI.'function.error.inc.php';
+$e = new Error();
+
+
+# ***** ERROR MANAGEMENT ***** #
+# **************************** #
+
 # ************************* #
 # ***** LOAD BRIDGES ****** #
 
@@ -1122,16 +1175,7 @@ if( file_exists( BRIDGE_URI.'subscribe_to_newsletter/bridge.php' ) )
 # ************************ #
 
 
-# *************************** #
-# ***** ERROR MANAGEMENT **** #
 
-require_once SYS_FUNCTIONS_URI.'function.error.inc.php';
-
-$e = new Error();
-
-
-# ***** ERROR MANAGEMENT ***** #
-# **************************** #
 
 
 # ***************************#
@@ -1312,8 +1356,9 @@ if( SHDW )
 	 *
 	 * @todo Secure session_start
 	 */
+	 
 		# Check if session has been started, # If no session has been called, intiate
-		if ( session_status() == PHP_SESSION_NONE )
+		if ( !isset( $_SESSION ) )
 			session_start();
 		
 	
@@ -1345,8 +1390,7 @@ if( SHDW )
 if( SHDW )
 {
 	# Set PHP Timezone to UTC Standard
-	date_default_timezone_set( 'UTC' );
-	
+	// date_default_timezone_set( 'UTC' ); - Disabled until fix issue https://github.com/superamazing/Shadow/issues/13
 	try
 	{
 		# Set MySql Timezone to UTC Standard

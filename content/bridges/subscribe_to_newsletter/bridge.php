@@ -23,6 +23,7 @@ $firstName = $form->addElement( array(
 		'type'        => 'text', // REQUIRED
 		'name'        => 'fname', // REQUIRED a-z only, dashes, underscores, no spaces
 		'placeholder' => 'First Name',
+		'class'       => 'form-control mbs',
 		# VALIDATION  => Custom Error Message
 		# RULE           Leave blank for default message
 		'val_req'     => 'Enter your first name.',
@@ -34,6 +35,7 @@ $lastName = $form->addElement( array(
 		'type'        => 'text', // REQUIRED
 		'name'        => 'name', // REQUIRED a-z only, dashes, underscores, no spaces
 		'placeholder' => 'Last Name',
+		'class'       => 'form-control mbs',
 		# VALIDATION  => Custom Error Message
 		# RULE           Leave blank for default message
 		'val_req'     => 'Enter your first name.',
@@ -45,6 +47,7 @@ $email = $form->addElement( array(
 		'type'        => 'email', // REQUIRED
 		'name'        => 'email', // REQUIRED a-z only, dashes, underscores, no spaces
 		'placeholder' => 'Email',
+		'class'       => 'form-control mbs',
 		# VALIDATION  => Custom Error Message
 		# RULE           Leave blank for default message
 		'val_req'     => 'Please enter email.',
@@ -88,7 +91,13 @@ if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v']
                 <?php endif; ?>
             </div><!-- end col-4 -->
             <div class="col-xs-9 pls prn">
+<<<<<<< HEAD
             	<p>Join our mailing list to receive future promotions and updates from SafeCareRx.</p>
+||||||| merged common ancestors
+            	<p>Join our mailing list to receive future promotions and updates from (company name).</p>
+=======
+            	<p>Join our mailing list to receive future promotions and updates from King Bio.</p>
+>>>>>>> 777982be184790010de41bc0476a7b534adee9bd
             </div><!-- end col-xs-8 -->
         </div><!-- end row -->
 		<div class="caption">All fields are required.</div>
@@ -112,7 +121,7 @@ else // run form
 { 
 	# New Mailchimp settings
 	$apikey = 'df655cc3ab3c189ff2a6965857adb32e-us7'; // Your Mailchimp API key
-	$list_id = '4d55449ef5'; // # Your Mailchimp mailing list ID
+	$list_id = '7b83669d3b'; // # Your Mailchimp mailing list ID
 	
 	# Create new API object & Create new list object
 	$api = new Mailchimp( $apikey );

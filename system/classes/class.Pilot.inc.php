@@ -52,39 +52,48 @@ class Pilot
 	 * @return array
 	 */
 		function getPilot()
-		{ ?>
+		{  
+			if( is_admin() || the_page_slug() == 'admin/login' ) : ?>
 			
                 <div class="pilot-wrapper <?php if( the_page_type() == 'pilot' ) echo 'mnh100p'; ?>">
                     <div class="pilot">
                         <div class="pilot-header">
-                            <span class="pilot-title mrs"><a href="<?php echo SITE_URL; ?>admin/pilot">Pilot</a></span>
-                            <div class="btn-group btn-group-sm">
+                            <span class="pilot-title mrs">
+                            	<?php if( is_admin() ) : ?>
+                            		<a href="<?php echo SITE_URL; ?>admin/pilot">Pilot</a>
+                              	<?php else : ?>
+                                	Pilot
+                               	<?php endif; ?>
+                           	</span>
+                            <?php if( is_admin() ) : ?>
                                 <div class="btn-group btn-group-sm">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                       <?php if( the_page_title() == SITE_NAME ) echo 'Home'; elseif( the_page_title() == 'Pilot' ) echo 'Dashboard'; else get_page_title(); ?>
-                                      <span class="caret"></span>
-                                    </button>
-                                    <?php if( the_page_type() == 'pilot' ) : ?>
-                                    	<a class="btn btn-default" href="<?php echo SITE_URL; ?>">Go to Website</a>
-                                   	<?php else : ?>
-                                    	<a class="btn btn-default" href="<?php echo SITE_URL; ?>admin/pilot">Go to Pilot</a>
-                                  	<?php endif; ?>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages">Pages</a></li>
-                                        <li><a href="#">Products</a></li>
-                                        <li><a href="<?php echo SITE_URL; ?>admin/pilot/deploy">Deployment &amp; Maintenance</a></li>
-                                        <li><a href="<?php echo SITE_URL; ?>admin/pilot/backup-restore">Backup &amp; Restore</a></li>
-                                    </ul>
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                           <?php if( the_page_title() == SITE_NAME ) echo 'Home'; elseif( the_page_title() == 'Pilot' ) echo 'Dashboard'; else get_page_title(); ?>
+                                          <span class="caret"></span>
+                                        </button>
+                                        <?php if( the_page_type() == 'pilot' ) : ?>
+                                            <a class="btn btn-default" href="<?php echo SITE_URL; ?>">Go to Website</a>
+                                        <?php else : ?>
+                                            <a class="btn btn-default" href="<?php echo SITE_URL; ?>admin/pilot">Go to Pilot</a>
+                                        <?php endif; ?>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="<?php echo SITE_URL; ?>admin/pilot/pages">Pages</a></li>
+                                            <li><a href="#">Products</a></li>
+                                            <li><a href="<?php echo SITE_URL; ?>admin/pilot/deploy">Deployment &amp; Maintenance</a></li>
+                                            <li><a href="<?php echo SITE_URL; ?>admin/pilot/backup-restore">Backup &amp; Restore</a></li>
+                                        </ul>
+                                    </div>
+                                    <a class="btn btn-default" href="<?php echo SITE_URL; ?>admin/pilot/pages/new-page">New Page</a>
+                                    <a class="btn btn-default" href="#">New Product</a>
                                 </div>
-                                <a class="btn btn-default" href="<?php echo SITE_URL; ?>admin/pilot/pages/new-page">New Page</a>
-                                <a class="btn btn-default" href="#">New Product</a>
-                            </div>
-                            <div class="btn-group pull-right">
-                            	<?php if( the_page_type() != 'pilot' ) : ?>
-                                    <a class="btn btn-default" onclick="toggle_visibility('pilot-body')">_</a>
-                                <?php endif; ?>
-                                <a href="<?php echo SITE_URL; ?>admin/logout" class="btn btn-default" >Logout</a>
-                            </div>
+                                <div class="btn-group pull-right">
+                                    <?php if( the_page_type() != 'pilot' ) : ?>
+                                        <a class="btn btn-default" onclick="toggle_visibility('pilot-body')">_</a>
+                                    <?php endif; ?>
+                                  	<a href="<?php echo SITE_URL; ?>admin/logout" class="btn btn-default" >Logout</a>
+                                </div>
+                          	<?php endif; ?>
                         </div><!-- end pilot-header -->
                         <div id="pilot-body" class="pilot-body">
                         	<div class="phs">
@@ -114,7 +123,8 @@ class Pilot
                     </div><!-- end pilot -->
                 </div><!-- end pilot-wrapper -->
 			
-			<?php return true;
+			<?php endif; 
+			 return true;
 			
 		} // end method getId()
  

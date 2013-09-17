@@ -26,7 +26,7 @@
 	function shdw_header()
 	{ ?>
 		<!-- Load Stylesheets -->
-        <?php if( NUM_SYS_VER <= 01.9  ) : // Keep styles used in previous app versions ?>
+        <?php if( NUM_SYS_VER <= 200  ) : // Keep styles used in previous app versions ?>
         	<link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>shdw-lt02.0.css" type="text/css" media="screen" />
         <?php endif; ?>
         <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>all.css" type="text/css" media="screen" />
@@ -193,7 +193,7 @@
 	function shdw_footer()
 	{ ?>
         <script src="<?php echo SYS_JS_URL; ?>vendor/jquery.min.js"></script>
-        <?php if( NUM_SYS_VER <= 01.9  ) : // Keep scripts used in previous app versions ?>
+        <?php if( NUM_SYS_VER < 200  ) : // Keep scripts used in previous app versions ?>
         	<script src="<?php echo SYS_JS_URL; ?>shdw-lt02.0.js"></script>
         <?php endif; ?>
         <script src="<?php echo SYS_JS_URL; ?>vendor/custom.bootstrap.min.js"></script>
