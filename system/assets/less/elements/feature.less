@@ -14,7 +14,6 @@
 		}
 		.feature-text-container{
 			max-width: 510px;
-			float: right;
 			.feature-desc-title{
 				.font-size(42);
 				color: #333;
@@ -32,10 +31,16 @@
 	.feature-text.feature-text-right{
 		padding-left: 2%;
 		float: right;
+		.feature-text-container{
+			float: left;
+		}
 	}
 	.feature-text.feature-text-left{
 		padding-right: 2%;
 		float: left;
+		.feature-text-container{
+			float: right;
+		}
 	}
 	.feature-image{
 		display: inline-block;
