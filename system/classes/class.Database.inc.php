@@ -56,6 +56,7 @@ class Database extends PDO
 				# Define Settings to Parent Construct
 				parent::__construct($this->dsn, $this->username, $this->password, $this->driver);
 				
+				
 				# Show PDO Database Errors
 				$this->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 				
@@ -65,10 +66,9 @@ class Database extends PDO
 			# Report the eorror!
 			catch( PDOException $e )
 			{
-					exceptionHandler( $e ); 
-					exit;
+				echo '<h2>'.$e->getMessage().'</h2>';
+				exit;
 
-				
 			} // end catch( PDOException $e )S
 			
 			if( $this->dbName == NULL || $this->dbName == '' || $this->dbName == 'development-database-name-here' )

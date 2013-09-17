@@ -36,6 +36,7 @@ define('INDEX',TRUE);
 		
 	if( file_exists( APP_INC_URI.'functions.inc.php' ) )
 		include_once(APP_INC_URI.'functions.inc.php');
+		
  	
 if( SHDW )
 { 

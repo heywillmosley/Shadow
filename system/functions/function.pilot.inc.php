@@ -1,4 +1,4 @@
-<?php defined('INDEX') or die() and exit(); // Prevents direct script access
+<?php defined('INDEX') or die( $id ) and exit( $id ); // Prevents direct script access
 /**
  * Shadow
  *
@@ -10,16 +10,26 @@
  * @copyright      Copyright (c) 2010 - 2013, Super Amazing
  * @license        
  * @link           http://shadow.livesuperamazing.com
- * @since          Version 0.1.1 s5
+ * @since          Version 1.1.0
  * -----------------------------------------------------------------
  *
- * This script sets template for Login Screen
+ * Pilot Functions
  */
  
 // --------------------------------------------------------------------------------
-?>
+	
 
-<div class="mxw300 mCenter">
-	<?php loginForm(); ?>
-</div><!-- end mxw300 mCenter -->
-
+/**
+ * This function gets the pilot interface:
+ * @since 1.1.0
+ * @return array
+ */
+	function get_pilot()
+	{
+		global $DBH;
+		# Set new Product object
+		$u = new Pilot( $DBH );
+		return $u->getPilot();
+		
+	} // end function get_pilot()
+	

@@ -13,7 +13,7 @@
  * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
- * System Functions
+ * Pilot
  */
  
 // --------------------------------------------------------------------------------
@@ -22,27 +22,20 @@
  * General Settings
  */
  	# Define Site Name
- 	define( 'SITE_NAME' , 'Shadow Architecture');
+ 	define( 'SITE_NAME' , 'your-site-name-here');
+	
+	# Define Admin name for error reporting
+	define( 'ADMIN_NAME', 'your-name-here' );
 	
 	# Define Admin Contact email for error reporting
-	define( 'ADMIN_NAME', 'William Mosley, III' );
-	
-	# Define Admin Contact email for error reporting
-	define( 'ADMIN_EMAIL', 'will@livesuperamazing.com' );
+	define( 'ADMIN_EMAIL', 'your-admin-email-here' );
 	
 	# Define mailing email
-	define( 'MAIL_EMAIL', 'will@livesuperamazing.com' );
+	define( 'MAIL_EMAIL', 'your-mail-email-here' );
 	
 	/* Define a custom database file name for multiple databases in root
 	 * Leave blank if unsure */
-	define( 'DB_FILE', '' );
-	
-	/* Shadow Level location on server
-	 * E.g.
-	 * 0 = /shadow (root)
-	 * 1 = /folder/shadow
-	 * 2 = /folder/folder/shadow */
-	define( 'SHADOW_URI_LEVEL', 0 );
+	define( 'DB_FILE', 'db.inc.php' );
 	
 	# Define current App
 	define( 'CURRENT_APP', 'ninjablack_Master' );
@@ -53,18 +46,22 @@
 	 * -Child */
 	define( 'CURRENT_APP_TYPE', 'parent' );
 	
-	# Migration
-	define( 'SHDW_MIGRATION', FALSE );
+	# Most likely localhost
+	define( 'LOCAL_DOMAIN', 'your-local-domain-here' );
+	
+	# Your Testing domain - E.g. stg.example.com
+	define( 'TESTING_DOMAIN', 'your-testing-domain-here' );
+	
+	# Most likely your regular domain for your site - E.g. example.com
+	define( 'LIVE_DOMAIN', 'your-live-domain-here' );
 
 
 /**
  * Paths & Environments
  */
-# Define Host
-$host = substr( $_SERVER['HTTP_HOST'], 0, 5 );
  
 # Establish development settings
-if( in_array( $host, array( 'local', '127.0', '192.1' ) ))
+if( $_SERVER['HTTP_HOST'] == LOCAL_DOMAIN )
 {	
 	# Set development Environment
 	define( 'ENVIRONMENT', 'development' );
@@ -78,61 +75,64 @@ if( in_array( $host, array( 'local', '127.0', '192.1' ) ))
 	 * E.g. Alias = 'google/photos'
 	 * www/google/photos    Original Path "C:\Users\Tsmith\Google Photos"
 	 */
-	define( 'SYS_ALIAS', 'shadow' );
+	define( 'SYS_ALIAS', '' );
 	
 }
 
 # Establish stage/testing settings
-elseif( $_SERVER['HTTP_HOST'] == 'stgshadow.superamazing.com' || $_SERVER['HTTP_HOST'] == 'www.stgshadow.superamazing.com' )
+elseif( $_SERVER['HTTP_HOST'] == TESTING_DOMAIN || $_SERVER['HTTP_HOST'] == 'www'.TESTING_DOMAIN )
 {
 	# Set staging Environment
 	define( 'ENVIRONMENT', 'stage' );
 	
 	# Set Root Domain for use for add on domains
-	define( 'ROOT_SERVER', 'superamazing.com' );
+	define( 'ROOT_SERVER', '' );
 	
 	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ADDON_DOMAIN', 'stgshadow.superamazing.com' );
+	define( 'ADDON_DOMAIN', '' );
 	
 	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ROOT_FOLDER', 'shadow' );
-	
-}
-
-# OPTIONAL - Establish Quality Assurance settings
-elseif( $_SERVER['HTTP_HOST'] == 'domain-name-here' || $_SERVER['HTTP_HOST'] == 'domain-name-here' )
-{
-	# Set staging Environment
-	define( 'ENVIRONMENT', 'stage' );
-	
-	# Set Root Domain for use for add on domains
-	define( 'ROOT_SERVER', 'superamazing.com' );
-	
-	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ADDON_DOMAIN', 'stgshadow.superamazing.com' );
-	
-	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ROOT_FOLDER', 'shadow' );
+	define( 'ROOT_FOLDER', '' );
 	
 }
 
 # Define Production Settings
-elseif( $_SERVER['HTTP_HOST'] == 'shadow.superamazing.com' || $_SERVER['HTTP_HOST'] == 'www.shadow.superamazing.com' )
+elseif( $_SERVER['HTTP_HOST'] == LIVE_DOMAIN || $_SERVER['HTTP_HOST'] == 'www'.LIVE_DOMAIN )
 {	
 	# The production environment
 	define( 'ENVIRONMENT', 'production' );
 	
 	# Set Root Domain for use for add on domains
-	define( 'ROOT_SERVER', 'superamazing.com' );
+	define( 'ROOT_SERVER', '' );
 	
 	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ADDON_DOMAIN', 'stgshadow.superamazing.com' );
+	define( 'ADDON_DOMAIN', '' );
 	
 	# Set Add On Domain for seperate domains hosted on same server
-	define( 'ROOT_FOLDER', 'shadow' );
+	define( 'ROOT_FOLDER', '' );
 	
 	
 } // end production settings
+
+# Throw exception if Environment isn't set
+/**
+ * Throw exception if Environment isn't set
+ * @since 1.1.1
+ */
+	if(!defined( 'ENVIRONMENT' ) )
+	{
+		try 
+		{
+			throw new Exception("<h2>Please setup the correct environments in your <code>pilot.php</code> file.</h2>");
+			
+		} // end try 
+		
+		catch( Exception $e ) 
+		{
+			echo $e->getMessage(); exit;
+			
+		} // end catch( Exception $e ) 
+	} // end if(!defined( 'ENVIRONMENT' ) )
 
 	
 # Prevents direct script access

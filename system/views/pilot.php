@@ -48,26 +48,7 @@
 </head>	
 
 <body>
-<div class="wrapper">
 <?php get_pilot(); ?>
-<a class="drop-nav-trigger" onClick="toggle_visibility('drop-nav')"></a>
-<nav class="actionbar pam">
-	<div class="row">
-        <div class="pull-left">
-            <a class="logo" href="<?php echo SITE_URL; ?>"><?php echo SITE_NAME; ?></a>
-        </div>
-        <div class="pull-right">
-        	<span class="visible-md visible-lg visible-xl">
-            	<?php login_form( 'inline' ); ?> 
-           	</span>
-            <span class="visible-xs visible-sm">
-            	<?php if( !is_logged_in() ) : ?>
-                    <a class="btn btn-primary" href="<?php SITE_URL; ?>admin/login">Login</a>
-                <?php endif; ?>
-            </span>
-            <?php if( is_logged_in() ) : ?>
-            	<a class="btn btn-default" href="<?php SITE_URL; ?>admin/logout">Logout</a>
-           	<?php endif; ?>
-        </div>
-    </div><!-- end row -->
-</nav><!-- end action-bar -->
+
+<?php shdw_footer(); ?>
+</body>

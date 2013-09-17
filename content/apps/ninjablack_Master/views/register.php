@@ -13,13 +13,17 @@
  * @since          Version 0.1.1 s5
  * -----------------------------------------------------------------
  *
- * This script sets template for Login Screen
+ * Home page template
  */
  
 // --------------------------------------------------------------------------------
-?>
 
-<div class="mxw300 mCenter">
-	<?php loginForm(); ?>
-</div><!-- end mxw300 mCenter -->
+# includes header.php
+app_header(); ?>
+
+<?php register_form(); ?>
+
+<?php 
+# includes footer.php
+app_footer();
 
