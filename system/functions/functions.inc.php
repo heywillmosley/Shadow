@@ -30,7 +30,6 @@
         	<link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>shdw-lt02.0.css" type="text/css" media="screen" />
         <?php endif; ?>
         <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>all.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
         <style>
 			@media print{
 				.hide-for-print
@@ -203,6 +202,12 @@
 			$(document).foundation('interchange', {
 			  named_queries : {
 				smaller : 'only screen and (min-width: 660px)'
+			  }
+			});
+			
+			$(document).foundation('interchange', {
+			  named_queries : {
+				xsmall : 'only screen and (min-width: 480px)'
 			  }
 			});
 		</script>
