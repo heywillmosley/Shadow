@@ -33,3 +33,15 @@
 		
 	} // end function get_pilot()
 	
+	
+/**
+ * Load pilot interface
+ * @since 0.1.1 s9
+ * @depreciated since 2.1.1
+ */
+	function pilot()
+	{ 
+		return false;
+		
+	} // end shdw_header
+	
