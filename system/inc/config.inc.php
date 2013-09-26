@@ -61,10 +61,11 @@
  * Set as Bootstrap library if standalone
  * @since 0.1 s9
  */
-	if( substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow_Library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'shadow_library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow_library' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow_Lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'shadow_lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow_lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow-Library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'shadow-library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow-library' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow-Lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'shadow-lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow-lib' )
+	if( substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow_Library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'shadow_library' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow_Lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'shadow_lib' )
 		define( 'LIB', TRUE );
 	else
 		define( 'LIB', FALSE );
+		
 
 /** 
  * Set as Bootstrap library if in Wordpress
@@ -84,6 +85,20 @@
 	else
 		define( 'SHDW', FALSE );
 
+
+if( LIB )
+{
+	if( substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow_Library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'shadow_library' )
+	{
+		define( 'LIB_NAME', substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) );	
+	}
+	
+	elseif( substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow_Lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'shadow_lib' )
+	{
+		define( 'LIB_NAME', substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) );	
+	}	
+	
+} // end LIB
 
 /**
  * Check if Content is above Shadow root folder
@@ -368,34 +383,56 @@ if( SHDW )
 	// The PHP file extension
 	// this global constant is deprecated.
 	define('EXT', '.php');
-
-	/**
-	 *  Resolve the system root path
-	 */
-		# If shadow isn't root
+	
+	if( !LIB )
+	{
+		/**
+		 *  Resolve the system root path
+		 */
+			# If shadow isn't root
+			define( 'SYS_URI', dirname(dirname(__FILE__)) . '/' );
+			
+			/**
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 */
+			  define( 'BASEPATH', SYS_URI );
+	}
+	
+	else // LIB
+	{
 		define( 'SYS_URI', dirname(dirname(__FILE__)) . '/' );
+		
+	}
+	
+	if( !LIB )
+	{
+		  
+		if( !IS_ROOT )
+		
+			// URL to the system folder
+			define('SYS_URL', ROOT_URL . 'Shadow/system/');
+			
+		
+			
+		else
+			// URL to the system folder
+			define('SYS_URL', ROOT_URL . 'system/');
 		
 		/**
 		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
-		  define( 'BASEPATH', SYS_URI );
-		  
-	if( !IS_ROOT )
+		  define( 'BASEURL', SYS_URL );
 	
-		// URL to the system folder
-		define('SYS_URL', ROOT_URL . 'Shadow/system/');
-		
+	} // end !LIB
 	
-		
-	else
-		// URL to the system folder
-		define('SYS_URL', ROOT_URL . 'system/');
+	else { // LIB
 	
-	/**
-	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-	 */
-	  define( 'BASEURL', SYS_URL );
+		define('SYS_URL', ROOT_URL. LIB_NAME . '/system/');
 	
+	}
+
+if( SHDW )
+{
 	// Path to the application folder
 	# Check if Content directory is in Shadow's root
 	if( !IS_ROOT ) define( 'CONTENT_URI', ROOT_URI . 'content/');
@@ -407,13 +444,27 @@ if( SHDW )
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CONTENT_PATH', CONTENT_URI );
+	  
+} // SHDW
+
+else
+{
+	define( 'CONTENT_URI', ROOT_URI.LIB_NAME . '/content/');		
+}
 	
+	
+if( SHDW )
+{
 	// URL to the system folder
 	if( !IS_ROOT )
 		define( 'CONTENT_URL', ROOT_URL . 'content/' );
 		
 	else
 		define( 'CONTENT_URL', ROOT_URL . 'content/' );
+}
+else{
+	define( 'CONTENT_URL', ROOT_URL.LIB_NAME. '/content/' );
+}
 	
 if( SHDW )
 {
