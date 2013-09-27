@@ -40,8 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-
-	define('SYS_VER', '1.2.1');
+	define('SYS_VER', '1.2.2');
 	
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
