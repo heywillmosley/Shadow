@@ -93,7 +93,7 @@ class Form
 			if( $action != FALSE )
 				$this->form_action = $action;
 
-			echo "<form id='$this->form_token $this->form_id' class='$this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
+			echo "<form id='$this->form_id' class='$this->form_token $this->form_id $this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
 
 			echo "<input type='hidden' name='$this->form_id-issubmitted' />";
 		}
