@@ -61,7 +61,6 @@ class Form
 	 */
 		function __construct( $id = 'form-formula', $class = '', $method = 'POST', $action = '#', $role = NULL )
 		{
-			echo $role;
 			$this->form_id = 'form-'.$id;
 			$this->form_method = $method;
 			$this->form_action = $action;
@@ -94,7 +93,7 @@ class Form
 			if( $action != FALSE )
 				$this->form_action = $action;
 
-			echo "<form id='$this->form_token $id' class='$this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
+			echo "<form id='$this->form_token $this->form_id' class='$this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
 
 			echo "<input type='hidden' name='$this->form_id-issubmitted' />";
 		}
