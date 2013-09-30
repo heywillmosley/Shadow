@@ -40,18 +40,45 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '1.1.5');
-	
-	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
-	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
+	define('SYS_VER', '1.2.3.1');
 
+	$release =  str_replace( '-alpha', '', str_replace( '-beta', '', str_replace( '.', '', substr(SYS_VER, 0, strrpos(SYS_VER, '.') ) ) ) );
+	$sprint = substr(SYS_VER, strrpos(SYS_VER, '.') + 0);
+	
+	# Numeric version
+	define('NUM_SYS_VER', $release.$sprint );
+	
+	/**
+	 * Define Framework Name
+	 */
+		define('FW_NAME', 'Shadow');
+	
+		
+	/**
+	 * Table Prefix
+	 */
+		define('SYS_PREFIX', 'shdw-');
+		
 
 /** 
- * Set as Bootstrap libarary if in Wordpress
+ * Set as Bootstrap library if standalone
+ * @since 0.1 s9
+ */
+	if( substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow_Library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'shadow_library' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow_Lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'shadow_lib' )
+		define( 'LIB', TRUE );
+	else
+		define( 'LIB', FALSE );
+		
+
+/** 
+ * Set as Bootstrap library if in Wordpress
  * @since 0.1 s9
  */
 	if( substr( dirname( dirname( dirname (dirname (dirname(__FILE__) ) ) ) ), -10 ) == 'wp-content')
+	{
 		define( 'WP', TRUE );
+		define( 'SITE_NAME', get_bloginfo('name') );
+	}
 	else
 		define( 'WP', FALSE );
 		
@@ -59,12 +86,26 @@
  * Set as Shadow Framework if standalone
  * @since 0.1 s9
  */
- 	if( !WP )
+ 	if( !WP && !LIB )
 		define( 'SHDW', TRUE );
 	else
 		define( 'SHDW', FALSE );
 
+
+if( LIB )
+{
+	if( substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'Shadow_Library' || substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) == 'shadow_library' )
+	{
+		define( 'LIB_NAME', substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) );	
+	}
 	
+	elseif( substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'Shadow_Lib' || substr( dirname (dirname (dirname(__FILE__) ) ), -10 ) == 'shadow_lib' )
+	{
+		define( 'LIB_NAME', substr( dirname (dirname (dirname(__FILE__) ) ), -14 ) );	
+	}	
+	
+} // end LIB
+
 /**
  * Check if Content is above Shadow root folder
  *
@@ -72,21 +113,32 @@
  * And useable. This looks for the content folder
  * @todo Add another file/folder to look for E.g. db.inc.php to prevent breakage
  */
- 	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/content' ) );
-
-
-/**
- *  Resolve the root path of website for increased reliability
- */
- 	# If shadow isn't root
- 	if( !IS_ROOT ) define( 'ROOT_URI', dirname(dirname(dirname(dirname(__FILE__)))) . '/' );
+	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/content' ) );
 	
-	else define( 'ROOT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
-	
+
+if( SHDW )
+{
 	/**
-	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+	 *  Resolve the root path of website for increased reliability
 	 */
-	  define( 'FRONT_PATH', ROOT_URI );
+		# If shadow isn't root
+		if( !IS_ROOT ) define( 'ROOT_URI', dirname(dirname(dirname(dirname(__FILE__)))) . '/' );
+		
+		else define( 'ROOT_URI', dirname(dirname(dirname(__FILE__))) . '/' );
+		
+		/**
+		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+		 */
+		  define( 'FRONT_PATH', ROOT_URI );
+		  
+} // end SHDW
+
+else{ // LIB
+	
+	define( 'ROOT_URI', dirname( dirname( dirname( dirname(__FILE__) ) ) ) . '/' );
+	
+} // end LIB
+	  
 
 /**
  * Define Core Path for accessing scripts not stored in PUBLIC_HTML
@@ -100,43 +152,54 @@
 	  define( 'CORE_PATH', CORE_URI );
 
 
+if( SHDW )
+{
+	/**
+	 * Load Shadow Config Settings
+	 * @todo make all of this functionality doable through the database and pilot
+	 */
+		# Include Pilot
+		if( !IS_ROOT && file_exists( ROOT_URI . 'pilot.php' ) ) 
+			require_once( ROOT_URI . 'pilot.php' );
+		
+		elseif( file_exists( CORE_URI . 'pilot.php' ) )
+			require_once( CORE_URI . 'pilot.php' );
+		
+		elseif( file_exists( ROOT_URI . 'pilot.php' ) )
+			require_once( ROOT_URI . 'pilot.php' );
+		
+		else
+		{
+			try 
+			{
+				throw new Exception("<h2>Please configure <code>pilot-sample.php</code> and rename to <code>pilot.php</code>. <br/><code>pilot.php</code> may rest above Shadow's root.</h2>");
+				
+			} // end try 
+			
+			catch( Exception $e ) 
+			{
+				echo $e->getMessage(); exit;
+				
+			} // end catch( Exception $e ) 
+			
+		} // end else
+		
+		
+		# Include App Settings
+		if( file_exists( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' ) )
+			require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
+		else
+			require_once( ROOT_URI . 'content/Apps/' . CURRENT_APP . '/app-settings.php' );
 
-/**
- * Load Shadow Config Settings
- * @todo make all of this functionality doable through the database and pilot
- */
- 	# Include Pilot
-	if( !IS_ROOT && file_exists( ROOT_URI . 'pilot.php' ) ) 
-		require_once( ROOT_URI . 'pilot.php' );
+} // end SHDW
+
+else{ // LIB
 	
-	elseif( file_exists( CORE_URI . 'pilot.php' ) )
-		require_once( CORE_URI . 'pilot.php' );
+	define( 'SYS_ALIAS', '' );
+	define( 'ENVIRONMENT', 'LIB' );
+	define( 'ADDON_DOMAIN', '' );
 	
-	elseif( file_exists( ROOT_URI . 'pilot.php' ) )
-		require_once( ROOT_URI . 'pilot.php' );
-	
-	else
-	{
-		try 
-		{
-			throw new Exception("<h2>Please configure <code>pilot-sample.php</code> and rename to <code>pilot.php</code>. <br/><code>pilot.php</code> may rest above Shadow's root.</h2>");
-			
-		} // end try 
-		
-		catch( Exception $e ) 
-		{
-			echo $e->getMessage(); exit;
-			
-		} // end catch( Exception $e ) 
-		
-	} // end else
-	
-	
-	# Include App Settings
-	if( file_exists( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' ) )
- 		require_once( ROOT_URI . 'content/apps/' . CURRENT_APP . '/app-settings.php' );
-	else
-		require_once( ROOT_URI . 'content/Apps/' . CURRENT_APP . '/app-settings.php' );
+} // end LIB
 	
 	
 if( SHDW )
@@ -196,23 +259,6 @@ if( SHDW )
 			  define( 'MYSQL', DB );
 			  
 	} // end SHDW
-			  
-		
-
-/**
- * Define Framework Name
- */
- 	define('FW_NAME', 'Shadow');
-
-	
-/**
- * Table Prefix
- */
- 	define('SYS_PREFIX', 'shdw-');
-
-	
-
-
 	
 /**
  * Set Root folder name:
@@ -234,7 +280,6 @@ if( SHDW )
 			define( 'ROOT_NAME', basename( ROOT_URI ) );
 	
 	} // end else
-	
 
 
 /**
@@ -310,12 +355,32 @@ if( SHDW )
 			  define( 'ROOTURL', ROOT_URL );
 			}
 			
-	} // end SHDW
+	} // end !WP
 	
 	elseif( WP )
 	{
 		define('ROOT_URL', get_theme_root_uri().'/'.ROOT_NAME.'/' );
 	}
+	
+	else // LIB
+	{
+		# Define Http/https
+			if( isset($_SERVER['HTTPS'] ) ) 
+				$http = 'https://';
+				
+			else
+				$http = 'http://';
+			
+			# Define ROOT URL	
+			$root_url = strtolower( $http . $_SERVER['HTTP_HOST'] . 
+				str_replace( 
+					str_replace( '\\', '/', $_SERVER['DOCUMENT_ROOT'] ), 
+						"", str_replace( '\\', '/', ROOT_URI ) ) );
+						
+		define('ROOT_URL', $root_url );
+	}
+	
+	
 
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
@@ -323,34 +388,56 @@ if( SHDW )
 	// The PHP file extension
 	// this global constant is deprecated.
 	define('EXT', '.php');
-
-	/**
-	 *  Resolve the system root path
-	 */
-		# If shadow isn't root
+	
+	if( !LIB )
+	{
+		/**
+		 *  Resolve the system root path
+		 */
+			# If shadow isn't root
+			define( 'SYS_URI', dirname(dirname(__FILE__)) . '/' );
+			
+			/**
+			 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
+			 */
+			  define( 'BASEPATH', SYS_URI );
+	}
+	
+	else // LIB
+	{
 		define( 'SYS_URI', dirname(dirname(__FILE__)) . '/' );
+		
+	}
+	
+	if( !LIB )
+	{
+		  
+		if( !IS_ROOT )
+		
+			// URL to the system folder
+			define('SYS_URL', ROOT_URL . 'Shadow/system/');
+			
+		
+			
+		else
+			// URL to the system folder
+			define('SYS_URL', ROOT_URL . 'system/');
 		
 		/**
 		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
-		  define( 'BASEPATH', SYS_URI );
-		  
-	if( !IS_ROOT )
+		  define( 'BASEURL', SYS_URL );
 	
-		// URL to the system folder
-		define('SYS_URL', ROOT_URL . 'Shadow/system/');
-		
+	} // end !LIB
 	
-		
-	else
-		// URL to the system folder
-		define('SYS_URL', ROOT_URL . 'system/');
+	else { // LIB
 	
-	/**
-	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
-	 */
-	  define( 'BASEURL', SYS_URL );
+		define('SYS_URL', ROOT_URL. LIB_NAME . '/system/');
 	
+	}
+
+if( SHDW )
+{
 	// Path to the application folder
 	# Check if Content directory is in Shadow's root
 	if( !IS_ROOT ) define( 'CONTENT_URI', ROOT_URI . 'content/');
@@ -362,13 +449,27 @@ if( SHDW )
 	 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 	 */
 	  define( 'CONTENT_PATH', CONTENT_URI );
+	  
+} // SHDW
+
+else
+{
+	define( 'CONTENT_URI', ROOT_URI.LIB_NAME . '/content/');		
+}
 	
+	
+if( SHDW )
+{
 	// URL to the system folder
 	if( !IS_ROOT )
 		define( 'CONTENT_URL', ROOT_URL . 'content/' );
 		
 	else
 		define( 'CONTENT_URL', ROOT_URL . 'content/' );
+}
+else{
+	define( 'CONTENT_URL', ROOT_URL.LIB_NAME. '/content/' );
+}
 	
 if( SHDW )
 {
@@ -457,7 +558,9 @@ if( WP )
 	 * @since 0.1.1 s8
 	 */
 		define( 'SYS_CLASS_URI', SYS_URI.'classes/' );
-		
+
+if( SHDW )
+{	
 	/**
 	 * Path to app classes folder
 	 * @since 0.1.1 s8
@@ -473,6 +576,8 @@ if( WP )
 		# Set as root application directory
 		else
 			define( 'APP_CLASS_URI', APP_URI );
+			
+} // end SHDW
  
  
  	/**
@@ -493,6 +598,8 @@ if( WP )
 			 */
 				define('BASE_INCLUDE_URI', BASE_INC_URI );
 	
+if( SHDW )
+{
 	/**
 	 * Path to application include folder
 	 */
@@ -518,6 +625,15 @@ if( WP )
 		 * @depreciated 0.1.1 s7 No longer used by internal code and not recommended. Support till 6/18/2014
 		 */
 			define('APP_INCLUDE_URI', APP_INC_URI );
+
+} // end SHDW
+
+else // LIB
+{
+	define( 'APP_INC_URI', NULL );
+	
+} // end LIB
+
 			
 	
 	/**
@@ -540,7 +656,8 @@ if( WP )
 				define('BASE_PAGE_URI', SYS_VIEWS_URI );
 		
 		
-	
+if( SHDW )
+{
 	/**
 	 * URL to application page folder
 	 */
@@ -575,6 +692,8 @@ if( WP )
 	 */
 		define( 'APP_VIEWS_URI', APP_PAGE_URI );
 		
+} // end SHDW
+		
 	
 /*
  * -------------------------------------------------------------------
@@ -588,6 +707,8 @@ if( WP )
 	define('BASE_STYLE_URL', SYS_URL.'assets/css/');
 	
 	
+if( SHDW )
+{	
 	# Check if assets/css directory exists and define
 	if( is_dir( APP_URI.'assets/css/' ) )
 	{
@@ -675,6 +796,8 @@ if( WP )
 		define( 'APP_STYLE_URL', APP_URL );
 		
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
+
+} // end SHDW
 	
 	// Path to system less Folder
 	define('BASE_LESS_URI', SYS_URI.'assets/less/');
@@ -683,6 +806,8 @@ if( WP )
 	define('BASE_LESS_URL', SYS_URL.'assets/less/');
 	
 	
+if( SHDW )
+{
 	# Check if assets/less directory exists and define
 	if( is_dir( APP_URI.'assets/less/' ) )
 	{
@@ -716,6 +841,8 @@ if( WP )
 		
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
+} // end SHDW
+	
 
 	/**
 	 * Path to system javascript Folder
@@ -741,7 +868,8 @@ if( WP )
 		 */
 			define( 'BASE_JS_URL', SYS_JS_URI );
 	
-	
+if( SHDW )
+{	
 	# Check if javascript directory exists and define
 	if( is_dir( APP_URI.'assets/js/' ) )
 	{
@@ -830,6 +958,7 @@ if( WP )
 		
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
+} // end SHDW
 	
 	/**
 	 * URL to system image folder
@@ -853,7 +982,8 @@ if( WP )
 		 */
 			define( 'BASE_IMG_URL', SYS_IMG_URL );
 	
-	
+if( SHDW )
+{	
 	# Check if img directory exists and define
 	if( is_dir( APP_URI.'assets/img/' ) )
 	{
@@ -986,6 +1116,8 @@ if( WP )
 		
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
+} // end SHDW
+	
 	
 /**
  * Path to system pilot folder
@@ -1012,18 +1144,21 @@ if( WP )
  */
 	define( 'SYS_FUNCTIONS_URL', SYS_URL.'functions/' );
 	
-	
-/**
- * Path to application functions folder
- * @since 0.1.1 s8
- */
-	define( 'APP_FUNCTIONS_URI', SYS_URI.'functions/' );
-	
-/**
- * URL to application functions folder
- * @since 0.1.1 s8
- */
-	define( 'APP_FUNCTIONS_URL', SYS_URL.'functions/' );
+if( SHDW )
+{
+	/**
+	 * Path to application functions folder
+	 * @since 0.1.1 s8
+	 */
+		define( 'APP_FUNCTIONS_URI', APP_URI.'functions/' );
+		
+	/**
+	 * URL to application functions folder
+	 * @since 0.1.1 s8
+	 */
+		define( 'APP_FUNCTIONS_URL', APP_URL.'functions/' );
+
+} // end SHDW
 		
 		
 	
@@ -1126,11 +1261,7 @@ else
 	include_once SYS_CLASS_URI . 'class.File.inc.php'; 
 	include_once SYS_CLASS_URI . 'class.Maintenance.inc.php'; 
 	include_once SYS_CLASS_URI . 'class.Page.inc.php'; 
-}
-	
-
-//spl_autoload_register( 'class_loader' );
-	
+}	
 
 # ***** LOAD CLASSES ***** #
 # ************************ #
@@ -1327,6 +1458,9 @@ if( file_exists( BRIDGE_URI.'subscribe_to_newsletter/bridge.php' ) )
 
 		# Mismatched Password & Confirm
 		define( 'ERR_MM_PASS', 'Your passwords aren&rsquo;t the same. Please try again.' );
+		
+		# Mismatched Password & Confirm
+		define( 'ERR_MM_VALUE', 'The value you entered is incorrect. Please try again.' );
 		
 		# Mismatched Password & Login
 		define( 'ERR_MM_LOGIN', '<div class="alert alert-danger"> <strong>Incorrect Username/Email and Password combination.</strong> Please try again. Note ' . SITE_NAME . ' passwords are case sensitive. Please check your CAPS lock key.</div>' );

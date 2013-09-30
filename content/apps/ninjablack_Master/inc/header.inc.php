@@ -48,8 +48,9 @@
 </head>	
 
 <body>
-<div class="wrapper">
 <?php get_pilot(); ?>
+
+<div class="wrapper">
 <a class="drop-nav-trigger" onClick="toggle_visibility('drop-nav')"></a>
 <nav class="actionbar pam">
 	<div class="row">

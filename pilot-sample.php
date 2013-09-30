@@ -60,8 +60,11 @@
  * Paths & Environments
  */
  
+# Define absolute url
+$domain  = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 # Establish development settings
-if( $_SERVER['HTTP_HOST'] == LOCAL_DOMAIN )
+if( strstr($domain, LOCAL_DOMAIN ) )
 {	
 	# Set development Environment
 	define( 'ENVIRONMENT', 'development' );
@@ -80,7 +83,7 @@ if( $_SERVER['HTTP_HOST'] == LOCAL_DOMAIN )
 }
 
 # Establish stage/testing settings
-elseif( $_SERVER['HTTP_HOST'] == TESTING_DOMAIN || $_SERVER['HTTP_HOST'] == 'www'.TESTING_DOMAIN )
+elseif( strstr($domain, TEST_DOMAIN ) )
 {
 	# Set staging Environment
 	define( 'ENVIRONMENT', 'stage' );
@@ -97,7 +100,7 @@ elseif( $_SERVER['HTTP_HOST'] == TESTING_DOMAIN || $_SERVER['HTTP_HOST'] == 'www
 }
 
 # Define Production Settings
-elseif( $_SERVER['HTTP_HOST'] == LIVE_DOMAIN || $_SERVER['HTTP_HOST'] == 'www'.LIVE_DOMAIN )
+elseif( strstr($domain, LIVE_DOMAIN ) )
 {	
 	# The production environment
 	define( 'ENVIRONMENT', 'production' );

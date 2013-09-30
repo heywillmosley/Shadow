@@ -1579,7 +1579,7 @@ input[type="text"] { .box-shadow(0 0 0 rgba(0,0,0,.1)) !important; }
 .button { .box-shadow(0 0 0 rgba(0,0,0,.1)) !important; .rounded; }
 .search input.button, .search button.button { padding-top: 1px; }
 input[type="text"] { 
-	height: 33px !important;
+	height: 33px;
 	.font-size(14);
 }
 .alert-box { 
@@ -1818,8 +1818,14 @@ div.scrollingHotSpotRightVisible
 
 
 input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
-	height: 33px!important;
+	height: 33px;
 	.font-size(14);
+}
+
+input[type="text"].input-lg, input[type="password"].input-lg, input[type="date"].input-lg, input[type="datetime"].input-lg, input[type="datetime-local"].input-lg, input[type="month"].input-lg, input[type="week"].input-lg, input[type="email"].input-lg, input[type="number"].input-lg, input[type="search"].input-lg, input[type="tel"].input-lg, input[type="time"], input[type="url"].input-lg, textarea.input-lg{
+	height: 45px;
+	padding: 10px 16px;
+	font-size: 18px;
 }
 
 .reveal-modal-bg{

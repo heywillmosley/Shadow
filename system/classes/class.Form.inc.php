@@ -61,7 +61,6 @@ class Form
 	 */
 		function __construct( $id = 'form-formula', $class = '', $method = 'POST', $action = '#', $role = NULL )
 		{
-			echo $role;
 			$this->form_id = 'form-'.$id;
 			$this->form_method = $method;
 			$this->form_action = $action;
@@ -94,7 +93,7 @@ class Form
 			if( $action != FALSE )
 				$this->form_action = $action;
 
-			echo "<form id='$this->form_token $id' class='$this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
+			echo "<form id='$this->form_id' class='$this->form_token $this->form_id $this->form_class $class' method='$this->form_method' action='$this->form_action' role='$role' style = 'padding: 20px'>";
 
 			echo "<input type='hidden' name='$this->form_id-issubmitted' />";
 		}
@@ -325,10 +324,9 @@ class Form
 								
 								if( !empty( $msg ) ) $errors[$name] = $msg;
 								else 
-								{
 									$errors[$name] = 'This field is required. Please enter a value.';
-									break 2;
-								}
+									
+								break 2;
 							break;
 							
 						case 'val_email':
@@ -430,6 +428,20 @@ class Form
 									$errors[$name] = ERR_INVALID_PASS;
 									break 2;
 								}
+							}
+							break;
+							
+						case 'val_match':
+							
+							if( $_POST[$name] == $msg['match'] )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !array_key_exists('message', $msg ) )
+									$errors[$name] = ERR_MM_VALUE;
+								else
+									$errors[$name] = $msg['message'];
+									break 2;
 							}
 							break;
 							
