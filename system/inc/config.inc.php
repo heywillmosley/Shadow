@@ -40,7 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '1.2.2');
+	define('SYS_VER', '1.2.3');
 	
 	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
 	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
@@ -72,7 +72,10 @@
  * @since 0.1 s9
  */
 	if( substr( dirname( dirname( dirname (dirname (dirname(__FILE__) ) ) ) ), -10 ) == 'wp-content')
+	{
 		define( 'WP', TRUE );
+		define( 'SITE_NAME', get_bloginfo('name') );
+	}
 	else
 		define( 'WP', FALSE );
 		
@@ -108,7 +111,6 @@ if( LIB )
  * @todo Add another file/folder to look for E.g. db.inc.php to prevent breakage
  */
 	define( 'IS_ROOT', !is_dir( dirname( dirname (dirname (dirname(__FILE__) ) ) ) . '/content' ) );
-	
 	
 
 if( SHDW )
@@ -1256,11 +1258,7 @@ else
 	include_once SYS_CLASS_URI . 'class.File.inc.php'; 
 	include_once SYS_CLASS_URI . 'class.Maintenance.inc.php'; 
 	include_once SYS_CLASS_URI . 'class.Page.inc.php'; 
-}
-	
-
-//spl_autoload_register( 'class_loader' );
-	
+}	
 
 # ***** LOAD CLASSES ***** #
 # ************************ #
