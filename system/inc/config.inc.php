@@ -40,10 +40,13 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '1.2.3');
+	define('SYS_VER', '1.2.3.1');
+
+	$release =  str_replace( '-alpha', '', str_replace( '-beta', '', str_replace( '.', '', substr(SYS_VER, 0, strrpos(SYS_VER, '.') ) ) ) );
+	$sprint = substr(SYS_VER, strrpos(SYS_VER, '.') + 0);
 	
-	# Numeric - strip dots and characters E.g. 1.1.2 s6 to 112.6
-	define('NUM_SYS_VER', str_replace( ' ', '', str_replace( 'b', '', str_replace( 's', '.', str_replace( '.', '', SYS_VER ) ) ) ) );
+	# Numeric version
+	define('NUM_SYS_VER', $release.$sprint );
 	
 	/**
 	 * Define Framework Name
@@ -1455,6 +1458,9 @@ if( file_exists( BRIDGE_URI.'subscribe_to_newsletter/bridge.php' ) )
 
 		# Mismatched Password & Confirm
 		define( 'ERR_MM_PASS', 'Your passwords aren&rsquo;t the same. Please try again.' );
+		
+		# Mismatched Password & Confirm
+		define( 'ERR_MM_VALUE', 'The value you entered is incorrect. Please try again.' );
 		
 		# Mismatched Password & Login
 		define( 'ERR_MM_LOGIN', '<div class="alert alert-danger"> <strong>Incorrect Username/Email and Password combination.</strong> Please try again. Note ' . SITE_NAME . ' passwords are case sensitive. Please check your CAPS lock key.</div>' );

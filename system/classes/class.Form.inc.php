@@ -324,10 +324,9 @@ class Form
 								
 								if( !empty( $msg ) ) $errors[$name] = $msg;
 								else 
-								{
 									$errors[$name] = 'This field is required. Please enter a value.';
-									break 2;
-								}
+									
+								break 2;
 							break;
 							
 						case 'val_email':
@@ -429,6 +428,20 @@ class Form
 									$errors[$name] = ERR_INVALID_PASS;
 									break 2;
 								}
+							}
+							break;
+							
+						case 'val_match':
+							
+							if( $_POST[$name] == $msg['match'] )
+								$this->_cleanQuery( $_POST[$name] );
+							else
+							{
+								if( !array_key_exists('message', $msg ) )
+									$errors[$name] = ERR_MM_VALUE;
+								else
+									$errors[$name] = $msg['message'];
+									break 2;
 							}
 							break;
 							
