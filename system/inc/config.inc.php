@@ -78,6 +78,8 @@
 	{
 		define( 'WP', TRUE );
 		define( 'SITE_NAME', get_bloginfo('name') );
+		define( 'USE_GOOGLE_FONTS', FALSE );
+		define( 'GOOGLE_FONTS', FALSE );
 	}
 	else
 		define( 'WP', FALSE );
@@ -132,7 +134,10 @@ if( SHDW )
 		  define( 'FRONT_PATH', ROOT_URI );
 		  
 } // end SHDW
-
+elseif( WP )
+{
+	define( 'ROOT_URI', dirname( dirname( dirname(__FILE__) ) ) ) . '/';
+}
 else{ // LIB
 	
 	define( 'ROOT_URI', dirname( dirname( dirname( dirname(__FILE__) ) ) ) . '/' );
@@ -282,6 +287,7 @@ if( SHDW )
 	} // end else
 
 
+
 /**
  *  Resolve the front url for increased reliability
  */
@@ -379,8 +385,6 @@ if( SHDW )
 						
 		define('ROOT_URL', $root_url );
 	}
-	
-	
 
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
@@ -559,7 +563,7 @@ if( WP )
 	 */
 		define( 'SYS_CLASS_URI', SYS_URI.'classes/' );
 
-if( SHDW )
+if( SHDW || WP )
 {	
 	/**
 	 * Path to app classes folder
@@ -598,7 +602,7 @@ if( SHDW )
 			 */
 				define('BASE_INCLUDE_URI', BASE_INC_URI );
 	
-if( SHDW )
+if( SHDW || WP )
 {
 	/**
 	 * Path to application include folder
@@ -656,7 +660,7 @@ else // LIB
 				define('BASE_PAGE_URI', SYS_VIEWS_URI );
 		
 		
-if( SHDW )
+if( SHDW || WP )
 {
 	/**
 	 * URL to application page folder
@@ -707,7 +711,7 @@ if( SHDW )
 	define('BASE_STYLE_URL', SYS_URL.'assets/css/');
 	
 	
-if( SHDW )
+if( SHDW || WP )
 {	
 	# Check if assets/css directory exists and define
 	if( is_dir( APP_URI.'assets/css/' ) )
@@ -806,7 +810,7 @@ if( SHDW )
 	define('BASE_LESS_URL', SYS_URL.'assets/less/');
 	
 	
-if( SHDW )
+if( SHDW || WP )
 {
 	# Check if assets/less directory exists and define
 	if( is_dir( APP_URI.'assets/less/' ) )
@@ -868,7 +872,7 @@ if( SHDW )
 		 */
 			define( 'BASE_JS_URL', SYS_JS_URI );
 	
-if( SHDW )
+if( SHDW || WP )
 {	
 	# Check if javascript directory exists and define
 	if( is_dir( APP_URI.'assets/js/' ) )
@@ -982,7 +986,7 @@ if( SHDW )
 		 */
 			define( 'BASE_IMG_URL', SYS_IMG_URL );
 	
-if( SHDW )
+if( SHDW || WP )
 {	
 	# Check if img directory exists and define
 	if( is_dir( APP_URI.'assets/img/' ) )

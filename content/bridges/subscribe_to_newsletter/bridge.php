@@ -91,13 +91,7 @@ if( !$form->isSubmitted() || !$firstName['v'] || !$lastName['v'] || !$email['v']
                 <?php endif; ?>
             </div><!-- end col-4 -->
             <div class="col-xs-9 pls prn">
-<<<<<<< HEAD
-            	<p>Join our mailing list to receive future promotions and updates from SafeCareRx.</p>
-||||||| merged common ancestors
-            	<p>Join our mailing list to receive future promotions and updates from (company name).</p>
-=======
             	<p>Join our mailing list to receive future promotions and updates from King Bio.</p>
->>>>>>> 777982be184790010de41bc0476a7b534adee9bd
             </div><!-- end col-xs-8 -->
         </div><!-- end row -->
 		<div class="caption">All fields are required.</div>
