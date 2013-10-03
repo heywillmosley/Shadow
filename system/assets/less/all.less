@@ -1,3 +1,128 @@
+<<<<<<< HEAD
+// Load Foundation & Bootstrap
+@import url("vendor/custom.bootstrap.less");
+@import url("vendor/custom.foundation.less");
+
+
+html{
+	font-size: 62.5%;	
+}
+
+.font-size(@font-size: 16){
+@rem: (@font-size / 10);
+font-size : @font-size * 1px;
+font-size : ~"@{rem}rem"; }
+
+body {
+    background: @white;
+    font-size:14px;
+    line-height: 1; 
+    color: #333;
+    position: relative; 
+    -webkit-font-smoothing: antialiased; 
+    height: 100%;
+}
+
+@media only screen and (min-width: 940px) {
+	.top-bar { // Global Navigation
+		 background-color: @topbarBackground;  
+		 overflow:hidden; 
+		 #top-bar-section {
+			display: block !important; 
+		 }
+	} // end top-bar
+}
+
+
+
+// Variables and mixins
+@import url("variables.less");
+@import url("mixins.less");
+
+// Elements
+@import url("elements/pilot.less");
+@import url("elements/graph.less");
+@import url("elements/sidebar.less");
+@import url("elements/specs.less");
+@import url("elements/item.less");
+@import url("elements/feature.less");
+@import url("elements/cart.less");
+@import url("elements/story.less");
+@import url("elements/dialogue.less");
+@import url("elements/background-cover.less");
+
+
+// 320andup
+//  10. MEDIA QUERIES         ==============================
+@media print {
+@import "print.less";
+}
+
+@import "global.less";
+
+||||||| merged common ancestors
+// Load Foundation & Bootstrap
+@import url("vendor/custom.bootstrap.less");
+@import url("vendor/custom.foundation.less");
+
+
+html{
+	font-size: 62.5%;	
+}
+
+.font-size(@font-size: 16){
+@rem: (@font-size / 10);
+font-size : @font-size * 1px;
+font-size : ~"@{rem}rem"; }
+
+body {
+    background: @white;
+    font-size:14px;
+    line-height: 1; 
+    color: #333;
+    position: relative; 
+    -webkit-font-smoothing: antialiased; 
+    height: 100%;
+}
+
+@media only screen and (min-width: 940px) {
+	.top-bar { // Global Navigation
+		 background-color: @topbarBackground;  
+		 overflow:hidden; 
+		 #top-bar-section {
+			display: block !important; 
+		 }
+	} // end top-bar
+}
+
+
+
+// Variables and mixins
+@import url("variables.less");
+@import url("mixins.less");
+
+// Elements
+@import url("elements/pilot.less");
+@import url("elements/graph.less");
+@import url("elements/sidebar.less");
+@import url("elements/specs.less");
+@import url("elements/item.less");
+@import url("elements/feature.less");
+@import url("elements/cart.less");
+@import url("elements/story.less");
+@import url("elements/dialogue.less");
+@import url("elements/background-cover.less");
+
+
+// 320andup
+//  10. MEDIA QUERIES         ==============================
+@media print {
+@import "print.less";
+}
+
+@import "global.less";
+
+=======
 // Load Foundation & Bootstrap
 @import url("vendor/custom.bootstrap.less");
 @import url("vendor/custom.foundation.less");
@@ -59,3 +184,4 @@ body {
 
 @import "global.less";
 
+>>>>>>> 68cffd482e6f82c57b0ed5ecd949ca55e875eaad
