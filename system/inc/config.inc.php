@@ -1615,5 +1615,4 @@ if( SHDW )
 # ***** LOGIN TIME ***** #
 # ***********************#
 
-# Prevents direct script access
 //if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}
