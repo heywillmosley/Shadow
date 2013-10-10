@@ -347,22 +347,6 @@ exit;
 					}
 					elseif( $type == 'inline' )
 					{ ?>
-						<style>
-							.form-inline{
-								margin: 0;	
-							}
-							.form-inline input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
-								display: inline-block;	
-								height: 28px !important; 
-								margin-bottom: 0;
-							}
-							.form-inline .btn{
-								height: 28px;	
-								line-height: 0.4;
-								margin-top: -2px;
-							
-							}
-						</style>
 						<?php $this->form->openForm( 'form-inline mxw600 pan', '', FALSE, 'form' ); ?>
 							<h3 class="mbt pull-left sr-only">Sign in</h3>
 							<h3 class="pull-right sr-only"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
