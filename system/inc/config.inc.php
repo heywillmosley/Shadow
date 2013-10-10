@@ -1247,12 +1247,12 @@ if( !WP )
 {
 	/**
 	 * Loads all system classes in system inc folder
-	 */
+	 */		
 		function __autoload($class_name) 
 		{
     		include_once SYS_CLASS_URI . 'class.' . $class_name . '.inc.php';
-			
-		} // end __autoload
+		}
+
 }
 else
 {
@@ -1615,5 +1615,4 @@ if( SHDW )
 # ***** LOGIN TIME ***** #
 # ***********************#
 
-# Prevents direct script access
 //if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}

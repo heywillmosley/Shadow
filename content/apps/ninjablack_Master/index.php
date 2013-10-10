@@ -63,8 +63,6 @@ app_header(); ?>
         </div><!-- end feature-image -->
     </div><!-- end feature -->
 </div><!-- end feature-container -->
-
 <?php 
 # includes footer.php
 app_footer();
-
