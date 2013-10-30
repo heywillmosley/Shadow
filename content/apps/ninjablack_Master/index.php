@@ -66,4 +66,3 @@ app_header(); ?>
 <?php 
 # includes footer.php
 app_footer();
-

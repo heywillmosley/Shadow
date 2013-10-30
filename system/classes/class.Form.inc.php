@@ -27,7 +27,7 @@
  */
 class Form
 {
-	protected $_elements = array();
+  protected $_elements = array();
 	protected $_validation = array();
 	protected $_prefix = "http";
 	protected $_values = array();
@@ -482,7 +482,7 @@ class Form
 				if( $type == 'text' || $type == 'textbox' || $type == 'password' || $type == 'email' )
 				{
 					# Begin creating the input
-					$element = "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
+					$element = "<input type='$type' name='$name' id='$name' placeholder='$placeholder' value='";
 					
 					# Set value of $name if it's set ( using $_POST , $_GET or $value
 
@@ -510,7 +510,7 @@ class Form
 				if( $type == 'textarea' )
 				{
 					# Begin creating the input
-					$element = "<textarea type='$type' name='$name' id='$name $id' placeholder='$placeholder"; 
+					$element = "<textarea type='$type' name='$name' id='$name' placeholder='$placeholder"; 
 				
 					# Set the class
 					$element .= "' class='$name $class ";
@@ -539,7 +539,7 @@ class Form
 				if( $type == 'submit' || $type == 'button' || $type == 'btn' )
 				{
 					# Begin creating the input
-					$element = "<input type='$type' name='$name' id='$name $id' placeholder='$placeholder' value='";
+					$element = "<input type='$type' name='$name' id='$name' value='";
 					
 					# Set value of $name if it's set ( using $_POST , $_GET or $value
 					if( $value != '' || $value != FALSE || $value != NULL )  $element .= $value;
@@ -910,6 +910,7 @@ class Form
 	 *
 	 * @package        Shadow   
 	 * @author         Super Amazing
+
 	 * @since          Version 0.1.1 s5
 	 * @param          string url
 	 * @return         boolean

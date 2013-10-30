@@ -477,4 +477,3 @@ function login_check( $db )
 	} // else
 	
 } // end login_check
-
