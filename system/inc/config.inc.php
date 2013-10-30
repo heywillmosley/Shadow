@@ -40,7 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '1.2.4.1');
+	define('SYS_VER', '1.2.5');
 
 	$release =  str_replace( '-alpha', '', str_replace( '-beta', '', str_replace( '.', '', substr(SYS_VER, 0, strrpos(SYS_VER, '.') ) ) ) );
 	$sprint = substr(SYS_VER, strrpos(SYS_VER, '.') + 0);
@@ -1615,4 +1615,5 @@ if( SHDW )
 # ***** LOGIN TIME ***** #
 # ***********************#
 
+# Prevents direct script access
 //if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}
