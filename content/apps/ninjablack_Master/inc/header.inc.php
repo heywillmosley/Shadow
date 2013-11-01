@@ -41,31 +41,140 @@
     
     <?php shdw_header(); ?>
     <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
+<style>
 
+.wrapper{
+	position: relative;	
+}
+
+.journey-bar {
+	position: absolute !important;
+	top: 0;
+	z-index: 1;
+}
+
+.journey-top-bar {
+	position: absolute !important;
+	top: 58px;
+	z-index: 1;
+	width: 100%;
+	height: 40px;
+}
+
+#journey-nav-expanded{
+	position: absolute !important;
+}
+
+#journey-nav-expanded.sticky{
+	position: fixed !important;
+	top: 58px;
+	z-index: 9999;
+}
+
+.sticky {
+	position: fixed !important;
+	width: 100%;
+	left: 0;
+	z-index: 100;
+	border-top: 0;
+}
+
+.journey-bar.sticky{
+	margin-left: 0 !important;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// grab the initial top offset of the journey-barigation 
+		   	var stickyNavTop = $('.journey-bar').offset().top;
+		   	
+		   	// our function that decides weather the journey-barigation bar should have "fixed" css position or not.
+		   	var stickyNav = function(){
+			    var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+			         
+			    // if we've scrolled more than the journey-barigation, change its position to fixed to stick to top,
+			    // otherwise change it back to relative
+			    if (scrollTop > stickyNavTop) { 
+			        $('.journey-bar').addClass('sticky');
+			    } else {
+			        $('.journey-bar').removeClass('sticky'); 
+			    }
+				
+				if (scrollTop > stickyNavTop) { 
+			        $('.journey-top-bar').addClass('sticky');
+			    } else {
+			        $('.journey-top-bar').removeClass('sticky'); 
+			    }
+				
+				if (scrollTop > stickyNavTop) { 
+			        $('#journey-nav-expanded').addClass('sticky');
+			    } else {
+			        $('#journey-nav-expanded').removeClass('sticky'); 
+			    }
+			};
+
+			stickyNav();
+			// and run it again every time you scroll
+			$(window).scroll(function() {
+				stickyNav();
+			});
+		});
+	</script>
 </head>	
 
 <body>
-<?php get_pilot(); ?>
 
+<?php get_pilot(); ?>
+<div class="relative">
+<nav id="journey-nav-expanded" class="visible-md-up">
+	<ul class="journey-nav-expanded-main ptn mtn">
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+    </ul>
+    <div class="journey-heading">Section Heading</div>
+    <ul>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+    </ul>
+</nav><!-- end journey-left-nav-expanded -->
+ 
 <div class="wrapper">
-<a class="drop-nav-trigger" onClick="toggle_visibility('drop-nav')"></a>
-<nav class="actionbar pam">
-	<div class="row">
-        <div class="pull-left">
-            <a class="logo" href="<?php echo SITE_URL; ?>"><?php echo SITE_NAME; ?></a>
-        </div>
-        <div class="pull-right">
-        	<div class="visible-md visible-lg visible-xl">
-            	<?php login_form( 'inline' ); ?> 
-           	</div>
-            <div class="visible-xs visible-sm">
-            	<?php if( !is_logged_in() ) : ?>
-                    <a class="btn btn-primary" href="<?php SITE_URL; ?>admin/login">Login</a>
-                <?php endif; ?>
-            </div>
-            <?php if( is_logged_in() ) : ?>
-            	<a class="btn btn-default" href="<?php SITE_URL; ?>admin/logout">Logout</a>
-           	<?php endif; ?>
-        </div>
-    </div><!-- end row -->
-</nav><!-- end action-bar -->
+	<div class="journey">
+        <header>
+        	<ul class="journey-bar">
+            	<li class="journey-nav-expanded-open">
+                	<a href="#journey-nav-expanded">
+                    	<img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                   	</a>
+              	</li>
+                <li class="journey-nav-expanded-close">
+                	<a href="#">
+                    	<img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                   	</a>
+              	</li>
+                <li>
+                	<a href="<?php echo SITE_URL; ?>">
+                		<div class="journey-icon-text"><?php get_site_initial(); ?></div>
+                        <div class="journey-wordmark"><?php get_site_name(); ?></div>
+                    </a>
+                </li>
+                <li class="pull-right journey-no-hover"><?php login_form('responsive-inline'); ?></li>
+            </ul><!-- end journey-bar -->
+            <ul class="journey-top-bar">
+            	<li class="journey-tab-text">
+                	<?php if( SITE_NAME == the_page_title() ) echo 'Home'; else get_page_title(); ?>
+               	</li>
+            </ul><!-- end journey-top-bar -->
+        </header>
+        
+        <div class="journey-content-container">
+
+    
+    
