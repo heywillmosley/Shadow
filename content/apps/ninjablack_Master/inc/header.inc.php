@@ -45,27 +45,56 @@
 </head>	
 
 <body>
-<?php get_pilot(); ?>
 
+<?php get_pilot(); ?>
+<div class="relative">
+<nav id="journey-nav-expanded" class="visible-md-up">
+	<ul class="journey-nav-expanded-main ptn mtn">
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+    </ul>
+    <div class="journey-heading">Section Heading</div>
+    <ul>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+    </ul>
+</nav><!-- end journey-left-nav-expanded -->
+ 
 <div class="wrapper">
-<a class="drop-nav-trigger" onClick="toggle_visibility('drop-nav')"></a>
-<nav class="actionbar pam">
-	<div class="row">
-        <div class="pull-left">
-            <a class="logo" href="<?php echo SITE_URL; ?>"><?php echo SITE_NAME; ?></a>
-        </div>
-        <div class="pull-right">
-        	<div class="visible-md visible-lg visible-xl">
-            	<?php login_form( 'inline' ); ?> 
-           	</div>
-            <div class="visible-xs visible-sm">
-            	<?php if( !is_logged_in() ) : ?>
-                    <a class="btn btn-primary" href="<?php SITE_URL; ?>admin/login">Login</a>
-                <?php endif; ?>
-            </div>
-            <?php if( is_logged_in() ) : ?>
-            	<a class="btn btn-default" href="<?php SITE_URL; ?>admin/logout">Logout</a>
-           	<?php endif; ?>
-        </div>
-    </div><!-- end row -->
-</nav><!-- end action-bar -->
+	<div class="journey">
+        <header>
+        	<ul class="journey-bar">
+            	<li class="journey-nav-expanded-open">
+                	<a href="#journey-nav-expanded">
+                    	<img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                   	</a>
+              	</li>
+                <li class="journey-nav-expanded-close">
+                	<a href="#">
+                    	<img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                   	</a>
+              	</li>
+                <li>
+                	<a href="<?php echo SITE_URL; ?>">
+                		<div class="journey-icon-text"><?php get_site_initial(); ?></div>
+                        <div class="journey-wordmark"><?php get_site_name(); ?></div>
+                    </a>
+                </li>
+                <li class="pull-right journey-no-hover"><?php login_form('responsive-inline'); ?></li>
+            </ul><!-- end journey-bar -->
+            <ul class="journey-top-bar">
+            	<li class="journey-tab-text">
+                	<?php if( SITE_NAME == the_page_title() ) echo 'Home'; else get_page_title(); ?>
+               	</li>
+            </ul><!-- end journey-top-bar -->
+        </header>
+        
+        <div class="journey-content-container">
+
+    
+    
