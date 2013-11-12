@@ -19,6 +19,5 @@
 // --------------------------------------------------------------------------------?>
 
 <?php app_header(); ?>
-<h1>404 Error page</h1>
-<p>We're sorry. We couldn't find that page.</p>
+<p class="pam">We're sorry. We couldn't find that page.</p>
 <?php app_footer(); ?>

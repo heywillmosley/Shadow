@@ -3003,7 +3003,7 @@ if( SHDW )
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '1.2.4.1');
+	define('SYS_VER', '1.3.1.2');
 
 	$release =  str_replace( '-alpha', '', str_replace( '-beta', '', str_replace( '.', '', substr(SYS_VER, 0, strrpos(SYS_VER, '.') ) ) ) );
 	$sprint = substr(SYS_VER, strrpos(SYS_VER, '.') + 0);
@@ -4500,6 +4500,10 @@ if( SHDW )
 	catch(PDOException $e) {  
 		exceptionHandler( $e ); 
 	} 
+	
+	# Set default timezone to UTC
+	date_default_timezone_set('UTC');
+	
 } // end SHDW
 
 # One Second

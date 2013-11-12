@@ -347,23 +347,34 @@ exit;
 					}
 					elseif( $type == 'inline' )
 					{ ?>
-						<style>
-							.form-inline{
-								margin: 0;	
-							}
-							.form-inline input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
-								display: inline-block;	
-								height: 28px !important; 
-								margin-bottom: 0;
-							}
-							.form-inline .btn{
-								height: 28px;	
-								line-height: 0.4;
-								margin-top: -2px;
-							
-							}
-						</style>
 						<?php $this->form->openForm( 'form-inline mxw600 pan', '', FALSE, 'form' ); ?>
+							<h3 class="mbt pull-left sr-only">Sign in</h3>
+							<h3 class="pull-right sr-only"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
+							<?php if( isset( $this->login_errors['mm_credentials'] ) ) 
+								echo $this->login_errors['mm_credentials']; ?>
+							<div class="form-group">
+								<div class="mxw150 ilb">
+									<?= $this->uoe['e']; ?>
+								</div>
+								<div class="mxw150 ilb">
+									<?= $this->pass['e']; ?>
+								</div>
+								<?php
+									# Catcha Element after 7 invalid attempts
+									if( defined( 'CATCHA' ) )
+										echo recaptcha_get_html($this->publickey);
+								?>
+								<?= $this->submit['e']; ?>
+							</div><!-- end form-group -->
+						<?php $this->form->closeForm(); ?>
+						
+					<?php }
+					
+					elseif( $type == 'responsive-inline' )
+					{ ?>
+                    	<a href="<?php echo SITE_URL; ?>admin/login" class="btn btn-primary visible-xs">Login</a>
+						<?php 
+						$this->form->openForm( 'form-inline mxw600 pan hidden-xs', '', FALSE, 'form' ); ?>
 							<h3 class="mbt pull-left sr-only">Sign in</h3>
 							<h3 class="pull-right sr-only"><small class="text-muted txtR"><?php echo SITE_NAME; ?></small></h3>
 							<?php if( isset( $this->login_errors['mm_credentials'] ) ) 
@@ -750,5 +761,53 @@ LOG;
 
 		}
 	}
+	
+	/**
+	 * This method returns the site name
+	 *
+	 * @since 1.3.0
+	 * @return string
+	 */
+	 	function theSiteName()
+		{
+			return SITE_NAME;
+				
+		} // end method the_site_name()
+		
+	/**
+	 * This method echos the site name
+	 *
+	 * @since 1.3.0
+	 * @return string
+	 */
+	 	function getSiteName()
+		{
+			echo  $this->theSiteName();
+				
+		} // end method the_site_name()
+		
+	/**
+	 * This method returns the site's first initial
+	 *
+	 * @since 1.3.0
+	 * @return string
+	 */
+	 	function theSiteInitial()
+		{
+			return substr( SITE_NAME, 0, 1 );
+				
+		} // end method the_site_initial()
+		
+	/**
+	 * This method echos the site's first initial
+	 *
+	 * @since 1.3.0
+	 * @return string
+	 */
+	 	function getSiteInitial()
+		{
+			echo $this->theSiteInitial();
+				
+		} // end method the_site_initial()
  
-} // end ClassName
+} // end Admin

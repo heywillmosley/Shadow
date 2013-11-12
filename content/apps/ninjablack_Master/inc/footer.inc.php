@@ -18,14 +18,16 @@
  
 // --------------------------------------------------------------------------------?>
 
-<div class="footer row">
-	<div class="left">&copy; <?php echo '2013 ' . SITE_NAME; ?></div>
-    <div class="right">
-    	<a href="#" class="txt_wht">&uarr; Back to the Top</a>
-    </div>
-</div>
+        <div class="footer row">
+            <div class="left">&copy; <?php echo '2013 ' . SITE_NAME; ?></div>
+            <div class="right">
+                <a href="#" class="txt_wht">&uarr; Back to the Top</a>
+            </div>
+        </div>
+		</div><!-- end journey-content-container -->
+	</div><!-- end journey -->
 </div><!-- end wrapper -->
-
+</div><!-- end relative -->
 
 <?php shdw_footer(); ?>
 </body>

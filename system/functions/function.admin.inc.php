@@ -128,21 +128,93 @@ if( SHDW )
 		
 		
 	/**
-		 * Creates Login form
-		 *
-		 * @since 0.1.1 s9
-		 * @depreciated since 1.0.0
-		 * @return Void
-		 */	
-			function register_form()
-			{
-				global $DBH;
-				# Set new Page object
-				$c = new Admin( $DBH );
+	 * Creates Login form
+	 *
+	 * @since 0.1.1 s9
+	 * @depreciated since 1.0.0
+	 * @return Void
+	 */	
+		function register_form()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->registerForm();
+			 
+		}
+	
+	
+	/**
+	 * This function returns the site name
+	 *
+	 * @since 1.3.0
+	 * @return Void
+	 */	
+		function the_site_name()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->theSiteName();
+			 
+		} // end function the_site_initial()
+		
+	/**
+	 * This function echos the site name
+	 *
+	 * @since 1.3.0
+	 * @return Void
+	 */	
+		function get_site_name()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->getSiteName();
+			 
+		} // end function the_site_initial()
+		
+	
+	/**
+	 * This function returns the site initial
+	 *
+	 * @since 1.3,0
+	 * @return Void
+	 */	
+		function the_site_initial()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->theSiteInitial();
+			 
+		} // end function the_site_initial()
+	
+	
+	/**
+	 * This function returns the site initial
+	 *
+	 * @since 1.3.0
+	 * @return Void
+	 */	
+		function get_site_initial()
+		{
+			global $DBH;
+			# Set new Page object
+			$c = new Admin( $DBH );
+			
+			# Call setPage() method
+			return $c->getSiteInitial();
+			 
+		} // end function get_site_initial()
 				
-				# Call setPage() method
-				return $c->registerForm();
-				 
-			}	
 } // end SHDW
 	
