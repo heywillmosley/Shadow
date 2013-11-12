@@ -29,7 +29,7 @@
         <?php if( NUM_SYS_VER <= 200  ) : // Keep styles used in previous app versions ?>
         	<link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>shdw-lt02.0.css" type="text/css" media="screen" />
         <?php endif; ?>
-        <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>all.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="<?php echo BASE_STYLE_URL; ?>styles.css" type="text/css" media="screen" />
         <style>
 			@media print{
 				.hide-for-print
@@ -477,4 +477,3 @@ function login_check( $db )
 	} // else
 	
 } // end login_check
-
