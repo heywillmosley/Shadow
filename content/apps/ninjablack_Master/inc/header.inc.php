@@ -31,7 +31,7 @@
     
     <title><?php get_page_header_title(); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
-    <meta name="keywords" content="natural medicine, natural health, homeopathic remedies, homeopathic medicines, homeopathy, no side effects, side effects, no side affects, no contraindications, natural drugs, natural meds, natural cures, natural remedies, safe medicine, nontoxic, non-toxic, not toxic, hypoallergenic, hypo-allergenic, non-allergic, no allergy, dr. king, king bio, bio king, safecare, smart medicine, safe-care, safe medicines, safe homeopathy"/> 
+    <meta name="keywords" content="Transgender, female, male, discrimination, cary, i am cary, community"/> 
     
     <meta name="author" content="<?php echo ADMIN_NAME; ?>">
 
@@ -43,6 +43,7 @@
     <!-- or, set /favicon-16.ico for IE10 win -->
     
     <?php shdw_header(); ?>
+    <link href='http://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
 
 </head>	
