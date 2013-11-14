@@ -1,10 +1,13 @@
 #journey-nav-expanded { 
-    position: fixed; width: 0; 
+    position: fixed; 
+    width: 0; 
     background: #FFFFFF; 
     overflow:hidden; 
-    transition: all 0.4s ease; 
+    transition: width 0.4s ease; 
     border-right: 1px solid #CCC;
     z-index: 9998;
+    top: 40px;
+    height: 100%;
 } // end #journey-nav-expanded
 
 #journey-nav-expanded:hover { 
@@ -427,12 +430,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
         height: auto;
     } // end @media (min-width: 768px
 } // end #journey-nav-expanded:target
+#journey-nav-expanded:target + .wrapper .journey .journey-expanded-bg{ 
+    @media (max-width: 768px) {
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 40px;
+        left: 0;
+        overflow: hidden;
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, .5);
+    } // end @media (min-width: 768px
+} // end #journey-nav-expanded:target
 #journey-nav-expanded:target:hover{ 
     overflow-y: auto; 
 } // end #journey-nav-expanded:target:hover
 #journey-nav-expanded:target + .wrapper .journey .journey-bar, #journey-nav-expanded:target + .wrapper .journey .journey-top-bar {  
     @media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) { 
-        left: 200px;
+        left: 0;
         transition: all 0.4s ease;
     } // end @media screen and (-webkit-min-device-pixel-ratio:0)
 } // end #journey-nav-expanded:target + .wrapper .journey .journey-bar
@@ -443,7 +459,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
     display: block 
 } // end #journey-nav-expanded:target + .wrapper .journey .journey-bar .journey-nav-expanded-close
 #journey-nav-expanded:target + .wrapper .journey { 
-    margin-left: 200px; 
     position: fixed;  
     min-width: 100%; 
     overflow: hidden;

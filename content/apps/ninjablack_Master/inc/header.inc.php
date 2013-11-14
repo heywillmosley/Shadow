@@ -67,6 +67,7 @@
  
 <div class="wrapper">
 	<div class="journey">
+    	<span class="journey-expanded-bg"></span>
         <header>
         	<ul class="journey-bar">
             	<li class="journey-nav-expanded-open">
