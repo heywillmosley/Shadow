@@ -150,8 +150,13 @@
     .journey-content-container{
         margin-top: 70px;
         @media (min-width: 768px) {
-            margin: 103px 0 0 200px;
+            margin: 103px auto 0;
             max-width: 1100px;
+        } // end @media (min-width: 768px)
+    } // end .journey-content-container
+    :root .journey-content-container{
+        @media (min-width: 768px) {
+            :root #element { margin: 103px 0 0 200px; }  /* IE9 */
         } // end @media (min-width: 768px)
     } // end .journey-content-container
     .journey-search-bar-close{ 
@@ -313,7 +318,7 @@
             } // end :hover
         } // end li
         .journey-tab-text{
-            float: left; 
+            float: left !important; 
             .font-size( 22 );
             color: #555;
             padding: 8px;
