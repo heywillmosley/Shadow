@@ -1,124 +1,3 @@
-
-
-This repository
-Explore
-Gist
-Blog
-Help
-superamazing
-2  Unwatch
-Unstar 1 Fork 0PRIVATE superamazing / Shadow
- branch: master  Shadow / content / apps / ninjablack_Master / inc / header.inc.php 
- williammosley 6 days ago fixed merge conflict
-2 contributors    
- file 108 lines (94 sloc) 4.423 kb  Open EditRawBlameHistory Delete
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
 <?php defined('INDEX') or die() and exit(); // Prevents direct script access
 /**
  * Shadow
@@ -151,14 +30,7 @@ Unstar 1 Fork 0PRIVATE superamazing / Shadow
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> in HTACCESS FILE to Avoid Validation Error -->
     <title><?php get_page_header_title(); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
-<<<<<<< HEAD
-    <meta name="keywords" content="Transgender, female, male, discrimination, cary, i am cary, community"/> 
-    
     <meta name="author" content="<?php echo ADMIN_NAME; ?>">
-=======
-    <meta name="author" content="<?php echo ADMIN_NAME; ?>" />
->>>>>>> aaec9117b0e0eb11ebd591f35e01553e6f518bce
-
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo APP_IMG_URL; ?>favicons/favicon-114.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo APP_IMG_URL; ?>favicons/favicon-72.png">
@@ -223,8 +95,3 @@ Unstar 1 Fork 0PRIVATE superamazing / Shadow
         </header>
         
         <div class="journey-content-container">
-
-    
-    
- 
-Status API Training Shop Blog About © 2013 GitHub, Inc. Terms Privacy Security Contact
