@@ -1,10 +1,23 @@
+.ie9{
+    @media (min-width: 768px) {
+        .journey{
+            .journey-top-bar{ top: 57px; padding-left: 210px; padding-top: 10px;}
+            .journey-content-container { margin: 103px 0 0 200px !important; }  /* IE9 */
+        }
+    } // end @media (min-width: 768px)   
+}
+
+
 #journey-nav-expanded { 
-    position: fixed; width: 0; 
+    position: fixed; 
+    width: 0; 
     background: #FFFFFF; 
     overflow:hidden; 
-    transition: all 0.4s ease; 
+    transition: width 0.4s ease; 
     border-right: 1px solid #CCC;
     z-index: 9998;
+    top: 40px;
+    height: 100%;
 } // end #journey-nav-expanded
 
 #journey-nav-expanded:hover { 
@@ -19,7 +32,6 @@
         top: 58px; 
     } // end @media (min-width: 768px) { 
 } // end #journey-nav-expanded.visible-md-up
-
 
 
 #journey-nav-expanded{
@@ -125,6 +137,7 @@
 } // end .journey-search-bar-open 
 
 
+
 .journey{
     padding: 0; 
     margin: 0; 
@@ -157,7 +170,6 @@
     } // end .journey-search-bar-close{
     .journey-bar{
         border-bottom: 1px solid #CCC;
-        *zoom:1;
         height: 40px;
         width: 100%;
         top: 0;
@@ -209,9 +221,14 @@
                     height: 50px;
                     width: 50px;
                     .font-size( 31 );
-                    padding-top: 14px;
+                    padding-top: 7px;
                 } // end @media (min-width: 768px)
         } // end .journey-icon.journey-icon-text
+        @media (min-width: 768px) {
+            .journey-nav-expanded-open{
+                display: none;
+            }
+        } // end @media (min-width: 768px)  
         .journey-wordmark{
             position: relative;
             color: #000;
@@ -224,7 +241,7 @@
                 padding-top: 20px;
                 padding-right: 5px;
                 .font-size( 28 );
-            } // end @media (min-width: 768px)
+            } // end @media (min-width: 768px)  
             a{
                color: #000;
                text-decoration: none;
@@ -234,15 +251,16 @@
             width: auto;
             max-width: 500px;
             background-color: transparent;
-            webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0); 
             box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0); 
-            @media (min-width: 768px) {
-                padding: 18px 10px 4px 10px;
-            } // end @media (min-width: 768px)
             &:hover{
                 background-color: transparent; 
             } // end :hover
         } // end .journey-search-bar
+        @media (min-width: 768px) {
+            .journey-search-bar{ 
+                padding: 18px 10px 4px 10px;
+            }
+        } // end @media (min-width: 768px) 
         .journey-nav-expanded-close { 
             display: none; 
             max-height: 36px; 
@@ -293,21 +311,35 @@
     .journey-bar.journey-no-bg{
         background-color: transparent;
     }
+    
+    .journey-top-bar:before, .journey-top-bar:after{
+        display: table;
+        content: "";
+    } // end .journey:before, .journey:after
+    .journey-top-bar:after{
+        clear: both;
+    } // end .journey:after
     .journey-top-bar{
         border-bottom: #DDD;
         width: 100%;
         background-color: #FFF;
-        *zoom:1;
+        position: fixed;
+        top: 40px;
         left: 0;
-        height: 30px;
+        height: 40px;
         background-color: #FFF;
         border-bottom: 1px solid #CCC;
         transition: all 0.4s ease; 
         z-index: 9997;
+        @media (max-height: 300px) {
+            position: absolute;
+        } // end @media (min-width: 300px) 
+        @media (max-height: 300px) and (max-width: 768px) {
+            top: -40px;
+        } // end @media (min-width: 300px) 
         @media (min-width: 768px) {
             height: 46px;
-            margin-left: 200px;
-            padding-right: 200px;
+            padding-left: 200px;
         } // end @media (min-width: 768px)
         li{
             display: inline; 
@@ -317,15 +349,8 @@
                 padding: 7px 4px;
             } // end @media (min-width: 768px)
             .btn{
-                max-height: 22px;
-                .font-size( 9 );
-                padding: 1px 6px;
-                text-transform: uppercase;
-                @media (min-width: 768px) {
-                    height: 22px;
-                    .font-size( 10 );
-                    padding: 2px 5px;
-                } // end @media (min-width: 768px)
+                max-height: 30px;
+                .font-size( 12 );
             } // end btn
             &:hover{
                 background-color: transparent; 
@@ -348,23 +373,19 @@
             }
         } // end .journey-search-bar
         .journey-tab-text{
-            float: left; 
-            .font-size( 14 );
-            color: #666;
-            padding: 1px 8px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow: hidden;
+            float: left !important; 
+            .font-size( 22 );
+            color: #555;
+            padding: 8px;
             @media (min-width: 768px) {
-                .font-size( 16 );
+                .font-size( 24 );
                 padding: 11px;
             } // end @media (min-width: 768px)
         } // end journey-tab-text
         .journey-tab-text-caption{
             float: left; 
             .font-size( 16 );
-            color: #666;
+            color: #555;
             padding: 0 8px;
             .journey-tab-caption{
                 color: #999;
@@ -385,40 +406,6 @@
                 .font-size( 20 );
             } // end @media (min-width: 768px)
         } // end journey-tab-text
-        .journey-top-bar-actions{
-            z-index: 2;
-            position: relative;
-            background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 14%, rgba(255,255,255,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(14%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* IE10+ */
-background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
-            padding: 0 0 0 30px;
-            li{
-                padding: 1px 4px;
-                @media (min-width: 768px) {
-                    padding: 7px 4px;
-                } // end @media (min-width: 768px) 
-                .btn{
-                    @media (min-width: 768px) {
-                        padding: 4px 5px;
-                        height: 24px;
-                        max-height: 24px;
-                    } // end @media (min-width: 768px) 
-                }
-            }
-            &:hover{
-               background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 14%, rgba(255,255,255,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(14%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* IE10+ */
-background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 14%,rgba(255,255,255,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
-            }
-        }
     } // end .journey-top-bar
     .journey-top-bar:before, .journey-top-bar:after{
         display: table;
@@ -489,7 +476,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 
 
 
-
 /* Toggle on */
 #journey-nav-expanded:target{ 
     width: 200px; 
@@ -500,26 +486,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
         display: none;
     } // end @media (min-width: 768px
 } // end #journey-nav-expanded:target
+
+#journey-nav-expanded:target + .wrapper .journey .journey-expanded-bg{ 
+    @media (max-width: 768px) {
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 40px;
+        left: 0;
+        overflow: hidden;
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, .5);
+    } // end @media (min-width: 768px
+} // end #journey-nav-expanded:target
 #journey-nav-expanded:target:hover{ 
     overflow-y: auto; 
 } // end #journey-nav-expanded:target:hover
 #journey-nav-expanded:target + .wrapper .journey .journey-bar, #journey-nav-expanded:target + .wrapper .journey .journey-top-bar {  
-    @media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) { 
-        left: 200px;
+    @media screen and (max-width: 768px) { 
+        left: 0;
         transition: all 0.4s ease;
     } // end @media screen and (-webkit-min-device-pixel-ratio:0)
 } // end #journey-nav-expanded:target + .wrapper .journey .journey-bar
 #journey-nav-expanded:target + .wrapper .journey .journey-bar .journey-nav-expanded-open {
-    display: none 
+    display: none !important;
 } // end #journey-nav-expanded:target + .wrapper .journey .journey-bar .journey-nav-expanded-open
 #journey-nav-expanded:target + .wrapper .journey .journey-bar .journey-nav-expanded-close { 
     display: block;
     @media (min-width: 768px) {
         display: none;
     } // end @media (min-width: 768px)
+    display: block !important; 
 } // end #journey-nav-expanded:target + .wrapper .journey .journey-bar .journey-nav-expanded-close
 #journey-nav-expanded:target + .wrapper .journey { 
-    margin-left: 200px; 
     position: fixed;  
     min-width: 100%; 
     overflow: hidden;

@@ -20,10 +20,11 @@
  
 // --------------------------------------------------------------------------------?>
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9 ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js lt-ie10 ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
@@ -44,14 +45,14 @@
     <link href='http://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
 
-</head>	
+</head>        
 
 <body>
 
 <?php get_pilot(); ?>
 <div class="relative">
 <nav id="journey-nav-expanded" class="visible-md-up">
-	<ul class="journey-nav-expanded-main ptn mtn">
+        <ul class="journey-nav-expanded-main ptn mtn">
         <li><a href="#">Menu Item</a></li>
         <li><a href="#">Menu Item</a></li>
         <li><a href="#">Menu Item</a></li>
@@ -68,31 +69,32 @@
 </nav><!-- end journey-left-nav-expanded -->
  
 <div class="wrapper">
-	<div class="journey">
+		<span class="journey-expanded-bg"></span>
+        <div class="journey">
         <header>
-        	<ul class="journey-bar">
-            	<li class="journey-nav-expanded-open">
-                	<a href="#journey-nav-expanded">
-                    	<img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
-                   	</a>
-              	</li>
+                <ul class="journey-bar">
+                    <li class="journey-nav-expanded-open">
+                        <a href="#journey-nav-expanded">
+                            <img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                           </a>
+                      </li>
                 <li class="journey-nav-expanded-close">
-                	<a href="#">
-                    	<img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
-                   	</a>
-              	</li>
+                        <a href="#">
+                            <img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                           </a>
+                      </li>
                 <li>
-                	<a href="<?php echo SITE_URL; ?>">
-                		<div class="journey-icon-text"><?php get_site_initial(); ?></div>
+                        <a href="<?php echo SITE_URL; ?>">
+                                <div class="journey-icon-text"><?php get_site_initial(); ?></div>
                         <div class="journey-wordmark"><?php get_site_name(); ?></div>
                     </a>
                 </li>
                 <li class="pull-right journey-no-hover"><?php login_form('responsive-inline'); ?></li>
             </ul><!-- end journey-bar -->
             <ul class="journey-top-bar">
-            	<li class="journey-tab-text">
-                	<?php if( SITE_NAME == the_page_title() ) echo 'Home'; else get_page_title(); ?>
-               	</li>
+                    <li class="journey-tab-text">
+                        <?php if( SITE_NAME == the_page_title() ) echo 'Home'; else get_page_title(); ?>
+                       </li>
             </ul><!-- end journey-top-bar -->
         </header>
         
