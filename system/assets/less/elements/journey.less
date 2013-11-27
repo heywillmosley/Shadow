@@ -9,7 +9,6 @@
 
 
 #journey-nav-expanded { 
-    position: fixed; 
     width: 0; 
     background: #FFFFFF; 
     overflow:hidden; 
@@ -18,7 +17,16 @@
     z-index: 9998;
     top: 40px;
     height: 100%;
+    position: absolute;
+    @media (min-width: 768px) {
+        top: 104px !important;
+        padding-bottom: 104px;
+    } // end @media (min-width: 768px)   
 } // end #journey-nav-expanded
+
+#journey-nav-expanded.journey-fixed { 
+    position: fixed;
+}
 
 #journey-nav-expanded:hover { 
     overflow-y:scroll;  
@@ -323,7 +331,7 @@
         border-bottom: #DDD;
         width: 100%;
         background-color: #FFF;
-        position: fixed;
+        position: absolute;
         top: 40px;
         left: 0;
         height: 40px;
@@ -339,7 +347,8 @@
         } // end @media (min-width: 300px) 
         @media (min-width: 768px) {
             height: 46px;
-            padding-left: 200px;
+            top: 58px;
+            left: 0;
         } // end @media (min-width: 768px)
         li{
             display: inline; 
@@ -462,7 +471,8 @@
     .journey-content-container{
         margin-top: 40px;
         @media (min-width: 768px) {
-            margin: 103px auto 0;
+            margin: 103px auto 0 ;
+            padding-left: 200px;
             max-width: 1100px;
         } // end @media (min-width: 768px)
     }
@@ -524,7 +534,6 @@
     min-width: 100%; 
     overflow: hidden;
     @media (min-width: 768px) {
-        margin-left: 200px; 
         position: absolute;  
         min-width: 100%; 
         overflow: auto; 
@@ -540,7 +549,6 @@
 } // end #journey-nav-expanded:target + .wrapper .journey
 #journey-nav-expanded.visible-md-up + .wrapper .journey{ 
     @media (min-width: 768px) {
-        padding-left: 200px; 
         margin-left: 0;  
         min-width: 100%; 
         overflow: hidden; 
@@ -548,7 +556,7 @@
 } // end #journey-nav-expanded.visible-md-up + .wrapper .journey
 #journey-nav-expanded.visible-md-up + .wrapper .journey-bar{ 
     @media (min-width: 768px) {
-        margin-left: -200px; 
+        
     } // end @media (min-width: 768px) 
 } // end #journey-nav-expanded.visible-md-up + .wrapper .journey-bar
 #journey-nav-expanded.visible-md-up + .wrapper .journey .journey-bar .journey-nav-expanded-open { 

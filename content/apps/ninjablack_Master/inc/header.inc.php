@@ -51,7 +51,7 @@
 
 <?php get_pilot(); ?>
 <div class="relative">
-<nav id="journey-nav-expanded" class="visible-md-up">
+<nav id="journey-nav-expanded" class="visible-md-up journey-fixed">
         <ul class="journey-nav-expanded-main ptn mtn">
         <li><a href="#">Menu Item</a></li>
         <li><a href="#">Menu Item</a></li>
@@ -70,7 +70,7 @@
  
 <div class="wrapper">
 		<span class="journey-expanded-bg"></span>
-        <div class="journey">
+        <div class="journey journey-fixed">
         <header>
                 <ul class="journey-bar">
                     <li class="journey-nav-expanded-open">
