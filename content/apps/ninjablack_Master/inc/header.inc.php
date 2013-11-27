@@ -30,13 +30,8 @@
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> in HTACCESS FILE to Avoid Validation Error -->
     <title><?php get_page_header_title(); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
-<<<<<<< HEAD
-    <meta name="keywords" content="Transgender, female, male, discrimination, cary, i am cary, community"/> 
-    
+    <meta name="keywords" content=""/>  
     <meta name="author" content="<?php echo ADMIN_NAME; ?>">
-=======
-    <meta name="author" content="<?php echo ADMIN_NAME; ?>" />
->>>>>>> aaec9117b0e0eb11ebd591f35e01553e6f518bce
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo APP_IMG_URL; ?>favicons/favicon-114.png">
@@ -102,6 +97,3 @@
         </header>
         
         <div class="journey-content-container">
-
-    
-    

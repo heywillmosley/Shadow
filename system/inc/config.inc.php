@@ -40,7 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '1.3.1.2');
+	define('SYS_VER', '1.4.0');
 
 	$release =  str_replace( '-alpha', '', str_replace( '-beta', '', str_replace( '.', '', substr(SYS_VER, 0, strrpos(SYS_VER, '.') ) ) ) );
 	$sprint = substr(SYS_VER, strrpos(SYS_VER, '.') + 0);
@@ -929,6 +929,7 @@ if( SHDW || WP )
 		
 	} // end define( 'APP_STYLE_URI', APP_URI.'assets/css/' );
 	
+
 	# Check if assets/styles directory exists and define
 	elseif( is_dir( APP_URI.'javascripts/' ) )
 	{
@@ -1620,4 +1621,5 @@ if( SHDW )
 # ***********************#
 
 # Prevents direct script access
+
 //if(!defined('INDEX')){header('Location:'.SITE_URL);exit;}
