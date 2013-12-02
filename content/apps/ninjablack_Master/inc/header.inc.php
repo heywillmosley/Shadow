@@ -69,8 +69,8 @@
 </nav><!-- end journey-left-nav-expanded -->
  
 <div class="wrapper">
-		<span class="journey-expanded-bg"></span>
         <div class="journey journey-fixed">
+        <span class="journey-expanded-bg"></span>
         <header>
                 <ul class="journey-bar">
                     <li class="journey-nav-expanded-open">
@@ -80,7 +80,7 @@
                       </li>
                 <li class="journey-nav-expanded-close">
                         <a href="#">
-                            <img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                            <img class="pull-left" src="<?php echo APP_IMG_URL; ?>close-menu.png" />
                            </a>
                       </li>
                 <li>

@@ -22,10 +22,11 @@
 app_header(); ?>
 
 <div class="feature-container">
-    <div class="feature">
-        <div class="feature-text feature-text-left">
+	<div class="feature clearfix">
+    	<div class="feature-title">Completely Customizable</div>
+    	<img class="feature-image" src="<?php echo APP_IMG_URL; ?>imac-device.png" alt="" />
+        <div class="feature-text">
             <div class="feature-text-container">
-                <div class="feature-desc-title">Completely Customizable</div>
                 <div class="feature-item-title">The sharpest 7” tablet screen ever.</div>
                 <div class="feature-item-content">
                     The world's highest-resolution 7" tablet puts over 2.3 million pixels in the palm of your hand. With 323 pixels packed into every inch, you can read text that’s sharper than the printed page, see images more vivid than the highest quality photo magazine, and watch videos come to life in vibrant 1080p HD. 
@@ -40,14 +41,12 @@ app_header(); ?>
                 </div><!-- end feature-item-content -->
             </div><!-- end feature-text-container -->
         </div><!-- end feature-text -->
-        <div class="feature-image feature-image-right">
-            <img class="feature-desc-image" src="<?php echo APP_IMG_URL; ?>imac-device.png" alt="" />
-        </div><!-- end feature-image -->
     </div><!-- end feature -->
-    <div class="feature">
-        <div class="feature-text feature-text-right">
+    <div class="feature feature-left clearfix">
+    	<div class="feature-title">Better than Awesome</div>
+    	<img class="feature-image" src="<?php echo APP_IMG_URL; ?>laptop-device.png" alt="" />
+        <div class="feature-text">
             <div class="feature-text-container">
-                <div class="feature-desc-title">Super Secure</div>
                 <div class="feature-item-title">The sharpest 7” tablet screen ever.</div>
                 <div class="feature-item-content">
                     The world's highest-resolution 7" tablet puts over 2.3 million pixels in the palm of your hand. With 323 pixels packed into every inch, you can read text that’s sharper than the printed page, see images more vivid than the highest quality photo magazine, and watch videos come to life in vibrant 1080p HD. 
@@ -58,10 +57,8 @@ app_header(); ?>
                 </div><!-- end feature-item-content -->
             </div><!-- end feature-text-container -->
         </div><!-- end feature-text -->
-        <div class="feature-image feature-image-left">
-            <img class="feature-desc-image" src="<?php echo APP_IMG_URL; ?>laptop-device.png" alt="" />
-        </div><!-- end feature-image -->
     </div><!-- end feature -->
+    <div class="feature">
 </div><!-- end feature-container -->
 <?php 
 # includes footer.php

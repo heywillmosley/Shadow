@@ -1,111 +1,99 @@
 /***************** FEATURE ********************/
 
-.feature{
-	padding: 20px 0;
-	white-space: no-wrap;
-	.feature-text{
-		padding: 2%;
-		display: inline-block;
-		vertical-align: middle;
-		white-space: normal;
-		width: 70%;
-		@media only screen and (min-width: 600px) {
-			width: 50%;
+.feature, .feature.feature-right{
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    @media (min-width: 850px) {
+        width: 50%;
+        margin: 0;
+        position: relative;
+        right: 0;
+        padding: 20px;
+        max-width: none;
+    } // end @media (min-width: 850px)
+	.feature-title{
+	    .font-size(36);
+		color: blue;
+		line-height: 1;
+		margin: 0 0 30px 0;
+		text-align: center;
+		text-transform: uppercase;
+		@media (min-width: 550px) {
+            .font-size(55);
+            margin: 0 0 40px 0;
+        } // end @media (min-width: 768px
+        @media (min-width: 850px) {
+            .font-size(65);
+            margin: 0 0 40px 0;
+            text-align: left;
+        } // end @media (min-width: 768px)
+        @media (min-width: 1024px) {
+            .font-size(46);
+        } // end @media (min-width: 768px)
+    } // end .feature-title
+    .feature-image{
+        margin-bottom: 20px;
+        @media (min-width: 850px) {
+            width: 100%;
+            margin: 0;
+            position: absolute;
+            left: 102%;
+            min-width: 500px;
+        } // end @media (min-width: 850px)
+        @media (min-width: 1024px) {
+            top: 20px;
+        } // end @media (min-width: 850px)
+    }
+    .feature-text-container{
+        padding: 0 20px;
+        @media (min-width: 850px) {
+            padding: 0;
+        } // end @media (min-width: 850px)
+        .feature-item-title{
+			.font-size(18);
+			color: #333;
+			line-height: 1.4;
+			margin: 10px 0 5px 0;
 		}
-		.feature-text-container{
-			max-width: 510px;
-			.feature-desc-title{
-				.font-size(42);
-				color: #333;
-				line-height: 48px;
-				margin: 0 0 20px 0;
-			}
-			.feature-item-title{
-				.font-size(18);
-				color: #333;
-				line-height: 1.4;
-				margin: 10px 0 5px 0;
-			}
+		.feature-item-content{
+		    .font-size( 14 );
+		    line-height: 1.5;
+		    margin-bottom: 20px;
+		    
 		}
-	}
-	.feature-text.feature-text-right{
-		padding-left: 2%;
-		float: right;
-		.feature-text-container{
-			float: left;
-		}
-	}
-	.feature-text.feature-text-left{
-		padding-right: 2%;
-		float: left;
-		.feature-text-container{
-			float: right;
-		}
-	}
-	.feature-image{
-		display: inline-block;
-		vertical-align: middle;
-		white-space: normal;
-		width: 30%;
-		@media only screen and (min-width: 600px) {
-			width: 50%;
-		}
-		.feature-desc-image{
-			vertical-align: middle;
-			max-width: none;
-		}
-	}
-	.feature-image.feature-image-right{
-		padding-left: 8%;
-		@media only screen and (min-width: 600px) {
-			padding-left: 2%;
-		}
-		.feature-desc-image{
-			float: left;
-		}
-	}
-	.feature-image.feature-image-left{
-		padding-right: 8%;
-		@media only screen and (min-width: 600px) {
-			padding-right: 2%;
-		}
-		.feature-desc-image{
-			float: right;
-		}
-	}
-}
-.feature.feature-full{
-	padding: 20px 0;
-	white-space: normal;
-	.feature-text{
-		padding: 2%;
-		display: block;
-		width: 100%;
-		.feature-text-container{
-			max-width: none;
-			float: both;
-			.feature-desc-title{
-				text-align: center;
-			}
-		}
-	}
-	.feature-image{
-		display: block;
-		vertical-align: middle;
-		white-space: normal;
-		width: 100%;
-		.feature-desc-image{
-			vertical-align: middle;
-			max-width: none;
-			margin: 0 auto;
-			display: block;
-		}
-	}
-}
-.feature.feature-stack-for-small{
+    }
+} // end feature
 
-}
+.feature.feature-left{
+    @media (min-width: 850px) {
+        right: 0;
+        width: 100%;
+    } // end @media (min-width: 850px)
+    .feature-text-container{
+        @media (min-width: 850px) {
+            width: 50%;
+            left: 50%;
+            position: relative;
+        } // end @media (min-width: 850px)
+    }
+    .feature-image{
+        @media (min-width: 850px) {
+            right: 55%;
+            left: -26%;
+            width: 71%
+        } // end @media (min-width: 850px)
+    }
+    .feature-title{
+        @media (min-width: 1024px) {
+            position: relative;
+            left: 50%;
+            width: 50%;
+        } // end @media (min-width: 768px)
+    } // end .feature-title
+} // end feature
 
 .feature-container{
-	overflow: hidden;
+	// overflow: hidden;
 }
