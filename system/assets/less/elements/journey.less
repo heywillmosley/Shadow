@@ -512,6 +512,19 @@
 #journey-nav-expanded:target:hover{ 
     overflow-y: auto; 
 } // end #journey-nav-expanded:target:hover
+
+#journey-nav-expanded:target.visible-md-up{  
+    @media screen and (min-width: 768px) { 
+        display: block;
+    } // end @media screen and (-webkit-min-device-pixel-ratio:0)
+} // end #journey-nav-expanded:target + .wrapper .journey .journey-bar
+
+#journey-nav-expanded:target + {  
+    @media screen and (min-width: 768px) { 
+        display: block;
+    } // end @media screen and (-webkit-min-device-pixel-ratio:0)
+} // end #journey-nav-expanded:target + .wrapper .journey .journey-bar
+
 #journey-nav-expanded:target + .wrapper .journey .journey-bar, #journey-nav-expanded:target + .wrapper .journey .journey-top-bar {  
     @media screen and (max-width: 768px) { 
         left: 0;
@@ -526,7 +539,6 @@
     @media (min-width: 768px) {
         display: none;
     } // end @media (min-width: 768px)
-    display: block !important; 
 } // end #journey-nav-expanded:target + .wrapper .journey .journey-bar .journey-nav-expanded-close
 #journey-nav-expanded:target + .wrapper .journey { 
     position: fixed;  

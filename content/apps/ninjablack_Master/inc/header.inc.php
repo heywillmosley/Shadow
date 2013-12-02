@@ -70,7 +70,7 @@
  
 <div class="wrapper">
         <div class="journey journey-fixed">
-        <span class="journey-expanded-bg"></span>
+        <a href="#"><span class="journey-expanded-bg"></span></a>
         <header>
                 <ul class="journey-bar">
                     <li class="journey-nav-expanded-open">
