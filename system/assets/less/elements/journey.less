@@ -14,9 +14,10 @@
     overflow:hidden; 
     transition: width 0.4s ease; 
     border-right: 1px solid #CCC;
-    z-index: 9998;
+    z-index: 9999;
     top: 40px;
-    height: 100%;
+    bottom: 0;
+    height: auto;
     position: absolute;
     @media (min-width: 768px) {
         top: 104px !important;
@@ -444,10 +445,14 @@
         } // end @media (min-width: 768px)
     } // end journey-top-bar
     .journey-content-container{
+        .box-shadow(0 2px 2px rgba(0,0,0,.25));
+        background-color: #FFF;
         margin-top: 80px;
+        padding: 10px;
         @media (min-width: 768px) {
-            margin: 103px 0 0 200px;
+            margin: 104px 0 0 200px;
             max-width: 1100px;
+            padding: 20px;
         } // end @media (min-width: 768px)
     } // end journey-content-container
 } // end .journey.journey-fixed
@@ -470,7 +475,7 @@
     .journey-content-container{
         margin-top: 40px;
         @media (min-width: 768px) {
-            margin: 103px auto 0 ;
+            margin: 104px auto 0 ;
             padding-left: 200px;
             max-width: 1100px;
         } // end @media (min-width: 768px)
@@ -489,7 +494,6 @@
 #journey-nav-expanded:target{ 
     width: 200px; 
     overflow: hidden; 
-    height: 100%; 
     @media (min-width: 768px) {
         height: auto;
         display: none;
@@ -505,7 +509,7 @@
         top: 40px;
         left: 0;
         overflow: hidden;
-        z-index: 9999;
+        z-index: 9998;
         background-color: rgba(0, 0, 0, .5);
     } // end @media (min-width: 768px
 } // end #journey-nav-expanded:target

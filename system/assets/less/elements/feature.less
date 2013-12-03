@@ -36,11 +36,11 @@
     .feature-image{
         margin-bottom: 20px;
         @media (min-width: 850px) {
-            width: 100%;
+            width: 110%;
             margin: 0;
             position: absolute;
             left: 102%;
-            min-width: 500px;
+            max-width: inherit;
         } // end @media (min-width: 850px)
         @media (min-width: 1024px) {
             top: 20px;
@@ -80,9 +80,9 @@
     }
     .feature-image{
         @media (min-width: 850px) {
-            right: 55%;
-            left: -26%;
-            width: 71%
+            right: 0;
+            left: -10%;
+            width: 55%
         } // end @media (min-width: 850px)
     }
     .feature-title{
@@ -93,6 +93,10 @@
         } // end @media (min-width: 768px)
     } // end .feature-title
 } // end feature
+.feature:before, .feature:after{
+    display: table;
+    content: "";
+}
 
 .feature-container{
 	// overflow: hidden;

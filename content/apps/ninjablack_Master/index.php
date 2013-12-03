@@ -22,7 +22,7 @@
 app_header(); ?>
 
 <div class="feature-container">
-	<div class="feature clearfix">
+	<div class="feature">
     	<div class="feature-title">Completely Customizable</div>
     	<img class="feature-image" src="<?php echo APP_IMG_URL; ?>imac-device.png" alt="" />
         <div class="feature-text">
@@ -42,7 +42,7 @@ app_header(); ?>
             </div><!-- end feature-text-container -->
         </div><!-- end feature-text -->
     </div><!-- end feature -->
-    <div class="feature feature-left clearfix">
+    <div class="feature feature-left">
     	<div class="feature-title">Better than Awesome</div>
     	<img class="feature-image" src="<?php echo APP_IMG_URL; ?>laptop-device.png" alt="" />
         <div class="feature-text">
@@ -58,8 +58,201 @@ app_header(); ?>
             </div><!-- end feature-text-container -->
         </div><!-- end feature-text -->
     </div><!-- end feature -->
-    <div class="feature">
 </div><!-- end feature-container -->
+
+<div class="item-container">
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/PwJWFNLKla4C?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">The Time Machine</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/jOf_oenKLrcC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">Walden</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/fUXWVdWaumgC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">The Pocket Idiot's Guide to blah blah blah</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/dvuK7isszLIC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">The Small Business Guide</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/dvuK7isszLIC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">Title</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/PwJWFNLKla4C?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">The Time Machine</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/jOf_oenKLrcC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">Walden</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/fUXWVdWaumgC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">The Pocket Idiot's Guide to blah blah blah</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/dvuK7isszLIC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">The Small Business Guide</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    <div class="item item-sm">
+    	<a href="#" class="item-click"></a>
+        <div class="item-cover">
+        	<div class="item-cover-darken-on-hover"><a href="#"></a></div>
+        	<img class="item-cover-image" src="https://encrypted.google.com/books/images/frontcover/dvuK7isszLIC?fife=w300-rw" alt="" />
+       	</div><!-- end item-cover -->
+        <div class="item-details">
+            <div class="item-title"><a href="#">Title</a></div>
+            <div class="item-subtitle primary">Subtitle</div>
+            <div class="item-price-container">
+                <div class="item-price">
+                    <a href="#" class="btn btn-info btn-sm">$19.99</a>
+                </div><!-- end item-price -->
+                <div class="item-price-container-body">
+                    Author asdfakd adfkd fkadf  dfadfkdfjadfka 
+                </div><!-- end item-price-container-body -->
+            </div><!-- end item-price-container -->
+        </div><!-- end item-details -->
+    </div><!-- end item -->
+    
+</div><!-- end item-container --> 
 <?php 
 # includes footer.php
 app_footer();
