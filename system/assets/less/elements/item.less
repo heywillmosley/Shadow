@@ -1,25 +1,28 @@
 /***************** ITEM ********************/
 
 .item{
-    width: 33.3%;
+    width: 85px;
     margin-bottom: 10px;
 	background-color: @white;
 	.box-shadow(0 1px 1px rgba(0,0,0,.25));
 	position: relative;
-	padding: 0 5px;
+	margin: 0 5px 10px;
 	float: left;
     @media only screen and (min-width: 480px) {
-		width: 25%;
+		width: 114px;
 	}
 	@media only screen and (min-width: 580px) {
 		width: 114px;
-		padding: 0;
 		margin: 0 5px 10px;
 	}
 	@media only screen and (min-width: 660px) {
 		width: 136px;
 		margin: 0 10px 20px;
 	}
+		@media only screen and (min-width: 836px) {
+    		width: 129px;
+    		margin: 0 10px 20px;
+    	}
 	@media only screen and (min-width: 998px) {
 		width: 168px;
 	}
@@ -39,15 +42,21 @@
 		background-color: #FFF;
 		display: block;
 		position: relative;
-		height: 150px;
-		@media only screen and (min-width: 410px) {
-    		height: 185px;
+		height: 130px;
+		@media only screen and (min-width: 385px) {
+    		height: 170px;
     	}
-    	@media only screen and (min-width: 410px) {
-    		height: 150px;
+		@media only screen and (min-width: 410px) {
+    		height: 160px;
+    	}
+    	@media only screen and (min-width: 550px) {
+    		height: 185px;
     	}
     	@media only screen and (min-width: 660px) {
     		height: 210px;
+    	}
+    	@media only screen and (min-width: 836px) {
+    		height: 193px;
     	}
     	@media only screen and (min-width: 998px) {
     		height: 256px;
@@ -169,13 +178,80 @@
 	}
 }
 
-.item-container{
+.item-wrapper{
 	display: block;	
 	width: 100%;
 	clear: both;
+	position: relative;
+	margin-bottom: 15px;
+	.item-header{
+	    margin-bottom: 10px;
+	    text-transform: uppercase;
+	    border-bottom: 1px solid gray;
+	    padding-top: 3px;
+	    .item-container-title{
+	        .font-size( 14);
+	        padding-top: 5px;
+	        margin-right: 72px;
+	        font-style: italic;
+	        @media only screen and (min-width: 430px) {
+        		.font-size( 16);
+        	}
+	    }
+	    .btn, .btn-xs{ 
+		    padding: 1px 4px;
+		    .font-size(10);
+		    margin-top: 5px;
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    @media only screen and (min-width: 430px) {
+        		.font-size( 11);
+        	}
+        	@media only screen and (min-width: 800px) {
+        		.font-size( 11);
+        		padding: 2px 5px;
+        	}
+		}
+	}
 }
 
-.item-container.item-container-one-up{
-	overflow: hidden;
-	height: 245px;
+.item-wrapper{
+    
+    width: 100%;
+}
+
+.item-container-one-up {
+    width: 285px;
+    overflow: hidden;
+    @media only screen and (min-width: 396px) {
+		width: 385px;
+	}
+	@media only screen and (min-width: 470px) {
+		width: 373px;
+	}
+	@media only screen and (min-width: 525px) {
+		width: 497px;
+	}
+	@media only screen and (min-width: 629px) {
+		width: 617px;
+	}
+	@media only screen and (min-width: 768px) {
+		width: 473px;
+	}
+	@media only screen and (min-width: 826px) {
+		width: 588px;
+	}
+	@media only screen and (min-width: 970px) {
+		width: 734px;
+	}
+	@media only screen and (min-width: 998px) {
+		width: 750px;
+	}
+	@media only screen and (min-width: 1182px) {
+		width: 944px;
+	}
+    .item-container{
+	    width: 5000px;
+    }
 }
