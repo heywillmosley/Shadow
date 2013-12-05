@@ -1,20 +1,20 @@
-/*! http://responsiveslides.com v1.54 by @viljamis */
+/*! http://exhibit.com v1.54 by @viljamis */
 
-.rslides-container{
+.exhibit-container{
     position: relative;
     overflow: hidden;
-    height: 200px;
+    height: 238px;
     margin-bottom: 10px;
     @media only screen and (min-width: 450px) {
-		height: 300px;
+		height: 338px;
     }
     @media only screen and (min-width: 700px) {
-		height: 400px;
+		height: 438px;
     }
     @media only screen and (min-width: 1000px) {
-		height: 700px;
+		height: 538px;
     }
-    .rslides {
+    .exhibit {
       position: relative;
       list-style: none;
       
@@ -30,33 +30,83 @@
           width: 100%;
           left: 0;
           top: 0;
-          .rslides-content{
+          height: 200px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            @media only screen and (min-width: 450px) {
+        		height: 300px;
+            }
+            @media only screen and (min-width: 700px) {
+        		height: 400px;
+            }
+            @media only screen and (min-width: 1000px) {
+        		height: 500px;
+            }
+          .exhibit-content{
               position: absolute;
-              width: 60%;
+              width: 62%;
               background-color: #FFF;
-              height: 100%;
-              padding: 10px;
-              right: 0;
+              padding: 20px;
+              left: 0;
               @media only screen and (min-width: 450px) {
             		width: 50%;
-            		padding: 40px 40px 0;
+            		padding: 30px 30px;
                 }
-                @media only screen and (min-width: 850px) {
-            		width: 40%;
+                @media only screen and (min-width: 1000px) {
+            		width: 43%;
                 }
-              .rslides-title{
+                @media only screen and (min-width: 1200px) {
+            		padding: 50px 50px;
+                }
+              .exhibit-title{
                   .font-size( 25 );
-                  text-transform: uppercase;
-                  line-height: 1.1;
+                  line-height: 1;
                   margin-bottom: 10px;
+                  @media only screen and (min-width: 450px) {
+            		.font-size( 35 );
+                }
                   @media only screen and (min-width: 660px) {
-            		.font-size( 40 );
+            		.font-size( 55 );
+                }
+                @media only screen and (min-width: 1000px) {
+            		.font-size( 65 );
                 }
               } 
-              .rslides-subtitle{
+              .exhibit-subtitle{
                   margin-bottom: 10px;
                   line-height: 1.2;
+                  @media only screen and (min-width: 660px) {
+            		.font-size( 20 );
+            		margin-bottom: 20px;
+                }
+                @media only screen and (min-width: 1000px) {
+            		.font-size( 30 );
+            		margin-bottom: 30px;
+                }
               }
+              .btn, .btn.btn-info, .btn.btn-default, .btn.btn-primary{
+                  background-color: transparent !important;
+                  @media only screen and (min-width: 660px) {
+            		.font-size( 18 );
+            		padding: 9px 15px;
+                }
+                @media only screen and (min-width: 1000px) {
+            		.font-size( 25 );
+            		padding: 11px 17px;
+                }
+                  &:hover{
+                      background-color: transparent !important;
+                  }
+              }
+          }
+          .exhibit-content.exhibit-content-fluffy{
+               padding: 20px;
+              @media only screen and (min-width: 450px) {
+            		padding: 40px;
+                }
+                @media only screen and (min-width: 1000px) {
+            		padding: 50px;
+                }
           }
       }
       li:first-child{
@@ -74,27 +124,46 @@
     }
 }
 
-.rslides_nav_container{
+.exhibit_nav_container{
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
 }
-.rslides_nav{ 
+.exhibit_nav{ 
     position: absolute;
     z-index: 5;
     height: 200px;
     img{
-        opacity: .5;
-        max-height: 30px;
-        top: 46%;
+        opacity: .4;
+        max-height: 18px;
+        top: 40%;
         position: absolute;
+        @media only screen and (min-width: 450px) {
+    		top: 65%;
+    		max-height: 24px;
+        }
+        @media only screen and (min-width: 700px) {
+    		top: 94%;
+        }
+        @media only screen and (min-width: 1000px) {
+    		top: 112%;
+    		max-height: 30px;
+        }
         &:hover{
             opacity: .8;
         }
     }
 }
-.rslides_nav.next{
+.exhibit a{
+    text-decoration: none;
+    color: inherit;
+    &:hover{
+        text-decoration: none;
+        color: inherit;
+    }
+}
+.exhibit_nav.next{
     right: 0;
     background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
@@ -104,10 +173,10 @@ background: -ms-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /
 background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 */
     img{
-        right: 10px;
+        right: 5px;
     }
 }
-.rslides_nav.prev{
+.exhibit_nav.prev{
     left: 0;
     background: -moz-linear-gradient(left, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
@@ -117,33 +186,26 @@ background: -ms-linear-gradient(left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /
 background: linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
     img{
-        left: 10px;
+        left: 5px;
     }
 }
 
-.rslides_tabs{
+.exhibit_tabs{
     position: absolute;
     z-index: 3;
     bottom: 0;
     display: block;
-    right: 10px;
+    right: 5px;
     height: 35px;
-    background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 66%, rgba(0,0,0,0) 71%); /* FF3.6+ */
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.65)), color-stop(66%,rgba(0,0,0,0)), color-stop(71%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 66%,rgba(0,0,0,0) 71%); /* Chrome10+,Safari5.1+ */
-background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 66%,rgba(0,0,0,0) 71%); /* Opera 12+ */
-background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 66%,rgba(0,0,0,0) 71%); /* IE10+ */
-background: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 66%,rgba(0,0,0,0) 71%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     li{ 
-        color: #FFF;
+        color: #000;
         .font-size( 10);
         display: inline;
         padding: 2px 3px;
-        border: 1px solid #FFF;
+        border: 1px solid #000;
         margin: 0 3px;
         a{
-            color: #FFF;
+            color: #000;
             display: inline-block;
             &:hover{
                 color: #000 !important;
