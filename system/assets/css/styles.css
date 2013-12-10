@@ -1442,7 +1442,7 @@ body{background-color:#F4F4F4;font-size:14px;line-height:1;color:#333;position:r
 #journey-nav-expanded .journey-heading{background-color:#DDD;font-size:10px;font-size:1rem;text-transform:uppercase;font-weight:bold;padding:5px;margin-bottom:10px}
 #journey-nav-expanded ul{list-style:none}
 #journey-nav-expanded ol{list-style-position:inside}
-#journey-nav-expanded ul,#journey-nav-expanded ol{margin:0;padding:0 2.5px 10px 0}#journey-nav-expanded ul li,#journey-nav-expanded ol li{padding:2.5px 0 7.5px 25px;font-size:14px;font-size:1.4rem;line-height:1.2;color:#666}#journey-nav-expanded ul li:hover,#journey-nav-expanded ol li:hover{background-color:rgba(0,0,0,0.1);color:rgba(0,0,0,0.1);text-decoration:none}
+#journey-nav-expanded ul,#journey-nav-expanded ol{margin:0;padding:0 2.5px 10px 0}#journey-nav-expanded ul li,#journey-nav-expanded ol li{padding:2.5px 0 7.5px 25px;font-size:14px;font-size:1.4rem;line-height:1.2;color:#666}#journey-nav-expanded ul li:hover,#journey-nav-expanded ol li:hover{background-color:#E8E8E8;text-decoration:none}
 #journey-nav-expanded ul li a,#journey-nav-expanded ol li a{text-decoration:none;width:100%;display:inline}
 #journey-nav-expanded ul .has-btn,#journey-nav-expanded ol .has-btn,#journey-nav-expanded ul .has-button,#journey-nav-expanded ol .has-button{padding-right:20px}#journey-nav-expanded ul .has-btn:hover,#journey-nav-expanded ol .has-btn:hover,#journey-nav-expanded ul .has-button:hover,#journey-nav-expanded ol .has-button:hover{background-color:transparent}
 #journey-nav-expanded ul .has-btn a.btn,#journey-nav-expanded ol .has-btn a.btn,#journey-nav-expanded ul .has-button a.btn,#journey-nav-expanded ol .has-button a.btn{display:inherit}
