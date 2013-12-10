@@ -52,49 +52,103 @@
 <?php get_pilot(); ?>
 <div class="relative">
 <nav id="journey-nav-expanded" class="visible-md-up journey-fixed">
+	<div class="journey-expanded-search">
+        <form class="form-inline journey-search-bar" role="form" action="#" />
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search <?php echo SITE_NAME; ?>" />
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-info"><img src="<?php echo APP_IMG_URL; ?>search.png" /></button>
+              </span>
+            </div><!-- /input-group -->
+        </form>
+    </div>
+    <div class="journey-expanded-body">
         <ul class="journey-nav-expanded-main ptn mtn">
-        <li><a href="#">Menu Item</a></li>
-        <li><a href="#">Menu Item</a></li>
-        <li><a href="#">Menu Item</a></li>
-        <li><a href="#">Menu Item</a></li>
-    </ul>
-    <div class="journey-heading">Section Heading</div>
-    <ul>
-        <li><a href="#">Menu Item</a></li>
-        <li><a href="#">Menu Item</a></li>
-        <li><a href="#">Menu Item</a></li>
-        <li><a href="#">Menu Item</a></li>
-        <li><a href="#">Menu Item</a></li>
-    </ul>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+        </ul>
+        <div class="journey-heading">Section Heading</div>
+        <ul class="journey-sub-nav">
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+            <li><a href="#">Menu Item</a></li>
+        </ul>
+        <div class="journey-heading visible-xs">Account</div>
+        <ul class="visible-xs">
+        	<li class="has-button">
+                <a href="#" class="btn btn-primary btn-block btn-sm">
+                    Login
+                </a>
+            </li>
+            <li class="has-button">
+                <a href="#" class="btn btn-success btn-block btn-sm">
+                    Join
+                </a>
+            </li>
+        </ul>
+  	</div><!-- end journey-expanded-body -->
 </nav><!-- end journey-left-nav-expanded -->
  
 <div class="wrapper">
         <div class="journey journey-fixed">
         <a href="#"><span class="journey-expanded-bg"></span></a>
         <header>
-                <ul class="journey-bar">
-                    <li class="journey-nav-expanded-open">
-                        <a href="#journey-nav-expanded">
-                            <img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
-                           </a>
-                      </li>
+         	<ul class="journey-bar">
+                <li class="journey-nav-expanded-open">
+                    <a href="#journey-nav-expanded">
+                        <img class="pull-left" src="<?php echo APP_IMG_URL; ?>menu.png" />
+                    </a>
+                </li>
                 <li class="journey-nav-expanded-close">
-                        <a href="#">
-                            <img class="pull-left" src="<?php echo APP_IMG_URL; ?>close-menu.png" />
-                           </a>
-                      </li>
-                <li>
-                        <a href="<?php echo SITE_URL; ?>">
-                                <div class="journey-icon-text"><?php get_site_initial(); ?></div>
+                    <a href="#">
+                        <img class="pull-left" src="<?php echo APP_IMG_URL; ?>close-menu.png" />
+                    </a>
+                </li>
+                <li class="has-btn">
+                    <a href="<?php echo SITE_URL; ?>">
+                            <div class="journey-icon-text"><?php get_site_initial(); ?></div>
                         <div class="journey-wordmark"><?php get_site_name(); ?></div>
                     </a>
                 </li>
-                <li class="pull-right journey-no-hover"><?php login_form('responsive-inline'); ?></li>
+                <li class="journey-search hidden-xs has-btn">
+                    <form class="form-inline journey-search-bar" role="form" action="#" />
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search <?php echo SITE_NAME; ?>" />
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info"><img src="<?php echo APP_IMG_URL; ?>search.png" /></button>
+                          </span>
+                        </div><!-- /input-group -->
+                    </form>
+                </li>
+                <li class="journey-action journey-search-action pull-right">
+                	<a href="#journey-nav-expanded">
+                    	<img src="<?php echo APP_IMG_URL; ?>search.png" alt="Search" />
+                    </a>
+                </li>
+                <li class="journey-action pull-right">
+                	<a href="#">
+                    	<img src="<?php echo APP_IMG_URL; ?>cart.png" alt="Cart" />
+                    </a>
+                </li>
+                <li class="journey-action pull-right has-button hidden-xs">
+                	<a href="#" class="btn btn-primary">
+                    	Login
+                    </a>
+                </li>
+                <li class="journey-action pull-right has-button hidden-xs">
+                	<a href="#" class="btn btn-success">
+                    	Join
+                    </a>
+                </li>
             </ul><!-- end journey-bar -->
             <ul class="journey-top-bar">
-                    <li class="journey-tab-text">
-                        <?php if( SITE_NAME == the_page_title() ) echo 'Home'; else get_page_title(); ?>
-                       </li>
+              	<li class="journey-tab-text">
+                 	<?php if( SITE_NAME == the_page_title() ) echo 'Home'; else get_page_title(); ?>
+              	</li>
             </ul><!-- end journey-top-bar -->
         </header>
         

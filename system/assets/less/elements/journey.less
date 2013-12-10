@@ -7,22 +7,43 @@
     } // end @media (min-width: 768px)   
 }
 
+.has-btn, .has-button:hover{
+    background-color: transparent !important;
+}
 
 #journey-nav-expanded { 
     width: 0; 
-    background: #FFFFFF; 
     overflow:hidden; 
     transition: width 0.4s ease; 
-    border-right: 1px solid #CCC;
     z-index: 9999;
     top: 40px;
     bottom: 0;
     height: auto;
-    position: absolute;
+    position: fixed;
     @media (min-width: 768px) {
         top: 104px !important;
         padding-bottom: 104px;
-    } // end @media (min-width: 768px)   
+        width: 200px;
+        border-right: 1px solid #CCC;
+    } // end @media (min-width: 768px) 
+    .journey-expanded-search{
+        @media (min-width: 768px) {
+            display: none;
+        } // end @media (min-width: 768px) 
+        input{
+            border-radius: 0;
+        }
+    }
+    .journey-expanded-body{
+        width: 200px;
+        background-color: #FFF;
+        bottom: 0;
+        top: 0;
+        position: relative;
+        @media (max-width: 768px) {
+            border-right: 1px solid #CCC;
+        } // end @media (min-width: 768px) 
+    }
 } // end #journey-nav-expanded
 
 #journey-nav-expanded.journey-fixed { 
@@ -65,18 +86,32 @@
             padding: 2.5px 0 7.5px 25px;
             .font-size( 14 );
             line-height: 1.2;
+            color: #666;
             &:hover{
                 background-color: #E8E8E8; 
                 text-decoration: none;
             } // end :hover
             a{
-                color: #666;
                 text-decoration: none;
                 width: 100%;
                 display: inline;
             } // end a
         } // end li
+        .has-btn, .has-button{
+            padding-right: 20px;
+            &:hover{
+                background-color: transparent;
+            }
+            a.btn{
+                display: inherit;
+            }
+        }
     } // end ul
+    .journey-sub-nav{
+        a{
+            color: #666;
+        }
+    }
     .journey-search{
         li{ 
             margin: 0; 
@@ -197,7 +232,6 @@
             height: 30px;
             max-height: 30px;
             .font-size( 12 );
-            padding: 1px 6px;
             @media (min-width: 768px) {
                 height: 30px;
             } // end @media (min-width: 768px)
@@ -281,12 +315,22 @@
             opacity: 0.7;
             padding: 4px 2px;
         } // end journey-nav-expaned-open
+        .journey-search-action{
+            @media (min-width: 768px) {
+                display: none;
+            } // end @media (min-width: 768px)
+        }
         .journey-action{
-            overflow: hidden; 
             zoom: 1;
+            bottom: 0;
+            position: relative;
+            max-height: 40px;
+            @media (min-width: 768px) {
+                margin-top: 17px;
+            } // end @media (min-width: 768px)
             img{
-                max-height: 36px; 
-                padding: 6px; 
+                max-height: 30px; 
+                padding: 2px; 
                 opacity: 0.7;
             } // end img
             .journey-action-body{
@@ -497,11 +541,13 @@
 
 /* Toggle on */
 #journey-nav-expanded:target{ 
-    width: 200px; 
+    width: 100%; 
     overflow: hidden; 
     @media (min-width: 768px) {
         height: auto;
         display: none;
+        width: 200px;
+        background-color: white;
     } // end @media (min-width: 768px
 } // end #journey-nav-expanded:target
 
@@ -531,6 +577,12 @@
 #journey-nav-expanded:target + {  
     @media screen and (min-width: 768px) { 
         display: block;
+    } // end @media screen and (-webkit-min-device-pixel-ratio:0)
+} // end #journey-nav-expanded:target + .wrapper .journey .journey-bar
+
+#journey-nav-expanded:target + .wrapper .journey .journey-bar .journey-search-action {  
+    @media screen and (max-width: 768px) { 
+        display: none;
     } // end @media screen and (-webkit-min-device-pixel-ratio:0)
 } // end #journey-nav-expanded:target + .wrapper .journey .journey-bar
 
