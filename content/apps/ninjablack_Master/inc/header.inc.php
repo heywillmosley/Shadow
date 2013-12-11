@@ -44,6 +44,10 @@
     <?php shdw_header(); ?>
     <link href='http://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php echo APP_STYLE_URL; ?>all.css" type="text/css" media="screen" />
+    
+    <style>
+		
+	</style>
 
 </head>        
 

@@ -21,106 +21,6 @@
 # includes header.php
 app_header(); ?>
 
-<div class="exhibit-container exhibit-stacked">
-    <ul class="exhibit">
-      	<li><a href="#">
-        	<div class="exhibit-img">
-        		<img src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
-          	</div><!-- end exhibit-img -->
-
-        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
-            	<div class="media">
-                    <div class="media-body">
-                    	<div class="exhibit-title">Travel <span class="x-small">the</span> Galaxy</div>
-                        <img class="pbm" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sig05-006.jpg/640px-Sig05-006.jpg" />
-                        <div class="exhibit-subtitle">Transport now available.</div>
-                        <a href="#" class="btn btn-default">Pricing Options</a>
-                    </div><!-- end media-body -->
-                </div><!-- end media -->
-        		
-          	</div><!-- end content -->
-               		</a></li>
-    </ul>
-</div><!-- end exhibit container -->
-
-<div class="exhibit-container exhibit-stacked">
-    <ul class="exhibit">
-        <li>
-        	<div class="exhibit-img">
-        		<img src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
-            </div><!-- end exhibit-img -->
-        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
-        		<div class="exhibit-title">The Future is Here</div>
-                <div class="exhibit-subtitle">Jump aboard the X00R900. It's lightening fast. Literally.</div>
-                <a href="#" class="btn btn-default">Explore</a>
-          	</div><!-- end content -->
-   		</li>
-    </ul>
-</div><!-- end exhibit container -->
-<div class="exhibit-container exhibit-stacked">
-    <ul class="exhibit">
-        <li>
-        	<div class="exhibit-img">
-      			<img src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt="">
-           	</div><!-- end exhibit-img -->
-        	<div class="exhibit-content exhibit-content-fluffy" style=" right:0; left: auto; width: 60%">
-            	<div class="media">
-                    <div class="pull-left w40p hidden-xs">
-                    	<img src="http://upload.wikimedia.org/wikipedia/commons/0/09/Piolinmarcianocolor.jpeg" />
-                    </div>
-                    <div class="media-body text-left">
-                    	<div class="exhibit-title">Mingle <span class="x-small">With</span> Intergalactic Species</div>
-                        <div class="exhibit-subtitle">Rooming available.</div>
-                        
-                        <a href="#" class="btn btn-default" style="border-color: white; color: white;">Learn More</a>
-                    </div><!-- end media-body -->
-                </div><!-- end media -->
-        		
-          	</div><!-- end content -->
-   		</li>
-    </ul>
-</div><!-- end exhibit container -->
-
-<div class="exhibit-container">
-    <ul class="exhibit">
-      	<li><a href="#">
-        	<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
-        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
-        		<div class="exhibit-title">Travel <span class="x-small">the</span> Galaxy</div>
-                <div class="exhibit-subtitle">Transport now available.</div>
-                <a href="#" class="btn btn-default">Pricing Options</a>
-          	</div><!-- end content -->
-   		</a></li>
-        <li>
-        	<img class="exhibit-img" src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
-        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
-        		<div class="exhibit-title">The Future is Here</div>
-                <div class="exhibit-subtitle">Jump aboard the X00R900. It's lightening fast. Literally.</div>
-                <a href="#" class="btn btn-default">Explore</a>
-          	</div><!-- end content -->
-   		</li>
-        <li>
-        	<div class="exhibit-content" style="bottom:0;">
-        		<div class="exhibit-title">Mingle <span class="x-small">With</span> <span class="small">Intergalactic</span> Species</div>
-                <div class="exhibit-subtitle">Rooming available.</div>
-                
-                <a href="#" class="btn btn-default">Learn More</a>
-          	</div><!-- end content -->
-      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
-   		</li>
-        <li>
-        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
-        		<div class="exhibit-title">Meet <span class="x-small">the</span> Galileo Crew</div>
-                <div class="exhibit-subtitle">Specialist in high speed travel. Masters of war.</div>
-                
-                <a href="#" class="btn btn-default">Learn More</a>
-          	</div><!-- end content -->
-      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
-   		</li>
-    </ul>
-</div><!-- end exhibit container -->
-
-
 <div class="exhibit-container">
     <ul class="exhibit">
       	<li>
@@ -129,7 +29,7 @@ app_header(); ?>
                 <div class="exhibit-subtitle">Transport now available.</div>
                 <a href="#" class="btn btn-default" style="border-color: wheat; color: wheat;">Pricing Options</a>
           	</div><!-- end content -->
-      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
    		</li>
         <li>
         	<img class="exhibit-img" src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
@@ -147,7 +47,7 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default" style="border-color: white; color: white;">Learn More</a>
           	</div><!-- end content -->
-      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt="">
    		</li>
         <li>
         	<div class="exhibit-content exhibit-content-fluffy darken-down" style="background-color: transparent; color: white;  left: auto; width: 100%">
@@ -156,54 +56,54 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default" style="border-color: white; color: white;">Learn More</a>
           	</div><!-- end content -->
-      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt="">
    		</li>
-        
-      
     </ul>
 </div><!-- end exhibit container -->
 
-<div class="exhibit-container">
+<div class="exhibit-container exhibit-stacked">
     <ul class="exhibit">
-      	<li>
-        	<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
-        	<div class="exhibit-content darken" style="background-color: transparent;">
-        		<div class="exhibit-title" style="color:#FFF">Travel <span class="x-small">the</span> Galaxy</div>
-                <div class="exhibit-subtitle" style="color:#FFF">Transport now available.</div>
-                <a href="#" class="btn btn-default" style="color:#FFF; border-color: #FFF">Pricing Options</a>
+      	<li><a href="#">
+        	<div class="exhibit-img">
+        		<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Krishna_Pushkarani_-_Hampi_Ruins.jpg/1024px-Krishna_Pushkarani_-_Hampi_Ruins.jpg" alt="">
+          	</div><!-- end exhibit-img -->
+
+        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto; background-color: #C93; color: #FFF !important">
+            	<div class="media">
+                    <div class="media-body">
+                    	<div class="exhibit-title">New Civilizations</div>
+                        <div class="exhibit-subtitle">Experience Paradise.</div>
+                        <a href="#" class="btn btn-default">Explore</a>
+                    </div><!-- end media-body -->
+                </div><!-- end media -->
+        		
           	</div><!-- end content -->
-   		</li>
-        <li>
-        	<img class="exhibit-img" src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
-        	<div class="exhibit-content darken" style="background-color: transparent;">
-        		<div class="exhibit-title" style="color:#FFF">The Future is Here</div>
-                <div class="exhibit-subtitle" style="color:#FFF">Jump aboard the X00R900. It's lightening fast. Literally.</div>
-                <a href="#" class="btn btn-default" style="color:#FFF; border-color:#FFF;">Explore</a>
-          	</div><!-- end content -->
-   		</li>
-        <li>
-        	<div class="exhibit-content darken" style="background-color: transparent;">
-        		<div class="exhibit-title" style="color:#FFF">Mingle <span class="x-small">With</span> <span class="small">Intergalactic</span> Species</div>
-                <div class="exhibit-subtitle" style="color:#FFF">Rooming available.</div>
-                
-                <a href="#" class="btn btn-default" style="color:#FFF; border-color:#FFF;">Learn More</a>
-          	</div><!-- end content -->
-      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
-   		</li>
-        <li>
-        	<div class="exhibit-content darken" style="background-color: transparent;">
-        		<div class="exhibit-title" style="color:#FFF">Meet <span class="x-small">the</span> Galileo Crew</div>
-                <div class="exhibit-subtitle" style="color:#FFF">Specialist in high speed travel. Masters of war.</div>
-                
-                <a href="#" class="btn btn-default" style="color:#FFF; border-color:#FFF;">Learn More</a>
-          	</div><!-- end content -->
-      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
-   		</li>
-        
-      
+               		</a></li>
     </ul>
 </div><!-- end exhibit container -->
 
+<div class="exhibit-container exhibit-stacked">
+    <ul class="exhibit">
+        <li>
+        	<div class="exhibit-img" style="max-height:300px">
+        		<img src=" http://upload.wikimedia.org/wikipedia/commons/a/a3/%27Umbrellas_in_the_Rain%27_by_Maurice_Prendergast%2C_1899.jpg" alt="" />
+            </div><!-- end exhibit-img -->
+        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto; background-color: pink;">
+        		<div class="exhibit-title">Ruins Found</div>
+                <a href="#" class="btn btn-default">Explore</a>
+          	</div><!-- end content -->
+   		</li>
+    </ul>
+</div><!-- end exhibit container -->
+<div class="exhibit-container exhibit-stacked">
+    <ul class="exhibit">
+        <li>
+        	<div class="exhibit-img" style="max-height: 900px">
+      			<img src="http://upload.wikimedia.org/wikipedia/commons/6/69/Czernina-Dolna-04.jpg" alt="">
+           	</div><!-- end exhibit-img -->
+   		</li>
+    </ul>
+</div><!-- end exhibit container -->
 
 <div class="journey-content-padding">
     <div class="feature-container">
