@@ -63,7 +63,7 @@ app_header(); ?>
 
 <div class="exhibit-container exhibit-stacked">
     <ul class="exhibit">
-      	<li><a href="#">
+      	<li>
         	<div class="exhibit-img">
         		<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Krishna_Pushkarani_-_Hampi_Ruins.jpg/1024px-Krishna_Pushkarani_-_Hampi_Ruins.jpg" alt="">
           	</div><!-- end exhibit-img -->
@@ -78,7 +78,7 @@ app_header(); ?>
                 </div><!-- end media -->
         		
           	</div><!-- end content -->
-               		</a></li>
+      	</li>
     </ul>
 </div><!-- end exhibit container -->
 
@@ -90,6 +90,12 @@ app_header(); ?>
             </div><!-- end exhibit-img -->
         	<div class="exhibit-content" style="bottom:0; right: 0; left: auto; background-color: pink;">
         		<div class="exhibit-title">Ruins Found</div>
+                <ul class="healthcare-list" style="list-style-type: none;">
+                            <li><a class="healthcare" href="<?php echo SITE_URL; ?>products">Physician-tested formulas</a></li>
+                            <li><a class="healthcare" href="<?php echo SITE_URL; ?>medicine/powerful-benefits-of-safecarerx#safety">Safe &ndash; no known negative side effects</a></li>
+                            <li><a class="healthcare" href="<?php echo SITE_URL; ?>medicine/how-soon-can-results-be-expected">No medical contraindications</a></li>
+                            <li><a class="healthcare" href="<?php echo SITE_URL; ?>manuals">Easily administered systems</a></li>
+                        </ul> 
                 <a href="#" class="btn btn-default">Explore</a>
           	</div><!-- end content -->
    		</li>

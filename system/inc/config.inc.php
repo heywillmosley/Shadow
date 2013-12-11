@@ -40,7 +40,7 @@
  * -Added Basic Product Catalog
  * -Implement Pilot Interface
  */
-	define('SYS_VER', '1.5.1.0');
+	define('SYS_VER', '1.5.1.1');
 
 	$release =  str_replace( '-alpha', '', str_replace( '-beta', '', str_replace( '.', '', substr(SYS_VER, 0, strrpos(SYS_VER, '.') ) ) ) );
 	$sprint = substr(SYS_VER, strrpos(SYS_VER, '.') + 0);
