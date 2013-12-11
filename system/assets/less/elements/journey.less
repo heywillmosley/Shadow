@@ -7,9 +7,39 @@
     } // end @media (min-width: 768px)   
 }
 
-.has-btn, .has-button:hover{
+.has-btn, .has-btn:hover, .journey-action.has-btn, .journey-action.has-btn:hover,{
     background-color: transparent !important;
 }
+
+.journey-action{
+    zoom: 1;
+    bottom: 0;
+    position: relative;
+    max-height: 40px;
+    &:hover{
+        background-color: rgba(0, 0, 0, .07) !important;
+        text-decoration: none !important;
+    } // end :hover
+    img{
+        max-height: 30px; 
+        padding: 2px; 
+        opacity: 0.7;
+    } // end img
+    .journey-action-body{
+        display: none;
+        overflow: hidden; 
+        zoom: 1;
+    } // end .journey-action-body
+} // end .journey-action
+.journey-action:first-child{
+    margin-top: 0;
+} // end .journey-action:first-child
+.journey-action > .pull-left{ 
+    margin-right: 10px; 
+} // end .journey-action > .pull-left
+.journey-action > .pull-right { 
+    margin-left: 10px; 
+} // end .journey-action > .pull-right
 
 #journey-nav-expanded { 
     width: 0; 
@@ -25,6 +55,7 @@
         padding-bottom: 104px;
         width: 200px;
         border-right: 1px solid #CCC;
+        background-color: #FFF;
     } // end @media (min-width: 768px) 
     .journey-expanded-search{
         @media (min-width: 768px) {
@@ -43,6 +74,13 @@
         @media (max-width: 768px) {
             border-right: 1px solid #CCC;
         } // end @media (min-width: 768px) 
+        .journey-account{
+            background-color: #F4F4F4; 
+            padding-top: 10px;
+            li{
+                padding-left: 10px;
+            }
+        }
     }
 } // end #journey-nav-expanded
 
@@ -82,14 +120,13 @@
     ul, ol{ 
         margin: 0; 
         padding: 0 2.5px 10px 0; 
-        li{
+        > li{
             padding: 2.5px 0 7.5px 25px;
             .font-size( 14 );
             line-height: 1.2;
             color: #666;
             &:hover{
                 background-color: rgba(0, 0, 0, .07);
-                color: rgba(0, 0, 0, .07);
                 text-decoration: none;
             } // end :hover
             a{
@@ -191,15 +228,17 @@
     ul{
         margin: 0; 
         padding: 0;
-        li{
+        > li:first-child{
             list-style: none;
             height: 100%;
             &:hover{
-                background-color: rgba(0, 0, 0, .07);
-                color: rgba(0, 0, 0, .07);
-                text-decoration: none;
+                
             } // end :hover
         } // end li
+        > li:hover{
+            background-color: rgba(0, 0, 0, .07);
+            text-decoration: none;
+        }
     } // end ul
     .journey-no-hover{
         background-color: transparent !important;   
@@ -230,6 +269,11 @@
             float: left;
             padding: 4px;
         } // end li
+        .journey-action{
+            @media (min-width: 768px) {
+                margin-top: 17px;
+            } // end @media (min-width: 768px)
+        }
         .btn{
             height: 30px;
             max-height: 30px;
@@ -322,34 +366,6 @@
                 display: none;
             } // end @media (min-width: 768px)
         }
-        .journey-action{
-            zoom: 1;
-            bottom: 0;
-            position: relative;
-            max-height: 40px;
-            @media (min-width: 768px) {
-                margin-top: 17px;
-            } // end @media (min-width: 768px)
-            img{
-                max-height: 30px; 
-                padding: 2px; 
-                opacity: 0.7;
-            } // end img
-            .journey-action-body{
-                display: none;
-                overflow: hidden; 
-                zoom: 1;
-            } // end .journey-action-body
-        } // end .journey-action
-        .journey-action:first-child{
-            margin-top: 0;
-        } // end .journey-action:first-child
-        .journey-action > .pull-left{ 
-            margin-right: 10px; 
-        } // end .journey-action > .pull-left
-        .journey-action > .pull-right { 
-            margin-left: 10px; 
-        } // end .journey-action > .pull-right
         .journey-md-no-action{
             @media (min-width: 768px) {
                 display: none;

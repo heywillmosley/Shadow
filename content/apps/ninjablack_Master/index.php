@@ -21,10 +21,70 @@
 # includes header.php
 app_header(); ?>
 
+<div class="exhibit-container exhibit-stacked">
+    <ul class="exhibit">
+      	<li><a href="#">
+        	<div class="exhibit-img">
+        		<img src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
+          	</div><!-- end exhibit-img -->
+
+        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
+            	<div class="media">
+                    <div class="media-body">
+                    	<div class="exhibit-title">Travel <span class="x-small">the</span> Galaxy</div>
+                        <img class="pbm" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sig05-006.jpg/640px-Sig05-006.jpg" />
+                        <div class="exhibit-subtitle">Transport now available.</div>
+                        <a href="#" class="btn btn-default">Pricing Options</a>
+                    </div><!-- end media-body -->
+                </div><!-- end media -->
+        		
+          	</div><!-- end content -->
+               		</a></li>
+    </ul>
+</div><!-- end exhibit container -->
+
+<div class="exhibit-container exhibit-stacked">
+    <ul class="exhibit">
+        <li>
+        	<div class="exhibit-img">
+        		<img src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
+            </div><!-- end exhibit-img -->
+        	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
+        		<div class="exhibit-title">The Future is Here</div>
+                <div class="exhibit-subtitle">Jump aboard the X00R900. It's lightening fast. Literally.</div>
+                <a href="#" class="btn btn-default">Explore</a>
+          	</div><!-- end content -->
+   		</li>
+    </ul>
+</div><!-- end exhibit container -->
+<div class="exhibit-container exhibit-stacked">
+    <ul class="exhibit">
+        <li>
+        	<div class="exhibit-img">
+      			<img src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt="">
+           	</div><!-- end exhibit-img -->
+        	<div class="exhibit-content exhibit-content-fluffy" style=" right:0; left: auto; width: 60%">
+            	<div class="media">
+                    <div class="pull-left w40p hidden-xs">
+                    	<img src="http://upload.wikimedia.org/wikipedia/commons/0/09/Piolinmarcianocolor.jpeg" />
+                    </div>
+                    <div class="media-body text-left">
+                    	<div class="exhibit-title">Mingle <span class="x-small">With</span> Intergalactic Species</div>
+                        <div class="exhibit-subtitle">Rooming available.</div>
+                        
+                        <a href="#" class="btn btn-default" style="border-color: white; color: white;">Learn More</a>
+                    </div><!-- end media-body -->
+                </div><!-- end media -->
+        		
+          	</div><!-- end content -->
+   		</li>
+    </ul>
+</div><!-- end exhibit container -->
+
 <div class="exhibit-container">
     <ul class="exhibit">
       	<li><a href="#">
-        	<img src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
+        	<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
         	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
         		<div class="exhibit-title">Travel <span class="x-small">the</span> Galaxy</div>
                 <div class="exhibit-subtitle">Transport now available.</div>
@@ -32,7 +92,7 @@ app_header(); ?>
           	</div><!-- end content -->
    		</a></li>
         <li>
-        	<img src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
+        	<img class="exhibit-img" src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
         	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
         		<div class="exhibit-title">The Future is Here</div>
                 <div class="exhibit-subtitle">Jump aboard the X00R900. It's lightening fast. Literally.</div>
@@ -46,7 +106,7 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default">Learn More</a>
           	</div><!-- end content -->
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
    		</li>
         <li>
         	<div class="exhibit-content" style="bottom:0; right: 0; left: auto;">
@@ -55,10 +115,8 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default">Learn More</a>
           	</div><!-- end content -->
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
    		</li>
-        
-      
     </ul>
 </div><!-- end exhibit container -->
 
@@ -71,10 +129,10 @@ app_header(); ?>
                 <div class="exhibit-subtitle">Transport now available.</div>
                 <a href="#" class="btn btn-default" style="border-color: wheat; color: wheat;">Pricing Options</a>
           	</div><!-- end content -->
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt=""> This is a caption!
    		</li>
         <li>
-        	<img src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
+        	<img class="exhibit-img" src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
             <div class="darken-down"></div>
         	<div class="exhibit-content exhibit-content-fluffy" style="background-color: transparent; color: #FFF; right: 0; left: auto; width:100%;">
         		<div class="exhibit-title">The Future is Here</div>
@@ -89,7 +147,7 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default" style="border-color: white; color: white;">Learn More</a>
           	</div><!-- end content -->
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
    		</li>
         <li>
         	<div class="exhibit-content exhibit-content-fluffy darken-down" style="background-color: transparent; color: white;  left: auto; width: 100%">
@@ -98,7 +156,7 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default" style="border-color: white; color: white;">Learn More</a>
           	</div><!-- end content -->
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
    		</li>
         
       
@@ -108,7 +166,7 @@ app_header(); ?>
 <div class="exhibit-container">
     <ul class="exhibit">
       	<li>
-        	<img src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
+        	<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_north_polar_vortex_false_color.jpg" alt="">
         	<div class="exhibit-content darken" style="background-color: transparent;">
         		<div class="exhibit-title" style="color:#FFF">Travel <span class="x-small">the</span> Galaxy</div>
                 <div class="exhibit-subtitle" style="color:#FFF">Transport now available.</div>
@@ -116,7 +174,7 @@ app_header(); ?>
           	</div><!-- end content -->
    		</li>
         <li>
-        	<img src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
+        	<img class="exhibit-img" src=" http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Atlantis_taking_off_on_STS-27.jpg/1024px-Atlantis_taking_off_on_STS-27.jpg" alt="" />
         	<div class="exhibit-content darken" style="background-color: transparent;">
         		<div class="exhibit-title" style="color:#FFF">The Future is Here</div>
                 <div class="exhibit-subtitle" style="color:#FFF">Jump aboard the X00R900. It's lightening fast. Literally.</div>
@@ -130,7 +188,7 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default" style="color:#FFF; border-color:#FFF;">Learn More</a>
           	</div><!-- end content -->
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/b/bf/NGC_1808HSTCenter.jpg" alt=""> This is a caption!
    		</li>
         <li>
         	<div class="exhibit-content darken" style="background-color: transparent;">
@@ -139,7 +197,7 @@ app_header(); ?>
                 
                 <a href="#" class="btn btn-default" style="color:#FFF; border-color:#FFF;">Learn More</a>
           	</div><!-- end content -->
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
+      		<img class="exhibit-img" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/S122e007794.jpg" alt=""> This is a caption!
    		</li>
         
       
